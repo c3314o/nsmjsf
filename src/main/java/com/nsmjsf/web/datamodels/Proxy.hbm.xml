@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Proxy" table="proxy" catalog="admin_nsmjsf">
+        <composite-id name="id" class="com.nsmjsf.web.datamodels.ProxyId">
+            <key-property name="proxyId" type="int">
+                <column name="proxy_id" />
+            </key-property>
+            <key-property name="proxyIp" type="string">
+                <column name="proxy_ip" />
+            </key-property>
+            <key-property name="proxySuccess" type="int">
+                <column name="proxy_success" />
+            </key-property>
+            <key-property name="proxyFailed" type="int">
+                <column name="proxy_failed" />
+            </key-property>
+            <key-property name="proxyPort" type="int">
+                <column name="proxy_port" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.CompanyBranch" table="company_branch" catalog="admin_nsmjsf">
+        <id name="companyBranchId" type="java.lang.Integer">
+            <column name="company_branch_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="companyBranch" class="com.nsmjsf.web.datamodels.CompanyBranch" fetch="select">
+            <column name="company_branch_company_id" not-null="true" />
+        </many-to-one>
+        <property name="companyBranchAddress" type="string">
+            <column name="company_branch_address" length="65535" not-null="true" />
+        </property>
+        <property name="companyBranchPhone" type="string">
+            <column name="company_branch_phone" not-null="true" />
+        </property>
+        <property name="companyBranchEmail" type="string">
+            <column name="company_branch_email" not-null="true" />
+        </property>
+        <set name="companyBranches" table="company_branch" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="company_branch_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.CompanyBranch" />
+        </set>
+    </class>
+</hibernate-mapping>

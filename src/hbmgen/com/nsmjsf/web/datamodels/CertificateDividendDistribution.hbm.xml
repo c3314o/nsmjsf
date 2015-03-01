@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.CertificateDividendDistribution" table="certificate_dividend_distribution" catalog="admin_nsmjsf">
+        <id name="certificateDividendDistributionId" type="java.lang.Integer">
+            <column name="certificate_dividend_distribution_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="announcement" class="com.nsmjsf.web.datamodels.Announcement" fetch="select">
+            <column name="certificate_dividend_distribution_announcement_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="issueManager" class="com.nsmjsf.web.datamodels.IssueManager" fetch="select">
+            <column name="certificate_dividend_distribution_issue_manager_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="fiscalYear" class="com.nsmjsf.web.datamodels.FiscalYear" fetch="select">
+            <column name="certificate_dividend_distribution_fiscal_year_id" not-null="true" />
+        </many-to-one>
+        <property name="certificateDividendDistributionDetail" type="string">
+            <column name="certificate_dividend_distribution_detail" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

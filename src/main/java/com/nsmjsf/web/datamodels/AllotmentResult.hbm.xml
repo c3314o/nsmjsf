@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.AllotmentResult" table="allotment_result" catalog="admin_nsmjsf">
+        <id name="allotmentResultId" type="java.lang.Integer">
+            <column name="allotment_result_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="allotment_result_company_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="announcement" class="com.nsmjsf.web.datamodels.Announcement" fetch="select">
+            <column name="allotment_result_announcement_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="allotment_result_post_id" not-null="true" />
+        </many-to-one>
+        <property name="allotmentResultApplicationNo" type="java.lang.Integer">
+            <column name="allotment_result_application_no" />
+        </property>
+        <property name="allotmentResultFirstName" type="string">
+            <column name="allotment_result_first_name" />
+        </property>
+        <property name="allotmentResultLastName" type="string">
+            <column name="allotment_result_last_name" />
+        </property>
+        <property name="allotmentResultApplied" type="java.lang.Integer">
+            <column name="allotment_result_applied" />
+        </property>
+        <property name="allotmentResultAllotted" type="java.lang.Integer">
+            <column name="allotment_result_allotted" />
+        </property>
+        <property name="allotmentResultDate" type="date">
+            <column name="allotment_result_date" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.CompanyDetail" table="company_detail" catalog="admin_nsmjsf">
+        <id name="companyDetailId" type="java.lang.Integer">
+            <column name="company_detail_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="company_detail_post_id" not-null="true" />
+        </many-to-one>
+        <property name="companyDetailLabel" type="string">
+            <column name="company_detail_label" not-null="true" />
+        </property>
+        <property name="companyDetailListedShares" type="int">
+            <column name="company_detail_listed_shares" not-null="true" />
+        </property>
+        <property name="companyDetailPaidUpValue" type="int">
+            <column name="company_detail_paid_up_value" not-null="true" />
+        </property>
+        <property name="companyDetailTotalPaidUpValue" type="int">
+            <column name="company_detail_total_paid_up_value" not-null="true" />
+        </property>
+        <property name="companyDetailAddress" type="string">
+            <column name="company_detail_address" length="65535" not-null="true" />
+        </property>
+        <property name="companyDetailPhone" type="string">
+            <column name="company_detail_phone" not-null="true" />
+        </property>
+        <property name="companyDetailEmail" type="string">
+            <column name="company_detail_email" />
+        </property>
+        <property name="companyDetailWeb" type="string">
+            <column name="company_detail_web" length="65535" />
+        </property>
+        <property name="companyDetailPob" type="string">
+            <column name="company_detail_pob" />
+        </property>
+        <property name="companyDetailFax" type="string">
+            <column name="company_detail_fax" />
+        </property>
+        <property name="companyDetailOperationDate" type="date">
+            <column name="company_detail_operation_date" length="0" />
+        </property>
+        <property name="companyDetailListingDate" type="date">
+            <column name="company_detail_listing_date" length="0" />
+        </property>
+        <property name="companyDetailRegistarToShare" type="string">
+            <column name="company_detail_registar_to_share" not-null="true" />
+        </property>
+        <property name="companyDetailProfile" type="string">
+            <column name="company_detail_profile" length="16777215" not-null="true" />
+        </property>
+        <set name="companies" table="company" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="company_details_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Company" />
+        </set>
+    </class>
+</hibernate-mapping>

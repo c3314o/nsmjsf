@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.KeyRatio" table="key_ratio" catalog="admin_nsmjsf">
+        <id name="keyRatioId" type="java.lang.Integer">
+            <column name="key_ratio_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="financialReport" class="com.nsmjsf.web.datamodels.FinancialReport" fetch="select">
+            <column name="key_ratio_financial_report_id" not-null="true" />
+        </many-to-one>
+        <property name="keyRatioNetProfitToGrossIncome" type="float">
+            <column name="key_ratio_net_profit_to_gross_income" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioEarningPerShare" type="float">
+            <column name="key_ratio_earning_per_share" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioMarketValuePerShare" type="float">
+            <column name="key_ratio_market_value_per_share" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioPriceEarningRatio" type="float">
+            <column name="key_ratio_price_earning_ratio" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioDividendOnShareCapital" type="float">
+            <column name="key_ratio_dividend_on_share_capital" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioCapitalAdequacyFund" type="float">
+            <column name="key_ratio_capital_adequacy_fund" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioCashDividend" type="float">
+            <column name="key_ratio_cash_dividend" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioInterestIncomeToLoanAndAdvance" type="float">
+            <column name="key_ratio_interest_income_to_loan_and_advance" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioStaffExpensesToTotalOperatingExpenses" type="float">
+            <column name="key_ratio_staff_expenses_to_total_operating_expenses" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioInterestExpensesToTotalDepositAndBorrow" type="float">
+            <column name="key_ratio_interest_expenses_to_total_deposit_and_borrow" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioExchangeGainToTotalAssets" type="float">
+            <column name="key_ratio_exchange_gain_to_total_assets" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioExchangeFluctuationIncomeByTotalIncome" type="float">
+            <column name="key_ratio_exchange_fluctuation_income_by_total_income" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioStaffBonusToTotalStaffExpenses" type="float">
+            <column name="key_ratio_staff_bonus_to_total_staff_expenses" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioNetProfitToLoanAndAdvance" type="float">
+            <column name="key_ratio_net_profit_to_loan_and_advance" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioNetProfitToTotalAssets" type="float">
+            <column name="key_ratio_net_profit_to_total_assets" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioCdRatio" type="float">
+            <column name="key_ratio_cd_ratio" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioTotalOperatingExpensesToTotalAssets" type="float">
+            <column name="key_ratio_total_operating_expenses_to_total_assets" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioCoreCapital" type="float">
+            <column name="key_ratio_core_capital" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioSupplementaryCapital" type="float">
+            <column name="key_ratio_supplementary_capital" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioTotalCapitalFund" type="float">
+            <column name="key_ratio_total_capital_fund" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioLiquidity" type="float">
+            <column name="key_ratio_liquidity" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioNonperformingLoanToTotalLoan" type="float">
+            <column name="key_ratio_nonperforming_loan_to_total_loan" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioWeightedAverageInterestRateSpread" type="float">
+            <column name="key_ratio_weighted_average_interest_rate_spread" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioReturnOfAsset" type="float">
+            <column name="key_ratio_return_of_asset" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioBookNetWorth" type="float">
+            <column name="key_ratio_book_net_worth" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioBookNetWorthPerShare" type="float">
+            <column name="key_ratio_book_net_worth_per_share" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioTotalShares" type="float">
+            <column name="key_ratio_total_shares" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioTotalStaff" type="float">
+            <column name="key_ratio_total_staff" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="keyRatioReturnOnEquity" type="float">
+            <column name="key_ratio_return_on_equity" precision="12" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

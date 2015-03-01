@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.CommentSocial" table="comment_social" catalog="admin_nsmjsf">
+        <composite-id name="id" class="com.nsmjsf.web.datamodels.CommentSocialId">
+            <key-property name="commentSocialId" type="int">
+                <column name="comment_social_id" />
+            </key-property>
+            <key-property name="commentSocialLike" type="boolean">
+                <column name="comment_social_like" />
+            </key-property>
+            <key-property name="commentSocialDislike" type="boolean">
+                <column name="comment_social_dislike" />
+            </key-property>
+            <key-property name="commentSocialUserId" type="int">
+                <column name="comment_social_user_id" />
+            </key-property>
+            <key-property name="commentSocialCommentId" type="int">
+                <column name="comment_social_comment_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="user" class="com.nsmjsf.web.datamodels.User" update="false" insert="false" fetch="select">
+            <column name="comment_social_user_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="comment" class="com.nsmjsf.web.datamodels.Comment" update="false" insert="false" fetch="select">
+            <column name="comment_social_comment_id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

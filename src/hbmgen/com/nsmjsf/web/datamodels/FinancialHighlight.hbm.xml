@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.FinancialHighlight" table="financial_highlight" catalog="admin_nsmjsf">
+        <id name="financialHighlightId" type="java.lang.Integer">
+            <column name="financial_highlight_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="financial_highlight_company_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="quarter" class="com.nsmjsf.web.datamodels.Quarter" fetch="select">
+            <column name="financial_highlight_quarter_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="fiscalYear" class="com.nsmjsf.web.datamodels.FiscalYear" fetch="select">
+            <column name="financial_highlight_fiscal_year_id" not-null="true" />
+        </many-to-one>
+        <property name="financialHighlightPaidUpCapital" type="int">
+            <column name="financial_highlight_paid_up_capital" not-null="true" />
+        </property>
+        <property name="financialHighlightReserveAndSurplus" type="int">
+            <column name="financial_highlight_reserve_and_surplus" not-null="true" />
+        </property>
+        <property name="financialHighlightOperatingProfit" type="int">
+            <column name="financial_highlight_operating_profit" not-null="true" />
+        </property>
+        <property name="financialHighlightNetProfit" type="int">
+            <column name="financial_highlight_net_profit" not-null="true" />
+        </property>
+        <property name="financialHighlightNonPerformingLoan" type="float">
+            <column name="financial_highlight_non_performing_loan" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="financialHighlightEarningPerShare" type="float">
+            <column name="financial_highlight_earning_per_share" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="financialHighlightNetWorthPerShare" type="float">
+            <column name="financial_highlight_net_worth_per_share" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="financialHighlightCreditDepositRatio" type="float">
+            <column name="financial_highlight_credit_deposit_ratio" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="financialHighlightPriceEarningRatio" type="float">
+            <column name="financial_highlight_price_earning_ratio" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="financialHighlightBookValuePerShare" type="float">
+            <column name="financial_highlight_book_value_per_share" precision="12" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

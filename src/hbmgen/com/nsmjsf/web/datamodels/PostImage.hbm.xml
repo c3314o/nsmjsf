@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.PostImage" table="post_image" catalog="admin_nsmjsf">
+        <id name="postImageId" type="java.lang.Integer">
+            <column name="post_image_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="post_image_post_id" not-null="true" />
+        </many-to-one>
+        <property name="postImagePath" type="string">
+            <column name="post_image_path" length="65535" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

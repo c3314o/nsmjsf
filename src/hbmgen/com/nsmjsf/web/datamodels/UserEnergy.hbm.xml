@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.UserEnergy" table="user_energy" catalog="admin_nsmjsf">
+        <id name="userEnergyId" type="java.lang.Integer">
+            <column name="user_energy_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userPortfolio" class="com.nsmjsf.web.datamodels.UserPortfolio" fetch="select">
+            <column name="user_energy_portfolio_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="com.nsmjsf.web.datamodels.User" fetch="select">
+            <column name="user_energy_user_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="energyType" class="com.nsmjsf.web.datamodels.EnergyType" fetch="select">
+            <column name="user_energy_energy_type_id" not-null="true" />
+        </many-to-one>
+        <property name="userEnergyBuyPrice" type="float">
+            <column name="user_energy_buy_price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="userEnergyBuyUnits" type="int">
+            <column name="user_energy_buy_units" not-null="true" />
+        </property>
+        <property name="userEnergyUnitsLeft" type="int">
+            <column name="user_energy_units_left" not-null="true" />
+        </property>
+        <property name="userEnergyTotalAmount" type="int">
+            <column name="user_energy_total_amount" not-null="true" />
+        </property>
+        <set name="userEnergySaleses" table="user_energy_sales" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_energy_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.UserEnergySales" />
+        </set>
+    </class>
+</hibernate-mapping>

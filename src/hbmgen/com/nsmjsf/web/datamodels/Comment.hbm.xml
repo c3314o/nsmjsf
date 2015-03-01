@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Comment" table="comment" catalog="admin_nsmjsf">
+        <id name="commentId" type="java.lang.Integer">
+            <column name="comment_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="comment_post_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="com.nsmjsf.web.datamodels.User" fetch="select">
+            <column name="comment_user_id" not-null="true" />
+        </many-to-one>
+        <property name="commentText" type="string">
+            <column name="comment_text" length="65535" not-null="true" />
+        </property>
+        <property name="commentDate" type="timestamp">
+            <column name="comment_date" length="0" not-null="true" />
+        </property>
+        <property name="commentParent" type="java.lang.Integer">
+            <column name="comment_parent" />
+        </property>
+        <set name="commentSocials" table="comment_social" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comment_social_comment_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.CommentSocial" />
+        </set>
+    </class>
+</hibernate-mapping>

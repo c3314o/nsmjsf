@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.FiscalYear" table="fiscal_year" catalog="admin_nsmjsf">
+        <id name="fiscalYearId" type="java.lang.Integer">
+            <column name="fiscal_year_id" />
+            <generator class="identity" />
+        </id>
+        <property name="fiscalYearLabel" type="string">
+            <column name="fiscal_year_label" not-null="true" />
+        </property>
+        <set name="agms" table="agm" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="agm_fiscal_year_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Agm" />
+        </set>
+        <set name="bonusDividendApproveds" table="bonus_dividend_approved" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bonus_dividend_approved_fiscal_year_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.BonusDividendApproved" />
+        </set>
+        <set name="bonusDividends" table="bonus_dividend" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bonus_dividend_fiscal_year_id" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.BonusDividend" />
+        </set>
+        <set name="financialHighlights" table="financial_highlight" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="financial_highlight_fiscal_year_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.FinancialHighlight" />
+        </set>
+        <set name="financialReports" table="financial_report" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="financial_report_fiscal_year_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.FinancialReport" />
+        </set>
+        <set name="monthlyFinancialHighlights" table="monthly_financial_highlight" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="monthly_financial_highlight_fiscal_year_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.MonthlyFinancialHighlight" />
+        </set>
+        <set name="bods" table="bod" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bod_fiscal_year_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Bod" />
+        </set>
+        <set name="certificateDividendDistributions" table="certificate_dividend_distribution" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="certificate_dividend_distribution_fiscal_year_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.CertificateDividendDistribution" />
+        </set>
+    </class>
+</hibernate-mapping>

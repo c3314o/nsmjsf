@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.UserStock" table="user_stock" catalog="admin_nsmjsf">
+        <id name="userStockId" type="java.lang.Integer">
+            <column name="user_stock_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userPortfolio" class="com.nsmjsf.web.datamodels.UserPortfolio" fetch="select">
+            <column name="user_stock_portfolio_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="com.nsmjsf.web.datamodels.User" fetch="select">
+            <column name="user_stock_user_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="user_stock_company_id" not-null="true" />
+        </many-to-one>
+        <property name="userStockOwnerName" type="string">
+            <column name="user_stock_owner_name" />
+        </property>
+        <property name="userStockUnits" type="int">
+            <column name="user_stock_units" not-null="true" />
+        </property>
+        <property name="userStockPrice" type="float">
+            <column name="user_stock_price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="userStockTotalAmount" type="double">
+            <column name="user_stock_total_amount" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="userStockServiceCharge" type="float">
+            <column name="user_stock_service_charge" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="userStockEntryDate" type="date">
+            <column name="user_stock_entry_date" length="0" not-null="true" />
+        </property>
+        <property name="userStockUnitsLeft" type="int">
+            <column name="user_stock_units_left" not-null="true" />
+        </property>
+        <set name="userStockSaleses" table="user_stock_sales" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_stock_sales_stock_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.UserStockSales" />
+        </set>
+    </class>
+</hibernate-mapping>

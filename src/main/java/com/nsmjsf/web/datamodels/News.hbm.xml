@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.News" table="news" catalog="admin_nsmjsf">
+        <id name="newsId" type="int">
+            <column name="news_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="user" class="com.nsmjsf.web.datamodels.User" fetch="select">
+            <column name="news_user_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="news_post_id" not-null="true" />
+        </many-to-one>
+        <property name="newsAuthor" type="string">
+            <column name="news_author" />
+        </property>
+        <property name="newsSource" type="string">
+            <column name="news_source" />
+        </property>
+    </class>
+</hibernate-mapping>

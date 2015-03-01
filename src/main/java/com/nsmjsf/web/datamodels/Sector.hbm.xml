@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Sector" table="sector" catalog="admin_nsmjsf">
+        <id name="sectorId" type="int">
+            <column name="sector_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="sectorLabel" type="string">
+            <column name="sector_label" not-null="true" />
+        </property>
+        <set name="companies" table="company" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comapny_sector_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Company" />
+        </set>
+    </class>
+</hibernate-mapping>

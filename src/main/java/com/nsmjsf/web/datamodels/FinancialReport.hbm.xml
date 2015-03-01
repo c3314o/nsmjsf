@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.FinancialReport" table="financial_report" catalog="admin_nsmjsf">
+        <id name="financialReportId" type="java.lang.Integer">
+            <column name="financial_report_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="financial_report_company_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="fiscalYear" class="com.nsmjsf.web.datamodels.FiscalYear" fetch="select">
+            <column name="financial_report_fiscal_year_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="quarter" class="com.nsmjsf.web.datamodels.Quarter" fetch="select">
+            <column name="financial_report_quarter_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="auditStatus" class="com.nsmjsf.web.datamodels.AuditStatus" fetch="select">
+            <column name="financial_report_audited_status_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="financial_report_post_id" not-null="true" />
+        </many-to-one>
+        <property name="financialReportLabel" type="string">
+            <column name="financial_report_label" not-null="true" />
+        </property>
+        <property name="financialReportEnteryBy" type="string">
+            <column name="financial_report_entery_by" not-null="true" />
+        </property>
+        <property name="financialReportEntryDate" type="timestamp">
+            <column name="financial_report_entry_date" length="0" not-null="true" />
+        </property>
+        <set name="profitLosses" table="profit_loss" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="profit_loss_financial_report_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.ProfitLoss" />
+        </set>
+        <set name="keyRatios" table="key_ratio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="key_ratio_financial_report_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.KeyRatio" />
+        </set>
+        <set name="balancesheets" table="balancesheet" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="balancesheet_financial_report_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Balancesheet" />
+        </set>
+    </class>
+</hibernate-mapping>

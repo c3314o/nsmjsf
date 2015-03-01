@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.UserWatchListStock" table="user_watch_list_stock" catalog="admin_nsmjsf">
+        <id name="userWatchListStockId" type="java.lang.Integer">
+            <column name="user_watch_list_stock_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userWatchList" class="com.nsmjsf.web.datamodels.UserWatchList" fetch="select">
+            <column name="user_watch_list_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="company_id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

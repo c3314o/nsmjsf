@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.BullionPrice" table="bullion_price" catalog="admin_nsmjsf">
+        <id name="bullionPriceId" type="java.lang.Integer">
+            <column name="bullion_price_id" />
+            <generator class="identity" />
+        </id>
+        <property name="bullionPriceType" type="int">
+            <column name="bullion_price_type" not-null="true" />
+        </property>
+        <property name="bullionPriceDate" type="date">
+            <column name="bullion_price_date" length="0" not-null="true" />
+        </property>
+        <property name="bullionPricePerUnit" type="int">
+            <column name="bullion_price_per_unit" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

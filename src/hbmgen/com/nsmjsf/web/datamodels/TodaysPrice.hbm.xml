@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.TodaysPrice" table="todays_price" catalog="admin_nsmjsf">
+        <id name="todaysPriceId" type="java.lang.Integer">
+            <column name="todays_price_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="todays_price_post_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="todays_price_company_id" not-null="true" />
+        </many-to-one>
+        <property name="todaysPriceTransactionCount" type="int">
+            <column name="todays_price_transaction_count" not-null="true" />
+        </property>
+        <property name="odaysPriceOpen" type="float">
+            <column name="odays_price_open" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="todaysPriceHigh" type="float">
+            <column name="todays_price_high" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="todaysPriceLow" type="float">
+            <column name="todays_price_low" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="todaysPriceClose" type="float">
+            <column name="todays_price_close" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="todaysPricePrevious" type="float">
+            <column name="todays_price_previous" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="todaysPriceTradedVolume" type="int">
+            <column name="todays_price_traded_volume" not-null="true" />
+        </property>
+        <property name="todaysPriceTradedAmount" type="float">
+            <column name="todays_price_traded_amount" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="todaysPriceDiff" type="float">
+            <column name="todays_price_diff" precision="12" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

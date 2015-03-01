@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.SemiYearAverage" table="semi_year_average" catalog="admin_nsmjsf">
+        <id name="180AverageId" type="java.lang.Integer">
+            <column name="180_average_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="company_id" not-null="true" />
+        </many-to-one>
+        <property name="noOfTransactions" type="int">
+            <column name="no_of_transactions" not-null="true" />
+        </property>
+        <property name="maxPrice" type="float">
+            <column name="max_price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="minPrice" type="float">
+            <column name="min_price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="closePrice" type="float">
+            <column name="close_price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="totalShare" type="int">
+            <column name="total_share" not-null="true" />
+        </property>
+        <property name="amount" type="float">
+            <column name="amount" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="prevClosing" type="float">
+            <column name="prev_closing" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="diff" type="float">
+            <column name="diff" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="tradedDate" type="date">
+            <column name="traded_date" length="0" not-null="true" />
+        </property>
+        <property name="deleted" type="boolean">
+            <column name="deleted" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.BonusDividendApproved" table="bonus_dividend_approved" catalog="admin_nsmjsf">
+        <id name="bonusDividendApprovedId" type="java.lang.Integer">
+            <column name="bonus_dividend_approved_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="announcement" class="com.nsmjsf.web.datamodels.Announcement" fetch="select">
+            <column name="bonus_dividend_approved_announcement_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="fiscalYear" class="com.nsmjsf.web.datamodels.FiscalYear" fetch="select">
+            <column name="bonus_dividend_approved_fiscal_year_id" not-null="true" />
+        </many-to-one>
+        <property name="bonusDividendApprovedBonus" type="float">
+            <column name="bonus_dividend_approved_bonus" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="bonusDividendApprovedDividend" type="float">
+            <column name="bonus_dividend_approved_dividend" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="bonusDividendApprovedAgmDate" type="date">
+            <column name="bonus_dividend_approved_agm_date" length="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.User" table="user" catalog="admin_nsmjsf">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userType" class="com.nsmjsf.web.datamodels.UserType" fetch="select">
+            <column name="user_user_type_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userInfo" class="com.nsmjsf.web.datamodels.UserInfo" fetch="select">
+            <column name="user_info_id" not-null="true" />
+        </many-to-one>
+        <property name="userName" type="string">
+            <column name="user_name" not-null="true" />
+        </property>
+        <property name="userPass" type="string">
+            <column name="user_pass" not-null="true" />
+        </property>
+        <property name="userEmail" type="string">
+            <column name="user_email" not-null="true" />
+        </property>
+        <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comment_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Comment" />
+        </set>
+        <set name="userStocks" table="user_stock" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_stock_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.UserStock" />
+        </set>
+        <set name="articles" table="article" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="article_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Article" />
+        </set>
+        <set name="notifications" table="notification" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="notification_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Notification" />
+        </set>
+        <set name="userPortfolios" table="user_portfolio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_portfolio_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.UserPortfolio" />
+        </set>
+        <set name="postLikes" table="post_like" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="post_like_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.PostLike" />
+        </set>
+        <set name="userBullions" table="user_bullion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_bullion_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.UserBullion" />
+        </set>
+        <set name="posts" table="post" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="post_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Post" />
+        </set>
+        <set name="userStockSaleses" table="user_stock_sales" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_stock_sales_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.UserStockSales" />
+        </set>
+        <set name="newses" table="news" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="news_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.News" />
+        </set>
+        <set name="commentSocials" table="comment_social" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comment_social_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.CommentSocial" />
+        </set>
+        <set name="userEnergies" table="user_energy" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_energy_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.UserEnergy" />
+        </set>
+        <set name="userWatchLists" table="user_watch_list" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_watch_list_user_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.UserWatchList" />
+        </set>
+    </class>
+</hibernate-mapping>

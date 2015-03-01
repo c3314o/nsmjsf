@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Company" table="company" catalog="admin_nsmjsf">
+        <id name="companyId" type="java.lang.Integer">
+            <column name="company_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="companyDetail" class="com.nsmjsf.web.datamodels.CompanyDetail" fetch="select">
+            <column name="company_details_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="company_post_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sector" class="com.nsmjsf.web.datamodels.Sector" fetch="select">
+            <column name="comapny_sector_id" not-null="true" />
+        </many-to-one>
+        <property name="companyQuote" type="string">
+            <column name="company_quote" length="25" not-null="true" />
+        </property>
+        <property name="companyLabel" type="string">
+            <column name="company_label" not-null="true" />
+        </property>
+        <property name="companyName" type="string">
+            <column name="company_name" not-null="true" />
+        </property>
+        <property name="companyListed" type="boolean">
+            <column name="company_listed" not-null="true" />
+        </property>
+        <set name="interviews" table="interview" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="interview_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Interview" />
+        </set>
+        <set name="agms" table="agm" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="agm_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Agm" />
+        </set>
+        <set name="financialReports" table="financial_report" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="financial_report_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.FinancialReport" />
+        </set>
+        <set name="userStocks" table="user_stock" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_stock_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.UserStock" />
+        </set>
+        <set name="bods" table="bod" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bod_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Bod" />
+        </set>
+        <set name="mapPostCompanies" table="map_post_company" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.MapPostCompany" />
+        </set>
+        <set name="allotmentResults" table="allotment_result" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="allotment_result_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.AllotmentResult" />
+        </set>
+        <set name="userWatchListStocks" table="user_watch_list_stock" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.UserWatchListStock" />
+        </set>
+        <set name="posts" table="post" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="post_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Post" />
+        </set>
+        <set name="todaysPrices" table="todays_price" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="todays_price_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.TodaysPrice" />
+        </set>
+        <set name="newLows" table="new_low" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="new_low_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.NewLow" />
+        </set>
+        <set name="issues" table="issue" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="issue_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Issue" />
+        </set>
+        <set name="latestPrices" table="latest_price" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="latest_price_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.LatestPrice" />
+        </set>
+        <set name="semiYearAverages" table="semi_year_average" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.SemiYearAverage" />
+        </set>
+        <set name="newHighs" table="new_high" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="new_high_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.NewHigh" />
+        </set>
+        <set name="bonusDividends" table="bonus_dividend" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bonus_dividend_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.BonusDividend" />
+        </set>
+        <set name="financialHighlights" table="financial_highlight" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="financial_highlight_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.FinancialHighlight" />
+        </set>
+        <set name="floorsheets" table="floorsheet" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="floorsheet_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Floorsheet" />
+        </set>
+        <set name="basePrices" table="base_price" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="base_price_company_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.BasePrice" />
+        </set>
+    </class>
+</hibernate-mapping>

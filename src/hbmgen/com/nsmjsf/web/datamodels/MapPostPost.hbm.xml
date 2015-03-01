@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.MapPostPost" table="map_post_post" catalog="admin_nsmjsf">
+        <id name="postToPostConnection" type="java.lang.Integer">
+            <column name="post_to_post_connection" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="postByFromPostId" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="from_post_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="postByToPostId" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="to_post_id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

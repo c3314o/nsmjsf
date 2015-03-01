@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Agm" table="agm" catalog="admin_nsmjsf">
+        <id name="agmId" type="java.lang.Integer">
+            <column name="agm_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="fiscalYear" class="com.nsmjsf.web.datamodels.FiscalYear" fetch="select">
+            <column name="agm_fiscal_year_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="agm_company_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="announcement" class="com.nsmjsf.web.datamodels.Announcement" fetch="select">
+            <column name="agm_announcement_id" not-null="true" />
+        </many-to-one>
+        <property name="agmLabel" type="string">
+            <column name="agm_label" not-null="true" />
+        </property>
+        <property name="agmNumber" type="string">
+            <column name="agm_number" />
+        </property>
+        <property name="agmVenue" type="string">
+            <column name="agm_venue" not-null="true" />
+        </property>
+        <property name="agmBookClosureFrom" type="date">
+            <column name="agm_book_closure_from" length="0" />
+        </property>
+        <property name="agmBookClosureTo" type="date">
+            <column name="agm_book_closure_to" length="0" />
+        </property>
+        <property name="agmType" type="string">
+            <column name="agm_type" not-null="true" />
+        </property>
+        <property name="agmDate" type="timestamp">
+            <column name="agm_date" length="0" not-null="true" />
+        </property>
+        <property name="agmAgenda" type="string">
+            <column name="agm_agenda" length="65535" />
+        </property>
+        <property name="agmBonus" type="java.lang.Float">
+            <column name="agm_bonus" precision="12" scale="0" />
+        </property>
+        <property name="agmDividend" type="java.lang.Float">
+            <column name="agm_dividend" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

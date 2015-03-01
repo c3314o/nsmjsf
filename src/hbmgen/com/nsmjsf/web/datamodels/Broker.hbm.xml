@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Broker" table="broker" catalog="admin_nsmjsf">
+        <id name="brokerId" type="java.lang.Integer">
+            <column name="broker_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="broker_post_id" />
+        </many-to-one>
+        <property name="brokerCode" type="int">
+            <column name="broker_code" not-null="true" />
+        </property>
+        <property name="brokerFirmName" type="string">
+            <column name="broker_firm_name" not-null="true" />
+        </property>
+        <property name="brokerFirmAddress" type="string">
+            <column name="broker_firm_address" length="65535" not-null="true" />
+        </property>
+        <property name="brokerFirmPhone" type="string">
+            <column name="broker_firm_phone" not-null="true" />
+        </property>
+        <property name="brokerFirmDirector" type="string">
+            <column name="broker_firm_director" />
+        </property>
+        <property name="brokerImage" type="string">
+            <column name="broker_image" length="65535" />
+        </property>
+        <property name="brokerFirmOperationDate" type="date">
+            <column name="broker_firm_operation_date" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

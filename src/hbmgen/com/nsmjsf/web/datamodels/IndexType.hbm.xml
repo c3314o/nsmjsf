@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.IndexType" table="index_type" catalog="admin_nsmjsf">
+        <id name="indexTypeId" type="java.lang.Integer">
+            <column name="index_type_id" />
+            <generator class="identity" />
+        </id>
+        <property name="indexTypeLabel" type="string">
+            <column name="index_type_label" not-null="true" />
+        </property>
+        <set name="marketIndexes" table="market_index" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="market_index_type_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.MarketIndex" />
+        </set>
+    </class>
+</hibernate-mapping>

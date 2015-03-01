@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Auction" table="auction" catalog="admin_nsmjsf">
+        <id name="auctionId" type="java.lang.Integer">
+            <column name="auction_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="announcement" class="com.nsmjsf.web.datamodels.Announcement" fetch="select">
+            <column name="auction_announcement_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="issueManager" class="com.nsmjsf.web.datamodels.IssueManager" fetch="select">
+            <column name="auction_issue_manager_id" not-null="true" />
+        </many-to-one>
+        <property name="auctionOpenDate" type="date">
+            <column name="auction_open_date" length="0" />
+        </property>
+        <property name="auctionCloseDate" type="date">
+            <column name="auction_close_date" length="0" />
+        </property>
+        <property name="auctionOrdinaryQty" type="java.lang.Integer">
+            <column name="auction_ordinary_qty" />
+        </property>
+        <property name="auctionPromoterQty" type="java.lang.Integer">
+            <column name="auction_promoter_qty" />
+        </property>
+    </class>
+</hibernate-mapping>

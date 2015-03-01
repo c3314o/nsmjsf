@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Issue" table="issue" catalog="admin_nsmjsf">
+        <id name="issueId" type="java.lang.Integer">
+            <column name="issue_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="issue_company_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="announcement" class="com.nsmjsf.web.datamodels.Announcement" fetch="select">
+            <column name="issue_announcement_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="issueType" class="com.nsmjsf.web.datamodels.IssueType" fetch="select">
+            <column name="issue_type_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="issueManager" class="com.nsmjsf.web.datamodels.IssueManager" fetch="select">
+            <column name="issue_manager_id" not-null="true" />
+        </many-to-one>
+        <property name="issueRatio" type="string">
+            <column name="issue_ratio" />
+        </property>
+        <property name="issueFaceValue" type="java.lang.Integer">
+            <column name="issue_face_value" />
+        </property>
+        <property name="issueOpenDate" type="date">
+            <column name="issue_open_date" length="0" not-null="true" />
+        </property>
+        <property name="issueClosingDate" type="date">
+            <column name="issue_closing_date" length="0" not-null="true" />
+        </property>
+        <property name="issueQuantity" type="int">
+            <column name="issue_quantity" not-null="true" />
+        </property>
+        <property name="issueManager_1" type="string">
+            <column name="issue_manager" length="65535" not-null="true" />
+        </property>
+        <property name="issueLink" type="string">
+            <column name="issue_link" length="65535" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

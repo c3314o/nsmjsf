@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Balancesheet" table="balancesheet" catalog="admin_nsmjsf">
+        <id name="balancesheetId" type="java.lang.Integer">
+            <column name="balancesheet_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="financialReport" class="com.nsmjsf.web.datamodels.FinancialReport" fetch="select">
+            <column name="balancesheet_financial_report_id" not-null="true" />
+        </many-to-one>
+        <property name="balancesheetBalanceWithFinancialInstitution" type="float">
+            <column name="balancesheet_balance_with_financial_institution" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetShareCapital" type="float">
+            <column name="balancesheet_share_capital" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetReserveSurplus" type="float">
+            <column name="balancesheet_reserve_surplus" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetNoncontrollingInterest" type="float">
+            <column name="balancesheet_noncontrolling_interest" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetDebentureBond" type="float">
+            <column name="balancesheet_debenture_bond" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetLoansBorrowing" type="float">
+            <column name="balancesheet_loans_borrowing" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetDepositLiability" type="float">
+            <column name="balancesheet_deposit_liability" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetDomesticCurrency" type="float">
+            <column name="balancesheet_domestic_currency" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetForeignCurrency" type="float">
+            <column name="balancesheet_foreign_currency" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetBillsPayable" type="float">
+            <column name="balancesheet_bills_payable" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetProposedDividend" type="float">
+            <column name="balancesheet_proposed_dividend" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetIncomeTaxLiability" type="float">
+            <column name="balancesheet_income_tax_liability" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetOtherLiabilities" type="float">
+            <column name="balancesheet_other_liabilities" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetCashBalance" type="float">
+            <column name="balancesheet_cash_balance" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetMoneyAtCallAndShortNotice" type="float">
+            <column name="balancesheet_money_at_call_and_short_notice" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetInvestments" type="float">
+            <column name="balancesheet_investments" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetLoanAdvances" type="float">
+            <column name="balancesheet_loan_advances" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetRealEstateLoan" type="float">
+            <column name="balancesheet_real_estate_loan" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetResidentialRealEstateLoan" type="float">
+            <column name="balancesheet_residential_real_estate_loan" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetBusinessComplexAndResidentialApartConstLoan" type="float">
+            <column name="balancesheet_business_complex_and_residential_apart_const_loan" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetIncomeGeneratingCommericalComplexLoan" type="float">
+            <column name="balancesheet_income_generating_commerical_complex_loan" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetOtherRealEstateLoan" type="float">
+            <column name="balancesheet_other_real_estate_loan" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetPersonalHomeLoanOfRs10millionOrLess" type="float">
+            <column name="balancesheet_personal_home_loan_of_rs_10million_or_less" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetMarginTypeLoan" type="float">
+            <column name="balancesheet_margin_type_loan" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetTermLoan" type="float">
+            <column name="balancesheet_term_loan" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetOverdrafTrLoanWcLoan" type="float">
+            <column name="balancesheet_overdraf_tr_loan_wc_loan" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetOther" type="float">
+            <column name="balancesheet_other" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetFixedAssets" type="float">
+            <column name="balancesheet_fixed_assets" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetNonBankingAssets" type="float">
+            <column name="balancesheet_non_banking_assets" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetOtherAssets" type="float">
+            <column name="balancesheet_other_assets" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetTotalLiabilities" type="float">
+            <column name="balancesheet_total_liabilities" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="balancesheetTotalAssets" type="float">
+            <column name="balancesheet_total_assets" precision="12" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

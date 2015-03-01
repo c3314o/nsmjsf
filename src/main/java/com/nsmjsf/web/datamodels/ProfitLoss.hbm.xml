@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.ProfitLoss" table="profit_loss" catalog="admin_nsmjsf">
+        <id name="profitLossId" type="java.lang.Integer">
+            <column name="profit_loss_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="financialReport" class="com.nsmjsf.web.datamodels.FinancialReport" fetch="select">
+            <column name="profit_loss_financial_report_id" not-null="true" />
+        </many-to-one>
+        <property name="profitLossInterestIncome" type="float">
+            <column name="profit_loss_interest_income" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossInterestExpenses" type="float">
+            <column name="profit_loss_interest_expenses" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossNetInterestIncome" type="float">
+            <column name="profit_loss_net_interest_income" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossFeesCommissionAndDiscount" type="float">
+            <column name="profit_loss_fees_commission_and_discount" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossOtherOperatingIncome" type="float">
+            <column name="profit_loss_other_operating_income" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossForeignExchangeGainOrLoss" type="float">
+            <column name="profit_loss_foreign_exchange_gain_or_loss" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossTotalOperatingIncome" type="float">
+            <column name="profit_loss_total_operating_income" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossStaffExpenses" type="float">
+            <column name="profit_loss_staff_expenses" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossOperatingProfitBeforeProvision" type="float">
+            <column name="profit_loss_operating_profit_before_provision" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossProvisionForPossibleLosses" type="float">
+            <column name="profit_loss_provision_for_possible_losses" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossOperatingProfit" type="float">
+            <column name="profit_loss_operating_profit" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossNonOperatingIncomeOrLoss" type="float">
+            <column name="profit_loss_non_operating_income_or_loss" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossWriteBackProvisionForPossibleLosses" type="float">
+            <column name="profit_loss_write_back_provision_for_possible_losses" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossProfitFromRegularActivities" type="float">
+            <column name="profit_loss_profit_from_regular_activities" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossExtraOrdinaryIncomeOrExpenses" type="float">
+            <column name="profit_loss_extra_ordinary_income_or_expenses" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossProfitBeforeBonusAndTaxes" type="float">
+            <column name="profit_loss_profit_before_bonus_and_taxes" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossProvisionForStaffBonus" type="float">
+            <column name="profit_loss_provision_for_staff_bonus" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossProvisionForIncomeTax" type="float">
+            <column name="profit_loss_provision_for_income_tax" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossNonControllingInterest" type="float">
+            <column name="profit_loss_non_controlling_interest" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossNetProfitLoss" type="float">
+            <column name="profit_loss_net_profit_loss" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossCapitalFundToRaw" type="float">
+            <column name="profit_loss_capital_fund_to_raw" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossNonPerformingLoanToToalLoan" type="float">
+            <column name="profit_loss_non_performing_loan_to_toal_loan" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossTotalLoanLossProvisionToTotalNpl" type="float">
+            <column name="profit_loss_total_loan_loss_provision_to_total_npl" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossCostOfFund" type="float">
+            <column name="profit_loss_cost_of_fund" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossCreditToDepositRatio" type="float">
+            <column name="profit_loss_credit_to_deposit_ratio" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossBaseRatio" type="float">
+            <column name="profit_loss_base_ratio" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossAverageYieldOnLoanAdvanceInvestment" type="float">
+            <column name="profit_loss_average_yield_on_loan_advance_investment" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="profitLossNetInterestSpread" type="float">
+            <column name="profit_loss_net_interest_spread" precision="12" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

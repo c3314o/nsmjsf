@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Quarter" table="quarter" catalog="admin_nsmjsf">
+        <id name="quarterId" type="java.lang.Integer">
+            <column name="quarter_id" />
+            <generator class="identity" />
+        </id>
+        <property name="quarterLabel" type="int">
+            <column name="quarter_label" not-null="true" />
+        </property>
+        <set name="financialReports" table="financial_report" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="financial_report_quarter_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.FinancialReport" />
+        </set>
+        <set name="financialHighlights" table="financial_highlight" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="financial_highlight_quarter_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.FinancialHighlight" />
+        </set>
+    </class>
+</hibernate-mapping>

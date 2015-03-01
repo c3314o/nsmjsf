@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.UserBullion" table="user_bullion" catalog="admin_nsmjsf">
+        <id name="userBullionId" type="java.lang.Integer">
+            <column name="user_bullion_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="com.nsmjsf.web.datamodels.User" fetch="select">
+            <column name="user_bullion_user_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="bullionType" class="com.nsmjsf.web.datamodels.BullionType" fetch="select">
+            <column name="user_bullion_type_id" not-null="true" />
+        </many-to-one>
+        <property name="userBullionBuyDate" type="date">
+            <column name="user_bullion_buy_date" length="0" not-null="true" />
+        </property>
+        <property name="userBullionBuyPrice" type="float">
+            <column name="user_bullion_buy_price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="userBullionBuyUnitPrice" type="string">
+            <column name="user_bullion_buy_unit_price" not-null="true" />
+        </property>
+        <property name="userBullionBuyUnits" type="int">
+            <column name="user_bullion_buy_units" not-null="true" />
+        </property>
+        <property name="userBullionTotalCost" type="double">
+            <column name="user_bullion_total_cost" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="userBullionSaleses" table="user_bullion_sales" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_bullion_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.UserBullionSales" />
+        </set>
+    </class>
+</hibernate-mapping>

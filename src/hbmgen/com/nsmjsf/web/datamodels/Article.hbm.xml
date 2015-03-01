@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Article" table="article" catalog="admin_nsmjsf">
+        <id name="articleId" type="java.lang.Integer">
+            <column name="article_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="article_post_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="com.nsmjsf.web.datamodels.User" fetch="select">
+            <column name="article_user_id" not-null="true" />
+        </many-to-one>
+        <property name="articleDate" type="date">
+            <column name="article_date" length="0" not-null="true" />
+        </property>
+        <property name="articleLocation" type="string">
+            <column name="article_location" length="65535" />
+        </property>
+        <property name="articleHighlight" type="string">
+            <column name="article_highlight" length="65535" />
+        </property>
+        <property name="articleFlag" type="boolean">
+            <column name="article_flag" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

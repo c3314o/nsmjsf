@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Floorsheet" table="floorsheet" catalog="admin_nsmjsf">
+        <id name="floorsheetId" type="java.lang.Integer">
+            <column name="floorsheet_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="floorsheet_company_id" not-null="true" />
+        </many-to-one>
+        <property name="floorsheetTransactionNo" type="int">
+            <column name="floorsheet_transaction_no" not-null="true" />
+        </property>
+        <property name="floorsheetStockSymbol" type="string">
+            <column name="floorsheet_stock_symbol" not-null="true" />
+        </property>
+        <property name="floorsheetBuyerBroker" type="int">
+            <column name="floorsheet_buyer_broker" not-null="true" />
+        </property>
+        <property name="floorsheetSellerBroker" type="int">
+            <column name="floorsheet_seller_broker" not-null="true" />
+        </property>
+        <property name="floorsheetQuantity" type="int">
+            <column name="floorsheet_quantity" not-null="true" />
+        </property>
+        <property name="floorsheetRate" type="float">
+            <column name="floorsheet_rate" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="floorsheetAmount" type="float">
+            <column name="floorsheet_amount" precision="12" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

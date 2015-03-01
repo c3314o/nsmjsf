@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.BonusDividend" table="bonus_dividend" catalog="admin_nsmjsf">
+        <id name="bonusDividendId" type="java.lang.Integer">
+            <column name="bonus_dividend_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="bonus_dividend_company_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="fiscalYear" class="com.nsmjsf.web.datamodels.FiscalYear" fetch="select">
+            <column name="bonus_dividend_fiscal_year_id" />
+        </many-to-one>
+        <property name="bonusDividendBonusSharePercent" type="java.lang.Float">
+            <column name="bonus_dividend_bonus_share_percent" precision="12" scale="0" />
+        </property>
+        <property name="bonusDividendCashDividentPercent" type="java.lang.Float">
+            <column name="bonus_dividend_cash_divident_percent" precision="12" scale="0" />
+        </property>
+        <property name="bonusDividendTotalDividend" type="java.lang.Float">
+            <column name="bonus_dividend_total_dividend" precision="12" scale="0" />
+        </property>
+        <property name="bonusDividendDistributionDate" type="date">
+            <column name="bonus_dividend_distribution_date" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

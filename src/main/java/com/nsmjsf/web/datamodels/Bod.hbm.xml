@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Bod" table="bod" catalog="admin_nsmjsf">
+        <id name="bodId" type="java.lang.Integer">
+            <column name="bod_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="fiscalYear" class="com.nsmjsf.web.datamodels.FiscalYear" fetch="select">
+            <column name="bod_fiscal_year_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="bodType" class="com.nsmjsf.web.datamodels.BodType" fetch="select">
+            <column name="bod_type_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="bod_company_id" not-null="true" />
+        </many-to-one>
+        <property name="bodName" type="string">
+            <column name="bod_name" not-null="true" />
+        </property>
+        <property name="bodType_1" type="string">
+            <column name="bod_type" />
+        </property>
+        <property name="bodPost" type="string">
+            <column name="bod_post" />
+        </property>
+        <property name="bodPhoto" type="string">
+            <column name="bod_photo" length="65535" />
+        </property>
+        <property name="bodBio" type="string">
+            <column name="bod_bio" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

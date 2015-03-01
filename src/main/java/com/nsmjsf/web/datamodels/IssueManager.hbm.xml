@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.IssueManager" table="issue_manager" catalog="admin_nsmjsf">
+        <id name="issueManagerId" type="java.lang.Integer">
+            <column name="issue_manager_id" />
+            <generator class="identity" />
+        </id>
+        <property name="issueManagerAddress" type="string">
+            <column name="issue_manager_address" length="65535" not-null="true" />
+        </property>
+        <property name="issueManagerPhone" type="string">
+            <column name="issue_manager_phone" not-null="true" />
+        </property>
+        <property name="issueManagerEmail" type="string">
+            <column name="issue_manager_email" not-null="true" />
+        </property>
+        <property name="issueManagerWeb" type="string">
+            <column name="issue_manager_web" length="65535" not-null="true" />
+        </property>
+        <set name="auctions" table="auction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="auction_issue_manager_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Auction" />
+        </set>
+        <set name="certificateDividendDistributions" table="certificate_dividend_distribution" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="certificate_dividend_distribution_issue_manager_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.CertificateDividendDistribution" />
+        </set>
+        <set name="issues" table="issue" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="issue_manager_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Issue" />
+        </set>
+    </class>
+</hibernate-mapping>

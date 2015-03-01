@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Announcement" table="announcement" catalog="admin_nsmjsf">
+        <id name="announcementId" type="java.lang.Integer">
+            <column name="announcement_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="announcementType" class="com.nsmjsf.web.datamodels.AnnouncementType" fetch="select">
+            <column name="announcement_type_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="announcement_post_id" not-null="true" />
+        </many-to-one>
+        <property name="announcementDate" type="timestamp">
+            <column name="announcement_date" length="0" not-null="true" />
+        </property>
+        <set name="auctions" table="auction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="auction_announcement_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Auction" />
+        </set>
+        <set name="allotmentResults" table="allotment_result" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="allotment_result_announcement_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.AllotmentResult" />
+        </set>
+        <set name="agms" table="agm" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="agm_announcement_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Agm" />
+        </set>
+        <set name="bonusDividendApproveds" table="bonus_dividend_approved" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bonus_dividend_approved_announcement_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.BonusDividendApproved" />
+        </set>
+        <set name="certificateDividendDistributions" table="certificate_dividend_distribution" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="certificate_dividend_distribution_announcement_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.CertificateDividendDistribution" />
+        </set>
+        <set name="issues" table="issue" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="issue_announcement_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Issue" />
+        </set>
+        <set name="monthlyFinancialHighlights" table="monthly_financial_highlight" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="monthly_financial_highlight_announcement_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.MonthlyFinancialHighlight" />
+        </set>
+    </class>
+</hibernate-mapping>

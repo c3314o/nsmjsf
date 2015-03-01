@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.LatestPrice" table="latest_price" catalog="admin_nsmjsf">
+        <id name="latestPriceId" type="java.lang.Integer">
+            <column name="latest_price_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="latest_price_post_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="latest_price_company_id" not-null="true" />
+        </many-to-one>
+        <property name="latestPriceNoOfTransactions" type="int">
+            <column name="latest_price_no_of_transactions" not-null="true" />
+        </property>
+        <property name="latestPriceMaxPrice" type="float">
+            <column name="latest_price_max_price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="latestPriceMinPrice" type="float">
+            <column name="latest_price_min_price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="latestPriceClosePrice" type="float">
+            <column name="latest_price_close_price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="latestPriceTotalShare" type="int">
+            <column name="latest_price_total_share" not-null="true" />
+        </property>
+        <property name="latestPriceAmount" type="float">
+            <column name="latest_price_amount" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="latestPricePrevClosing" type="float">
+            <column name="latest_price_prev_closing" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="latestPriceDiff" type="float">
+            <column name="latest_price_diff" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="latestPriceTradedDate" type="date">
+            <column name="latest_price_traded_date" length="0" not-null="true" />
+        </property>
+        <property name="latestPriceDeleted" type="boolean">
+            <column name="latest_price_deleted" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

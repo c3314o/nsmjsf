@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.Post" table="post" catalog="admin_nsmjsf">
+        <id name="postId" type="java.lang.Integer">
+            <column name="post_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="post_company_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="com.nsmjsf.web.datamodels.User" fetch="select">
+            <column name="post_user_id" not-null="true" />
+        </many-to-one>
+        <property name="postPubDate" type="timestamp">
+            <column name="post_pub_date" length="0" not-null="true" />
+        </property>
+        <property name="postTitle" type="string">
+            <column name="post_title" length="65535" not-null="true" />
+        </property>
+        <property name="postDetails" type="string">
+            <column name="post_details" length="16777215" not-null="true" />
+        </property>
+        <property name="postFeaturedImage" type="string">
+            <column name="post_featured_image" length="65535" />
+        </property>
+        <set name="brokers" table="broker" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="broker_post_id" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Broker" />
+        </set>
+        <set name="interviews" table="interview" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="interview_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Interview" />
+        </set>
+        <set name="mapPostPostsForFromPostId" table="map_post_post" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="from_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.MapPostPost" />
+        </set>
+        <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comment_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Comment" />
+        </set>
+        <set name="allotmentResults" table="allotment_result" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="allotment_result_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.AllotmentResult" />
+        </set>
+        <set name="announcements" table="announcement" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="announcement_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Announcement" />
+        </set>
+        <set name="financialReports" table="financial_report" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="financial_report_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.FinancialReport" />
+        </set>
+        <set name="postLikes" table="post_like" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="post_like_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.PostLike" />
+        </set>
+        <set name="articles" table="article" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="article_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Article" />
+        </set>
+        <set name="contentSources" table="content_source" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="content_source_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.ContentSource" />
+        </set>
+        <set name="companyDetails" table="company_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="company_detail_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.CompanyDetail" />
+        </set>
+        <set name="mapPostPostsForToPostId" table="map_post_post" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="to_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.MapPostPost" />
+        </set>
+        <set name="events" table="event" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="event_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Event" />
+        </set>
+        <set name="todaysPrices" table="todays_price" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="todays_price_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.TodaysPrice" />
+        </set>
+        <set name="mapPostCompanies" table="map_post_company" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.MapPostCompany" />
+        </set>
+        <set name="mapPostCategories" table="map_post_category" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.MapPostCategory" />
+        </set>
+        <set name="postImages" table="post_image" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="post_image_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.PostImage" />
+        </set>
+        <set name="companies" table="company" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="company_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.Company" />
+        </set>
+        <set name="latestPrices" table="latest_price" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="latest_price_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.LatestPrice" />
+        </set>
+        <set name="forumThreads" table="forum_thread" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="forum_thread_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.ForumThread" />
+        </set>
+        <set name="newses" table="news" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="news_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.News" />
+        </set>
+    </class>
+</hibernate-mapping>

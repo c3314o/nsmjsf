@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nsmjsf.web.datamodels.NewHigh" table="new_high" catalog="admin_nsmjsf">
+        <id name="newHighId" type="java.lang.Integer">
+            <column name="new_high_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
+            <column name="new_high_company_id" not-null="true" />
+        </many-to-one>
+        <property name="newHighPreviousPrice" type="float">
+            <column name="new_high_previous_price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="newHighPreviousDate" type="date">
+            <column name="new_high_previous_date" length="0" not-null="true" />
+        </property>
+        <property name="newHighCurrentValue" type="float">
+            <column name="new_high_current_value" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="newHighCurrentDate" type="date">
+            <column name="new_high_current_date" length="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
