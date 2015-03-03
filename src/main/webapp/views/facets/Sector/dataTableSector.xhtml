@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="sector" resizableColumns="true" value="#{viewSectorBean.lazyModel}" filteredValue="#{viewSectorBean.filteredSectorList}"
+			paginator="true" rows="10" selection="#{viewSectorBean.selectedSectorList}" rowKey="#{sector.sectorId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="sectorTable" widgetVar="sectorTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewSectorBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewSectorBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="sectorTable" fileName="SectorData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="sectorTable" fileName="SectorData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="sectorTable" fileName="SectorData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="sectorTable" fileName="SectorData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Sector Id" sortBy="#{sector.sectorId}"
+				filterBy="#{sector.sectorId}">
+				<h:outputText value="#{sector.sectorId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Sector Label" sortBy="#{sector.sectorLabel}"
+				filterBy="#{sector.sectorLabel}">
+				<h:outputText value="#{sector.sectorLabel}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewSectorBean.editSector(sector.sectorId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewSectorBean.refreshDataSource}" update="sectorTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewSectorBean.deleteSector(sector)}" update="sectorTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

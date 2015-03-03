@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="crawlerSettings" resizableColumns="true" value="#{viewCrawlerSettingsBean.lazyModel}" filteredValue="#{viewCrawlerSettingsBean.filteredCrawlerSettingsList}"
+			paginator="true" rows="10" selection="#{viewCrawlerSettingsBean.selectedCrawlerSettingsList}" rowKey="#{crawlerSettings.crawlerSettingsId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="crawlerSettingsTable" widgetVar="crawlerSettingsTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewCrawlerSettingsBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewCrawlerSettingsBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="crawlerSettingsTable" fileName="CrawlerSettingsData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="crawlerSettingsTable" fileName="CrawlerSettingsData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="crawlerSettingsTable" fileName="CrawlerSettingsData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="crawlerSettingsTable" fileName="CrawlerSettingsData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Crawler Settings For" sortBy="#{crawlerSettings.crawlerSettingsFor}"
+				filterBy="#{crawlerSettings.crawlerSettingsFor}">
+				<h:outputText value="#{crawlerSettings.crawlerSettingsFor}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Crawler Settings Url" sortBy="#{crawlerSettings.crawlerSettingsUrl}"
+				filterBy="#{crawlerSettings.crawlerSettingsUrl}">
+				<h:outputText value="#{crawlerSettings.crawlerSettingsUrl}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Crawler Settings Header Selector" sortBy="#{crawlerSettings.crawlerSettingsHeaderSelector}"
+				filterBy="#{crawlerSettings.crawlerSettingsHeaderSelector}">
+				<h:outputText value="#{crawlerSettings.crawlerSettingsHeaderSelector}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Crawler Settings Data Selector" sortBy="#{crawlerSettings.crawlerSettingsDataSelector}"
+				filterBy="#{crawlerSettings.crawlerSettingsDataSelector}">
+				<h:outputText value="#{crawlerSettings.crawlerSettingsDataSelector}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Crawler Settings Id" sortBy="#{crawlerSettings.crawlerSettingsId}"
+				filterBy="#{crawlerSettings.crawlerSettingsId}">
+				<h:outputText value="#{crawlerSettings.crawlerSettingsId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Crawler Settings Table Selector" sortBy="#{crawlerSettings.crawlerSettingsTableSelector}"
+				filterBy="#{crawlerSettings.crawlerSettingsTableSelector}">
+				<h:outputText value="#{crawlerSettings.crawlerSettingsTableSelector}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewCrawlerSettingsBean.editCrawlerSettings(crawlerSettings.crawlerSettingsId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewCrawlerSettingsBean.refreshDataSource}" update="crawlerSettingsTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewCrawlerSettingsBean.deleteCrawlerSettings(crawlerSettings)}" update="crawlerSettingsTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

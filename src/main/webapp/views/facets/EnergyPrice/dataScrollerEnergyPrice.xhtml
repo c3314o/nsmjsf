@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewEnergyPriceBean.energyPriceList}" var="energyPrice" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="Energy Price Price:" />
+                   <h:outputText value="#{energyPrice.energyPricePrice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Energy Price Type:" />
+                   <h:outputText value="#{energyPrice.energyPriceType}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Energy Price Date:" />
+                   <h:outputText value="#{energyPrice.energyPriceDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Energy Price Unit:" />
+                   <h:outputText value="#{energyPrice.energyPriceUnit}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Energy Price Id:" />
+                   <h:outputText value="#{energyPrice.energyPriceId}" />
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

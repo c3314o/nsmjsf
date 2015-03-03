@@ -1,5 +1,1151 @@
 <?xml version="1.0"?>
-<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xi="http://www.w3.org/2001/XInclude"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createFloorsheetDump</from-outcome>
+			<to-view-id>/views/private/createFloorsheetDumpForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createBod</from-outcome>
+			<to-view-id>/views/private/createBodForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createTodaysPriceDump</from-outcome>
+			<to-view-id>/views/private/createTodaysPriceDumpForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createBasePrice</from-outcome>
+			<to-view-id>/views/private/createBasePriceForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createProfitLoss</from-outcome>
+			<to-view-id>/views/private/createProfitLossForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createMarketIndex</from-outcome>
+			<to-view-id>/views/private/createMarketIndexForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createTodaysPrice</from-outcome>
+			<to-view-id>/views/private/createTodaysPriceForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createContentSource</from-outcome>
+			<to-view-id>/views/private/createContentSourceForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createLatestPrice</from-outcome>
+			<to-view-id>/views/private/createLatestPriceForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createArticle</from-outcome>
+			<to-view-id>/views/private/createArticleForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createIndexType</from-outcome>
+			<to-view-id>/views/private/createIndexTypeForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUserPortfolio</from-outcome>
+			<to-view-id>/views/private/createUserPortfolioForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createNotification</from-outcome>
+			<to-view-id>/views/private/createNotificationForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createCurrencyRate</from-outcome>
+			<to-view-id>/views/private/createCurrencyRateForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createIssueType</from-outcome>
+			<to-view-id>/views/private/createIssueTypeForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createNewHigh</from-outcome>
+			<to-view-id>/views/private/createNewHighForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createAuction</from-outcome>
+			<to-view-id>/views/private/createAuctionForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUserBullion</from-outcome>
+			<to-view-id>/views/private/createUserBullionForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUserWatchListStock</from-outcome>
+			<to-view-id>/views/private/createUserWatchListStockForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createAgm</from-outcome>
+			<to-view-id>/views/private/createAgmForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createAuditStatus</from-outcome>
+			<to-view-id>/views/private/createAuditStatusForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createMapPostCategory</from-outcome>
+			<to-view-id>/views/private/createMapPostCategoryForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createPostLike</from-outcome>
+			<to-view-id>/views/private/createPostLikeForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createNewLow</from-outcome>
+			<to-view-id>/views/private/createNewLowForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createBodType</from-outcome>
+			<to-view-id>/views/private/createBodTypeForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createIssue</from-outcome>
+			<to-view-id>/views/private/createIssueForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUserWatchList</from-outcome>
+			<to-view-id>/views/private/createUserWatchListForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createKeyRatio</from-outcome>
+			<to-view-id>/views/private/createKeyRatioForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createSemiYearAverage</from-outcome>
+			<to-view-id>/views/private/createSemiYearAverageForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createMapPostCompany</from-outcome>
+			<to-view-id>/views/private/createMapPostCompanyForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createFiscalYear</from-outcome>
+			<to-view-id>/views/private/createFiscalYearForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createFinancialReport</from-outcome>
+			<to-view-id>/views/private/createFinancialReportForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUserType</from-outcome>
+			<to-view-id>/views/private/createUserTypeForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createInterview</from-outcome>
+			<to-view-id>/views/private/createInterviewForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUserInfo</from-outcome>
+			<to-view-id>/views/private/createUserInfoForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUserEnergySales</from-outcome>
+			<to-view-id>/views/private/createUserEnergySalesForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createBalancesheet</from-outcome>
+			<to-view-id>/views/private/createBalancesheetForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUserStockSales</from-outcome>
+			<to-view-id>/views/private/createUserStockSalesForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createNews</from-outcome>
+			<to-view-id>/views/private/createNewsForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createMonth</from-outcome>
+			<to-view-id>/views/private/createMonthForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createBonusDividendApproved</from-outcome>
+			<to-view-id>/views/private/createBonusDividendApprovedForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createBullionType</from-outcome>
+			<to-view-id>/views/private/createBullionTypeForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUserEnergy</from-outcome>
+			<to-view-id>/views/private/createUserEnergyForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createPostImage</from-outcome>
+			<to-view-id>/views/private/createPostImageForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createEnergyType</from-outcome>
+			<to-view-id>/views/private/createEnergyTypeForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createIssueManager</from-outcome>
+			<to-view-id>/views/private/createIssueManagerForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createCrawlerSettings</from-outcome>
+			<to-view-id>/views/private/createCrawlerSettingsForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createBonusDividend</from-outcome>
+			<to-view-id>/views/private/createBonusDividendForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createPost</from-outcome>
+			<to-view-id>/views/private/createPostForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createBullionPrice</from-outcome>
+			<to-view-id>/views/private/createBullionPriceForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createQuarter</from-outcome>
+			<to-view-id>/views/private/createQuarterForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createCompanyDetail</from-outcome>
+			<to-view-id>/views/private/createCompanyDetailForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createCertificateDividendDistribution</from-outcome>
+			<to-view-id>/views/private/createCertificateDividendDistributionForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createFloorsheet</from-outcome>
+			<to-view-id>/views/private/createFloorsheetForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createAllotmentResult</from-outcome>
+			<to-view-id>/views/private/createAllotmentResultForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUserStock</from-outcome>
+			<to-view-id>/views/private/createUserStockForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createAnnouncementType</from-outcome>
+			<to-view-id>/views/private/createAnnouncementTypeForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createEvent</from-outcome>
+			<to-view-id>/views/private/createEventForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createCommentSocial</from-outcome>
+			<to-view-id>/views/private/createCommentSocialForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createPostCategory</from-outcome>
+			<to-view-id>/views/private/createPostCategoryForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createCurrencyType</from-outcome>
+			<to-view-id>/views/private/createCurrencyTypeForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createComment</from-outcome>
+			<to-view-id>/views/private/createCommentForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createCompany</from-outcome>
+			<to-view-id>/views/private/createCompanyForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUserBullionSales</from-outcome>
+			<to-view-id>/views/private/createUserBullionSalesForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createSector</from-outcome>
+			<to-view-id>/views/private/createSectorForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createEnergyPrice</from-outcome>
+			<to-view-id>/views/private/createEnergyPriceForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createMapPostPost</from-outcome>
+			<to-view-id>/views/private/createMapPostPostForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createFinancialHighlight</from-outcome>
+			<to-view-id>/views/private/createFinancialHighlightForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createCompanyBranch</from-outcome>
+			<to-view-id>/views/private/createCompanyBranchForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createProxy</from-outcome>
+			<to-view-id>/views/private/createProxyForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createBroker</from-outcome>
+			<to-view-id>/views/private/createBrokerForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createUser</from-outcome>
+			<to-view-id>/views/private/createUserForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createFloorsheetHeader</from-outcome>
+			<to-view-id>/views/private/createFloorsheetHeaderForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createAnnouncement</from-outcome>
+			<to-view-id>/views/private/createAnnouncementForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createMonthlyFinancialHighlight</from-outcome>
+			<to-view-id>/views/private/createMonthlyFinancialHighlightForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createForumThread</from-outcome>
+			<to-view-id>/views/private/createForumThreadForm.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+	<application>
+		<action-listener>org.primefaces.application.DialogActionListener</action-listener>
+		<navigation-handler>org.primefaces.application.DialogNavigationHandler</navigation-handler>
+		<view-handler>org.primefaces.application.DialogViewHandler</view-handler>
+	</application>
 
 </faces-config>

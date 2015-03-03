@@ -1,21 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Mar 2, 2015 3:36:22 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.nsmjsf.web.datamodels.MarketIndex" table="market_index" catalog="admin_nsmjsf">
-        <id name="indexValueId" type="java.lang.Integer">
-            <column name="index_value_id" />
+        <id name="marketIndexId" type="java.lang.Integer">
+            <column name="market_index_id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="market_index_post_id" not-null="true" />
+        </many-to-one>
         <many-to-one name="indexType" class="com.nsmjsf.web.datamodels.IndexType" fetch="select">
             <column name="market_index_type_id" not-null="true" />
         </many-to-one>
-        <property name="indexValueValue" type="float">
-            <column name="index_value_value" precision="12" scale="0" not-null="true" />
+        <property name="marketIndexValue" type="float">
+            <column name="market_index_value" precision="12" scale="0" not-null="true" />
         </property>
-        <property name="indexValueDate" type="date">
-            <column name="index_value_date" length="0" not-null="true" />
+        <property name="marketIndexDate" type="date">
+            <column name="market_index_date" length="0" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

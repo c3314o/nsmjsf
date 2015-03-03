@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="postLike" resizableColumns="true" value="#{viewPostLikeBean.lazyModel}" filteredValue="#{viewPostLikeBean.filteredPostLikeList}"
+			paginator="true" rows="10" selection="#{viewPostLikeBean.selectedPostLikeList}" rowKey="#{postLike.postLikeId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="postLikeTable" widgetVar="postLikeTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewPostLikeBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewPostLikeBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="postLikeTable" fileName="PostLikeData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="postLikeTable" fileName="PostLikeData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="postLikeTable" fileName="PostLikeData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="postLikeTable" fileName="PostLikeData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{postLike.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('postLikeTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewPostLikeBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{postLike.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Post Like Id" sortBy="#{postLike.postLikeId}"
+				filterBy="#{postLike.postLikeId}">
+				<h:outputText value="#{postLike.postLikeId}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{postLike.user}"
+				headerText="User" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('postLikeTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewPostLikeBean.userList}"
+							var="user"
+							itemLabel="#{user.userLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{postLike.user.userLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewPostLikeBean.editPostLike(postLike.postLikeId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewPostLikeBean.refreshDataSource}" update="postLikeTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewPostLikeBean.deletePostLike(postLike)}" update="postLikeTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="monthlyFinancialHighlight" lazy="true" value="#{viewMonthlyFinancialHighlightBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="monthlyFinancialHighlightGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{monthlyFinancialHighlight.monthlyFinancialHighlightLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="Fiscal Year:" />
+                    <h:outputText value="#{monthlyFinancialHighlight.fiscalYear.fiscalYearLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Monthly Financial Highlight Nav Per Share:" />
+                   <h:outputText value="#{monthlyFinancialHighlight.monthlyFinancialHighlightNavPerShare}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Announcement:" />
+                    <h:outputText value="#{monthlyFinancialHighlight.announcement.announcementLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Month:" />
+                    <h:outputText value="#{monthlyFinancialHighlight.month.monthLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Monthly Financial Highlight Id:" />
+                   <h:outputText value="#{monthlyFinancialHighlight.monthlyFinancialHighlightId}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

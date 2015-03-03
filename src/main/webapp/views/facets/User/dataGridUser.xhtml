@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="user" lazy="true" value="#{viewUserBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="userGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{user.userLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="Comment Social:" />
+                    <h:outputText value="#{user.commentSocial.commentSocialLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User Stock Salese:" />
+                    <h:outputText value="#{user.userStockSalese.userStockSaleseLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Article:" />
+                    <h:outputText value="#{user.article.articleLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User Energy:" />
+                    <h:outputText value="#{user.userEnergy.userEnergyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Post:" />
+                    <h:outputText value="#{user.post.postLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Email:" />
+                   <h:outputText value="#{user.userEmail}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Post Like:" />
+                    <h:outputText value="#{user.postLike.postLikeLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Newse:" />
+                    <h:outputText value="#{user.newse.newseLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User Type:" />
+                    <h:outputText value="#{user.userType.userTypeLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User Stock:" />
+                    <h:outputText value="#{user.userStock.userStockLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Notification:" />
+                    <h:outputText value="#{user.notification.notificationLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Id:" />
+                   <h:outputText value="#{user.userId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Name:" />
+                   <h:outputText value="#{user.userName}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User Watch List:" />
+                    <h:outputText value="#{user.userWatchList.userWatchListLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User Bullion:" />
+                    <h:outputText value="#{user.userBullion.userBullionLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User Info:" />
+                    <h:outputText value="#{user.userInfo.userInfoLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User Portfolio:" />
+                    <h:outputText value="#{user.userPortfolio.userPortfolioLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Pass:" />
+                   <h:outputText value="#{user.userPass}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Comment:" />
+                    <h:outputText value="#{user.comment.commentLabel}" />
+		
+			
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

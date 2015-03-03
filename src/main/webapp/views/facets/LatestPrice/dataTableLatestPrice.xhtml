@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="latestPrice" resizableColumns="true" value="#{viewLatestPriceBean.lazyModel}" filteredValue="#{viewLatestPriceBean.filteredLatestPriceList}"
+			paginator="true" rows="10" selection="#{viewLatestPriceBean.selectedLatestPriceList}" rowKey="#{latestPrice.latestPriceId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="latestPriceTable" widgetVar="latestPriceTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewLatestPriceBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewLatestPriceBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="latestPriceTable" fileName="LatestPriceData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="latestPriceTable" fileName="LatestPriceData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="latestPriceTable" fileName="LatestPriceData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="latestPriceTable" fileName="LatestPriceData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Latest Price Deleted" sortBy="#{latestPrice.latestPriceDeleted}"
+				filterBy="#{latestPrice.latestPriceDeleted}">
+				<h:outputText value="#{latestPrice.latestPriceDeleted}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{latestPrice.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('latestPriceTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewLatestPriceBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{latestPrice.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Latest Price Min Price" sortBy="#{latestPrice.latestPriceMinPrice}"
+				filterBy="#{latestPrice.latestPriceMinPrice}">
+				<h:outputText value="#{latestPrice.latestPriceMinPrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Latest Price Diff" sortBy="#{latestPrice.latestPriceDiff}"
+				filterBy="#{latestPrice.latestPriceDiff}">
+				<h:outputText value="#{latestPrice.latestPriceDiff}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Latest Price Amount" sortBy="#{latestPrice.latestPriceAmount}"
+				filterBy="#{latestPrice.latestPriceAmount}">
+				<h:outputText value="#{latestPrice.latestPriceAmount}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{latestPrice.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('latestPriceTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewLatestPriceBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{latestPrice.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Latest Price Total Share" sortBy="#{latestPrice.latestPriceTotalShare}"
+				filterBy="#{latestPrice.latestPriceTotalShare}">
+				<h:outputText value="#{latestPrice.latestPriceTotalShare}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Latest Price Id" sortBy="#{latestPrice.latestPriceId}"
+				filterBy="#{latestPrice.latestPriceId}">
+				<h:outputText value="#{latestPrice.latestPriceId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Latest Price Max Price" sortBy="#{latestPrice.latestPriceMaxPrice}"
+				filterBy="#{latestPrice.latestPriceMaxPrice}">
+				<h:outputText value="#{latestPrice.latestPriceMaxPrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Latest Price Traded Date" sortBy="#{latestPrice.latestPriceTradedDate}"
+				filterBy="#{latestPrice.latestPriceTradedDate}">
+				<h:outputText value="#{latestPrice.latestPriceTradedDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Latest Price Close Price" sortBy="#{latestPrice.latestPriceClosePrice}"
+				filterBy="#{latestPrice.latestPriceClosePrice}">
+				<h:outputText value="#{latestPrice.latestPriceClosePrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Latest Price No Of Transactions" sortBy="#{latestPrice.latestPriceNoOfTransactions}"
+				filterBy="#{latestPrice.latestPriceNoOfTransactions}">
+				<h:outputText value="#{latestPrice.latestPriceNoOfTransactions}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Latest Price Prev Closing" sortBy="#{latestPrice.latestPricePrevClosing}"
+				filterBy="#{latestPrice.latestPricePrevClosing}">
+				<h:outputText value="#{latestPrice.latestPricePrevClosing}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewLatestPriceBean.editLatestPrice(latestPrice.latestPriceId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewLatestPriceBean.refreshDataSource}" update="latestPriceTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewLatestPriceBean.deleteLatestPrice(latestPrice)}" update="latestPriceTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

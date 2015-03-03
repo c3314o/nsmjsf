@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="floorsheet" resizableColumns="true" value="#{viewFloorsheetBean.lazyModel}" filteredValue="#{viewFloorsheetBean.filteredFloorsheetList}"
+			paginator="true" rows="10" selection="#{viewFloorsheetBean.selectedFloorsheetList}" rowKey="#{floorsheet.floorsheetId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="floorsheetTable" widgetVar="floorsheetTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewFloorsheetBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewFloorsheetBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="floorsheetTable" fileName="FloorsheetData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="floorsheetTable" fileName="FloorsheetData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="floorsheetTable" fileName="FloorsheetData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="floorsheetTable" fileName="FloorsheetData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{floorsheet.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('floorsheetTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewFloorsheetBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{floorsheet.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Floorsheet Seller Broker" sortBy="#{floorsheet.floorsheetSellerBroker}"
+				filterBy="#{floorsheet.floorsheetSellerBroker}">
+				<h:outputText value="#{floorsheet.floorsheetSellerBroker}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Floorsheet Rate" sortBy="#{floorsheet.floorsheetRate}"
+				filterBy="#{floorsheet.floorsheetRate}">
+				<h:outputText value="#{floorsheet.floorsheetRate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Floorsheet Amount" sortBy="#{floorsheet.floorsheetAmount}"
+				filterBy="#{floorsheet.floorsheetAmount}">
+				<h:outputText value="#{floorsheet.floorsheetAmount}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Floorsheet Quantity" sortBy="#{floorsheet.floorsheetQuantity}"
+				filterBy="#{floorsheet.floorsheetQuantity}">
+				<h:outputText value="#{floorsheet.floorsheetQuantity}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Floorsheet Id" sortBy="#{floorsheet.floorsheetId}"
+				filterBy="#{floorsheet.floorsheetId}">
+				<h:outputText value="#{floorsheet.floorsheetId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Floorsheet Buyer Broker" sortBy="#{floorsheet.floorsheetBuyerBroker}"
+				filterBy="#{floorsheet.floorsheetBuyerBroker}">
+				<h:outputText value="#{floorsheet.floorsheetBuyerBroker}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Floorsheet Stock Symbol" sortBy="#{floorsheet.floorsheetStockSymbol}"
+				filterBy="#{floorsheet.floorsheetStockSymbol}">
+				<h:outputText value="#{floorsheet.floorsheetStockSymbol}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Floorsheet Transaction No" sortBy="#{floorsheet.floorsheetTransactionNo}"
+				filterBy="#{floorsheet.floorsheetTransactionNo}">
+				<h:outputText value="#{floorsheet.floorsheetTransactionNo}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewFloorsheetBean.editFloorsheet(floorsheet.floorsheetId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewFloorsheetBean.refreshDataSource}" update="floorsheetTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewFloorsheetBean.deleteFloorsheet(floorsheet)}" update="floorsheetTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

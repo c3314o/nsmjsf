@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="announcement" lazy="true" value="#{viewAnnouncementBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="announcementGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{announcement.announcementLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="Announcement Date:" />
+                   <h:outputText value="#{announcement.announcementDate}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Auction:" />
+                    <h:outputText value="#{announcement.auction.auctionLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Post:" />
+                    <h:outputText value="#{announcement.post.postLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Bonus Dividend Approved:" />
+                    <h:outputText value="#{announcement.bonusDividendApproved.bonusDividendApprovedLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Issue:" />
+                    <h:outputText value="#{announcement.issue.issueLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Agm:" />
+                    <h:outputText value="#{announcement.agm.agmLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Certificate Dividend Distribution:" />
+                    <h:outputText value="#{announcement.certificateDividendDistribution.certificateDividendDistributionLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Announcement Id:" />
+                   <h:outputText value="#{announcement.announcementId}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Announcement Type:" />
+                    <h:outputText value="#{announcement.announcementType.announcementTypeLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Monthly Financial Highlight:" />
+                    <h:outputText value="#{announcement.monthlyFinancialHighlight.monthlyFinancialHighlightLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Allotment Result:" />
+                    <h:outputText value="#{announcement.allotmentResult.allotmentResultLabel}" />
+		
+			
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

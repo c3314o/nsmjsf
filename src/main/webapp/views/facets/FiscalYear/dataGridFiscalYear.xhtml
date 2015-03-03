@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="fiscalYear" lazy="true" value="#{viewFiscalYearBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="fiscalYearGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{fiscalYear.fiscalYearLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="Bonus Dividend Approved:" />
+                    <h:outputText value="#{fiscalYear.bonusDividendApproved.bonusDividendApprovedLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Bonus Dividend:" />
+                    <h:outputText value="#{fiscalYear.bonusDividend.bonusDividendLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Financial Highlight:" />
+                    <h:outputText value="#{fiscalYear.financialHighlight.financialHighlightLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Agm:" />
+                    <h:outputText value="#{fiscalYear.agm.agmLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Certificate Dividend Distribution:" />
+                    <h:outputText value="#{fiscalYear.certificateDividendDistribution.certificateDividendDistributionLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Financial Report:" />
+                    <h:outputText value="#{fiscalYear.financialReport.financialReportLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Fiscal Year Label:" />
+                   <h:outputText value="#{fiscalYear.fiscalYearLabel}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Fiscal Year Id:" />
+                   <h:outputText value="#{fiscalYear.fiscalYearId}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Bod:" />
+                    <h:outputText value="#{fiscalYear.bod.bodLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Monthly Financial Highlight:" />
+                    <h:outputText value="#{fiscalYear.monthlyFinancialHighlight.monthlyFinancialHighlightLabel}" />
+		
+			
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="user" resizableColumns="true" value="#{viewUserBean.lazyModel}" filteredValue="#{viewUserBean.filteredUserList}"
+			paginator="true" rows="10" selection="#{viewUserBean.selectedUserList}" rowKey="#{user.userId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="userTable" widgetVar="userTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewUserBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewUserBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="userTable" fileName="UserData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="userTable" fileName="UserData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="userTable" fileName="UserData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="userTable" fileName="UserData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="User Email" sortBy="#{user.userEmail}"
+				filterBy="#{user.userEmail}">
+				<h:outputText value="#{user.userEmail}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{user.userType}"
+				headerText="User Type" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserBean.userTypeList}"
+							var="userType"
+							itemLabel="#{userType.userTypeLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{user.userType.userTypeLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="User Id" sortBy="#{user.userId}"
+				filterBy="#{user.userId}">
+				<h:outputText value="#{user.userId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Name" sortBy="#{user.userName}"
+				filterBy="#{user.userName}">
+				<h:outputText value="#{user.userName}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{user.userInfo}"
+				headerText="User Info" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserBean.userInfoList}"
+							var="userInfo"
+							itemLabel="#{userInfo.userInfoLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{user.userInfo.userInfoLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="User Pass" sortBy="#{user.userPass}"
+				filterBy="#{user.userPass}">
+				<h:outputText value="#{user.userPass}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewUserBean.editUser(user.userId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewUserBean.refreshDataSource}" update="userTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewUserBean.deleteUser(user)}" update="userTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="userInfo" lazy="true" value="#{viewUserInfoBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="userInfoGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{userInfo.userInfoLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="User:" />
+                    <h:outputText value="#{userInfo.user.userLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Info Dob:" />
+                   <h:outputText value="#{userInfo.userInfoDob}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Info Work:" />
+                   <h:outputText value="#{userInfo.userInfoWork}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Info Id:" />
+                   <h:outputText value="#{userInfo.userInfoId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Info Full Name:" />
+                   <h:outputText value="#{userInfo.userInfoFullName}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Info Address:" />
+                   <h:outputText value="#{userInfo.userInfoAddress}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Info Profile Picture:" />
+                   <h:outputText value="#{userInfo.userInfoProfilePicture}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="commentSocial" lazy="true" value="#{viewCommentSocialBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="commentSocialGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{commentSocial.commentSocialLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="Comment Social Id:" />
+                   <h:outputText value="#{commentSocial.commentSocialId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Comment Social Like:" />
+                   <h:outputText value="#{commentSocial.commentSocialLike}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Comment:" />
+                    <h:outputText value="#{commentSocial.comment.commentLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User:" />
+                    <h:outputText value="#{commentSocial.user.userLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Comment Social Dislike:" />
+                   <h:outputText value="#{commentSocial.commentSocialDislike}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

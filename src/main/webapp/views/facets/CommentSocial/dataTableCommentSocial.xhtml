@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="commentSocial" resizableColumns="true" value="#{viewCommentSocialBean.lazyModel}" filteredValue="#{viewCommentSocialBean.filteredCommentSocialList}"
+			paginator="true" rows="10" selection="#{viewCommentSocialBean.selectedCommentSocialList}" rowKey="#{commentSocial.commentSocialId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="commentSocialTable" widgetVar="commentSocialTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewCommentSocialBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewCommentSocialBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="commentSocialTable" fileName="CommentSocialData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="commentSocialTable" fileName="CommentSocialData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="commentSocialTable" fileName="CommentSocialData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="commentSocialTable" fileName="CommentSocialData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Comment Social Id" sortBy="#{commentSocial.commentSocialId}"
+				filterBy="#{commentSocial.commentSocialId}">
+				<h:outputText value="#{commentSocial.commentSocialId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Comment Social Like" sortBy="#{commentSocial.commentSocialLike}"
+				filterBy="#{commentSocial.commentSocialLike}">
+				<h:outputText value="#{commentSocial.commentSocialLike}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{commentSocial.comment}"
+				headerText="Comment" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('commentSocialTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewCommentSocialBean.commentList}"
+							var="comment"
+							itemLabel="#{comment.commentLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{commentSocial.comment.commentLabel}" />
+			</p:column>
+			
+			
+			
+			<p:column filterBy="#{commentSocial.user}"
+				headerText="User" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('commentSocialTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewCommentSocialBean.userList}"
+							var="user"
+							itemLabel="#{user.userLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{commentSocial.user.userLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Comment Social Dislike" sortBy="#{commentSocial.commentSocialDislike}"
+				filterBy="#{commentSocial.commentSocialDislike}">
+				<h:outputText value="#{commentSocial.commentSocialDislike}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewCommentSocialBean.editCommentSocial(commentSocial.commentSocialId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewCommentSocialBean.refreshDataSource}" update="commentSocialTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewCommentSocialBean.deleteCommentSocial(commentSocial)}" update="commentSocialTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,89 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+
+<style>
+.form-input{
+float:left;
+min-width:200px;
+width:100%;
+
+
+}
+
+
+
+</style>
+<h:panelGrid columns="1"  style="width:100%">
+						<p:outputPanel >
+						<h:outputLabel for="userEmail" value="User Email" />
+                         <p:inputText styleClass="form-input" id="userEmail" value="#{createUserBean.user.userEmail}" required="true" />
+                         </p:outputPanel>
+						
+						
+			<p:outputPanel >
+				<p:outputLabel for="userType" value="User Type" />
+			          <p:selectOneMenu  styleClass="form-input" id="userType" value="#{createUserBean.selectedUserTypeWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="userTypeWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createUserBean.userTypeWrapperList}" var="var_userType"
+					      itemLabel="#{var_userType.getLabel()}" itemValue="#{var_userType}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+						<p:outputPanel >
+						<h:outputLabel for="userName" value="User Name" />
+                         <p:inputText styleClass="form-input" id="userName" value="#{createUserBean.user.userName}" required="true" />
+                         </p:outputPanel>
+						
+						
+			<p:outputPanel >
+				<p:outputLabel for="userInfo" value="User Info" />
+			          <p:selectOneMenu  styleClass="form-input" id="userInfo" value="#{createUserBean.selectedUserInfoWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="userInfoWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createUserBean.userInfoWrapperList}" var="var_userInfo"
+					      itemLabel="#{var_userInfo.getLabel()}" itemValue="#{var_userInfo}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+						<p:outputPanel >
+						<h:outputLabel for="userPass" value="User Pass" />
+                         <p:inputText styleClass="form-input" id="userPass" value="#{createUserBean.user.userPass}" required="true" />
+                         </p:outputPanel>
+						
+						
+
+
+
+</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

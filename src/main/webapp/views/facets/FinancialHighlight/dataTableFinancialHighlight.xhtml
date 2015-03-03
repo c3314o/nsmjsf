@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="financialHighlight" resizableColumns="true" value="#{viewFinancialHighlightBean.lazyModel}" filteredValue="#{viewFinancialHighlightBean.filteredFinancialHighlightList}"
+			paginator="true" rows="10" selection="#{viewFinancialHighlightBean.selectedFinancialHighlightList}" rowKey="#{financialHighlight.financialHighlightId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="financialHighlightTable" widgetVar="financialHighlightTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewFinancialHighlightBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewFinancialHighlightBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="financialHighlightTable" fileName="FinancialHighlightData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="financialHighlightTable" fileName="FinancialHighlightData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="financialHighlightTable" fileName="FinancialHighlightData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="financialHighlightTable" fileName="FinancialHighlightData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{financialHighlight.fiscalYear}"
+				headerText="Fiscal Year" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('financialHighlightTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewFinancialHighlightBean.fiscalYearList}"
+							var="fiscalYear"
+							itemLabel="#{fiscalYear.fiscalYearLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{financialHighlight.fiscalYear.fiscalYearLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Financial Highlight Earning Per Share" sortBy="#{financialHighlight.financialHighlightEarningPerShare}"
+				filterBy="#{financialHighlight.financialHighlightEarningPerShare}">
+				<h:outputText value="#{financialHighlight.financialHighlightEarningPerShare}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Financial Highlight Non Performing Loan" sortBy="#{financialHighlight.financialHighlightNonPerformingLoan}"
+				filterBy="#{financialHighlight.financialHighlightNonPerformingLoan}">
+				<h:outputText value="#{financialHighlight.financialHighlightNonPerformingLoan}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Financial Highlight Operating Profit" sortBy="#{financialHighlight.financialHighlightOperatingProfit}"
+				filterBy="#{financialHighlight.financialHighlightOperatingProfit}">
+				<h:outputText value="#{financialHighlight.financialHighlightOperatingProfit}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Financial Highlight Paid Up Capital" sortBy="#{financialHighlight.financialHighlightPaidUpCapital}"
+				filterBy="#{financialHighlight.financialHighlightPaidUpCapital}">
+				<h:outputText value="#{financialHighlight.financialHighlightPaidUpCapital}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Financial Highlight Net Profit" sortBy="#{financialHighlight.financialHighlightNetProfit}"
+				filterBy="#{financialHighlight.financialHighlightNetProfit}">
+				<h:outputText value="#{financialHighlight.financialHighlightNetProfit}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Financial Highlight Book Value Per Share" sortBy="#{financialHighlight.financialHighlightBookValuePerShare}"
+				filterBy="#{financialHighlight.financialHighlightBookValuePerShare}">
+				<h:outputText value="#{financialHighlight.financialHighlightBookValuePerShare}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{financialHighlight.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('financialHighlightTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewFinancialHighlightBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{financialHighlight.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Financial Highlight Id" sortBy="#{financialHighlight.financialHighlightId}"
+				filterBy="#{financialHighlight.financialHighlightId}">
+				<h:outputText value="#{financialHighlight.financialHighlightId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Financial Highlight Credit Deposit Ratio" sortBy="#{financialHighlight.financialHighlightCreditDepositRatio}"
+				filterBy="#{financialHighlight.financialHighlightCreditDepositRatio}">
+				<h:outputText value="#{financialHighlight.financialHighlightCreditDepositRatio}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Financial Highlight Net Worth Per Share" sortBy="#{financialHighlight.financialHighlightNetWorthPerShare}"
+				filterBy="#{financialHighlight.financialHighlightNetWorthPerShare}">
+				<h:outputText value="#{financialHighlight.financialHighlightNetWorthPerShare}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Financial Highlight Reserve And Surplus" sortBy="#{financialHighlight.financialHighlightReserveAndSurplus}"
+				filterBy="#{financialHighlight.financialHighlightReserveAndSurplus}">
+				<h:outputText value="#{financialHighlight.financialHighlightReserveAndSurplus}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Financial Highlight Price Earning Ratio" sortBy="#{financialHighlight.financialHighlightPriceEarningRatio}"
+				filterBy="#{financialHighlight.financialHighlightPriceEarningRatio}">
+				<h:outputText value="#{financialHighlight.financialHighlightPriceEarningRatio}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{financialHighlight.quarter}"
+				headerText="Quarter" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('financialHighlightTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewFinancialHighlightBean.quarterList}"
+							var="quarter"
+							itemLabel="#{quarter.quarterLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{financialHighlight.quarter.quarterLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewFinancialHighlightBean.editFinancialHighlight(financialHighlight.financialHighlightId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewFinancialHighlightBean.refreshDataSource}" update="financialHighlightTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewFinancialHighlightBean.deleteFinancialHighlight(financialHighlight)}" update="financialHighlightTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

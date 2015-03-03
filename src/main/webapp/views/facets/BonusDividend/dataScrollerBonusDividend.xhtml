@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewBonusDividendBean.bonusDividendList}" var="bonusDividend" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="Bonus Dividend Bonus Share Percent:" />
+                   <h:outputText value="#{bonusDividend.bonusDividendBonusSharePercent}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Fiscal Year:" />
+                    <h:outputText value="#{bonusDividend.fiscalYear.fiscalYearLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Bonus Dividend Total Dividend:" />
+                   <h:outputText value="#{bonusDividend.bonusDividendTotalDividend}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Bonus Dividend Cash Divident Percent:" />
+                   <h:outputText value="#{bonusDividend.bonusDividendCashDividentPercent}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Bonus Dividend Id:" />
+                   <h:outputText value="#{bonusDividend.bonusDividendId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Bonus Dividend Distribution Date:" />
+                   <h:outputText value="#{bonusDividend.bonusDividendDistributionDate}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{bonusDividend.company.companyLabel}" />
+		
+			
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

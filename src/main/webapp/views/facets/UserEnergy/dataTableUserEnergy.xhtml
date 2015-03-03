@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="userEnergy" resizableColumns="true" value="#{viewUserEnergyBean.lazyModel}" filteredValue="#{viewUserEnergyBean.filteredUserEnergyList}"
+			paginator="true" rows="10" selection="#{viewUserEnergyBean.selectedUserEnergyList}" rowKey="#{userEnergy.userEnergyId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="userEnergyTable" widgetVar="userEnergyTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewUserEnergyBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewUserEnergyBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="userEnergyTable" fileName="UserEnergyData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="userEnergyTable" fileName="UserEnergyData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="userEnergyTable" fileName="UserEnergyData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="userEnergyTable" fileName="UserEnergyData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="User Energy Total Amount" sortBy="#{userEnergy.userEnergyTotalAmount}"
+				filterBy="#{userEnergy.userEnergyTotalAmount}">
+				<h:outputText value="#{userEnergy.userEnergyTotalAmount}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Energy Buy Units" sortBy="#{userEnergy.userEnergyBuyUnits}"
+				filterBy="#{userEnergy.userEnergyBuyUnits}">
+				<h:outputText value="#{userEnergy.userEnergyBuyUnits}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{userEnergy.energyType}"
+				headerText="Energy Type" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userEnergyTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserEnergyBean.energyTypeList}"
+							var="energyType"
+							itemLabel="#{energyType.energyTypeLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{userEnergy.energyType.energyTypeLabel}" />
+			</p:column>
+			
+			
+			
+			<p:column filterBy="#{userEnergy.userPortfolio}"
+				headerText="User Portfolio" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userEnergyTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserEnergyBean.userPortfolioList}"
+							var="userPortfolio"
+							itemLabel="#{userPortfolio.userPortfolioLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{userEnergy.userPortfolio.userPortfolioLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="User Energy Buy Price" sortBy="#{userEnergy.userEnergyBuyPrice}"
+				filterBy="#{userEnergy.userEnergyBuyPrice}">
+				<h:outputText value="#{userEnergy.userEnergyBuyPrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Energy Units Left" sortBy="#{userEnergy.userEnergyUnitsLeft}"
+				filterBy="#{userEnergy.userEnergyUnitsLeft}">
+				<h:outputText value="#{userEnergy.userEnergyUnitsLeft}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{userEnergy.user}"
+				headerText="User" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userEnergyTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserEnergyBean.userList}"
+							var="user"
+							itemLabel="#{user.userLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{userEnergy.user.userLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="User Energy Id" sortBy="#{userEnergy.userEnergyId}"
+				filterBy="#{userEnergy.userEnergyId}">
+				<h:outputText value="#{userEnergy.userEnergyId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewUserEnergyBean.editUserEnergy(userEnergy.userEnergyId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewUserEnergyBean.refreshDataSource}" update="userEnergyTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewUserEnergyBean.deleteUserEnergy(userEnergy)}" update="userEnergyTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

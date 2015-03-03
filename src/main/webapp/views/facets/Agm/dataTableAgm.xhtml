@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="agm" resizableColumns="true" value="#{viewAgmBean.lazyModel}" filteredValue="#{viewAgmBean.filteredAgmList}"
+			paginator="true" rows="10" selection="#{viewAgmBean.selectedAgmList}" rowKey="#{agm.agmId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="agmTable" widgetVar="agmTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewAgmBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewAgmBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="agmTable" fileName="AgmData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="agmTable" fileName="AgmData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="agmTable" fileName="AgmData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="agmTable" fileName="AgmData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{agm.fiscalYear}"
+				headerText="Fiscal Year" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('agmTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewAgmBean.fiscalYearList}"
+							var="fiscalYear"
+							itemLabel="#{fiscalYear.fiscalYearLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{agm.fiscalYear.fiscalYearLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Agm Label" sortBy="#{agm.agmLabel}"
+				filterBy="#{agm.agmLabel}">
+				<h:outputText value="#{agm.agmLabel}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{agm.announcement}"
+				headerText="Announcement" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('agmTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewAgmBean.announcementList}"
+							var="announcement"
+							itemLabel="#{announcement.announcementLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{agm.announcement.announcementLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Agm Book Closure From" sortBy="#{agm.agmBookClosureFrom}"
+				filterBy="#{agm.agmBookClosureFrom}">
+				<h:outputText value="#{agm.agmBookClosureFrom}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Agm Number" sortBy="#{agm.agmNumber}"
+				filterBy="#{agm.agmNumber}">
+				<h:outputText value="#{agm.agmNumber}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Agm Venue" sortBy="#{agm.agmVenue}"
+				filterBy="#{agm.agmVenue}">
+				<h:outputText value="#{agm.agmVenue}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Agm Agenda" sortBy="#{agm.agmAgenda}"
+				filterBy="#{agm.agmAgenda}">
+				<h:outputText value="#{agm.agmAgenda}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Agm Book Closure To" sortBy="#{agm.agmBookClosureTo}"
+				filterBy="#{agm.agmBookClosureTo}">
+				<h:outputText value="#{agm.agmBookClosureTo}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Agm Id" sortBy="#{agm.agmId}"
+				filterBy="#{agm.agmId}">
+				<h:outputText value="#{agm.agmId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Agm Date" sortBy="#{agm.agmDate}"
+				filterBy="#{agm.agmDate}">
+				<h:outputText value="#{agm.agmDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Agm Dividend" sortBy="#{agm.agmDividend}"
+				filterBy="#{agm.agmDividend}">
+				<h:outputText value="#{agm.agmDividend}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{agm.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('agmTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewAgmBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{agm.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Agm Type" sortBy="#{agm.agmType}"
+				filterBy="#{agm.agmType}">
+				<h:outputText value="#{agm.agmType}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Agm Bonus" sortBy="#{agm.agmBonus}"
+				filterBy="#{agm.agmBonus}">
+				<h:outputText value="#{agm.agmBonus}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewAgmBean.editAgm(agm.agmId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewAgmBean.refreshDataSource}" update="agmTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewAgmBean.deleteAgm(agm)}" update="agmTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="energyType" resizableColumns="true" value="#{viewEnergyTypeBean.lazyModel}" filteredValue="#{viewEnergyTypeBean.filteredEnergyTypeList}"
+			paginator="true" rows="10" selection="#{viewEnergyTypeBean.selectedEnergyTypeList}" rowKey="#{energyType.energyTypeId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="energyTypeTable" widgetVar="energyTypeTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewEnergyTypeBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewEnergyTypeBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="energyTypeTable" fileName="EnergyTypeData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="energyTypeTable" fileName="EnergyTypeData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="energyTypeTable" fileName="EnergyTypeData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="energyTypeTable" fileName="EnergyTypeData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Energy Type Label" sortBy="#{energyType.energyTypeLabel}"
+				filterBy="#{energyType.energyTypeLabel}">
+				<h:outputText value="#{energyType.energyTypeLabel}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Energy Type Id" sortBy="#{energyType.energyTypeId}"
+				filterBy="#{energyType.energyTypeId}">
+				<h:outputText value="#{energyType.energyTypeId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewEnergyTypeBean.editEnergyType(energyType.energyTypeId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewEnergyTypeBean.refreshDataSource}" update="energyTypeTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewEnergyTypeBean.deleteEnergyType(energyType)}" update="energyTypeTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

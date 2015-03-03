@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewUserStockSalesBean.userStockSalesList}" var="userStockSales" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Sales Id:" />
+                   <h:outputText value="#{userStockSales.userStockSalesId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Sales Profit:" />
+                   <h:outputText value="#{userStockSales.userStockSalesProfit}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Sales Unit:" />
+                   <h:outputText value="#{userStockSales.userStockSalesUnit}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Sales Price:" />
+                   <h:outputText value="#{userStockSales.userStockSalesPrice}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User Stock:" />
+                    <h:outputText value="#{userStockSales.userStock.userStockLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Sales Date:" />
+                   <h:outputText value="#{userStockSales.userStockSalesDate}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User:" />
+                    <h:outputText value="#{userStockSales.user.userLabel}" />
+		
+			
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

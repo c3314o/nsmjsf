@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="issueType" lazy="true" value="#{viewIssueTypeBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="issueTypeGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{issueType.issueTypeLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="Issue Type Label:" />
+                   <h:outputText value="#{issueType.issueTypeLabel}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Issue Type Id:" />
+                   <h:outputText value="#{issueType.issueTypeId}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Issue:" />
+                    <h:outputText value="#{issueType.issue.issueLabel}" />
+		
+			
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

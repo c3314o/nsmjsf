@@ -47,7 +47,6 @@
         <mapping class="com.nsmjsf.web.datamodels.KeyRatio" />
         <mapping class="com.nsmjsf.web.datamodels.Issue" />
         <mapping class="com.nsmjsf.web.datamodels.Interview" />
-        <mapping class="com.nsmjsf.web.datamodels.180Average" />
         <mapping class="com.nsmjsf.web.datamodels.Company" />
         <mapping class="com.nsmjsf.web.datamodels.BodType" />
         <mapping class="com.nsmjsf.web.datamodels.UserType" />
@@ -65,6 +64,7 @@
         <mapping class="com.nsmjsf.web.datamodels.CompanyBranch" />
         <mapping class="com.nsmjsf.web.datamodels.UserInfo" />
         <mapping class="com.nsmjsf.web.datamodels.MapPostCategory" />
+        <mapping class="com.nsmjsf.web.datamodels.ContentSource" />
         <mapping class="com.nsmjsf.web.datamodels.BonusDividend" />
         <mapping class="com.nsmjsf.web.datamodels.PostImage" />
         <mapping class="com.nsmjsf.web.datamodels.Broker" />
@@ -74,6 +74,7 @@
         <mapping class="com.nsmjsf.web.datamodels.Auction" />
         <mapping class="com.nsmjsf.web.datamodels.EnergyPrice" />
         <mapping class="com.nsmjsf.web.datamodels.AuditStatus" />
+        <mapping class="com.nsmjsf.web.datamodels.SemiYearAverage" />
         <mapping class="com.nsmjsf.web.datamodels.Balancesheet" />
         <mapping class="com.nsmjsf.web.datamodels.Floorsheet" />
         <mapping class="com.nsmjsf.web.datamodels.IssueType" />

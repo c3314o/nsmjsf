@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="mapPostPost" lazy="true" value="#{viewMapPostPostBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="mapPostPostGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{mapPostPost.mapPostPostLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="Post By To Post Id:" />
+                    <h:outputText value="#{mapPostPost.postByToPostId.postByToPostIdLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Map Post Post Id:" />
+                   <h:outputText value="#{mapPostPost.mapPostPostId}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Post By From Post Id:" />
+                    <h:outputText value="#{mapPostPost.postByFromPostId.postByFromPostIdLabel}" />
+		
+			
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

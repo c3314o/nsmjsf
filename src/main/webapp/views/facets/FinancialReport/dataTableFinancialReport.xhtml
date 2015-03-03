@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="financialReport" resizableColumns="true" value="#{viewFinancialReportBean.lazyModel}" filteredValue="#{viewFinancialReportBean.filteredFinancialReportList}"
+			paginator="true" rows="10" selection="#{viewFinancialReportBean.selectedFinancialReportList}" rowKey="#{financialReport.financialReportId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="financialReportTable" widgetVar="financialReportTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewFinancialReportBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewFinancialReportBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="financialReportTable" fileName="FinancialReportData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="financialReportTable" fileName="FinancialReportData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="financialReportTable" fileName="FinancialReportData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="financialReportTable" fileName="FinancialReportData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{financialReport.fiscalYear}"
+				headerText="Fiscal Year" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('financialReportTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewFinancialReportBean.fiscalYearList}"
+							var="fiscalYear"
+							itemLabel="#{fiscalYear.fiscalYearLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{financialReport.fiscalYear.fiscalYearLabel}" />
+			</p:column>
+			
+			
+			
+			<p:column filterBy="#{financialReport.auditStatus}"
+				headerText="Audit Status" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('financialReportTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewFinancialReportBean.auditStatusList}"
+							var="auditStatus"
+							itemLabel="#{auditStatus.auditStatusLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{financialReport.auditStatus.auditStatusLabel}" />
+			</p:column>
+			
+			
+			
+			<p:column filterBy="#{financialReport.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('financialReportTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewFinancialReportBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{financialReport.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Financial Report Id" sortBy="#{financialReport.financialReportId}"
+				filterBy="#{financialReport.financialReportId}">
+				<h:outputText value="#{financialReport.financialReportId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Financial Report Label" sortBy="#{financialReport.financialReportLabel}"
+				filterBy="#{financialReport.financialReportLabel}">
+				<h:outputText value="#{financialReport.financialReportLabel}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{financialReport.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('financialReportTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewFinancialReportBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{financialReport.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Financial Report Entery By" sortBy="#{financialReport.financialReportEnteryBy}"
+				filterBy="#{financialReport.financialReportEnteryBy}">
+				<h:outputText value="#{financialReport.financialReportEnteryBy}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Financial Report Entry Date" sortBy="#{financialReport.financialReportEntryDate}"
+				filterBy="#{financialReport.financialReportEntryDate}">
+				<h:outputText value="#{financialReport.financialReportEntryDate}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{financialReport.quarter}"
+				headerText="Quarter" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('financialReportTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewFinancialReportBean.quarterList}"
+							var="quarter"
+							itemLabel="#{quarter.quarterLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{financialReport.quarter.quarterLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewFinancialReportBean.editFinancialReport(financialReport.financialReportId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewFinancialReportBean.refreshDataSource}" update="financialReportTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewFinancialReportBean.deleteFinancialReport(financialReport)}" update="financialReportTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

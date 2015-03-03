@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="bod" lazy="true" value="#{viewBodBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="bodGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{bod.bodLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="Fiscal Year:" />
+                    <h:outputText value="#{bod.fiscalYear.fiscalYearLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Bod Name:" />
+                   <h:outputText value="#{bod.bodName}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Bod Id:" />
+                   <h:outputText value="#{bod.bodId}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{bod.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Bod Photo:" />
+                   <h:outputText value="#{bod.bodPhoto}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Bod Type:" />
+                    <h:outputText value="#{bod.bodType.bodTypeLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Bod Post:" />
+                   <h:outputText value="#{bod.bodPost}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Bod Bio:" />
+                   <h:outputText value="#{bod.bodBio}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Bod Type _1:" />
+                   <h:outputText value="#{bod.bodType_1}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

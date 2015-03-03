@@ -1,6 +1,6 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Feb 28, 2015 11:53:30 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;

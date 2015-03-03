@@ -1,6 +1,6 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -26,7 +26,6 @@ import javax.persistence.TemporalType;
 public class Post implements java.io.Serializable {
 
 	private Integer postId;
-	private Company company;
 	private User user;
 	private Date postPubDate;
 	private String postTitle;
@@ -48,12 +47,15 @@ public class Post implements java.io.Serializable {
 	private Set<CompanyDetail> companyDetails = new HashSet<CompanyDetail>(0);
 	private Set<MapPostPost> mapPostPostsForToPostId = new HashSet<MapPostPost>(
 			0);
+	private Set<BullionPrice> bullionPrices = new HashSet<BullionPrice>(0);
 	private Set<Event> events = new HashSet<Event>(0);
 	private Set<TodaysPrice> todaysPrices = new HashSet<TodaysPrice>(0);
 	private Set<MapPostCompany> mapPostCompanies = new HashSet<MapPostCompany>(
 			0);
 	private Set<MapPostCategory> mapPostCategories = new HashSet<MapPostCategory>(
 			0);
+	private Set<MarketIndex> marketIndexes = new HashSet<MarketIndex>(0);
+	private Set<MarketIndex> marketIndexes_1 = new HashSet<MarketIndex>(0);
 	private Set<PostImage> postImages = new HashSet<PostImage>(0);
 	private Set<Company> companies = new HashSet<Company>(0);
 	private Set<LatestPrice> latestPrices = new HashSet<LatestPrice>(0);
@@ -63,16 +65,15 @@ public class Post implements java.io.Serializable {
 	public Post() {
 	}
 
-	public Post(Company company, User user, Date postPubDate, String postTitle,
+	public Post(User user, Date postPubDate, String postTitle,
 			String postDetails) {
-		this.company = company;
 		this.user = user;
 		this.postPubDate = postPubDate;
 		this.postTitle = postTitle;
 		this.postDetails = postDetails;
 	}
 
-	public Post(Company company, User user, Date postPubDate, String postTitle,
+	public Post(User user, Date postPubDate, String postTitle,
 			String postDetails, String postFeaturedImage, Set<Broker> brokers,
 			Set<Interview> interviews,
 			Set<MapPostPost> mapPostPostsForFromPostId, Set<Comment> comments,
@@ -81,13 +82,15 @@ public class Post implements java.io.Serializable {
 			Set<FinancialReport> financialReports, Set<PostLike> postLikes,
 			Set<Article> articles, Set<ContentSource> contentSources,
 			Set<CompanyDetail> companyDetails,
-			Set<MapPostPost> mapPostPostsForToPostId, Set<Event> events,
+			Set<MapPostPost> mapPostPostsForToPostId,
+			Set<BullionPrice> bullionPrices, Set<Event> events,
 			Set<TodaysPrice> todaysPrices,
 			Set<MapPostCompany> mapPostCompanies,
-			Set<MapPostCategory> mapPostCategories, Set<PostImage> postImages,
-			Set<Company> companies, Set<LatestPrice> latestPrices,
-			Set<ForumThread> forumThreads, Set<News> newses) {
-		this.company = company;
+			Set<MapPostCategory> mapPostCategories,
+			Set<MarketIndex> marketIndexes, Set<MarketIndex> marketIndexes_1,
+			Set<PostImage> postImages, Set<Company> companies,
+			Set<LatestPrice> latestPrices, Set<ForumThread> forumThreads,
+			Set<News> newses) {
 		this.user = user;
 		this.postPubDate = postPubDate;
 		this.postTitle = postTitle;
@@ -105,10 +108,13 @@ public class Post implements java.io.Serializable {
 		this.contentSources = contentSources;
 		this.companyDetails = companyDetails;
 		this.mapPostPostsForToPostId = mapPostPostsForToPostId;
+		this.bullionPrices = bullionPrices;
 		this.events = events;
 		this.todaysPrices = todaysPrices;
 		this.mapPostCompanies = mapPostCompanies;
 		this.mapPostCategories = mapPostCategories;
+		this.marketIndexes = marketIndexes;
+		this.marketIndexes_1 = marketIndexes_1;
 		this.postImages = postImages;
 		this.companies = companies;
 		this.latestPrices = latestPrices;
@@ -125,16 +131,6 @@ public class Post implements java.io.Serializable {
 
 	public void setPostId(Integer postId) {
 		this.postId = postId;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "post_company_id", nullable = false)
-	public Company getCompany() {
-		return this.company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -295,6 +291,15 @@ public class Post implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
+	public Set<BullionPrice> getBullionPrices() {
+		return this.bullionPrices;
+	}
+
+	public void setBullionPrices(Set<BullionPrice> bullionPrices) {
+		this.bullionPrices = bullionPrices;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
 	public Set<Event> getEvents() {
 		return this.events;
 	}
@@ -328,6 +333,24 @@ public class Post implements java.io.Serializable {
 
 	public void setMapPostCategories(Set<MapPostCategory> mapPostCategories) {
 		this.mapPostCategories = mapPostCategories;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
+	public Set<MarketIndex> getMarketIndexes() {
+		return this.marketIndexes;
+	}
+
+	public void setMarketIndexes(Set<MarketIndex> marketIndexes) {
+		this.marketIndexes = marketIndexes;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
+	public Set<MarketIndex> getMarketIndexes_1() {
+		return this.marketIndexes_1;
+	}
+
+	public void setMarketIndexes_1(Set<MarketIndex> marketIndexes_1) {
+		this.marketIndexes_1 = marketIndexes_1;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "post")

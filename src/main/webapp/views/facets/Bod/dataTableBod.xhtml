@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="bod" resizableColumns="true" value="#{viewBodBean.lazyModel}" filteredValue="#{viewBodBean.filteredBodList}"
+			paginator="true" rows="10" selection="#{viewBodBean.selectedBodList}" rowKey="#{bod.bodId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="bodTable" widgetVar="bodTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewBodBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewBodBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="bodTable" fileName="BodData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="bodTable" fileName="BodData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="bodTable" fileName="BodData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="bodTable" fileName="BodData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{bod.fiscalYear}"
+				headerText="Fiscal Year" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('bodTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewBodBean.fiscalYearList}"
+							var="fiscalYear"
+							itemLabel="#{fiscalYear.fiscalYearLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{bod.fiscalYear.fiscalYearLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Bod Name" sortBy="#{bod.bodName}"
+				filterBy="#{bod.bodName}">
+				<h:outputText value="#{bod.bodName}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Bod Id" sortBy="#{bod.bodId}"
+				filterBy="#{bod.bodId}">
+				<h:outputText value="#{bod.bodId}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{bod.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('bodTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewBodBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{bod.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Bod Photo" sortBy="#{bod.bodPhoto}"
+				filterBy="#{bod.bodPhoto}">
+				<h:outputText value="#{bod.bodPhoto}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{bod.bodType}"
+				headerText="Bod Type" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('bodTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewBodBean.bodTypeList}"
+							var="bodType"
+							itemLabel="#{bodType.bodTypeLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{bod.bodType.bodTypeLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Bod Post" sortBy="#{bod.bodPost}"
+				filterBy="#{bod.bodPost}">
+				<h:outputText value="#{bod.bodPost}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Bod Bio" sortBy="#{bod.bodBio}"
+				filterBy="#{bod.bodBio}">
+				<h:outputText value="#{bod.bodBio}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Bod Type _1" sortBy="#{bod.bodType_1}"
+				filterBy="#{bod.bodType_1}">
+				<h:outputText value="#{bod.bodType_1}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewBodBean.editBod(bod.bodId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewBodBean.refreshDataSource}" update="bodTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewBodBean.deleteBod(bod)}" update="bodTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Feb 28, 2015 11:53:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Mar 2, 2015 3:36:22 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.nsmjsf.web.datamodels.SemiYearAverage" table="semi_year_average" catalog="admin_nsmjsf">
-        <id name="180AverageId" type="java.lang.Integer">
-            <column name="180_average_id" />
+        <id name="semiYearAverageId" type="java.lang.Integer">
+            <column name="semi_year_average_id" />
             <generator class="identity" />
         </id>
         <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">

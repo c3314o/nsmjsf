@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="bullionType" resizableColumns="true" value="#{viewBullionTypeBean.lazyModel}" filteredValue="#{viewBullionTypeBean.filteredBullionTypeList}"
+			paginator="true" rows="10" selection="#{viewBullionTypeBean.selectedBullionTypeList}" rowKey="#{bullionType.bullionTypeId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="bullionTypeTable" widgetVar="bullionTypeTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewBullionTypeBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewBullionTypeBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="bullionTypeTable" fileName="BullionTypeData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="bullionTypeTable" fileName="BullionTypeData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="bullionTypeTable" fileName="BullionTypeData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="bullionTypeTable" fileName="BullionTypeData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Bullion Type Label" sortBy="#{bullionType.bullionTypeLabel}"
+				filterBy="#{bullionType.bullionTypeLabel}">
+				<h:outputText value="#{bullionType.bullionTypeLabel}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Bullion Type Id" sortBy="#{bullionType.bullionTypeId}"
+				filterBy="#{bullionType.bullionTypeId}">
+				<h:outputText value="#{bullionType.bullionTypeId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewBullionTypeBean.editBullionType(bullionType.bullionTypeId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewBullionTypeBean.refreshDataSource}" update="bullionTypeTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewBullionTypeBean.deleteBullionType(bullionType)}" update="bullionTypeTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

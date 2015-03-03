@@ -1,0 +1,95 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+
+<style>
+.form-input{
+float:left;
+min-width:200px;
+width:100%;
+
+
+}
+
+
+
+</style>
+<h:panelGrid columns="1"  style="width:100%">
+			<p:outputPanel >
+				<p:outputLabel for="post" value="Post" />
+			          <p:selectOneMenu  styleClass="form-input" id="post" value="#{createArticleBean.selectedPostWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="postWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createArticleBean.postWrapperList}" var="var_post"
+					      itemLabel="#{var_post.getLabel()}" itemValue="#{var_post}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+						<p:outputPanel >
+						<h:outputLabel for="articleHighlight" value="Article Highlight" />
+                         <p:inputText styleClass="form-input" id="articleHighlight" value="#{createArticleBean.article.articleHighlight}" required="false" />
+                         </p:outputPanel>
+						
+						
+						 <h:outputText value="Article Flag" />
+                         <p:selectBooleanButton id="value1" value="#{createArticleBean.article.articleFlag}" onLabel="True" offLabel="False"  />
+ 
+						
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="articleDate" value="Article Date" />
+                         <p:calendar styleClass="form-input" id="articleDate" value="#{createArticleBean.article.articleDate}" required="true" />
+                         </p:outputPanel>
+                         
+                         
+						<p:outputPanel >
+						<h:outputLabel for="articleLocation" value="Article Location" />
+                         <p:inputText styleClass="form-input" id="articleLocation" value="#{createArticleBean.article.articleLocation}" required="false" />
+                         </p:outputPanel>
+						
+						
+			<p:outputPanel >
+				<p:outputLabel for="user" value="User" />
+			          <p:selectOneMenu  styleClass="form-input" id="user" value="#{createArticleBean.selectedUserWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="userWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createArticleBean.userWrapperList}" var="var_user"
+					      itemLabel="#{var_user.getLabel()}" itemValue="#{var_user}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+
+
+
+</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

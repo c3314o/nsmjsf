@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="mapPostCompany" resizableColumns="true" value="#{viewMapPostCompanyBean.lazyModel}" filteredValue="#{viewMapPostCompanyBean.filteredMapPostCompanyList}"
+			paginator="true" rows="10" selection="#{viewMapPostCompanyBean.selectedMapPostCompanyList}" rowKey="#{mapPostCompany.mapPostCompanyId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="mapPostCompanyTable" widgetVar="mapPostCompanyTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewMapPostCompanyBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewMapPostCompanyBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="mapPostCompanyTable" fileName="MapPostCompanyData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="mapPostCompanyTable" fileName="MapPostCompanyData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="mapPostCompanyTable" fileName="MapPostCompanyData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="mapPostCompanyTable" fileName="MapPostCompanyData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{mapPostCompany.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('mapPostCompanyTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewMapPostCompanyBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{mapPostCompany.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			<p:column filterBy="#{mapPostCompany.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('mapPostCompanyTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewMapPostCompanyBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{mapPostCompany.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Map Post Company Id" sortBy="#{mapPostCompany.mapPostCompanyId}"
+				filterBy="#{mapPostCompany.mapPostCompanyId}">
+				<h:outputText value="#{mapPostCompany.mapPostCompanyId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewMapPostCompanyBean.editMapPostCompany(mapPostCompany.mapPostCompanyId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewMapPostCompanyBean.refreshDataSource}" update="mapPostCompanyTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewMapPostCompanyBean.deleteMapPostCompany(mapPostCompany)}" update="mapPostCompanyTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

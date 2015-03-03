@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Mar 2, 2015 3:36:22 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.nsmjsf.web.datamodels.Post" table="post" catalog="admin_nsmjsf">
         <id name="postId" type="java.lang.Integer">
             <column name="post_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="company" class="com.nsmjsf.web.datamodels.Company" fetch="select">
-            <column name="post_company_id" not-null="true" />
-        </many-to-one>
         <many-to-one name="user" class="com.nsmjsf.web.datamodels.User" fetch="select">
             <column name="post_user_id" not-null="true" />
         </many-to-one>
@@ -98,6 +95,12 @@
             </key>
             <one-to-many class="com.nsmjsf.web.datamodels.MapPostPost" />
         </set>
+        <set name="bullionPrices" table="bullion_price" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bullion_price_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.BullionPrice" />
+        </set>
         <set name="events" table="event" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="event_post_id" not-null="true" />
@@ -121,6 +124,18 @@
                 <column name="post_id" not-null="true" />
             </key>
             <one-to-many class="com.nsmjsf.web.datamodels.MapPostCategory" />
+        </set>
+        <set name="marketIndexes" table="market_index" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="market_index_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.MarketIndex" />
+        </set>
+        <set name="marketIndexes_1" table="market_index" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="market_index_post_id" not-null="true" />
+            </key>
+            <one-to-many class="com.nsmjsf.web.datamodels.MarketIndex" />
         </set>
         <set name="postImages" table="post_image" inverse="true" lazy="true" fetch="select">
             <key>

@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="agm" lazy="true" value="#{viewAgmBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="agmGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{agm.agmLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="Fiscal Year:" />
+                    <h:outputText value="#{agm.fiscalYear.fiscalYearLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Agm Label:" />
+                   <h:outputText value="#{agm.agmLabel}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Announcement:" />
+                    <h:outputText value="#{agm.announcement.announcementLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Agm Book Closure From:" />
+                   <h:outputText value="#{agm.agmBookClosureFrom}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Agm Number:" />
+                   <h:outputText value="#{agm.agmNumber}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Agm Venue:" />
+                   <h:outputText value="#{agm.agmVenue}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Agm Agenda:" />
+                   <h:outputText value="#{agm.agmAgenda}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Agm Book Closure To:" />
+                   <h:outputText value="#{agm.agmBookClosureTo}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Agm Id:" />
+                   <h:outputText value="#{agm.agmId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Agm Date:" />
+                   <h:outputText value="#{agm.agmDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Agm Dividend:" />
+                   <h:outputText value="#{agm.agmDividend}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{agm.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Agm Type:" />
+                   <h:outputText value="#{agm.agmType}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Agm Bonus:" />
+                   <h:outputText value="#{agm.agmBonus}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

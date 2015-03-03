@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="todaysPriceDump" resizableColumns="true" value="#{viewTodaysPriceDumpBean.lazyModel}" filteredValue="#{viewTodaysPriceDumpBean.filteredTodaysPriceDumpList}"
+			paginator="true" rows="10" selection="#{viewTodaysPriceDumpBean.selectedTodaysPriceDumpList}" rowKey="#{todaysPriceDump.todaysPriceDumpId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="todaysPriceDumpTable" widgetVar="todaysPriceDumpTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewTodaysPriceDumpBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewTodaysPriceDumpBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="todaysPriceDumpTable" fileName="TodaysPriceDumpData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="todaysPriceDumpTable" fileName="TodaysPriceDumpData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="todaysPriceDumpTable" fileName="TodaysPriceDumpData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="todaysPriceDumpTable" fileName="TodaysPriceDumpData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Todays Price Traded Amount" sortBy="#{todaysPriceDump.todaysPriceTradedAmount}"
+				filterBy="#{todaysPriceDump.todaysPriceTradedAmount}">
+				<h:outputText value="#{todaysPriceDump.todaysPriceTradedAmount}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Low" sortBy="#{todaysPriceDump.todaysPriceLow}"
+				filterBy="#{todaysPriceDump.todaysPriceLow}">
+				<h:outputText value="#{todaysPriceDump.todaysPriceLow}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Close" sortBy="#{todaysPriceDump.todaysPriceClose}"
+				filterBy="#{todaysPriceDump.todaysPriceClose}">
+				<h:outputText value="#{todaysPriceDump.todaysPriceClose}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price High" sortBy="#{todaysPriceDump.todaysPriceHigh}"
+				filterBy="#{todaysPriceDump.todaysPriceHigh}">
+				<h:outputText value="#{todaysPriceDump.todaysPriceHigh}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Post Id" sortBy="#{todaysPriceDump.todaysPricePostId}"
+				filterBy="#{todaysPriceDump.todaysPricePostId}">
+				<h:outputText value="#{todaysPriceDump.todaysPricePostId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Dump Id" sortBy="#{todaysPriceDump.todaysPriceDumpId}"
+				filterBy="#{todaysPriceDump.todaysPriceDumpId}">
+				<h:outputText value="#{todaysPriceDump.todaysPriceDumpId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Diff" sortBy="#{todaysPriceDump.todaysPriceDiff}"
+				filterBy="#{todaysPriceDump.todaysPriceDiff}">
+				<h:outputText value="#{todaysPriceDump.todaysPriceDiff}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Traded Volume" sortBy="#{todaysPriceDump.todaysPriceTradedVolume}"
+				filterBy="#{todaysPriceDump.todaysPriceTradedVolume}">
+				<h:outputText value="#{todaysPriceDump.todaysPriceTradedVolume}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Transaction Count" sortBy="#{todaysPriceDump.todaysPriceTransactionCount}"
+				filterBy="#{todaysPriceDump.todaysPriceTransactionCount}">
+				<h:outputText value="#{todaysPriceDump.todaysPriceTransactionCount}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Previous" sortBy="#{todaysPriceDump.todaysPricePrevious}"
+				filterBy="#{todaysPriceDump.todaysPricePrevious}">
+				<h:outputText value="#{todaysPriceDump.todaysPricePrevious}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Odays Price Open" sortBy="#{todaysPriceDump.odaysPriceOpen}"
+				filterBy="#{todaysPriceDump.odaysPriceOpen}">
+				<h:outputText value="#{todaysPriceDump.odaysPriceOpen}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Company Id" sortBy="#{todaysPriceDump.todaysPriceCompanyId}"
+				filterBy="#{todaysPriceDump.todaysPriceCompanyId}">
+				<h:outputText value="#{todaysPriceDump.todaysPriceCompanyId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewTodaysPriceDumpBean.editTodaysPriceDump(todaysPriceDump.todaysPriceDumpId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewTodaysPriceDumpBean.refreshDataSource}" update="todaysPriceDumpTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewTodaysPriceDumpBean.deleteTodaysPriceDump(todaysPriceDump)}" update="todaysPriceDumpTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

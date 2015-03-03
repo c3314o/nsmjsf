@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="userBullion" resizableColumns="true" value="#{viewUserBullionBean.lazyModel}" filteredValue="#{viewUserBullionBean.filteredUserBullionList}"
+			paginator="true" rows="10" selection="#{viewUserBullionBean.selectedUserBullionList}" rowKey="#{userBullion.userBullionId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="userBullionTable" widgetVar="userBullionTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewUserBullionBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewUserBullionBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="userBullionTable" fileName="UserBullionData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="userBullionTable" fileName="UserBullionData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="userBullionTable" fileName="UserBullionData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="userBullionTable" fileName="UserBullionData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="User Bullion Buy Price" sortBy="#{userBullion.userBullionBuyPrice}"
+				filterBy="#{userBullion.userBullionBuyPrice}">
+				<h:outputText value="#{userBullion.userBullionBuyPrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Bullion Total Cost" sortBy="#{userBullion.userBullionTotalCost}"
+				filterBy="#{userBullion.userBullionTotalCost}">
+				<h:outputText value="#{userBullion.userBullionTotalCost}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Bullion Buy Date" sortBy="#{userBullion.userBullionBuyDate}"
+				filterBy="#{userBullion.userBullionBuyDate}">
+				<h:outputText value="#{userBullion.userBullionBuyDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Bullion Id" sortBy="#{userBullion.userBullionId}"
+				filterBy="#{userBullion.userBullionId}">
+				<h:outputText value="#{userBullion.userBullionId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Bullion Buy Units" sortBy="#{userBullion.userBullionBuyUnits}"
+				filterBy="#{userBullion.userBullionBuyUnits}">
+				<h:outputText value="#{userBullion.userBullionBuyUnits}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{userBullion.bullionType}"
+				headerText="Bullion Type" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userBullionTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserBullionBean.bullionTypeList}"
+							var="bullionType"
+							itemLabel="#{bullionType.bullionTypeLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{userBullion.bullionType.bullionTypeLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="User Bullion Buy Unit Price" sortBy="#{userBullion.userBullionBuyUnitPrice}"
+				filterBy="#{userBullion.userBullionBuyUnitPrice}">
+				<h:outputText value="#{userBullion.userBullionBuyUnitPrice}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{userBullion.user}"
+				headerText="User" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userBullionTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserBullionBean.userList}"
+							var="user"
+							itemLabel="#{user.userLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{userBullion.user.userLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewUserBullionBean.editUserBullion(userBullion.userBullionId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewUserBullionBean.refreshDataSource}" update="userBullionTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewUserBullionBean.deleteUserBullion(userBullion)}" update="userBullionTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

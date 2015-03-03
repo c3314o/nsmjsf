@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="semiYearAverage" resizableColumns="true" value="#{viewSemiYearAverageBean.lazyModel}" filteredValue="#{viewSemiYearAverageBean.filteredSemiYearAverageList}"
+			paginator="true" rows="10" selection="#{viewSemiYearAverageBean.selectedSemiYearAverageList}" rowKey="#{semiYearAverage.semiYearAverageId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="semiYearAverageTable" widgetVar="semiYearAverageTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewSemiYearAverageBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewSemiYearAverageBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="semiYearAverageTable" fileName="SemiYearAverageData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="semiYearAverageTable" fileName="SemiYearAverageData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="semiYearAverageTable" fileName="SemiYearAverageData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="semiYearAverageTable" fileName="SemiYearAverageData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Amount" sortBy="#{semiYearAverage.amount}"
+				filterBy="#{semiYearAverage.amount}">
+				<h:outputText value="#{semiYearAverage.amount}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Close Price" sortBy="#{semiYearAverage.closePrice}"
+				filterBy="#{semiYearAverage.closePrice}">
+				<h:outputText value="#{semiYearAverage.closePrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Total Share" sortBy="#{semiYearAverage.totalShare}"
+				filterBy="#{semiYearAverage.totalShare}">
+				<h:outputText value="#{semiYearAverage.totalShare}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="No Of Transactions" sortBy="#{semiYearAverage.noOfTransactions}"
+				filterBy="#{semiYearAverage.noOfTransactions}">
+				<h:outputText value="#{semiYearAverage.noOfTransactions}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Semi Year Average Id" sortBy="#{semiYearAverage.semiYearAverageId}"
+				filterBy="#{semiYearAverage.semiYearAverageId}">
+				<h:outputText value="#{semiYearAverage.semiYearAverageId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Diff" sortBy="#{semiYearAverage.diff}"
+				filterBy="#{semiYearAverage.diff}">
+				<h:outputText value="#{semiYearAverage.diff}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Traded Date" sortBy="#{semiYearAverage.tradedDate}"
+				filterBy="#{semiYearAverage.tradedDate}">
+				<h:outputText value="#{semiYearAverage.tradedDate}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{semiYearAverage.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('semiYearAverageTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewSemiYearAverageBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{semiYearAverage.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Prev Closing" sortBy="#{semiYearAverage.prevClosing}"
+				filterBy="#{semiYearAverage.prevClosing}">
+				<h:outputText value="#{semiYearAverage.prevClosing}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Max Price" sortBy="#{semiYearAverage.maxPrice}"
+				filterBy="#{semiYearAverage.maxPrice}">
+				<h:outputText value="#{semiYearAverage.maxPrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Deleted" sortBy="#{semiYearAverage.deleted}"
+				filterBy="#{semiYearAverage.deleted}">
+				<h:outputText value="#{semiYearAverage.deleted}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Min Price" sortBy="#{semiYearAverage.minPrice}"
+				filterBy="#{semiYearAverage.minPrice}">
+				<h:outputText value="#{semiYearAverage.minPrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewSemiYearAverageBean.editSemiYearAverage(semiYearAverage.semiYearAverageId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewSemiYearAverageBean.refreshDataSource}" update="semiYearAverageTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewSemiYearAverageBean.deleteSemiYearAverage(semiYearAverage)}" update="semiYearAverageTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="userWatchList" lazy="true" value="#{viewUserWatchListBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="userWatchListGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{userWatchList.userWatchListLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="User Watch List Stock:" />
+                    <h:outputText value="#{userWatchList.userWatchListStock.userWatchListStockLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Watch List Date:" />
+                   <h:outputText value="#{userWatchList.userWatchListDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Watch List Label:" />
+                   <h:outputText value="#{userWatchList.userWatchListLabel}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User:" />
+                    <h:outputText value="#{userWatchList.user.userLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Watch List Id:" />
+                   <h:outputText value="#{userWatchList.userWatchListId}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

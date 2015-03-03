@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="todaysPrice" resizableColumns="true" value="#{viewTodaysPriceBean.lazyModel}" filteredValue="#{viewTodaysPriceBean.filteredTodaysPriceList}"
+			paginator="true" rows="10" selection="#{viewTodaysPriceBean.selectedTodaysPriceList}" rowKey="#{todaysPrice.todaysPriceId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="todaysPriceTable" widgetVar="todaysPriceTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewTodaysPriceBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewTodaysPriceBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="todaysPriceTable" fileName="TodaysPriceData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="todaysPriceTable" fileName="TodaysPriceData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="todaysPriceTable" fileName="TodaysPriceData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="todaysPriceTable" fileName="TodaysPriceData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Todays Price Id" sortBy="#{todaysPrice.todaysPriceId}"
+				filterBy="#{todaysPrice.todaysPriceId}">
+				<h:outputText value="#{todaysPrice.todaysPriceId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Traded Amount" sortBy="#{todaysPrice.todaysPriceTradedAmount}"
+				filterBy="#{todaysPrice.todaysPriceTradedAmount}">
+				<h:outputText value="#{todaysPrice.todaysPriceTradedAmount}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Low" sortBy="#{todaysPrice.todaysPriceLow}"
+				filterBy="#{todaysPrice.todaysPriceLow}">
+				<h:outputText value="#{todaysPrice.todaysPriceLow}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Close" sortBy="#{todaysPrice.todaysPriceClose}"
+				filterBy="#{todaysPrice.todaysPriceClose}">
+				<h:outputText value="#{todaysPrice.todaysPriceClose}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price High" sortBy="#{todaysPrice.todaysPriceHigh}"
+				filterBy="#{todaysPrice.todaysPriceHigh}">
+				<h:outputText value="#{todaysPrice.todaysPriceHigh}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{todaysPrice.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('todaysPriceTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewTodaysPriceBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{todaysPrice.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			<p:column filterBy="#{todaysPrice.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('todaysPriceTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewTodaysPriceBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{todaysPrice.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Todays Price Diff" sortBy="#{todaysPrice.todaysPriceDiff}"
+				filterBy="#{todaysPrice.todaysPriceDiff}">
+				<h:outputText value="#{todaysPrice.todaysPriceDiff}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Traded Volume" sortBy="#{todaysPrice.todaysPriceTradedVolume}"
+				filterBy="#{todaysPrice.todaysPriceTradedVolume}">
+				<h:outputText value="#{todaysPrice.todaysPriceTradedVolume}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Transaction Count" sortBy="#{todaysPrice.todaysPriceTransactionCount}"
+				filterBy="#{todaysPrice.todaysPriceTransactionCount}">
+				<h:outputText value="#{todaysPrice.todaysPriceTransactionCount}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Todays Price Previous" sortBy="#{todaysPrice.todaysPricePrevious}"
+				filterBy="#{todaysPrice.todaysPricePrevious}">
+				<h:outputText value="#{todaysPrice.todaysPricePrevious}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Odays Price Open" sortBy="#{todaysPrice.odaysPriceOpen}"
+				filterBy="#{todaysPrice.odaysPriceOpen}">
+				<h:outputText value="#{todaysPrice.odaysPriceOpen}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewTodaysPriceBean.editTodaysPrice(todaysPrice.todaysPriceId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewTodaysPriceBean.refreshDataSource}" update="todaysPriceTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewTodaysPriceBean.deleteTodaysPrice(todaysPrice)}" update="todaysPriceTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

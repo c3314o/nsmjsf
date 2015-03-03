@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="floorsheet" lazy="true" value="#{viewFloorsheetBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="floorsheetGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{floorsheet.floorsheetLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{floorsheet.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Seller Broker:" />
+                   <h:outputText value="#{floorsheet.floorsheetSellerBroker}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Rate:" />
+                   <h:outputText value="#{floorsheet.floorsheetRate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Amount:" />
+                   <h:outputText value="#{floorsheet.floorsheetAmount}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Quantity:" />
+                   <h:outputText value="#{floorsheet.floorsheetQuantity}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Id:" />
+                   <h:outputText value="#{floorsheet.floorsheetId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Buyer Broker:" />
+                   <h:outputText value="#{floorsheet.floorsheetBuyerBroker}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Stock Symbol:" />
+                   <h:outputText value="#{floorsheet.floorsheetStockSymbol}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Transaction No:" />
+                   <h:outputText value="#{floorsheet.floorsheetTransactionNo}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="indexType" resizableColumns="true" value="#{viewIndexTypeBean.lazyModel}" filteredValue="#{viewIndexTypeBean.filteredIndexTypeList}"
+			paginator="true" rows="10" selection="#{viewIndexTypeBean.selectedIndexTypeList}" rowKey="#{indexType.indexTypeId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="indexTypeTable" widgetVar="indexTypeTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewIndexTypeBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewIndexTypeBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="indexTypeTable" fileName="IndexTypeData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="indexTypeTable" fileName="IndexTypeData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="indexTypeTable" fileName="IndexTypeData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="indexTypeTable" fileName="IndexTypeData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Index Type Id" sortBy="#{indexType.indexTypeId}"
+				filterBy="#{indexType.indexTypeId}">
+				<h:outputText value="#{indexType.indexTypeId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Index Type Label" sortBy="#{indexType.indexTypeLabel}"
+				filterBy="#{indexType.indexTypeLabel}">
+				<h:outputText value="#{indexType.indexTypeLabel}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewIndexTypeBean.editIndexType(indexType.indexTypeId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewIndexTypeBean.refreshDataSource}" update="indexTypeTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewIndexTypeBean.deleteIndexType(indexType)}" update="indexTypeTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

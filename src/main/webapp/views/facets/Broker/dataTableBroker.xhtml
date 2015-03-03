@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="broker" resizableColumns="true" value="#{viewBrokerBean.lazyModel}" filteredValue="#{viewBrokerBean.filteredBrokerList}"
+			paginator="true" rows="10" selection="#{viewBrokerBean.selectedBrokerList}" rowKey="#{broker.brokerId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="brokerTable" widgetVar="brokerTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewBrokerBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewBrokerBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="brokerTable" fileName="BrokerData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="brokerTable" fileName="BrokerData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="brokerTable" fileName="BrokerData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="brokerTable" fileName="BrokerData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Broker Firm Phone" sortBy="#{broker.brokerFirmPhone}"
+				filterBy="#{broker.brokerFirmPhone}">
+				<h:outputText value="#{broker.brokerFirmPhone}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Broker Firm Director" sortBy="#{broker.brokerFirmDirector}"
+				filterBy="#{broker.brokerFirmDirector}">
+				<h:outputText value="#{broker.brokerFirmDirector}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Broker Firm Name" sortBy="#{broker.brokerFirmName}"
+				filterBy="#{broker.brokerFirmName}">
+				<h:outputText value="#{broker.brokerFirmName}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Broker Code" sortBy="#{broker.brokerCode}"
+				filterBy="#{broker.brokerCode}">
+				<h:outputText value="#{broker.brokerCode}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{broker.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('brokerTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewBrokerBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{broker.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Broker Firm Address" sortBy="#{broker.brokerFirmAddress}"
+				filterBy="#{broker.brokerFirmAddress}">
+				<h:outputText value="#{broker.brokerFirmAddress}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Broker Image" sortBy="#{broker.brokerImage}"
+				filterBy="#{broker.brokerImage}">
+				<h:outputText value="#{broker.brokerImage}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Broker Id" sortBy="#{broker.brokerId}"
+				filterBy="#{broker.brokerId}">
+				<h:outputText value="#{broker.brokerId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Broker Firm Operation Date" sortBy="#{broker.brokerFirmOperationDate}"
+				filterBy="#{broker.brokerFirmOperationDate}">
+				<h:outputText value="#{broker.brokerFirmOperationDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewBrokerBean.editBroker(broker.brokerId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewBrokerBean.refreshDataSource}" update="brokerTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewBrokerBean.deleteBroker(broker)}" update="brokerTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

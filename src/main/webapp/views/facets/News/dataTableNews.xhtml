@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="news" resizableColumns="true" value="#{viewNewsBean.lazyModel}" filteredValue="#{viewNewsBean.filteredNewsList}"
+			paginator="true" rows="10" selection="#{viewNewsBean.selectedNewsList}" rowKey="#{news.newsId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="newsTable" widgetVar="newsTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewNewsBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewNewsBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="newsTable" fileName="NewsData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="newsTable" fileName="NewsData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="newsTable" fileName="NewsData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="newsTable" fileName="NewsData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{news.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('newsTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewNewsBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{news.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="News Id" sortBy="#{news.newsId}"
+				filterBy="#{news.newsId}">
+				<h:outputText value="#{news.newsId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="News Author" sortBy="#{news.newsAuthor}"
+				filterBy="#{news.newsAuthor}">
+				<h:outputText value="#{news.newsAuthor}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="News Source" sortBy="#{news.newsSource}"
+				filterBy="#{news.newsSource}">
+				<h:outputText value="#{news.newsSource}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{news.user}"
+				headerText="User" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('newsTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewNewsBean.userList}"
+							var="user"
+							itemLabel="#{user.userLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{news.user.userLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewNewsBean.editNews(news.newsId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewNewsBean.refreshDataSource}" update="newsTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewNewsBean.deleteNews(news)}" update="newsTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

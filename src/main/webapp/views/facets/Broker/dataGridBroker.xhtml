@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="broker" lazy="true" value="#{viewBrokerBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="brokerGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{broker.brokerLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="Broker Firm Phone:" />
+                   <h:outputText value="#{broker.brokerFirmPhone}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Broker Firm Director:" />
+                   <h:outputText value="#{broker.brokerFirmDirector}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Broker Firm Name:" />
+                   <h:outputText value="#{broker.brokerFirmName}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Broker Code:" />
+                   <h:outputText value="#{broker.brokerCode}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Post:" />
+                    <h:outputText value="#{broker.post.postLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Broker Firm Address:" />
+                   <h:outputText value="#{broker.brokerFirmAddress}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Broker Image:" />
+                   <h:outputText value="#{broker.brokerImage}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Broker Id:" />
+                   <h:outputText value="#{broker.brokerId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Broker Firm Operation Date:" />
+                   <h:outputText value="#{broker.brokerFirmOperationDate}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="mapPostPost" resizableColumns="true" value="#{viewMapPostPostBean.lazyModel}" filteredValue="#{viewMapPostPostBean.filteredMapPostPostList}"
+			paginator="true" rows="10" selection="#{viewMapPostPostBean.selectedMapPostPostList}" rowKey="#{mapPostPost.mapPostPostId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="mapPostPostTable" widgetVar="mapPostPostTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewMapPostPostBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewMapPostPostBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="mapPostPostTable" fileName="MapPostPostData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="mapPostPostTable" fileName="MapPostPostData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="mapPostPostTable" fileName="MapPostPostData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="mapPostPostTable" fileName="MapPostPostData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{mapPostPost.postByToPostId}"
+				headerText="Post By To Post Id" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('mapPostPostTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewMapPostPostBean.postByToPostIdList}"
+							var="postByToPostId"
+							itemLabel="#{postByToPostId.postByToPostIdLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{mapPostPost.postByToPostId.postByToPostIdLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Map Post Post Id" sortBy="#{mapPostPost.mapPostPostId}"
+				filterBy="#{mapPostPost.mapPostPostId}">
+				<h:outputText value="#{mapPostPost.mapPostPostId}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{mapPostPost.postByFromPostId}"
+				headerText="Post By From Post Id" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('mapPostPostTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewMapPostPostBean.postByFromPostIdList}"
+							var="postByFromPostId"
+							itemLabel="#{postByFromPostId.postByFromPostIdLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{mapPostPost.postByFromPostId.postByFromPostIdLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewMapPostPostBean.editMapPostPost(mapPostPost.mapPostPostId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewMapPostPostBean.refreshDataSource}" update="mapPostPostTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewMapPostPostBean.deleteMapPostPost(mapPostPost)}" update="mapPostPostTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

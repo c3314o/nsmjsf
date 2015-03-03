@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="userPortfolio" resizableColumns="true" value="#{viewUserPortfolioBean.lazyModel}" filteredValue="#{viewUserPortfolioBean.filteredUserPortfolioList}"
+			paginator="true" rows="10" selection="#{viewUserPortfolioBean.selectedUserPortfolioList}" rowKey="#{userPortfolio.userPortfolioId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="userPortfolioTable" widgetVar="userPortfolioTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewUserPortfolioBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewUserPortfolioBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="userPortfolioTable" fileName="UserPortfolioData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="userPortfolioTable" fileName="UserPortfolioData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="userPortfolioTable" fileName="UserPortfolioData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="userPortfolioTable" fileName="UserPortfolioData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="User Portfolio Id" sortBy="#{userPortfolio.userPortfolioId}"
+				filterBy="#{userPortfolio.userPortfolioId}">
+				<h:outputText value="#{userPortfolio.userPortfolioId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Portfolio Created Date" sortBy="#{userPortfolio.userPortfolioCreatedDate}"
+				filterBy="#{userPortfolio.userPortfolioCreatedDate}">
+				<h:outputText value="#{userPortfolio.userPortfolioCreatedDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Portfolio Label" sortBy="#{userPortfolio.userPortfolioLabel}"
+				filterBy="#{userPortfolio.userPortfolioLabel}">
+				<h:outputText value="#{userPortfolio.userPortfolioLabel}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{userPortfolio.user}"
+				headerText="User" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userPortfolioTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserPortfolioBean.userList}"
+							var="user"
+							itemLabel="#{user.userLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{userPortfolio.user.userLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewUserPortfolioBean.editUserPortfolio(userPortfolio.userPortfolioId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewUserPortfolioBean.refreshDataSource}" update="userPortfolioTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewUserPortfolioBean.deleteUserPortfolio(userPortfolio)}" update="userPortfolioTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewAuctionBean.auctionList}" var="auction" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+			 <h:outputText value="Announcement:" />
+                    <h:outputText value="#{auction.announcement.announcementLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Auction Close Date:" />
+                   <h:outputText value="#{auction.auctionCloseDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Auction Ordinary Qty:" />
+                   <h:outputText value="#{auction.auctionOrdinaryQty}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Auction Promoter Qty:" />
+                   <h:outputText value="#{auction.auctionPromoterQty}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Auction Id:" />
+                   <h:outputText value="#{auction.auctionId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Auction Open Date:" />
+                   <h:outputText value="#{auction.auctionOpenDate}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Issue Manager:" />
+                    <h:outputText value="#{auction.issueManager.issueManagerLabel}" />
+		
+			
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

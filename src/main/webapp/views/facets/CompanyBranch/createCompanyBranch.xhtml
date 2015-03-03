@@ -1,0 +1,67 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+
+<style>
+.form-input{
+float:left;
+min-width:200px;
+width:100%;
+
+
+}
+
+
+
+</style>
+<h:panelGrid columns="1"  style="width:100%">
+						<p:outputPanel >
+						<h:outputLabel for="companyBranchContact" value="Company Branch Contact" />
+                         <p:inputText styleClass="form-input" id="companyBranchContact" value="#{createCompanyBranchBean.companyBranch.companyBranchContact}" required="true" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="companyBranchName" value="Company Branch Name" />
+                         <p:inputText styleClass="form-input" id="companyBranchName" value="#{createCompanyBranchBean.companyBranch.companyBranchName}" required="true" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="branchLocation" value="Branch Location" />
+                         <p:inputText styleClass="form-input" id="branchLocation" value="#{createCompanyBranchBean.companyBranch.branchLocation}" required="true" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="companyBranchEmail" value="Company Branch Email" />
+                         <p:inputText styleClass="form-input" id="companyBranchEmail" value="#{createCompanyBranchBean.companyBranch.companyBranchEmail}" required="true" />
+                         </p:outputPanel>
+						
+						
+
+
+
+</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

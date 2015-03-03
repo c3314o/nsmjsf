@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="companyBranch" resizableColumns="true" value="#{viewCompanyBranchBean.lazyModel}" filteredValue="#{viewCompanyBranchBean.filteredCompanyBranchList}"
+			paginator="true" rows="10" selection="#{viewCompanyBranchBean.selectedCompanyBranchList}" rowKey="#{companyBranch.companyBranchId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="companyBranchTable" widgetVar="companyBranchTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewCompanyBranchBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewCompanyBranchBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="companyBranchTable" fileName="CompanyBranchData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="companyBranchTable" fileName="CompanyBranchData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="companyBranchTable" fileName="CompanyBranchData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="companyBranchTable" fileName="CompanyBranchData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Company Branch Contact" sortBy="#{companyBranch.companyBranchContact}"
+				filterBy="#{companyBranch.companyBranchContact}">
+				<h:outputText value="#{companyBranch.companyBranchContact}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Branch Name" sortBy="#{companyBranch.companyBranchName}"
+				filterBy="#{companyBranch.companyBranchName}">
+				<h:outputText value="#{companyBranch.companyBranchName}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Branch Id" sortBy="#{companyBranch.companyBranchId}"
+				filterBy="#{companyBranch.companyBranchId}">
+				<h:outputText value="#{companyBranch.companyBranchId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Branch Location" sortBy="#{companyBranch.branchLocation}"
+				filterBy="#{companyBranch.branchLocation}">
+				<h:outputText value="#{companyBranch.branchLocation}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Branch Company Id" sortBy="#{companyBranch.companyBranchCompanyId}"
+				filterBy="#{companyBranch.companyBranchCompanyId}">
+				<h:outputText value="#{companyBranch.companyBranchCompanyId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Branch Email" sortBy="#{companyBranch.companyBranchEmail}"
+				filterBy="#{companyBranch.companyBranchEmail}">
+				<h:outputText value="#{companyBranch.companyBranchEmail}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewCompanyBranchBean.editCompanyBranch(companyBranch.companyBranchId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewCompanyBranchBean.refreshDataSource}" update="companyBranchTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewCompanyBranchBean.deleteCompanyBranch(companyBranch)}" update="companyBranchTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

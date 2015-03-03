@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewArticleBean.articleList}" var="article" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+			 <h:outputText value="Post:" />
+                    <h:outputText value="#{article.post.postLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Article Highlight:" />
+                   <h:outputText value="#{article.articleHighlight}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Article Flag:" />
+                   <h:outputText value="#{article.articleFlag}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Article Date:" />
+                   <h:outputText value="#{article.articleDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Article Location:" />
+                   <h:outputText value="#{article.articleLocation}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User:" />
+                    <h:outputText value="#{article.user.userLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Article Id:" />
+                   <h:outputText value="#{article.articleId}" />
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

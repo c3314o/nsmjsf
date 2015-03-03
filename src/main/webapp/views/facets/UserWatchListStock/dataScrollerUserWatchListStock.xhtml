@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewUserWatchListStockBean.userWatchListStockList}" var="userWatchListStock" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="User Watch List Stock Id:" />
+                   <h:outputText value="#{userWatchListStock.userWatchListStockId}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{userWatchListStock.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User Watch List:" />
+                    <h:outputText value="#{userWatchListStock.userWatchList.userWatchListLabel}" />
+		
+			
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

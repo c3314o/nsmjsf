@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="todaysPrice" lazy="true" value="#{viewTodaysPriceBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="todaysPriceGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{todaysPrice.todaysPriceLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Id:" />
+                   <h:outputText value="#{todaysPrice.todaysPriceId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Traded Amount:" />
+                   <h:outputText value="#{todaysPrice.todaysPriceTradedAmount}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Low:" />
+                   <h:outputText value="#{todaysPrice.todaysPriceLow}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Close:" />
+                   <h:outputText value="#{todaysPrice.todaysPriceClose}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price High:" />
+                   <h:outputText value="#{todaysPrice.todaysPriceHigh}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Post:" />
+                    <h:outputText value="#{todaysPrice.post.postLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{todaysPrice.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Diff:" />
+                   <h:outputText value="#{todaysPrice.todaysPriceDiff}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Traded Volume:" />
+                   <h:outputText value="#{todaysPrice.todaysPriceTradedVolume}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Transaction Count:" />
+                   <h:outputText value="#{todaysPrice.todaysPriceTransactionCount}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Previous:" />
+                   <h:outputText value="#{todaysPrice.todaysPricePrevious}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Odays Price Open:" />
+                   <h:outputText value="#{todaysPrice.odaysPriceOpen}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

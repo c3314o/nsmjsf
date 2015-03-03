@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewTodaysPriceDumpBean.todaysPriceDumpList}" var="todaysPriceDump" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Traded Amount:" />
+                   <h:outputText value="#{todaysPriceDump.todaysPriceTradedAmount}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Low:" />
+                   <h:outputText value="#{todaysPriceDump.todaysPriceLow}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Close:" />
+                   <h:outputText value="#{todaysPriceDump.todaysPriceClose}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price High:" />
+                   <h:outputText value="#{todaysPriceDump.todaysPriceHigh}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Post Id:" />
+                   <h:outputText value="#{todaysPriceDump.todaysPricePostId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Dump Id:" />
+                   <h:outputText value="#{todaysPriceDump.todaysPriceDumpId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Diff:" />
+                   <h:outputText value="#{todaysPriceDump.todaysPriceDiff}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Traded Volume:" />
+                   <h:outputText value="#{todaysPriceDump.todaysPriceTradedVolume}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Transaction Count:" />
+                   <h:outputText value="#{todaysPriceDump.todaysPriceTransactionCount}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Previous:" />
+                   <h:outputText value="#{todaysPriceDump.todaysPricePrevious}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Odays Price Open:" />
+                   <h:outputText value="#{todaysPriceDump.odaysPriceOpen}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Todays Price Company Id:" />
+                   <h:outputText value="#{todaysPriceDump.todaysPriceCompanyId}" />
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewBalancesheetBean.balancesheetList}" var="balancesheet" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Share Capital:" />
+                   <h:outputText value="#{balancesheet.balancesheetShareCapital}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Investments:" />
+                   <h:outputText value="#{balancesheet.balancesheetInvestments}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Income Generating Commerical Complex Loan:" />
+                   <h:outputText value="#{balancesheet.balancesheetIncomeGeneratingCommericalComplexLoan}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Other:" />
+                   <h:outputText value="#{balancesheet.balancesheetOther}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Total Assets:" />
+                   <h:outputText value="#{balancesheet.balancesheetTotalAssets}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Financial Report:" />
+                    <h:outputText value="#{balancesheet.financialReport.financialReportLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Loan Advances:" />
+                   <h:outputText value="#{balancesheet.balancesheetLoanAdvances}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Total Liabilities:" />
+                   <h:outputText value="#{balancesheet.balancesheetTotalLiabilities}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Balance With Financial Institution:" />
+                   <h:outputText value="#{balancesheet.balancesheetBalanceWithFinancialInstitution}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Id:" />
+                   <h:outputText value="#{balancesheet.balancesheetId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Fixed Assets:" />
+                   <h:outputText value="#{balancesheet.balancesheetFixedAssets}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Personal Home Loan Of Rs 10million Or Less:" />
+                   <h:outputText value="#{balancesheet.balancesheetPersonalHomeLoanOfRs10millionOrLess}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Noncontrolling Interest:" />
+                   <h:outputText value="#{balancesheet.balancesheetNoncontrollingInterest}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Overdraf Tr Loan Wc Loan:" />
+                   <h:outputText value="#{balancesheet.balancesheetOverdrafTrLoanWcLoan}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Margin Type Loan:" />
+                   <h:outputText value="#{balancesheet.balancesheetMarginTypeLoan}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Debenture Bond:" />
+                   <h:outputText value="#{balancesheet.balancesheetDebentureBond}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Cash Balance:" />
+                   <h:outputText value="#{balancesheet.balancesheetCashBalance}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Other Assets:" />
+                   <h:outputText value="#{balancesheet.balancesheetOtherAssets}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Other Liabilities:" />
+                   <h:outputText value="#{balancesheet.balancesheetOtherLiabilities}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Proposed Dividend:" />
+                   <h:outputText value="#{balancesheet.balancesheetProposedDividend}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Loans Borrowing:" />
+                   <h:outputText value="#{balancesheet.balancesheetLoansBorrowing}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Income Tax Liability:" />
+                   <h:outputText value="#{balancesheet.balancesheetIncomeTaxLiability}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Non Banking Assets:" />
+                   <h:outputText value="#{balancesheet.balancesheetNonBankingAssets}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Money At Call And Short Notice:" />
+                   <h:outputText value="#{balancesheet.balancesheetMoneyAtCallAndShortNotice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Residential Real Estate Loan:" />
+                   <h:outputText value="#{balancesheet.balancesheetResidentialRealEstateLoan}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Foreign Currency:" />
+                   <h:outputText value="#{balancesheet.balancesheetForeignCurrency}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Other Real Estate Loan:" />
+                   <h:outputText value="#{balancesheet.balancesheetOtherRealEstateLoan}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Term Loan:" />
+                   <h:outputText value="#{balancesheet.balancesheetTermLoan}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Bills Payable:" />
+                   <h:outputText value="#{balancesheet.balancesheetBillsPayable}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Business Complex And Residential Apart Const Loan:" />
+                   <h:outputText value="#{balancesheet.balancesheetBusinessComplexAndResidentialApartConstLoan}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Real Estate Loan:" />
+                   <h:outputText value="#{balancesheet.balancesheetRealEstateLoan}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Domestic Currency:" />
+                   <h:outputText value="#{balancesheet.balancesheetDomesticCurrency}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Reserve Surplus:" />
+                   <h:outputText value="#{balancesheet.balancesheetReserveSurplus}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Balancesheet Deposit Liability:" />
+                   <h:outputText value="#{balancesheet.balancesheetDepositLiability}" />
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

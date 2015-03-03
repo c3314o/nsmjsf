@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="issueManager" lazy="true" value="#{viewIssueManagerBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="issueManagerGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{issueManager.issueManagerLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="Auction:" />
+                    <h:outputText value="#{issueManager.auction.auctionLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Issue Manager Phone:" />
+                   <h:outputText value="#{issueManager.issueManagerPhone}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Issue Manager Id:" />
+                   <h:outputText value="#{issueManager.issueManagerId}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Issue:" />
+                    <h:outputText value="#{issueManager.issue.issueLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Certificate Dividend Distribution:" />
+                    <h:outputText value="#{issueManager.certificateDividendDistribution.certificateDividendDistributionLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Issue Manager Web:" />
+                   <h:outputText value="#{issueManager.issueManagerWeb}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Issue Manager Email:" />
+                   <h:outputText value="#{issueManager.issueManagerEmail}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Issue Manager Address:" />
+                   <h:outputText value="#{issueManager.issueManagerAddress}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

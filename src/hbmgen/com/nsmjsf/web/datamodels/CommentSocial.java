@@ -1,13 +1,13 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Feb 28, 2015 11:53:30 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,36 +19,36 @@ import javax.persistence.Table;
 @Table(name = "comment_social", catalog = "admin_nsmjsf")
 public class CommentSocial implements java.io.Serializable {
 
-	private CommentSocialId id;
+	private Integer commentSocialId;
 	private User user;
 	private Comment comment;
+	private boolean commentSocialLike;
+	private boolean commentSocialDislike;
 
 	public CommentSocial() {
 	}
 
-	public CommentSocial(CommentSocialId id, User user, Comment comment) {
-		this.id = id;
+	public CommentSocial(User user, Comment comment, boolean commentSocialLike,
+			boolean commentSocialDislike) {
 		this.user = user;
 		this.comment = comment;
+		this.commentSocialLike = commentSocialLike;
+		this.commentSocialDislike = commentSocialDislike;
 	}
 
-	@EmbeddedId
-	@AttributeOverrides({
-			@AttributeOverride(name = "commentSocialId", column = @Column(name = "comment_social_id", nullable = false)),
-			@AttributeOverride(name = "commentSocialLike", column = @Column(name = "comment_social_like", nullable = false)),
-			@AttributeOverride(name = "commentSocialDislike", column = @Column(name = "comment_social_dislike", nullable = false)),
-			@AttributeOverride(name = "commentSocialUserId", column = @Column(name = "comment_social_user_id", nullable = false)),
-			@AttributeOverride(name = "commentSocialCommentId", column = @Column(name = "comment_social_comment_id", nullable = false)) })
-	public CommentSocialId getId() {
-		return this.id;
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "comment_social_id", unique = true, nullable = false)
+	public Integer getCommentSocialId() {
+		return this.commentSocialId;
 	}
 
-	public void setId(CommentSocialId id) {
-		this.id = id;
+	public void setCommentSocialId(Integer commentSocialId) {
+		this.commentSocialId = commentSocialId;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "comment_social_user_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "comment_social_user_id", nullable = false)
 	public User getUser() {
 		return this.user;
 	}
@@ -58,13 +58,31 @@ public class CommentSocial implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "comment_social_comment_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "comment_social_comment_id", nullable = false)
 	public Comment getComment() {
 		return this.comment;
 	}
 
 	public void setComment(Comment comment) {
 		this.comment = comment;
+	}
+
+	@Column(name = "comment_social_like", nullable = false)
+	public boolean isCommentSocialLike() {
+		return this.commentSocialLike;
+	}
+
+	public void setCommentSocialLike(boolean commentSocialLike) {
+		this.commentSocialLike = commentSocialLike;
+	}
+
+	@Column(name = "comment_social_dislike", nullable = false)
+	public boolean isCommentSocialDislike() {
+		return this.commentSocialDislike;
+	}
+
+	public void setCommentSocialDislike(boolean commentSocialDislike) {
+		this.commentSocialDislike = commentSocialDislike;
 	}
 
 }

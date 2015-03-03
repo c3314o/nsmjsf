@@ -1,6 +1,6 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "map_post_company", catalog = "admin_nsmjsf")
 public class MapPostCompany implements java.io.Serializable {
 
-	private Integer postToCompanyConnectionId;
+	private Integer mapPostCompanyId;
 	private Company company;
 	private Post post;
 
@@ -33,13 +33,13 @@ public class MapPostCompany implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "post_to_company_connection_id", unique = true, nullable = false)
-	public Integer getPostToCompanyConnectionId() {
-		return this.postToCompanyConnectionId;
+	@Column(name = "map_post_company_id", unique = true, nullable = false)
+	public Integer getMapPostCompanyId() {
+		return this.mapPostCompanyId;
 	}
 
-	public void setPostToCompanyConnectionId(Integer postToCompanyConnectionId) {
-		this.postToCompanyConnectionId = postToCompanyConnectionId;
+	public void setMapPostCompanyId(Integer mapPostCompanyId) {
+		this.mapPostCompanyId = mapPostCompanyId;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

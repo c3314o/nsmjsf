@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="proxy" resizableColumns="true" value="#{viewProxyBean.lazyModel}" filteredValue="#{viewProxyBean.filteredProxyList}"
+			paginator="true" rows="10" selection="#{viewProxyBean.selectedProxyList}" rowKey="#{proxy.proxyId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="proxyTable" widgetVar="proxyTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewProxyBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewProxyBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="proxyTable" fileName="ProxyData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="proxyTable" fileName="ProxyData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="proxyTable" fileName="ProxyData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="proxyTable" fileName="ProxyData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Proxy Ip" sortBy="#{proxy.proxyIp}"
+				filterBy="#{proxy.proxyIp}">
+				<h:outputText value="#{proxy.proxyIp}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Proxy Id" sortBy="#{proxy.proxyId}"
+				filterBy="#{proxy.proxyId}">
+				<h:outputText value="#{proxy.proxyId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Proxy Success" sortBy="#{proxy.proxySuccess}"
+				filterBy="#{proxy.proxySuccess}">
+				<h:outputText value="#{proxy.proxySuccess}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Proxy Port" sortBy="#{proxy.proxyPort}"
+				filterBy="#{proxy.proxyPort}">
+				<h:outputText value="#{proxy.proxyPort}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Proxy Failed" sortBy="#{proxy.proxyFailed}"
+				filterBy="#{proxy.proxyFailed}">
+				<h:outputText value="#{proxy.proxyFailed}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewProxyBean.editProxy(proxy.proxyId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewProxyBean.refreshDataSource}" update="proxyTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewProxyBean.deleteProxy(proxy)}" update="proxyTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

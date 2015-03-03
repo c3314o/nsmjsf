@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="post" resizableColumns="true" value="#{viewPostBean.lazyModel}" filteredValue="#{viewPostBean.filteredPostList}"
+			paginator="true" rows="10" selection="#{viewPostBean.selectedPostList}" rowKey="#{post.postId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="postTable" widgetVar="postTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewPostBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewPostBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="postTable" fileName="PostData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="postTable" fileName="PostData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="postTable" fileName="PostData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="postTable" fileName="PostData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Post Pub Date" sortBy="#{post.postPubDate}"
+				filterBy="#{post.postPubDate}">
+				<h:outputText value="#{post.postPubDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Post Title" sortBy="#{post.postTitle}"
+				filterBy="#{post.postTitle}">
+				<h:outputText value="#{post.postTitle}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Post Details" sortBy="#{post.postDetails}"
+				filterBy="#{post.postDetails}">
+				<h:outputText value="#{post.postDetails}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Post Id" sortBy="#{post.postId}"
+				filterBy="#{post.postId}">
+				<h:outputText value="#{post.postId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Post Featured Image" sortBy="#{post.postFeaturedImage}"
+				filterBy="#{post.postFeaturedImage}">
+				<h:outputText value="#{post.postFeaturedImage}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{post.user}"
+				headerText="User" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('postTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewPostBean.userList}"
+							var="user"
+							itemLabel="#{user.userLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{post.user.userLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewPostBean.editPost(post.postId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewPostBean.refreshDataSource}" update="postTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewPostBean.deletePost(post)}" update="postTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

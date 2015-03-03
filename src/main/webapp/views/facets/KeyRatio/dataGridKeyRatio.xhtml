@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="keyRatio" lazy="true" value="#{viewKeyRatioBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="keyRatioGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{keyRatio.keyRatioLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Price Earning Ratio:" />
+                   <h:outputText value="#{keyRatio.keyRatioPriceEarningRatio}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Exchange Gain To Total Assets:" />
+                   <h:outputText value="#{keyRatio.keyRatioExchangeGainToTotalAssets}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Core Capital:" />
+                   <h:outputText value="#{keyRatio.keyRatioCoreCapital}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Total Staff:" />
+                   <h:outputText value="#{keyRatio.keyRatioTotalStaff}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Interest Expenses To Total Deposit And Borrow:" />
+                   <h:outputText value="#{keyRatio.keyRatioInterestExpensesToTotalDepositAndBorrow}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Financial Report:" />
+                    <h:outputText value="#{keyRatio.financialReport.financialReportLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Total Capital Fund:" />
+                   <h:outputText value="#{keyRatio.keyRatioTotalCapitalFund}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Net Profit To Loan And Advance:" />
+                   <h:outputText value="#{keyRatio.keyRatioNetProfitToLoanAndAdvance}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Nonperforming Loan To Total Loan:" />
+                   <h:outputText value="#{keyRatio.keyRatioNonperformingLoanToTotalLoan}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Earning Per Share:" />
+                   <h:outputText value="#{keyRatio.keyRatioEarningPerShare}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Return On Equity:" />
+                   <h:outputText value="#{keyRatio.keyRatioReturnOnEquity}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Capital Adequacy Fund:" />
+                   <h:outputText value="#{keyRatio.keyRatioCapitalAdequacyFund}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Market Value Per Share:" />
+                   <h:outputText value="#{keyRatio.keyRatioMarketValuePerShare}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Net Profit To Total Assets:" />
+                   <h:outputText value="#{keyRatio.keyRatioNetProfitToTotalAssets}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Total Operating Expenses To Total Assets:" />
+                   <h:outputText value="#{keyRatio.keyRatioTotalOperatingExpensesToTotalAssets}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Dividend On Share Capital:" />
+                   <h:outputText value="#{keyRatio.keyRatioDividendOnShareCapital}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Liquidity:" />
+                   <h:outputText value="#{keyRatio.keyRatioLiquidity}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Supplementary Capital:" />
+                   <h:outputText value="#{keyRatio.keyRatioSupplementaryCapital}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Weighted Average Interest Rate Spread:" />
+                   <h:outputText value="#{keyRatio.keyRatioWeightedAverageInterestRateSpread}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Total Shares:" />
+                   <h:outputText value="#{keyRatio.keyRatioTotalShares}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Net Profit To Gross Income:" />
+                   <h:outputText value="#{keyRatio.keyRatioNetProfitToGrossIncome}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Return Of Asset:" />
+                   <h:outputText value="#{keyRatio.keyRatioReturnOfAsset}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Cash Dividend:" />
+                   <h:outputText value="#{keyRatio.keyRatioCashDividend}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Book Net Worth Per Share:" />
+                   <h:outputText value="#{keyRatio.keyRatioBookNetWorthPerShare}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Book Net Worth:" />
+                   <h:outputText value="#{keyRatio.keyRatioBookNetWorth}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Staff Expenses To Total Operating Expenses:" />
+                   <h:outputText value="#{keyRatio.keyRatioStaffExpensesToTotalOperatingExpenses}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Id:" />
+                   <h:outputText value="#{keyRatio.keyRatioId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Exchange Fluctuation Income By Total Income:" />
+                   <h:outputText value="#{keyRatio.keyRatioExchangeFluctuationIncomeByTotalIncome}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Staff Bonus To Total Staff Expenses:" />
+                   <h:outputText value="#{keyRatio.keyRatioStaffBonusToTotalStaffExpenses}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Cd Ratio:" />
+                   <h:outputText value="#{keyRatio.keyRatioCdRatio}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Key Ratio Interest Income To Loan And Advance:" />
+                   <h:outputText value="#{keyRatio.keyRatioInterestIncomeToLoanAndAdvance}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

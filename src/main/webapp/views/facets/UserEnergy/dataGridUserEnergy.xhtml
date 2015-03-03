@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="userEnergy" lazy="true" value="#{viewUserEnergyBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="userEnergyGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{userEnergy.userEnergyLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="User Energy Total Amount:" />
+                   <h:outputText value="#{userEnergy.userEnergyTotalAmount}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User Energy Salese:" />
+                    <h:outputText value="#{userEnergy.userEnergySalese.userEnergySaleseLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Energy Buy Units:" />
+                   <h:outputText value="#{userEnergy.userEnergyBuyUnits}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Energy Type:" />
+                    <h:outputText value="#{userEnergy.energyType.energyTypeLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User Portfolio:" />
+                    <h:outputText value="#{userEnergy.userPortfolio.userPortfolioLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Energy Buy Price:" />
+                   <h:outputText value="#{userEnergy.userEnergyBuyPrice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Energy Units Left:" />
+                   <h:outputText value="#{userEnergy.userEnergyUnitsLeft}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User:" />
+                    <h:outputText value="#{userEnergy.user.userLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Energy Id:" />
+                   <h:outputText value="#{userEnergy.userEnergyId}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

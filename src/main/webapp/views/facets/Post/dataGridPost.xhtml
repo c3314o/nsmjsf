@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="post" lazy="true" value="#{viewPostBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="postGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{post.postLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="Event:" />
+                    <h:outputText value="#{post.event.eventLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Interview:" />
+                    <h:outputText value="#{post.interview.interviewLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Post Like:" />
+                    <h:outputText value="#{post.postLike.postLikeLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Post Pub Date:" />
+                   <h:outputText value="#{post.postPubDate}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Todays Price:" />
+                    <h:outputText value="#{post.todaysPrice.todaysPriceLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Announcement:" />
+                    <h:outputText value="#{post.announcement.announcementLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Financial Report:" />
+                    <h:outputText value="#{post.financialReport.financialReportLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Post Title:" />
+                   <h:outputText value="#{post.postTitle}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Bullion Price:" />
+                    <h:outputText value="#{post.bullionPrice.bullionPriceLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Map Post Category:" />
+                    <h:outputText value="#{post.mapPostCategory.mapPostCategoryLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Latest Price:" />
+                    <h:outputText value="#{post.latestPrice.latestPriceLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Map Post Company:" />
+                    <h:outputText value="#{post.mapPostCompany.mapPostCompanyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Article:" />
+                    <h:outputText value="#{post.article.articleLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{post.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Market Indexes _1:" />
+                    <h:outputText value="#{post.marketIndexes_1.marketIndexes_1Label}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Map Post Posts For From Post Id:" />
+                    <h:outputText value="#{post.mapPostPostsForFromPostId.mapPostPostsForFromPostIdLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Post Details:" />
+                   <h:outputText value="#{post.postDetails}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Post Id:" />
+                   <h:outputText value="#{post.postId}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Newse:" />
+                    <h:outputText value="#{post.newse.newseLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Forum Thread:" />
+                    <h:outputText value="#{post.forumThread.forumThreadLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Post Image:" />
+                    <h:outputText value="#{post.postImage.postImageLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Market Index:" />
+                    <h:outputText value="#{post.marketIndex.marketIndexLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Company Detail:" />
+                    <h:outputText value="#{post.companyDetail.companyDetailLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Map Post Posts For To Post Id:" />
+                    <h:outputText value="#{post.mapPostPostsForToPostId.mapPostPostsForToPostIdLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Post Featured Image:" />
+                   <h:outputText value="#{post.postFeaturedImage}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Content Source:" />
+                    <h:outputText value="#{post.contentSource.contentSourceLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User:" />
+                    <h:outputText value="#{post.user.userLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Comment:" />
+                    <h:outputText value="#{post.comment.commentLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Broker:" />
+                    <h:outputText value="#{post.broker.brokerLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Allotment Result:" />
+                    <h:outputText value="#{post.allotmentResult.allotmentResultLabel}" />
+		
+			
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewFloorsheetDumpBean.floorsheetDumpList}" var="floorsheetDump" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Seller Broker:" />
+                   <h:outputText value="#{floorsheetDump.floorsheetSellerBroker}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Rate:" />
+                   <h:outputText value="#{floorsheetDump.floorsheetRate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Dump Id:" />
+                   <h:outputText value="#{floorsheetDump.floorsheetDumpId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Amount:" />
+                   <h:outputText value="#{floorsheetDump.floorsheetAmount}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Quantity:" />
+                   <h:outputText value="#{floorsheetDump.floorsheetQuantity}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Buyer Broker:" />
+                   <h:outputText value="#{floorsheetDump.floorsheetBuyerBroker}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Stock Symbol:" />
+                   <h:outputText value="#{floorsheetDump.floorsheetStockSymbol}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Floorsheet Transaction No:" />
+                   <h:outputText value="#{floorsheetDump.floorsheetTransactionNo}" />
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="currencyRate" lazy="true" value="#{viewCurrencyRateBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="currencyRateGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{currencyRate.currencyRateLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="Currency Rate Sell:" />
+                   <h:outputText value="#{currencyRate.currencyRateSell}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Currency Rate Id:" />
+                   <h:outputText value="#{currencyRate.currencyRateId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Currency Rate Buy:" />
+                   <h:outputText value="#{currencyRate.currencyRateBuy}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Currency Type:" />
+                    <h:outputText value="#{currencyRate.currencyType.currencyTypeLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Currency Rate Per Unit:" />
+                   <h:outputText value="#{currencyRate.currencyRatePerUnit}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

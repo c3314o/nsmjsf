@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewUserStockBean.userStockList}" var="userStock" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Total Amount:" />
+                   <h:outputText value="#{userStock.userStockTotalAmount}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Service Charge:" />
+                   <h:outputText value="#{userStock.userStockServiceCharge}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Units Left:" />
+                   <h:outputText value="#{userStock.userStockUnitsLeft}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User Portfolio:" />
+                    <h:outputText value="#{userStock.userPortfolio.userPortfolioLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Id:" />
+                   <h:outputText value="#{userStock.userStockId}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{userStock.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Entry Date:" />
+                   <h:outputText value="#{userStock.userStockEntryDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Owner Name:" />
+                   <h:outputText value="#{userStock.userStockOwnerName}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Price:" />
+                   <h:outputText value="#{userStock.userStockPrice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Stock Units:" />
+                   <h:outputText value="#{userStock.userStockUnits}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User:" />
+                    <h:outputText value="#{userStock.user.userLabel}" />
+		
+			
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

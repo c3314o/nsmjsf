@@ -1,0 +1,67 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+
+<style>
+.form-input{
+float:left;
+min-width:200px;
+width:100%;
+
+
+}
+
+
+
+</style>
+<h:panelGrid columns="1"  style="width:100%">
+						<p:outputPanel >
+						<h:outputLabel for="issueManagerPhone" value="Issue Manager Phone" />
+                         <p:inputText styleClass="form-input" id="issueManagerPhone" value="#{createIssueManagerBean.issueManager.issueManagerPhone}" required="true" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="issueManagerWeb" value="Issue Manager Web" />
+                         <p:inputText styleClass="form-input" id="issueManagerWeb" value="#{createIssueManagerBean.issueManager.issueManagerWeb}" required="true" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="issueManagerEmail" value="Issue Manager Email" />
+                         <p:inputText styleClass="form-input" id="issueManagerEmail" value="#{createIssueManagerBean.issueManager.issueManagerEmail}" required="true" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="issueManagerAddress" value="Issue Manager Address" />
+                         <p:inputText styleClass="form-input" id="issueManagerAddress" value="#{createIssueManagerBean.issueManager.issueManagerAddress}" required="true" />
+                         </p:outputPanel>
+						
+						
+
+
+
+</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

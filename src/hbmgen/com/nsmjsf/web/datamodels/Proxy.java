@@ -1,12 +1,12 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Feb 28, 2015 11:53:30 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -16,28 +16,68 @@ import javax.persistence.Table;
 @Table(name = "proxy", catalog = "admin_nsmjsf")
 public class Proxy implements java.io.Serializable {
 
-	private ProxyId id;
+	private Integer proxyId;
+	private String proxyIp;
+	private int proxySuccess;
+	private int proxyFailed;
+	private int proxyPort;
 
 	public Proxy() {
 	}
 
-	public Proxy(ProxyId id) {
-		this.id = id;
+	public Proxy(String proxyIp, int proxySuccess, int proxyFailed,
+			int proxyPort) {
+		this.proxyIp = proxyIp;
+		this.proxySuccess = proxySuccess;
+		this.proxyFailed = proxyFailed;
+		this.proxyPort = proxyPort;
 	}
 
-	@EmbeddedId
-	@AttributeOverrides({
-			@AttributeOverride(name = "proxyId", column = @Column(name = "proxy_id", nullable = false)),
-			@AttributeOverride(name = "proxyIp", column = @Column(name = "proxy_ip", nullable = false)),
-			@AttributeOverride(name = "proxySuccess", column = @Column(name = "proxy_success", nullable = false)),
-			@AttributeOverride(name = "proxyFailed", column = @Column(name = "proxy_failed", nullable = false)),
-			@AttributeOverride(name = "proxyPort", column = @Column(name = "proxy_port", nullable = false)) })
-	public ProxyId getId() {
-		return this.id;
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "proxy_id", unique = true, nullable = false)
+	public Integer getProxyId() {
+		return this.proxyId;
 	}
 
-	public void setId(ProxyId id) {
-		this.id = id;
+	public void setProxyId(Integer proxyId) {
+		this.proxyId = proxyId;
+	}
+
+	@Column(name = "proxy_ip", nullable = false)
+	public String getProxyIp() {
+		return this.proxyIp;
+	}
+
+	public void setProxyIp(String proxyIp) {
+		this.proxyIp = proxyIp;
+	}
+
+	@Column(name = "proxy_success", nullable = false)
+	public int getProxySuccess() {
+		return this.proxySuccess;
+	}
+
+	public void setProxySuccess(int proxySuccess) {
+		this.proxySuccess = proxySuccess;
+	}
+
+	@Column(name = "proxy_failed", nullable = false)
+	public int getProxyFailed() {
+		return this.proxyFailed;
+	}
+
+	public void setProxyFailed(int proxyFailed) {
+		this.proxyFailed = proxyFailed;
+	}
+
+	@Column(name = "proxy_port", nullable = false)
+	public int getProxyPort() {
+		return this.proxyPort;
+	}
+
+	public void setProxyPort(int proxyPort) {
+		this.proxyPort = proxyPort;
 	}
 
 }

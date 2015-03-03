@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewAllotmentResultBean.allotmentResultList}" var="allotmentResult" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="Allotment Result Allotted:" />
+                   <h:outputText value="#{allotmentResult.allotmentResultAllotted}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Allotment Result Id:" />
+                   <h:outputText value="#{allotmentResult.allotmentResultId}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Post:" />
+                    <h:outputText value="#{allotmentResult.post.postLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Announcement:" />
+                    <h:outputText value="#{allotmentResult.announcement.announcementLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{allotmentResult.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Allotment Result Last Name:" />
+                   <h:outputText value="#{allotmentResult.allotmentResultLastName}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Allotment Result Applied:" />
+                   <h:outputText value="#{allotmentResult.allotmentResultApplied}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Allotment Result First Name:" />
+                   <h:outputText value="#{allotmentResult.allotmentResultFirstName}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Allotment Result Application No:" />
+                   <h:outputText value="#{allotmentResult.allotmentResultApplicationNo}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Allotment Result Date:" />
+                   <h:outputText value="#{allotmentResult.allotmentResultDate}" />
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

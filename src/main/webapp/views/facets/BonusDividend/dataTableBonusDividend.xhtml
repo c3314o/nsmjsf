@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="bonusDividend" resizableColumns="true" value="#{viewBonusDividendBean.lazyModel}" filteredValue="#{viewBonusDividendBean.filteredBonusDividendList}"
+			paginator="true" rows="10" selection="#{viewBonusDividendBean.selectedBonusDividendList}" rowKey="#{bonusDividend.bonusDividendId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="bonusDividendTable" widgetVar="bonusDividendTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewBonusDividendBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewBonusDividendBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="bonusDividendTable" fileName="BonusDividendData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="bonusDividendTable" fileName="BonusDividendData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="bonusDividendTable" fileName="BonusDividendData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="bonusDividendTable" fileName="BonusDividendData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Bonus Dividend Bonus Share Percent" sortBy="#{bonusDividend.bonusDividendBonusSharePercent}"
+				filterBy="#{bonusDividend.bonusDividendBonusSharePercent}">
+				<h:outputText value="#{bonusDividend.bonusDividendBonusSharePercent}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{bonusDividend.fiscalYear}"
+				headerText="Fiscal Year" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('bonusDividendTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewBonusDividendBean.fiscalYearList}"
+							var="fiscalYear"
+							itemLabel="#{fiscalYear.fiscalYearLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{bonusDividend.fiscalYear.fiscalYearLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Bonus Dividend Total Dividend" sortBy="#{bonusDividend.bonusDividendTotalDividend}"
+				filterBy="#{bonusDividend.bonusDividendTotalDividend}">
+				<h:outputText value="#{bonusDividend.bonusDividendTotalDividend}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Bonus Dividend Cash Divident Percent" sortBy="#{bonusDividend.bonusDividendCashDividentPercent}"
+				filterBy="#{bonusDividend.bonusDividendCashDividentPercent}">
+				<h:outputText value="#{bonusDividend.bonusDividendCashDividentPercent}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Bonus Dividend Id" sortBy="#{bonusDividend.bonusDividendId}"
+				filterBy="#{bonusDividend.bonusDividendId}">
+				<h:outputText value="#{bonusDividend.bonusDividendId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Bonus Dividend Distribution Date" sortBy="#{bonusDividend.bonusDividendDistributionDate}"
+				filterBy="#{bonusDividend.bonusDividendDistributionDate}">
+				<h:outputText value="#{bonusDividend.bonusDividendDistributionDate}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{bonusDividend.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('bonusDividendTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewBonusDividendBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{bonusDividend.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewBonusDividendBean.editBonusDividend(bonusDividend.bonusDividendId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewBonusDividendBean.refreshDataSource}" update="bonusDividendTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewBonusDividendBean.deleteBonusDividend(bonusDividend)}" update="bonusDividendTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

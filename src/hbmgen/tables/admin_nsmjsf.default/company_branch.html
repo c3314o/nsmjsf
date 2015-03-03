@@ -111,15 +111,15 @@
 					</tr>
 					<tr>
 						<td>
-							<a href="#column_detail_company_branch_address">
-								company_branch_address
+							<a href="#column_detail_branch_location">
+								branch_location
 							</a>
 						</td>
 						<td>
-							longtext
+							varchar(255)
 						</td>
 						<td>
-							65,535
+							255
 						</td>
 						<td>
 							19
@@ -136,8 +136,33 @@
 					</tr>
 					<tr>
 						<td>
-							<a href="#column_detail_company_branch_phone">
-								company_branch_phone
+							<a href="#column_detail_company_branch_name">
+								company_branch_name
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							false
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_company_branch_contact">
+								company_branch_contact
 							</a>
 						</td>
 						<td>
@@ -217,58 +242,6 @@
 			</tbody>
 		</table>
 
-			<table id="foreign_keys">
-				<thead>
-					<tr>
-						<th class="MainTableHeading" colspan="3">
-							Foreign Keys
-						</th>
-					</tr>
-					<tr>
-						<th style="width: 33%">
-							Name
-						</th>
-						<th style="width: 33%">
-							Referenced Table
-						</th>
-						<th style="width: 33%">
-							Columns
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-						<tr>
-							<td>
-								FKDC0F4FA429D8F0E3
-							</td>
-							<td>
-								<a href="company_branch.html" target="generalFrame">
-									company_branch
-								</a>
-							</td>
-							<td>
-									<a href="#column_detail_company_branch_company_id">
-										company_branch_company_id
-									</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								company_branch_ibfk_1
-							</td>
-							<td>
-								<a href="company_branch.html" target="generalFrame">
-									company_branch
-								</a>
-							</td>
-							<td>
-									<a href="#column_detail_company_branch_company_id">
-										company_branch_company_id
-									</a>
-							</td>
-						</tr>
-				</tbody>
-			</table>
 			
 			<table id="unique_keys">
 				<thead>
@@ -300,35 +273,6 @@
 				</tbody>
 			</table>
 		
-			<table id="indexes">
-				<thead>
-					<tr>
-						<th class="MainTableHeading" colspan="2">
-							Indexes
-						</th>
-					</tr>
-					<tr>
-						<th style="width: 50%">
-							Name
-						</th>
-						<th style="width: 50%">
-							Columns
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-						<tr>
-							<td>
-								company_branch_company_id
-							</td>
-							<td>
-									<a href="#column_detail_company_branch_company_id">
-										company_branch_company_id
-									</a>
-							</td>
-						</tr>
-				</tbody>
-			</table>
 		
 			<p id="column_detail" class="MainTableHeading">
 				Column Detail
@@ -390,14 +334,14 @@
 
 
 				<hr/>
-				<h3 id="column_detail_company_branch_address">company_branch_address</h3>
+				<h3 id="column_detail_branch_location">branch_location</h3>
 				
 				<ul>
 					<li>
-						<strong>Type:</strong> longtext
+						<strong>Type:</strong> varchar(255)
 					</li>
 					<li>
-						<strong>Length:</strong> 65,535
+						<strong>Length:</strong> 255
 					</li>
 					<li>
 						<strong>Precision:</strong> 19
@@ -418,7 +362,35 @@
 
 
 				<hr/>
-				<h3 id="column_detail_company_branch_phone">company_branch_phone</h3>
+				<h3 id="column_detail_company_branch_name">company_branch_name</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> false
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_company_branch_contact">company_branch_contact</h3>
 				
 				<ul>
 					<li>

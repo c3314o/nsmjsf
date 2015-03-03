@@ -1,6 +1,6 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -42,7 +42,6 @@ public class Company implements java.io.Serializable {
 			0);
 	private Set<UserWatchListStock> userWatchListStocks = new HashSet<UserWatchListStock>(
 			0);
-	private Set<Post> posts = new HashSet<Post>(0);
 	private Set<TodaysPrice> todaysPrices = new HashSet<TodaysPrice>(0);
 	private Set<NewLow> newLows = new HashSet<NewLow>(0);
 	private Set<Issue> issues = new HashSet<Issue>(0);
@@ -77,7 +76,7 @@ public class Company implements java.io.Serializable {
 			Set<FinancialReport> financialReports, Set<UserStock> userStocks,
 			Set<Bod> bods, Set<MapPostCompany> mapPostCompanies,
 			Set<AllotmentResult> allotmentResults,
-			Set<UserWatchListStock> userWatchListStocks, Set<Post> posts,
+			Set<UserWatchListStock> userWatchListStocks,
 			Set<TodaysPrice> todaysPrices, Set<NewLow> newLows,
 			Set<Issue> issues, Set<LatestPrice> latestPrices,
 			Set<SemiYearAverage> semiYearAverages, Set<NewHigh> newHighs,
@@ -99,7 +98,6 @@ public class Company implements java.io.Serializable {
 		this.mapPostCompanies = mapPostCompanies;
 		this.allotmentResults = allotmentResults;
 		this.userWatchListStocks = userWatchListStocks;
-		this.posts = posts;
 		this.todaysPrices = todaysPrices;
 		this.newLows = newLows;
 		this.issues = issues;
@@ -260,15 +258,6 @@ public class Company implements java.io.Serializable {
 	public void setUserWatchListStocks(
 			Set<UserWatchListStock> userWatchListStocks) {
 		this.userWatchListStocks = userWatchListStocks;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
-	public Set<Post> getPosts() {
-		return this.posts;
-	}
-
-	public void setPosts(Set<Post> posts) {
-		this.posts = posts;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "company")

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewPostBean.postList}" var="post" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="Post Pub Date:" />
+                   <h:outputText value="#{post.postPubDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Post Title:" />
+                   <h:outputText value="#{post.postTitle}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Post Details:" />
+                   <h:outputText value="#{post.postDetails}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Post Id:" />
+                   <h:outputText value="#{post.postId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Post Featured Image:" />
+                   <h:outputText value="#{post.postFeaturedImage}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User:" />
+                    <h:outputText value="#{post.user.userLabel}" />
+		
+			
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

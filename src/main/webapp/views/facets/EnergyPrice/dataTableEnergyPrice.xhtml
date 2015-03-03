@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="energyPrice" resizableColumns="true" value="#{viewEnergyPriceBean.lazyModel}" filteredValue="#{viewEnergyPriceBean.filteredEnergyPriceList}"
+			paginator="true" rows="10" selection="#{viewEnergyPriceBean.selectedEnergyPriceList}" rowKey="#{energyPrice.energyPriceId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="energyPriceTable" widgetVar="energyPriceTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewEnergyPriceBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewEnergyPriceBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="energyPriceTable" fileName="EnergyPriceData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="energyPriceTable" fileName="EnergyPriceData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="energyPriceTable" fileName="EnergyPriceData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="energyPriceTable" fileName="EnergyPriceData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Energy Price Price" sortBy="#{energyPrice.energyPricePrice}"
+				filterBy="#{energyPrice.energyPricePrice}">
+				<h:outputText value="#{energyPrice.energyPricePrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Energy Price Type" sortBy="#{energyPrice.energyPriceType}"
+				filterBy="#{energyPrice.energyPriceType}">
+				<h:outputText value="#{energyPrice.energyPriceType}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Energy Price Date" sortBy="#{energyPrice.energyPriceDate}"
+				filterBy="#{energyPrice.energyPriceDate}">
+				<h:outputText value="#{energyPrice.energyPriceDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Energy Price Unit" sortBy="#{energyPrice.energyPriceUnit}"
+				filterBy="#{energyPrice.energyPriceUnit}">
+				<h:outputText value="#{energyPrice.energyPriceUnit}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Energy Price Id" sortBy="#{energyPrice.energyPriceId}"
+				filterBy="#{energyPrice.energyPriceId}">
+				<h:outputText value="#{energyPrice.energyPriceId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewEnergyPriceBean.editEnergyPrice(energyPrice.energyPriceId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewEnergyPriceBean.refreshDataSource}" update="energyPriceTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewEnergyPriceBean.deleteEnergyPrice(energyPrice)}" update="energyPriceTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

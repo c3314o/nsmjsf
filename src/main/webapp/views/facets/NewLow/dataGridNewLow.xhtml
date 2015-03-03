@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="newLow" lazy="true" value="#{viewNewLowBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="newLowGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{newLow.newLowLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="New Low Current Price:" />
+                   <h:outputText value="#{newLow.newLowCurrentPrice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="New Low Current Date:" />
+                   <h:outputText value="#{newLow.newLowCurrentDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="New Low Previous Price:" />
+                   <h:outputText value="#{newLow.newLowPreviousPrice}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{newLow.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="New Low Id:" />
+                   <h:outputText value="#{newLow.newLowId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="New Low Previous Date:" />
+                   <h:outputText value="#{newLow.newLowPreviousDate}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+
+<style>
+.form-input{
+float:left;
+min-width:200px;
+width:100%;
+
+
+}
+
+
+
+</style>
+<h:panelGrid columns="1"  style="width:100%">
+						<p:outputPanel >
+						<h:outputLabel for="userBullionBuyDate" value="User Bullion Buy Date" />
+                         <p:calendar styleClass="form-input" id="userBullionBuyDate" value="#{createUserBullionBean.userBullion.userBullionBuyDate}" required="true" />
+                         </p:outputPanel>
+                         
+                         
+			<p:outputPanel >
+				<p:outputLabel for="bullionType" value="Bullion Type" />
+			          <p:selectOneMenu  styleClass="form-input" id="bullionType" value="#{createUserBullionBean.selectedBullionTypeWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="bullionTypeWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createUserBullionBean.bullionTypeWrapperList}" var="var_bullionType"
+					      itemLabel="#{var_bullionType.getLabel()}" itemValue="#{var_bullionType}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+						<p:outputPanel >
+						<h:outputLabel for="userBullionBuyUnitPrice" value="User Bullion Buy Unit Price" />
+                         <p:inputText styleClass="form-input" id="userBullionBuyUnitPrice" value="#{createUserBullionBean.userBullion.userBullionBuyUnitPrice}" required="true" />
+                         </p:outputPanel>
+						
+						
+			<p:outputPanel >
+				<p:outputLabel for="user" value="User" />
+			          <p:selectOneMenu  styleClass="form-input" id="user" value="#{createUserBullionBean.selectedUserWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="userWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createUserBullionBean.userWrapperList}" var="var_user"
+					      itemLabel="#{var_user.getLabel()}" itemValue="#{var_user}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+
+
+
+</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

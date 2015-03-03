@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="semiYearAverage" lazy="true" value="#{viewSemiYearAverageBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="semiYearAverageGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{semiYearAverage.semiYearAverageLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="Amount:" />
+                   <h:outputText value="#{semiYearAverage.amount}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Close Price:" />
+                   <h:outputText value="#{semiYearAverage.closePrice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Total Share:" />
+                   <h:outputText value="#{semiYearAverage.totalShare}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="No Of Transactions:" />
+                   <h:outputText value="#{semiYearAverage.noOfTransactions}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Semi Year Average Id:" />
+                   <h:outputText value="#{semiYearAverage.semiYearAverageId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Diff:" />
+                   <h:outputText value="#{semiYearAverage.diff}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Traded Date:" />
+                   <h:outputText value="#{semiYearAverage.tradedDate}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{semiYearAverage.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Prev Closing:" />
+                   <h:outputText value="#{semiYearAverage.prevClosing}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Max Price:" />
+                   <h:outputText value="#{semiYearAverage.maxPrice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Deleted:" />
+                   <h:outputText value="#{semiYearAverage.deleted}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Min Price:" />
+                   <h:outputText value="#{semiYearAverage.minPrice}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

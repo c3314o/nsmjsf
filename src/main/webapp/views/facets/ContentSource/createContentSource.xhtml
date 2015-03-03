@@ -1,0 +1,75 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+
+<style>
+.form-input{
+float:left;
+min-width:200px;
+width:100%;
+
+
+}
+
+
+
+</style>
+<h:panelGrid columns="1"  style="width:100%">
+			<p:outputPanel >
+				<p:outputLabel for="post" value="Post" />
+			          <p:selectOneMenu  styleClass="form-input" id="post" value="#{createContentSourceBean.selectedPostWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="postWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createContentSourceBean.postWrapperList}" var="var_post"
+					      itemLabel="#{var_post.getLabel()}" itemValue="#{var_post}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+						<p:outputPanel >
+						<h:outputLabel for="contentSourceLink" value="Content Source Link" />
+                         <p:inputText styleClass="form-input" id="contentSourceLink" value="#{createContentSourceBean.contentSource.contentSourceLink}" required="true" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="contentSourceAuthorImage" value="Content Source Author Image" />
+                         <p:inputText styleClass="form-input" id="contentSourceAuthorImage" value="#{createContentSourceBean.contentSource.contentSourceAuthorImage}" required="true" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="contentSourceAuthor" value="Content Source Author" />
+                         <p:inputText styleClass="form-input" id="contentSourceAuthor" value="#{createContentSourceBean.contentSource.contentSourceAuthor}" required="true" />
+                         </p:outputPanel>
+						
+						
+
+
+
+</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

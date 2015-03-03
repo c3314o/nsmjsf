@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewUserBean.userList}" var="user" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="User Email:" />
+                   <h:outputText value="#{user.userEmail}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User Type:" />
+                    <h:outputText value="#{user.userType.userTypeLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Id:" />
+                   <h:outputText value="#{user.userId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Name:" />
+                   <h:outputText value="#{user.userName}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User Info:" />
+                    <h:outputText value="#{user.userInfo.userInfoLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Pass:" />
+                   <h:outputText value="#{user.userPass}" />
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

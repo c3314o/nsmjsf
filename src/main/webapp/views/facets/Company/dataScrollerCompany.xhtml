@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewCompanyBean.companyList}" var="company" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+			 <h:outputText value="Sector:" />
+                    <h:outputText value="#{company.sector.sectorLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Quote:" />
+                   <h:outputText value="#{company.companyQuote}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Listed:" />
+                   <h:outputText value="#{company.companyListed}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Post:" />
+                    <h:outputText value="#{company.post.postLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Company Detail:" />
+                    <h:outputText value="#{company.companyDetail.companyDetailLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Name:" />
+                   <h:outputText value="#{company.companyName}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Label:" />
+                   <h:outputText value="#{company.companyLabel}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Id:" />
+                   <h:outputText value="#{company.companyId}" />
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

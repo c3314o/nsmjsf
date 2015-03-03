@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="proxy" lazy="true" value="#{viewProxyBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="proxyGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{proxy.proxyLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="Proxy Ip:" />
+                   <h:outputText value="#{proxy.proxyIp}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Proxy Id:" />
+                   <h:outputText value="#{proxy.proxyId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Proxy Success:" />
+                   <h:outputText value="#{proxy.proxySuccess}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Proxy Port:" />
+                   <h:outputText value="#{proxy.proxyPort}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Proxy Failed:" />
+                   <h:outputText value="#{proxy.proxyFailed}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

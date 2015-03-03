@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="notification" resizableColumns="true" value="#{viewNotificationBean.lazyModel}" filteredValue="#{viewNotificationBean.filteredNotificationList}"
+			paginator="true" rows="10" selection="#{viewNotificationBean.selectedNotificationList}" rowKey="#{notification.notificationId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="notificationTable" widgetVar="notificationTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewNotificationBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewNotificationBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="notificationTable" fileName="NotificationData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="notificationTable" fileName="NotificationData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="notificationTable" fileName="NotificationData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="notificationTable" fileName="NotificationData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Notification Id" sortBy="#{notification.notificationId}"
+				filterBy="#{notification.notificationId}">
+				<h:outputText value="#{notification.notificationId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Notification Status" sortBy="#{notification.notificationStatus}"
+				filterBy="#{notification.notificationStatus}">
+				<h:outputText value="#{notification.notificationStatus}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Notification Link" sortBy="#{notification.notificationLink}"
+				filterBy="#{notification.notificationLink}">
+				<h:outputText value="#{notification.notificationLink}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Notification Message" sortBy="#{notification.notificationMessage}"
+				filterBy="#{notification.notificationMessage}">
+				<h:outputText value="#{notification.notificationMessage}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{notification.user}"
+				headerText="User" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('notificationTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewNotificationBean.userList}"
+							var="user"
+							itemLabel="#{user.userLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{notification.user.userLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewNotificationBean.editNotification(notification.notificationId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewNotificationBean.refreshDataSource}" update="notificationTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewNotificationBean.deleteNotification(notification)}" update="notificationTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

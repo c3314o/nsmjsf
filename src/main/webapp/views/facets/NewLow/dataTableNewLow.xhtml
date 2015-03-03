@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="newLow" resizableColumns="true" value="#{viewNewLowBean.lazyModel}" filteredValue="#{viewNewLowBean.filteredNewLowList}"
+			paginator="true" rows="10" selection="#{viewNewLowBean.selectedNewLowList}" rowKey="#{newLow.newLowId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="newLowTable" widgetVar="newLowTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewNewLowBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewNewLowBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="newLowTable" fileName="NewLowData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="newLowTable" fileName="NewLowData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="newLowTable" fileName="NewLowData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="newLowTable" fileName="NewLowData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="New Low Current Price" sortBy="#{newLow.newLowCurrentPrice}"
+				filterBy="#{newLow.newLowCurrentPrice}">
+				<h:outputText value="#{newLow.newLowCurrentPrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="New Low Current Date" sortBy="#{newLow.newLowCurrentDate}"
+				filterBy="#{newLow.newLowCurrentDate}">
+				<h:outputText value="#{newLow.newLowCurrentDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="New Low Previous Price" sortBy="#{newLow.newLowPreviousPrice}"
+				filterBy="#{newLow.newLowPreviousPrice}">
+				<h:outputText value="#{newLow.newLowPreviousPrice}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{newLow.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('newLowTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewNewLowBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{newLow.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="New Low Id" sortBy="#{newLow.newLowId}"
+				filterBy="#{newLow.newLowId}">
+				<h:outputText value="#{newLow.newLowId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="New Low Previous Date" sortBy="#{newLow.newLowPreviousDate}"
+				filterBy="#{newLow.newLowPreviousDate}">
+				<h:outputText value="#{newLow.newLowPreviousDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewNewLowBean.editNewLow(newLow.newLowId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewNewLowBean.refreshDataSource}" update="newLowTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewNewLowBean.deleteNewLow(newLow)}" update="newLowTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

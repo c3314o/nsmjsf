@@ -1,0 +1,83 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+
+<style>
+.form-input{
+float:left;
+min-width:200px;
+width:100%;
+
+
+}
+
+
+
+</style>
+<h:panelGrid columns="1"  style="width:100%">
+			<p:outputPanel >
+				<p:outputLabel for="post" value="Post" />
+			          <p:selectOneMenu  styleClass="form-input" id="post" value="#{createNewsBean.selectedPostWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="postWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createNewsBean.postWrapperList}" var="var_post"
+					      itemLabel="#{var_post.getLabel()}" itemValue="#{var_post}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+						<p:outputPanel >
+						<h:outputLabel for="newsAuthor" value="News Author" />
+                         <p:inputText styleClass="form-input" id="newsAuthor" value="#{createNewsBean.news.newsAuthor}" required="false" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="newsSource" value="News Source" />
+                         <p:inputText styleClass="form-input" id="newsSource" value="#{createNewsBean.news.newsSource}" required="false" />
+                         </p:outputPanel>
+						
+						
+			<p:outputPanel >
+				<p:outputLabel for="user" value="User" />
+			          <p:selectOneMenu  styleClass="form-input" id="user" value="#{createNewsBean.selectedUserWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="userWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createNewsBean.userWrapperList}" var="var_user"
+					      itemLabel="#{var_user.getLabel()}" itemValue="#{var_user}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+
+
+
+</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

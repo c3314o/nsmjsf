@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="contentSource" lazy="true" value="#{viewContentSourceBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="contentSourceGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{contentSource.contentSourceLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="Post:" />
+                    <h:outputText value="#{contentSource.post.postLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Content Source Link:" />
+                   <h:outputText value="#{contentSource.contentSourceLink}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Content Source Author Image:" />
+                   <h:outputText value="#{contentSource.contentSourceAuthorImage}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Content Source Id:" />
+                   <h:outputText value="#{contentSource.contentSourceId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Content Source Author:" />
+                   <h:outputText value="#{contentSource.contentSourceAuthor}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

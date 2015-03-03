@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="postImage" resizableColumns="true" value="#{viewPostImageBean.lazyModel}" filteredValue="#{viewPostImageBean.filteredPostImageList}"
+			paginator="true" rows="10" selection="#{viewPostImageBean.selectedPostImageList}" rowKey="#{postImage.postImageId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="postImageTable" widgetVar="postImageTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewPostImageBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewPostImageBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="postImageTable" fileName="PostImageData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="postImageTable" fileName="PostImageData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="postImageTable" fileName="PostImageData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="postImageTable" fileName="PostImageData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{postImage.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('postImageTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewPostImageBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{postImage.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Post Image Id" sortBy="#{postImage.postImageId}"
+				filterBy="#{postImage.postImageId}">
+				<h:outputText value="#{postImage.postImageId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Post Image Path" sortBy="#{postImage.postImagePath}"
+				filterBy="#{postImage.postImagePath}">
+				<h:outputText value="#{postImage.postImagePath}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewPostImageBean.editPostImage(postImage.postImageId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewPostImageBean.refreshDataSource}" update="postImageTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewPostImageBean.deletePostImage(postImage)}" update="postImageTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

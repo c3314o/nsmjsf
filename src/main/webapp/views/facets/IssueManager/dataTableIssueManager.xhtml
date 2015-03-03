@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="issueManager" resizableColumns="true" value="#{viewIssueManagerBean.lazyModel}" filteredValue="#{viewIssueManagerBean.filteredIssueManagerList}"
+			paginator="true" rows="10" selection="#{viewIssueManagerBean.selectedIssueManagerList}" rowKey="#{issueManager.issueManagerId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="issueManagerTable" widgetVar="issueManagerTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewIssueManagerBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewIssueManagerBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="issueManagerTable" fileName="IssueManagerData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="issueManagerTable" fileName="IssueManagerData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="issueManagerTable" fileName="IssueManagerData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="issueManagerTable" fileName="IssueManagerData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Issue Manager Phone" sortBy="#{issueManager.issueManagerPhone}"
+				filterBy="#{issueManager.issueManagerPhone}">
+				<h:outputText value="#{issueManager.issueManagerPhone}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Issue Manager Id" sortBy="#{issueManager.issueManagerId}"
+				filterBy="#{issueManager.issueManagerId}">
+				<h:outputText value="#{issueManager.issueManagerId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Issue Manager Web" sortBy="#{issueManager.issueManagerWeb}"
+				filterBy="#{issueManager.issueManagerWeb}">
+				<h:outputText value="#{issueManager.issueManagerWeb}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Issue Manager Email" sortBy="#{issueManager.issueManagerEmail}"
+				filterBy="#{issueManager.issueManagerEmail}">
+				<h:outputText value="#{issueManager.issueManagerEmail}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Issue Manager Address" sortBy="#{issueManager.issueManagerAddress}"
+				filterBy="#{issueManager.issueManagerAddress}">
+				<h:outputText value="#{issueManager.issueManagerAddress}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewIssueManagerBean.editIssueManager(issueManager.issueManagerId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewIssueManagerBean.refreshDataSource}" update="issueManagerTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewIssueManagerBean.deleteIssueManager(issueManager)}" update="issueManagerTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

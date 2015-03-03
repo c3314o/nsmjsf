@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="quarter" resizableColumns="true" value="#{viewQuarterBean.lazyModel}" filteredValue="#{viewQuarterBean.filteredQuarterList}"
+			paginator="true" rows="10" selection="#{viewQuarterBean.selectedQuarterList}" rowKey="#{quarter.quarterId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="quarterTable" widgetVar="quarterTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewQuarterBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewQuarterBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="quarterTable" fileName="QuarterData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="quarterTable" fileName="QuarterData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="quarterTable" fileName="QuarterData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="quarterTable" fileName="QuarterData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Quarter Label" sortBy="#{quarter.quarterLabel}"
+				filterBy="#{quarter.quarterLabel}">
+				<h:outputText value="#{quarter.quarterLabel}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Quarter Id" sortBy="#{quarter.quarterId}"
+				filterBy="#{quarter.quarterId}">
+				<h:outputText value="#{quarter.quarterId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewQuarterBean.editQuarter(quarter.quarterId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewQuarterBean.refreshDataSource}" update="quarterTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewQuarterBean.deleteQuarter(quarter)}" update="quarterTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

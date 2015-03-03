@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="userStockSales" resizableColumns="true" value="#{viewUserStockSalesBean.lazyModel}" filteredValue="#{viewUserStockSalesBean.filteredUserStockSalesList}"
+			paginator="true" rows="10" selection="#{viewUserStockSalesBean.selectedUserStockSalesList}" rowKey="#{userStockSales.userStockSalesId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="userStockSalesTable" widgetVar="userStockSalesTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewUserStockSalesBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewUserStockSalesBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="userStockSalesTable" fileName="UserStockSalesData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="userStockSalesTable" fileName="UserStockSalesData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="userStockSalesTable" fileName="UserStockSalesData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="userStockSalesTable" fileName="UserStockSalesData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="User Stock Sales Id" sortBy="#{userStockSales.userStockSalesId}"
+				filterBy="#{userStockSales.userStockSalesId}">
+				<h:outputText value="#{userStockSales.userStockSalesId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Stock Sales Profit" sortBy="#{userStockSales.userStockSalesProfit}"
+				filterBy="#{userStockSales.userStockSalesProfit}">
+				<h:outputText value="#{userStockSales.userStockSalesProfit}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Stock Sales Unit" sortBy="#{userStockSales.userStockSalesUnit}"
+				filterBy="#{userStockSales.userStockSalesUnit}">
+				<h:outputText value="#{userStockSales.userStockSalesUnit}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Stock Sales Price" sortBy="#{userStockSales.userStockSalesPrice}"
+				filterBy="#{userStockSales.userStockSalesPrice}">
+				<h:outputText value="#{userStockSales.userStockSalesPrice}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{userStockSales.userStock}"
+				headerText="User Stock" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userStockSalesTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserStockSalesBean.userStockList}"
+							var="userStock"
+							itemLabel="#{userStock.userStockLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{userStockSales.userStock.userStockLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="User Stock Sales Date" sortBy="#{userStockSales.userStockSalesDate}"
+				filterBy="#{userStockSales.userStockSalesDate}">
+				<h:outputText value="#{userStockSales.userStockSalesDate}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{userStockSales.user}"
+				headerText="User" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userStockSalesTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserStockSalesBean.userList}"
+							var="user"
+							itemLabel="#{user.userLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{userStockSales.user.userLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewUserStockSalesBean.editUserStockSales(userStockSales.userStockSalesId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewUserStockSalesBean.refreshDataSource}" update="userStockSalesTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewUserStockSalesBean.deleteUserStockSales(userStockSales)}" update="userStockSalesTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

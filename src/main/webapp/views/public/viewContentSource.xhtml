@@ -1,0 +1,94 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/templates/template.xhtml">
+	
+	<ui:define name="body">
+	
+	  <p:panel>
+       <f:facet name="header">ContentSource List</f:facet>
+       <h:form>
+       <p:toolbar>
+					<f:facet name="left">
+						<p:commandButton
+							actionListener="#{viewContentSourceBean.newContentSource}"
+							value="New" icon="ui-icon-document">
+							
+							<p:ajax event="dialogReturn" listener="#{viewContentSourceBean.refreshDataSource}" update="dataDiv" />
+						
+							</p:commandButton>
+
+
+
+						<span class="ui-separator"> <span
+							class="ui-icon ui-icon-grip-dotted-vertical" />
+						</span>
+
+
+
+						<p:commandButton
+							action="#{viewContentSourceBean.deleteContentSource()}"
+							title="Delete" icon="ui-icon-trash" />
+						<p:commandButton type="button" title="Print" icon="ui-icon-print">
+							<p:printer target="dataDiv" />
+						</p:commandButton>
+					</f:facet>
+
+					<f:facet name="right">
+
+						<p:menuButton value="Options">
+							<p:menuitem value="Import Data"
+								actionListener="#{toolbarView.update}"
+								icon="ui-icon-arrowrefresh-1-w" />
+									<p:menuitem value="Data Grid"
+								actionListener="#{viewContentSourceBean.toDataGrid()}"
+								icon="ui-icon-arrowrefresh-1-w" update="dataDiv" />
+								<p:menuitem value="Data Table"
+								actionListener="#{viewContentSourceBean.toDataTable()}"
+								icon="ui-icon-arrowrefresh-1-w" update="dataDiv" />
+								<p:menuitem value="Data Scroller"
+								actionListener="#{viewContentSourceBean.toDataScroll()}"
+								icon="ui-icon-arrowrefresh-1-w" update="dataDiv" />
+						</p:menuButton>
+					</f:facet>
+
+				</p:toolbar>
+       
+      <p:outputPanel id="dataDiv" style="width:100%">
+      
+      <p:outputPanel rendered="#{viewContentSourceBean.dataTable}">
+					<ui:include
+						src="/views/facets/ContentSource/dataTableContentSource.xhtml">
+
+						<ui:param name="viewContentSourceBean"
+							value="#{viewContentSourceBean}" />
+					</ui:include>
+					</p:outputPanel>
+					<p:outputPanel   rendered="#{viewContentSourceBean.dataGrid}" >
+					<ui:include
+						src="/views/facets/ContentSource/dataGridContentSource.xhtml">
+
+						<ui:param name="viewContentSourceBean"
+							value="#{viewContentSourceBean}" />
+					</ui:include>
+					</p:outputPanel>
+					<p:outputPanel rendered="#{viewContentSourceBean.dataScroller}" >
+					<ui:include
+						src="/views/facets/ContentSource/dataScrollerContentSource.xhtml">
+
+						<ui:param name="viewContentSourceBean"
+							value="#{viewContentSourceBean}" />
+					</ui:include>
+					</p:outputPanel>
+      </p:outputPanel>
+      </h:form>
+        </p:panel>
+	
+	</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewNewHighBean.newHighList}" var="newHigh" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="New High Id:" />
+                   <h:outputText value="#{newHigh.newHighId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="New High Current Date:" />
+                   <h:outputText value="#{newHigh.newHighCurrentDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="New High Previous Date:" />
+                   <h:outputText value="#{newHigh.newHighPreviousDate}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{newHigh.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="New High Previous Price:" />
+                   <h:outputText value="#{newHigh.newHighPreviousPrice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="New High Current Value:" />
+                   <h:outputText value="#{newHigh.newHighCurrentValue}" />
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="article" resizableColumns="true" value="#{viewArticleBean.lazyModel}" filteredValue="#{viewArticleBean.filteredArticleList}"
+			paginator="true" rows="10" selection="#{viewArticleBean.selectedArticleList}" rowKey="#{article.articleId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="articleTable" widgetVar="articleTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewArticleBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewArticleBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="articleTable" fileName="ArticleData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="articleTable" fileName="ArticleData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="articleTable" fileName="ArticleData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="articleTable" fileName="ArticleData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{article.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('articleTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewArticleBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{article.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Article Highlight" sortBy="#{article.articleHighlight}"
+				filterBy="#{article.articleHighlight}">
+				<h:outputText value="#{article.articleHighlight}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Article Flag" sortBy="#{article.articleFlag}"
+				filterBy="#{article.articleFlag}">
+				<h:outputText value="#{article.articleFlag}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Article Date" sortBy="#{article.articleDate}"
+				filterBy="#{article.articleDate}">
+				<h:outputText value="#{article.articleDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Article Location" sortBy="#{article.articleLocation}"
+				filterBy="#{article.articleLocation}">
+				<h:outputText value="#{article.articleLocation}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{article.user}"
+				headerText="User" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('articleTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewArticleBean.userList}"
+							var="user"
+							itemLabel="#{user.userLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{article.user.userLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Article Id" sortBy="#{article.articleId}"
+				filterBy="#{article.articleId}">
+				<h:outputText value="#{article.articleId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewArticleBean.editArticle(article.articleId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewArticleBean.refreshDataSource}" update="articleTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewArticleBean.deleteArticle(article)}" update="articleTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

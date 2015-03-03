@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="forumThread" resizableColumns="true" value="#{viewForumThreadBean.lazyModel}" filteredValue="#{viewForumThreadBean.filteredForumThreadList}"
+			paginator="true" rows="10" selection="#{viewForumThreadBean.selectedForumThreadList}" rowKey="#{forumThread.forumThreadId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="forumThreadTable" widgetVar="forumThreadTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewForumThreadBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewForumThreadBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="forumThreadTable" fileName="ForumThreadData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="forumThreadTable" fileName="ForumThreadData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="forumThreadTable" fileName="ForumThreadData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="forumThreadTable" fileName="ForumThreadData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{forumThread.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('forumThreadTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewForumThreadBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{forumThread.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Forum Thread Id" sortBy="#{forumThread.forumThreadId}"
+				filterBy="#{forumThread.forumThreadId}">
+				<h:outputText value="#{forumThread.forumThreadId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewForumThreadBean.editForumThread(forumThread.forumThreadId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewForumThreadBean.refreshDataSource}" update="forumThreadTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewForumThreadBean.deleteForumThread(forumThread)}" update="forumThreadTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,94 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/templates/template.xhtml">
+	
+	<ui:define name="body">
+	
+	  <p:panel>
+       <f:facet name="header">UserStockSales List</f:facet>
+       <h:form>
+       <p:toolbar>
+					<f:facet name="left">
+						<p:commandButton
+							actionListener="#{viewUserStockSalesBean.newUserStockSales}"
+							value="New" icon="ui-icon-document">
+							
+							<p:ajax event="dialogReturn" listener="#{viewUserStockSalesBean.refreshDataSource}" update="dataDiv" />
+						
+							</p:commandButton>
+
+
+
+						<span class="ui-separator"> <span
+							class="ui-icon ui-icon-grip-dotted-vertical" />
+						</span>
+
+
+
+						<p:commandButton
+							action="#{viewUserStockSalesBean.deleteUserStockSales()}"
+							title="Delete" icon="ui-icon-trash" />
+						<p:commandButton type="button" title="Print" icon="ui-icon-print">
+							<p:printer target="dataDiv" />
+						</p:commandButton>
+					</f:facet>
+
+					<f:facet name="right">
+
+						<p:menuButton value="Options">
+							<p:menuitem value="Import Data"
+								actionListener="#{toolbarView.update}"
+								icon="ui-icon-arrowrefresh-1-w" />
+									<p:menuitem value="Data Grid"
+								actionListener="#{viewUserStockSalesBean.toDataGrid()}"
+								icon="ui-icon-arrowrefresh-1-w" update="dataDiv" />
+								<p:menuitem value="Data Table"
+								actionListener="#{viewUserStockSalesBean.toDataTable()}"
+								icon="ui-icon-arrowrefresh-1-w" update="dataDiv" />
+								<p:menuitem value="Data Scroller"
+								actionListener="#{viewUserStockSalesBean.toDataScroll()}"
+								icon="ui-icon-arrowrefresh-1-w" update="dataDiv" />
+						</p:menuButton>
+					</f:facet>
+
+				</p:toolbar>
+       
+      <p:outputPanel id="dataDiv" style="width:100%">
+      
+      <p:outputPanel rendered="#{viewUserStockSalesBean.dataTable}">
+					<ui:include
+						src="/views/facets/UserStockSales/dataTableUserStockSales.xhtml">
+
+						<ui:param name="viewUserStockSalesBean"
+							value="#{viewUserStockSalesBean}" />
+					</ui:include>
+					</p:outputPanel>
+					<p:outputPanel   rendered="#{viewUserStockSalesBean.dataGrid}" >
+					<ui:include
+						src="/views/facets/UserStockSales/dataGridUserStockSales.xhtml">
+
+						<ui:param name="viewUserStockSalesBean"
+							value="#{viewUserStockSalesBean}" />
+					</ui:include>
+					</p:outputPanel>
+					<p:outputPanel rendered="#{viewUserStockSalesBean.dataScroller}" >
+					<ui:include
+						src="/views/facets/UserStockSales/dataScrollerUserStockSales.xhtml">
+
+						<ui:param name="viewUserStockSalesBean"
+							value="#{viewUserStockSalesBean}" />
+					</ui:include>
+					</p:outputPanel>
+      </p:outputPanel>
+      </h:form>
+        </p:panel>
+	
+	</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="userWatchList" resizableColumns="true" value="#{viewUserWatchListBean.lazyModel}" filteredValue="#{viewUserWatchListBean.filteredUserWatchListList}"
+			paginator="true" rows="10" selection="#{viewUserWatchListBean.selectedUserWatchListList}" rowKey="#{userWatchList.userWatchListId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="userWatchListTable" widgetVar="userWatchListTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewUserWatchListBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewUserWatchListBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="userWatchListTable" fileName="UserWatchListData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="userWatchListTable" fileName="UserWatchListData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="userWatchListTable" fileName="UserWatchListData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="userWatchListTable" fileName="UserWatchListData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="User Watch List Date" sortBy="#{userWatchList.userWatchListDate}"
+				filterBy="#{userWatchList.userWatchListDate}">
+				<h:outputText value="#{userWatchList.userWatchListDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Watch List Label" sortBy="#{userWatchList.userWatchListLabel}"
+				filterBy="#{userWatchList.userWatchListLabel}">
+				<h:outputText value="#{userWatchList.userWatchListLabel}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{userWatchList.user}"
+				headerText="User" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userWatchListTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserWatchListBean.userList}"
+							var="user"
+							itemLabel="#{user.userLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{userWatchList.user.userLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="User Watch List Id" sortBy="#{userWatchList.userWatchListId}"
+				filterBy="#{userWatchList.userWatchListId}">
+				<h:outputText value="#{userWatchList.userWatchListId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewUserWatchListBean.editUserWatchList(userWatchList.userWatchListId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewUserWatchListBean.refreshDataSource}" update="userWatchListTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewUserWatchListBean.deleteUserWatchList(userWatchList)}" update="userWatchListTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

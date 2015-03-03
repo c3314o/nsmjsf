@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="bullionPrice" resizableColumns="true" value="#{viewBullionPriceBean.lazyModel}" filteredValue="#{viewBullionPriceBean.filteredBullionPriceList}"
+			paginator="true" rows="10" selection="#{viewBullionPriceBean.selectedBullionPriceList}" rowKey="#{bullionPrice.bullionPriceId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="bullionPriceTable" widgetVar="bullionPriceTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewBullionPriceBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewBullionPriceBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="bullionPriceTable" fileName="BullionPriceData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="bullionPriceTable" fileName="BullionPriceData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="bullionPriceTable" fileName="BullionPriceData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="bullionPriceTable" fileName="BullionPriceData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{bullionPrice.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('bullionPriceTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewBullionPriceBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{bullionPrice.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Bullion Price Per Unit" sortBy="#{bullionPrice.bullionPricePerUnit}"
+				filterBy="#{bullionPrice.bullionPricePerUnit}">
+				<h:outputText value="#{bullionPrice.bullionPricePerUnit}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Bullion Price Id" sortBy="#{bullionPrice.bullionPriceId}"
+				filterBy="#{bullionPrice.bullionPriceId}">
+				<h:outputText value="#{bullionPrice.bullionPriceId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Bullion Price Type" sortBy="#{bullionPrice.bullionPriceType}"
+				filterBy="#{bullionPrice.bullionPriceType}">
+				<h:outputText value="#{bullionPrice.bullionPriceType}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Bullion Price Date" sortBy="#{bullionPrice.bullionPriceDate}"
+				filterBy="#{bullionPrice.bullionPriceDate}">
+				<h:outputText value="#{bullionPrice.bullionPriceDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewBullionPriceBean.editBullionPrice(bullionPrice.bullionPriceId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewBullionPriceBean.refreshDataSource}" update="bullionPriceTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewBullionPriceBean.deleteBullionPrice(bullionPrice)}" update="bullionPriceTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

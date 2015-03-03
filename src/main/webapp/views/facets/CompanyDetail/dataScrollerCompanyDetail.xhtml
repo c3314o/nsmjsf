@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewCompanyDetailBean.companyDetailList}" var="companyDetail" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Pob:" />
+                   <h:outputText value="#{companyDetail.companyDetailPob}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Post:" />
+                    <h:outputText value="#{companyDetail.post.postLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Id:" />
+                   <h:outputText value="#{companyDetail.companyDetailId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Profile:" />
+                   <h:outputText value="#{companyDetail.companyDetailProfile}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Registar To Share:" />
+                   <h:outputText value="#{companyDetail.companyDetailRegistarToShare}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Operation Date:" />
+                   <h:outputText value="#{companyDetail.companyDetailOperationDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Phone:" />
+                   <h:outputText value="#{companyDetail.companyDetailPhone}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Paid Up Value:" />
+                   <h:outputText value="#{companyDetail.companyDetailPaidUpValue}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Label:" />
+                   <h:outputText value="#{companyDetail.companyDetailLabel}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Fax:" />
+                   <h:outputText value="#{companyDetail.companyDetailFax}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Web:" />
+                   <h:outputText value="#{companyDetail.companyDetailWeb}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Listing Date:" />
+                   <h:outputText value="#{companyDetail.companyDetailListingDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Listed Shares:" />
+                   <h:outputText value="#{companyDetail.companyDetailListedShares}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Total Paid Up Value:" />
+                   <h:outputText value="#{companyDetail.companyDetailTotalPaidUpValue}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Email:" />
+                   <h:outputText value="#{companyDetail.companyDetailEmail}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Detail Address:" />
+                   <h:outputText value="#{companyDetail.companyDetailAddress}" />
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

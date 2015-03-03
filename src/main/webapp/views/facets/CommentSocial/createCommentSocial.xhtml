@@ -1,0 +1,83 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+
+<style>
+.form-input{
+float:left;
+min-width:200px;
+width:100%;
+
+
+}
+
+
+
+</style>
+<h:panelGrid columns="1"  style="width:100%">
+						 <h:outputText value="Comment Social Like" />
+                         <p:selectBooleanButton id="value1" value="#{createCommentSocialBean.commentSocial.commentSocialLike}" onLabel="True" offLabel="False"  />
+ 
+						
+						
+						
+			<p:outputPanel >
+				<p:outputLabel for="comment" value="Comment" />
+			          <p:selectOneMenu  styleClass="form-input" id="comment" value="#{createCommentSocialBean.selectedCommentWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="commentWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createCommentSocialBean.commentWrapperList}" var="var_comment"
+					      itemLabel="#{var_comment.getLabel()}" itemValue="#{var_comment}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+			<p:outputPanel >
+				<p:outputLabel for="user" value="User" />
+			          <p:selectOneMenu  styleClass="form-input" id="user" value="#{createCommentSocialBean.selectedUserWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="userWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createCommentSocialBean.userWrapperList}" var="var_user"
+					      itemLabel="#{var_user.getLabel()}" itemValue="#{var_user}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+						 <h:outputText value="Comment Social Dislike" />
+                         <p:selectBooleanButton id="value1" value="#{createCommentSocialBean.commentSocial.commentSocialDislike}" onLabel="True" offLabel="False"  />
+ 
+						
+						
+						
+
+
+
+</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

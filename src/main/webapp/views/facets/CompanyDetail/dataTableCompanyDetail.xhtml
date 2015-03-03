@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="companyDetail" resizableColumns="true" value="#{viewCompanyDetailBean.lazyModel}" filteredValue="#{viewCompanyDetailBean.filteredCompanyDetailList}"
+			paginator="true" rows="10" selection="#{viewCompanyDetailBean.selectedCompanyDetailList}" rowKey="#{companyDetail.companyDetailId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="companyDetailTable" widgetVar="companyDetailTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewCompanyDetailBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewCompanyDetailBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="companyDetailTable" fileName="CompanyDetailData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="companyDetailTable" fileName="CompanyDetailData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="companyDetailTable" fileName="CompanyDetailData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="companyDetailTable" fileName="CompanyDetailData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Company Detail Pob" sortBy="#{companyDetail.companyDetailPob}"
+				filterBy="#{companyDetail.companyDetailPob}">
+				<h:outputText value="#{companyDetail.companyDetailPob}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{companyDetail.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('companyDetailTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewCompanyDetailBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{companyDetail.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Company Detail Id" sortBy="#{companyDetail.companyDetailId}"
+				filterBy="#{companyDetail.companyDetailId}">
+				<h:outputText value="#{companyDetail.companyDetailId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Profile" sortBy="#{companyDetail.companyDetailProfile}"
+				filterBy="#{companyDetail.companyDetailProfile}">
+				<h:outputText value="#{companyDetail.companyDetailProfile}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Registar To Share" sortBy="#{companyDetail.companyDetailRegistarToShare}"
+				filterBy="#{companyDetail.companyDetailRegistarToShare}">
+				<h:outputText value="#{companyDetail.companyDetailRegistarToShare}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Operation Date" sortBy="#{companyDetail.companyDetailOperationDate}"
+				filterBy="#{companyDetail.companyDetailOperationDate}">
+				<h:outputText value="#{companyDetail.companyDetailOperationDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Phone" sortBy="#{companyDetail.companyDetailPhone}"
+				filterBy="#{companyDetail.companyDetailPhone}">
+				<h:outputText value="#{companyDetail.companyDetailPhone}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Paid Up Value" sortBy="#{companyDetail.companyDetailPaidUpValue}"
+				filterBy="#{companyDetail.companyDetailPaidUpValue}">
+				<h:outputText value="#{companyDetail.companyDetailPaidUpValue}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Label" sortBy="#{companyDetail.companyDetailLabel}"
+				filterBy="#{companyDetail.companyDetailLabel}">
+				<h:outputText value="#{companyDetail.companyDetailLabel}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Fax" sortBy="#{companyDetail.companyDetailFax}"
+				filterBy="#{companyDetail.companyDetailFax}">
+				<h:outputText value="#{companyDetail.companyDetailFax}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Web" sortBy="#{companyDetail.companyDetailWeb}"
+				filterBy="#{companyDetail.companyDetailWeb}">
+				<h:outputText value="#{companyDetail.companyDetailWeb}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Listing Date" sortBy="#{companyDetail.companyDetailListingDate}"
+				filterBy="#{companyDetail.companyDetailListingDate}">
+				<h:outputText value="#{companyDetail.companyDetailListingDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Listed Shares" sortBy="#{companyDetail.companyDetailListedShares}"
+				filterBy="#{companyDetail.companyDetailListedShares}">
+				<h:outputText value="#{companyDetail.companyDetailListedShares}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Total Paid Up Value" sortBy="#{companyDetail.companyDetailTotalPaidUpValue}"
+				filterBy="#{companyDetail.companyDetailTotalPaidUpValue}">
+				<h:outputText value="#{companyDetail.companyDetailTotalPaidUpValue}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Email" sortBy="#{companyDetail.companyDetailEmail}"
+				filterBy="#{companyDetail.companyDetailEmail}">
+				<h:outputText value="#{companyDetail.companyDetailEmail}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Detail Address" sortBy="#{companyDetail.companyDetailAddress}"
+				filterBy="#{companyDetail.companyDetailAddress}">
+				<h:outputText value="#{companyDetail.companyDetailAddress}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewCompanyDetailBean.editCompanyDetail(companyDetail.companyDetailId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewCompanyDetailBean.refreshDataSource}" update="companyDetailTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewCompanyDetailBean.deleteCompanyDetail(companyDetail)}" update="companyDetailTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

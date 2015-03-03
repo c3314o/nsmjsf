@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="userEnergySales" resizableColumns="true" value="#{viewUserEnergySalesBean.lazyModel}" filteredValue="#{viewUserEnergySalesBean.filteredUserEnergySalesList}"
+			paginator="true" rows="10" selection="#{viewUserEnergySalesBean.selectedUserEnergySalesList}" rowKey="#{userEnergySales.userEnergySalesId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="userEnergySalesTable" widgetVar="userEnergySalesTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewUserEnergySalesBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewUserEnergySalesBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="userEnergySalesTable" fileName="UserEnergySalesData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="userEnergySalesTable" fileName="UserEnergySalesData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="userEnergySalesTable" fileName="UserEnergySalesData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="userEnergySalesTable" fileName="UserEnergySalesData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="User Energy Sales Date" sortBy="#{userEnergySales.userEnergySalesDate}"
+				filterBy="#{userEnergySales.userEnergySalesDate}">
+				<h:outputText value="#{userEnergySales.userEnergySalesDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Energy Sales Id" sortBy="#{userEnergySales.userEnergySalesId}"
+				filterBy="#{userEnergySales.userEnergySalesId}">
+				<h:outputText value="#{userEnergySales.userEnergySalesId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Energy Sales Price" sortBy="#{userEnergySales.userEnergySalesPrice}"
+				filterBy="#{userEnergySales.userEnergySalesPrice}">
+				<h:outputText value="#{userEnergySales.userEnergySalesPrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Energy Sales Profit Loss" sortBy="#{userEnergySales.userEnergySalesProfitLoss}"
+				filterBy="#{userEnergySales.userEnergySalesProfitLoss}">
+				<h:outputText value="#{userEnergySales.userEnergySalesProfitLoss}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{userEnergySales.userEnergy}"
+				headerText="User Energy" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('userEnergySalesTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewUserEnergySalesBean.userEnergyList}"
+							var="userEnergy"
+							itemLabel="#{userEnergy.userEnergyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{userEnergySales.userEnergy.userEnergyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="User Energy Sales Units Sold" sortBy="#{userEnergySales.userEnergySalesUnitsSold}"
+				filterBy="#{userEnergySales.userEnergySalesUnitsSold}">
+				<h:outputText value="#{userEnergySales.userEnergySalesUnitsSold}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewUserEnergySalesBean.editUserEnergySales(userEnergySales.userEnergySalesId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewUserEnergySalesBean.refreshDataSource}" update="userEnergySalesTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewUserEnergySalesBean.deleteUserEnergySales(userEnergySales)}" update="userEnergySalesTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

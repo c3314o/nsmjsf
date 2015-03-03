@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Mar 2, 2015 3:36:22 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.nsmjsf.web.datamodels.BullionPrice" table="bullion_price" catalog="admin_nsmjsf">
         <id name="bullionPriceId" type="java.lang.Integer">
             <column name="bullion_price_id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="post" class="com.nsmjsf.web.datamodels.Post" fetch="select">
+            <column name="bullion_price_post_id" not-null="true" />
+        </many-to-one>
         <property name="bullionPriceType" type="int">
             <column name="bullion_price_type" not-null="true" />
         </property>

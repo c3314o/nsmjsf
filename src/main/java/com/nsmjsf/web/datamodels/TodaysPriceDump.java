@@ -1,6 +1,6 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "todays_price_dump", catalog = "admin_nsmjsf")
 public class TodaysPriceDump implements java.io.Serializable {
 
-	private Integer todaysPriceId;
+	private Integer todaysPriceDumpId;
 	private int todaysPricePostId;
 	private int todaysPriceCompanyId;
 	private int todaysPriceTransactionCount;
@@ -53,13 +53,13 @@ public class TodaysPriceDump implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "todays_price_id", unique = true, nullable = false)
-	public Integer getTodaysPriceId() {
-		return this.todaysPriceId;
+	@Column(name = "todays_price_dump_id", unique = true, nullable = false)
+	public Integer getTodaysPriceDumpId() {
+		return this.todaysPriceDumpId;
 	}
 
-	public void setTodaysPriceId(Integer todaysPriceId) {
-		this.todaysPriceId = todaysPriceId;
+	public void setTodaysPriceDumpId(Integer todaysPriceDumpId) {
+		this.todaysPriceDumpId = todaysPriceDumpId;
 	}
 
 	@Column(name = "todays_price_post_id", nullable = false)

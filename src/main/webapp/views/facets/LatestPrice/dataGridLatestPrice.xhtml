@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="latestPrice" lazy="true" value="#{viewLatestPriceBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="latestPriceGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{latestPrice.latestPriceLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="Latest Price Deleted:" />
+                   <h:outputText value="#{latestPrice.latestPriceDeleted}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Post:" />
+                    <h:outputText value="#{latestPrice.post.postLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Latest Price Min Price:" />
+                   <h:outputText value="#{latestPrice.latestPriceMinPrice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Latest Price Diff:" />
+                   <h:outputText value="#{latestPrice.latestPriceDiff}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Latest Price Amount:" />
+                   <h:outputText value="#{latestPrice.latestPriceAmount}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{latestPrice.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Latest Price Total Share:" />
+                   <h:outputText value="#{latestPrice.latestPriceTotalShare}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Latest Price Id:" />
+                   <h:outputText value="#{latestPrice.latestPriceId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Latest Price Max Price:" />
+                   <h:outputText value="#{latestPrice.latestPriceMaxPrice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Latest Price Traded Date:" />
+                   <h:outputText value="#{latestPrice.latestPriceTradedDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Latest Price Close Price:" />
+                   <h:outputText value="#{latestPrice.latestPriceClosePrice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Latest Price No Of Transactions:" />
+                   <h:outputText value="#{latestPrice.latestPriceNoOfTransactions}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Latest Price Prev Closing:" />
+                   <h:outputText value="#{latestPrice.latestPricePrevClosing}" />
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

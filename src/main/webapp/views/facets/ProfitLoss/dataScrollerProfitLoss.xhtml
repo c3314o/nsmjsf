@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewProfitLossBean.profitLossList}" var="profitLoss" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Capital Fund To Raw:" />
+                   <h:outputText value="#{profitLoss.profitLossCapitalFundToRaw}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Non Controlling Interest:" />
+                   <h:outputText value="#{profitLoss.profitLossNonControllingInterest}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Financial Report:" />
+                    <h:outputText value="#{profitLoss.financialReport.financialReportLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Provision For Income Tax:" />
+                   <h:outputText value="#{profitLoss.profitLossProvisionForIncomeTax}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Cost Of Fund:" />
+                   <h:outputText value="#{profitLoss.profitLossCostOfFund}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Other Operating Income:" />
+                   <h:outputText value="#{profitLoss.profitLossOtherOperatingIncome}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Credit To Deposit Ratio:" />
+                   <h:outputText value="#{profitLoss.profitLossCreditToDepositRatio}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Total Loan Loss Provision To Total Npl:" />
+                   <h:outputText value="#{profitLoss.profitLossTotalLoanLossProvisionToTotalNpl}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Non Performing Loan To Toal Loan:" />
+                   <h:outputText value="#{profitLoss.profitLossNonPerformingLoanToToalLoan}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Fees Commission And Discount:" />
+                   <h:outputText value="#{profitLoss.profitLossFeesCommissionAndDiscount}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Interest Income:" />
+                   <h:outputText value="#{profitLoss.profitLossInterestIncome}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Operating Profit:" />
+                   <h:outputText value="#{profitLoss.profitLossOperatingProfit}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Provision For Possible Losses:" />
+                   <h:outputText value="#{profitLoss.profitLossProvisionForPossibleLosses}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Interest Expenses:" />
+                   <h:outputText value="#{profitLoss.profitLossInterestExpenses}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Profit From Regular Activities:" />
+                   <h:outputText value="#{profitLoss.profitLossProfitFromRegularActivities}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Net Interest Spread:" />
+                   <h:outputText value="#{profitLoss.profitLossNetInterestSpread}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Base Ratio:" />
+                   <h:outputText value="#{profitLoss.profitLossBaseRatio}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Net Profit Loss:" />
+                   <h:outputText value="#{profitLoss.profitLossNetProfitLoss}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Operating Profit Before Provision:" />
+                   <h:outputText value="#{profitLoss.profitLossOperatingProfitBeforeProvision}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Foreign Exchange Gain Or Loss:" />
+                   <h:outputText value="#{profitLoss.profitLossForeignExchangeGainOrLoss}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Id:" />
+                   <h:outputText value="#{profitLoss.profitLossId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Extra Ordinary Income Or Expenses:" />
+                   <h:outputText value="#{profitLoss.profitLossExtraOrdinaryIncomeOrExpenses}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Staff Expenses:" />
+                   <h:outputText value="#{profitLoss.profitLossStaffExpenses}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Non Operating Income Or Loss:" />
+                   <h:outputText value="#{profitLoss.profitLossNonOperatingIncomeOrLoss}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Total Operating Income:" />
+                   <h:outputText value="#{profitLoss.profitLossTotalOperatingIncome}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Write Back Provision For Possible Losses:" />
+                   <h:outputText value="#{profitLoss.profitLossWriteBackProvisionForPossibleLosses}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Profit Before Bonus And Taxes:" />
+                   <h:outputText value="#{profitLoss.profitLossProfitBeforeBonusAndTaxes}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Average Yield On Loan Advance Investment:" />
+                   <h:outputText value="#{profitLoss.profitLossAverageYieldOnLoanAdvanceInvestment}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Net Interest Income:" />
+                   <h:outputText value="#{profitLoss.profitLossNetInterestIncome}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Profit Loss Provision For Staff Bonus:" />
+                   <h:outputText value="#{profitLoss.profitLossProvisionForStaffBonus}" />
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

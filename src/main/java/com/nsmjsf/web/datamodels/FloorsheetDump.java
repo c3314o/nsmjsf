@@ -1,6 +1,6 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "floorsheet_dump", catalog = "admin_nsmjsf")
 public class FloorsheetDump implements java.io.Serializable {
 
-	private Integer floorsheetId;
+	private Integer floorsheetDumpId;
 	private int floorsheetTransactionNo;
 	private String floorsheetStockSymbol;
 	private int floorsheetBuyerBroker;
@@ -43,13 +43,13 @@ public class FloorsheetDump implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "floorsheet_id", unique = true, nullable = false)
-	public Integer getFloorsheetId() {
-		return this.floorsheetId;
+	@Column(name = "floorsheet_dump_id", unique = true, nullable = false)
+	public Integer getFloorsheetDumpId() {
+		return this.floorsheetDumpId;
 	}
 
-	public void setFloorsheetId(Integer floorsheetId) {
-		this.floorsheetId = floorsheetId;
+	public void setFloorsheetDumpId(Integer floorsheetDumpId) {
+		this.floorsheetDumpId = floorsheetDumpId;
 	}
 
 	@Column(name = "floorsheet_transaction_no", nullable = false)

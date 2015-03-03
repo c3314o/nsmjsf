@@ -1,18 +1,12 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Feb 28, 2015 11:53:30 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,32 +17,23 @@ import javax.persistence.Table;
 public class CompanyBranch implements java.io.Serializable {
 
 	private Integer companyBranchId;
-	private CompanyBranch companyBranch;
-	private String companyBranchAddress;
-	private String companyBranchPhone;
+	private int companyBranchCompanyId;
+	private String branchLocation;
+	private String companyBranchName;
+	private String companyBranchContact;
 	private String companyBranchEmail;
-	private Set<CompanyBranch> companyBranches = new HashSet<CompanyBranch>(0);
 
 	public CompanyBranch() {
 	}
 
-	public CompanyBranch(CompanyBranch companyBranch,
-			String companyBranchAddress, String companyBranchPhone,
+	public CompanyBranch(int companyBranchCompanyId, String branchLocation,
+			String companyBranchName, String companyBranchContact,
 			String companyBranchEmail) {
-		this.companyBranch = companyBranch;
-		this.companyBranchAddress = companyBranchAddress;
-		this.companyBranchPhone = companyBranchPhone;
+		this.companyBranchCompanyId = companyBranchCompanyId;
+		this.branchLocation = branchLocation;
+		this.companyBranchName = companyBranchName;
+		this.companyBranchContact = companyBranchContact;
 		this.companyBranchEmail = companyBranchEmail;
-	}
-
-	public CompanyBranch(CompanyBranch companyBranch,
-			String companyBranchAddress, String companyBranchPhone,
-			String companyBranchEmail, Set<CompanyBranch> companyBranches) {
-		this.companyBranch = companyBranch;
-		this.companyBranchAddress = companyBranchAddress;
-		this.companyBranchPhone = companyBranchPhone;
-		this.companyBranchEmail = companyBranchEmail;
-		this.companyBranches = companyBranches;
 	}
 
 	@Id
@@ -62,32 +47,40 @@ public class CompanyBranch implements java.io.Serializable {
 		this.companyBranchId = companyBranchId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "company_branch_company_id", nullable = false)
-	public CompanyBranch getCompanyBranch() {
-		return this.companyBranch;
+	@Column(name = "company_branch_company_id", nullable = false)
+	public int getCompanyBranchCompanyId() {
+		return this.companyBranchCompanyId;
 	}
 
-	public void setCompanyBranch(CompanyBranch companyBranch) {
-		this.companyBranch = companyBranch;
+	public void setCompanyBranchCompanyId(int companyBranchCompanyId) {
+		this.companyBranchCompanyId = companyBranchCompanyId;
 	}
 
-	@Column(name = "company_branch_address", nullable = false, length = 65535)
-	public String getCompanyBranchAddress() {
-		return this.companyBranchAddress;
+	@Column(name = "branch_location", nullable = false)
+	public String getBranchLocation() {
+		return this.branchLocation;
 	}
 
-	public void setCompanyBranchAddress(String companyBranchAddress) {
-		this.companyBranchAddress = companyBranchAddress;
+	public void setBranchLocation(String branchLocation) {
+		this.branchLocation = branchLocation;
 	}
 
-	@Column(name = "company_branch_phone", nullable = false)
-	public String getCompanyBranchPhone() {
-		return this.companyBranchPhone;
+	@Column(name = "company_branch_name", nullable = false)
+	public String getCompanyBranchName() {
+		return this.companyBranchName;
 	}
 
-	public void setCompanyBranchPhone(String companyBranchPhone) {
-		this.companyBranchPhone = companyBranchPhone;
+	public void setCompanyBranchName(String companyBranchName) {
+		this.companyBranchName = companyBranchName;
+	}
+
+	@Column(name = "company_branch_contact", nullable = false)
+	public String getCompanyBranchContact() {
+		return this.companyBranchContact;
+	}
+
+	public void setCompanyBranchContact(String companyBranchContact) {
+		this.companyBranchContact = companyBranchContact;
 	}
 
 	@Column(name = "company_branch_email", nullable = false)
@@ -97,15 +90,6 @@ public class CompanyBranch implements java.io.Serializable {
 
 	public void setCompanyBranchEmail(String companyBranchEmail) {
 		this.companyBranchEmail = companyBranchEmail;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "companyBranch")
-	public Set<CompanyBranch> getCompanyBranches() {
-		return this.companyBranches;
-	}
-
-	public void setCompanyBranches(Set<CompanyBranch> companyBranches) {
-		this.companyBranches = companyBranches;
 	}
 
 }

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="issueType" resizableColumns="true" value="#{viewIssueTypeBean.lazyModel}" filteredValue="#{viewIssueTypeBean.filteredIssueTypeList}"
+			paginator="true" rows="10" selection="#{viewIssueTypeBean.selectedIssueTypeList}" rowKey="#{issueType.issueTypeId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="issueTypeTable" widgetVar="issueTypeTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewIssueTypeBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewIssueTypeBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="issueTypeTable" fileName="IssueTypeData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="issueTypeTable" fileName="IssueTypeData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="issueTypeTable" fileName="IssueTypeData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="issueTypeTable" fileName="IssueTypeData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Issue Type Label" sortBy="#{issueType.issueTypeLabel}"
+				filterBy="#{issueType.issueTypeLabel}">
+				<h:outputText value="#{issueType.issueTypeLabel}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Issue Type Id" sortBy="#{issueType.issueTypeId}"
+				filterBy="#{issueType.issueTypeId}">
+				<h:outputText value="#{issueType.issueTypeId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewIssueTypeBean.editIssueType(issueType.issueTypeId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewIssueTypeBean.refreshDataSource}" update="issueTypeTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewIssueTypeBean.deleteIssueType(issueType)}" update="issueTypeTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

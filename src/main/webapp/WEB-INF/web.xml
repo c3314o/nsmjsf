@@ -27,6 +27,10 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
     
     <!-- Resource Servlet - serves static resources and resources for specific components -->
     <servlet>
@@ -56,5 +60,8 @@
     <login-config>
         <auth-method>BASIC</auth-method>
     </login-config>
+      <listener>
+  <listener-class>com.nsmjsf.web.utils.SessionListener</listener-class>
+</listener>
 
 </web-app>

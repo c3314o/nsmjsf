@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="company" resizableColumns="true" value="#{viewCompanyBean.lazyModel}" filteredValue="#{viewCompanyBean.filteredCompanyList}"
+			paginator="true" rows="10" selection="#{viewCompanyBean.selectedCompanyList}" rowKey="#{company.companyId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="companyTable" widgetVar="companyTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewCompanyBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewCompanyBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="companyTable" fileName="CompanyData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="companyTable" fileName="CompanyData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="companyTable" fileName="CompanyData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="companyTable" fileName="CompanyData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{company.sector}"
+				headerText="Sector" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('companyTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewCompanyBean.sectorList}"
+							var="sector"
+							itemLabel="#{sector.sectorLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{company.sector.sectorLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Company Quote" sortBy="#{company.companyQuote}"
+				filterBy="#{company.companyQuote}">
+				<h:outputText value="#{company.companyQuote}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Listed" sortBy="#{company.companyListed}"
+				filterBy="#{company.companyListed}">
+				<h:outputText value="#{company.companyListed}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{company.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('companyTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewCompanyBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{company.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			<p:column filterBy="#{company.companyDetail}"
+				headerText="Company Detail" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('companyTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewCompanyBean.companyDetailList}"
+							var="companyDetail"
+							itemLabel="#{companyDetail.companyDetailLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{company.companyDetail.companyDetailLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Company Name" sortBy="#{company.companyName}"
+				filterBy="#{company.companyName}">
+				<h:outputText value="#{company.companyName}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Label" sortBy="#{company.companyLabel}"
+				filterBy="#{company.companyLabel}">
+				<h:outputText value="#{company.companyLabel}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Company Id" sortBy="#{company.companyId}"
+				filterBy="#{company.companyId}">
+				<h:outputText value="#{company.companyId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewCompanyBean.editCompany(company.companyId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewCompanyBean.refreshDataSource}" update="companyTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewCompanyBean.deleteCompany(company)}" update="companyTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

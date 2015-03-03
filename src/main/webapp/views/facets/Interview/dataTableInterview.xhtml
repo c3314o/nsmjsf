@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="interview" resizableColumns="true" value="#{viewInterviewBean.lazyModel}" filteredValue="#{viewInterviewBean.filteredInterviewList}"
+			paginator="true" rows="10" selection="#{viewInterviewBean.selectedInterviewList}" rowKey="#{interview.interviewId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="interviewTable" widgetVar="interviewTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewInterviewBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewInterviewBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="interviewTable" fileName="InterviewData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="interviewTable" fileName="InterviewData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="interviewTable" fileName="InterviewData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="interviewTable" fileName="InterviewData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Interview Interviewer" sortBy="#{interview.interviewInterviewer}"
+				filterBy="#{interview.interviewInterviewer}">
+				<h:outputText value="#{interview.interviewInterviewer}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Interview Highlight" sortBy="#{interview.interviewHighlight}"
+				filterBy="#{interview.interviewHighlight}">
+				<h:outputText value="#{interview.interviewHighlight}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Interview Body" sortBy="#{interview.interviewBody}"
+				filterBy="#{interview.interviewBody}">
+				<h:outputText value="#{interview.interviewBody}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Interview Image" sortBy="#{interview.interviewImage}"
+				filterBy="#{interview.interviewImage}">
+				<h:outputText value="#{interview.interviewImage}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{interview.post}"
+				headerText="Post" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('interviewTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewInterviewBean.postList}"
+							var="post"
+							itemLabel="#{post.postLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{interview.post.postLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Interview Organization" sortBy="#{interview.interviewOrganization}"
+				filterBy="#{interview.interviewOrganization}">
+				<h:outputText value="#{interview.interviewOrganization}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{interview.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('interviewTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewInterviewBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{interview.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Interview Profile" sortBy="#{interview.interviewProfile}"
+				filterBy="#{interview.interviewProfile}">
+				<h:outputText value="#{interview.interviewProfile}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Interview Interviewee Name" sortBy="#{interview.interviewIntervieweeName}"
+				filterBy="#{interview.interviewIntervieweeName}">
+				<h:outputText value="#{interview.interviewIntervieweeName}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Interview Subject" sortBy="#{interview.interviewSubject}"
+				filterBy="#{interview.interviewSubject}">
+				<h:outputText value="#{interview.interviewSubject}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Interview Date" sortBy="#{interview.interviewDate}"
+				filterBy="#{interview.interviewDate}">
+				<h:outputText value="#{interview.interviewDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Interview Id" sortBy="#{interview.interviewId}"
+				filterBy="#{interview.interviewId}">
+				<h:outputText value="#{interview.interviewId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewInterviewBean.editInterview(interview.interviewId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewInterviewBean.refreshDataSource}" update="interviewTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewInterviewBean.deleteInterview(interview)}" update="interviewTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

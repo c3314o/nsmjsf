@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="currencyRate" resizableColumns="true" value="#{viewCurrencyRateBean.lazyModel}" filteredValue="#{viewCurrencyRateBean.filteredCurrencyRateList}"
+			paginator="true" rows="10" selection="#{viewCurrencyRateBean.selectedCurrencyRateList}" rowKey="#{currencyRate.currencyRateId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="currencyRateTable" widgetVar="currencyRateTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewCurrencyRateBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewCurrencyRateBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="currencyRateTable" fileName="CurrencyRateData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="currencyRateTable" fileName="CurrencyRateData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="currencyRateTable" fileName="CurrencyRateData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="currencyRateTable" fileName="CurrencyRateData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Currency Rate Sell" sortBy="#{currencyRate.currencyRateSell}"
+				filterBy="#{currencyRate.currencyRateSell}">
+				<h:outputText value="#{currencyRate.currencyRateSell}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Currency Rate Id" sortBy="#{currencyRate.currencyRateId}"
+				filterBy="#{currencyRate.currencyRateId}">
+				<h:outputText value="#{currencyRate.currencyRateId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Currency Rate Buy" sortBy="#{currencyRate.currencyRateBuy}"
+				filterBy="#{currencyRate.currencyRateBuy}">
+				<h:outputText value="#{currencyRate.currencyRateBuy}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{currencyRate.currencyType}"
+				headerText="Currency Type" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('currencyRateTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewCurrencyRateBean.currencyTypeList}"
+							var="currencyType"
+							itemLabel="#{currencyType.currencyTypeLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{currencyRate.currencyType.currencyTypeLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Currency Rate Per Unit" sortBy="#{currencyRate.currencyRatePerUnit}"
+				filterBy="#{currencyRate.currencyRatePerUnit}">
+				<h:outputText value="#{currencyRate.currencyRatePerUnit}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewCurrencyRateBean.editCurrencyRate(currencyRate.currencyRateId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewCurrencyRateBean.refreshDataSource}" update="currencyRateTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewCurrencyRateBean.deleteCurrencyRate(currencyRate)}" update="currencyRateTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

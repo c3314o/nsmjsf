@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="userBullion" lazy="true" value="#{viewUserBullionBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="userBullionGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{userBullion.userBullionLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+					
+				 <h:outputText value="User Bullion Buy Price:" />
+                   <h:outputText value="#{userBullion.userBullionBuyPrice}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Bullion Total Cost:" />
+                   <h:outputText value="#{userBullion.userBullionTotalCost}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Bullion Buy Date:" />
+                   <h:outputText value="#{userBullion.userBullionBuyDate}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Bullion Id:" />
+                   <h:outputText value="#{userBullion.userBullionId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Bullion Buy Units:" />
+                   <h:outputText value="#{userBullion.userBullionBuyUnits}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Bullion Type:" />
+                    <h:outputText value="#{userBullion.bullionType.bullionTypeLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User Bullion Salese:" />
+                    <h:outputText value="#{userBullion.userBullionSalese.userBullionSaleseLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="User Bullion Buy Unit Price:" />
+                   <h:outputText value="#{userBullion.userBullionBuyUnitPrice}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User:" />
+                    <h:outputText value="#{userBullion.user.userLabel}" />
+		
+			
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+

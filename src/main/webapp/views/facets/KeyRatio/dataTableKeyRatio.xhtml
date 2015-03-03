@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="keyRatio" resizableColumns="true" value="#{viewKeyRatioBean.lazyModel}" filteredValue="#{viewKeyRatioBean.filteredKeyRatioList}"
+			paginator="true" rows="10" selection="#{viewKeyRatioBean.selectedKeyRatioList}" rowKey="#{keyRatio.keyRatioId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="keyRatioTable" widgetVar="keyRatioTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewKeyRatioBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewKeyRatioBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="keyRatioTable" fileName="KeyRatioData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="keyRatioTable" fileName="KeyRatioData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="keyRatioTable" fileName="KeyRatioData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="keyRatioTable" fileName="KeyRatioData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Price Earning Ratio" sortBy="#{keyRatio.keyRatioPriceEarningRatio}"
+				filterBy="#{keyRatio.keyRatioPriceEarningRatio}">
+				<h:outputText value="#{keyRatio.keyRatioPriceEarningRatio}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Exchange Gain To Total Assets" sortBy="#{keyRatio.keyRatioExchangeGainToTotalAssets}"
+				filterBy="#{keyRatio.keyRatioExchangeGainToTotalAssets}">
+				<h:outputText value="#{keyRatio.keyRatioExchangeGainToTotalAssets}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Core Capital" sortBy="#{keyRatio.keyRatioCoreCapital}"
+				filterBy="#{keyRatio.keyRatioCoreCapital}">
+				<h:outputText value="#{keyRatio.keyRatioCoreCapital}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Total Staff" sortBy="#{keyRatio.keyRatioTotalStaff}"
+				filterBy="#{keyRatio.keyRatioTotalStaff}">
+				<h:outputText value="#{keyRatio.keyRatioTotalStaff}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Interest Expenses To Total Deposit And Borrow" sortBy="#{keyRatio.keyRatioInterestExpensesToTotalDepositAndBorrow}"
+				filterBy="#{keyRatio.keyRatioInterestExpensesToTotalDepositAndBorrow}">
+				<h:outputText value="#{keyRatio.keyRatioInterestExpensesToTotalDepositAndBorrow}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{keyRatio.financialReport}"
+				headerText="Financial Report" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('keyRatioTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewKeyRatioBean.financialReportList}"
+							var="financialReport"
+							itemLabel="#{financialReport.financialReportLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{keyRatio.financialReport.financialReportLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Total Capital Fund" sortBy="#{keyRatio.keyRatioTotalCapitalFund}"
+				filterBy="#{keyRatio.keyRatioTotalCapitalFund}">
+				<h:outputText value="#{keyRatio.keyRatioTotalCapitalFund}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Net Profit To Loan And Advance" sortBy="#{keyRatio.keyRatioNetProfitToLoanAndAdvance}"
+				filterBy="#{keyRatio.keyRatioNetProfitToLoanAndAdvance}">
+				<h:outputText value="#{keyRatio.keyRatioNetProfitToLoanAndAdvance}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Nonperforming Loan To Total Loan" sortBy="#{keyRatio.keyRatioNonperformingLoanToTotalLoan}"
+				filterBy="#{keyRatio.keyRatioNonperformingLoanToTotalLoan}">
+				<h:outputText value="#{keyRatio.keyRatioNonperformingLoanToTotalLoan}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Earning Per Share" sortBy="#{keyRatio.keyRatioEarningPerShare}"
+				filterBy="#{keyRatio.keyRatioEarningPerShare}">
+				<h:outputText value="#{keyRatio.keyRatioEarningPerShare}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Return On Equity" sortBy="#{keyRatio.keyRatioReturnOnEquity}"
+				filterBy="#{keyRatio.keyRatioReturnOnEquity}">
+				<h:outputText value="#{keyRatio.keyRatioReturnOnEquity}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Capital Adequacy Fund" sortBy="#{keyRatio.keyRatioCapitalAdequacyFund}"
+				filterBy="#{keyRatio.keyRatioCapitalAdequacyFund}">
+				<h:outputText value="#{keyRatio.keyRatioCapitalAdequacyFund}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Market Value Per Share" sortBy="#{keyRatio.keyRatioMarketValuePerShare}"
+				filterBy="#{keyRatio.keyRatioMarketValuePerShare}">
+				<h:outputText value="#{keyRatio.keyRatioMarketValuePerShare}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Net Profit To Total Assets" sortBy="#{keyRatio.keyRatioNetProfitToTotalAssets}"
+				filterBy="#{keyRatio.keyRatioNetProfitToTotalAssets}">
+				<h:outputText value="#{keyRatio.keyRatioNetProfitToTotalAssets}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Total Operating Expenses To Total Assets" sortBy="#{keyRatio.keyRatioTotalOperatingExpensesToTotalAssets}"
+				filterBy="#{keyRatio.keyRatioTotalOperatingExpensesToTotalAssets}">
+				<h:outputText value="#{keyRatio.keyRatioTotalOperatingExpensesToTotalAssets}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Dividend On Share Capital" sortBy="#{keyRatio.keyRatioDividendOnShareCapital}"
+				filterBy="#{keyRatio.keyRatioDividendOnShareCapital}">
+				<h:outputText value="#{keyRatio.keyRatioDividendOnShareCapital}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Liquidity" sortBy="#{keyRatio.keyRatioLiquidity}"
+				filterBy="#{keyRatio.keyRatioLiquidity}">
+				<h:outputText value="#{keyRatio.keyRatioLiquidity}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Supplementary Capital" sortBy="#{keyRatio.keyRatioSupplementaryCapital}"
+				filterBy="#{keyRatio.keyRatioSupplementaryCapital}">
+				<h:outputText value="#{keyRatio.keyRatioSupplementaryCapital}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Weighted Average Interest Rate Spread" sortBy="#{keyRatio.keyRatioWeightedAverageInterestRateSpread}"
+				filterBy="#{keyRatio.keyRatioWeightedAverageInterestRateSpread}">
+				<h:outputText value="#{keyRatio.keyRatioWeightedAverageInterestRateSpread}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Total Shares" sortBy="#{keyRatio.keyRatioTotalShares}"
+				filterBy="#{keyRatio.keyRatioTotalShares}">
+				<h:outputText value="#{keyRatio.keyRatioTotalShares}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Net Profit To Gross Income" sortBy="#{keyRatio.keyRatioNetProfitToGrossIncome}"
+				filterBy="#{keyRatio.keyRatioNetProfitToGrossIncome}">
+				<h:outputText value="#{keyRatio.keyRatioNetProfitToGrossIncome}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Return Of Asset" sortBy="#{keyRatio.keyRatioReturnOfAsset}"
+				filterBy="#{keyRatio.keyRatioReturnOfAsset}">
+				<h:outputText value="#{keyRatio.keyRatioReturnOfAsset}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Cash Dividend" sortBy="#{keyRatio.keyRatioCashDividend}"
+				filterBy="#{keyRatio.keyRatioCashDividend}">
+				<h:outputText value="#{keyRatio.keyRatioCashDividend}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Book Net Worth Per Share" sortBy="#{keyRatio.keyRatioBookNetWorthPerShare}"
+				filterBy="#{keyRatio.keyRatioBookNetWorthPerShare}">
+				<h:outputText value="#{keyRatio.keyRatioBookNetWorthPerShare}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Book Net Worth" sortBy="#{keyRatio.keyRatioBookNetWorth}"
+				filterBy="#{keyRatio.keyRatioBookNetWorth}">
+				<h:outputText value="#{keyRatio.keyRatioBookNetWorth}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Staff Expenses To Total Operating Expenses" sortBy="#{keyRatio.keyRatioStaffExpensesToTotalOperatingExpenses}"
+				filterBy="#{keyRatio.keyRatioStaffExpensesToTotalOperatingExpenses}">
+				<h:outputText value="#{keyRatio.keyRatioStaffExpensesToTotalOperatingExpenses}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Id" sortBy="#{keyRatio.keyRatioId}"
+				filterBy="#{keyRatio.keyRatioId}">
+				<h:outputText value="#{keyRatio.keyRatioId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Exchange Fluctuation Income By Total Income" sortBy="#{keyRatio.keyRatioExchangeFluctuationIncomeByTotalIncome}"
+				filterBy="#{keyRatio.keyRatioExchangeFluctuationIncomeByTotalIncome}">
+				<h:outputText value="#{keyRatio.keyRatioExchangeFluctuationIncomeByTotalIncome}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Staff Bonus To Total Staff Expenses" sortBy="#{keyRatio.keyRatioStaffBonusToTotalStaffExpenses}"
+				filterBy="#{keyRatio.keyRatioStaffBonusToTotalStaffExpenses}">
+				<h:outputText value="#{keyRatio.keyRatioStaffBonusToTotalStaffExpenses}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Cd Ratio" sortBy="#{keyRatio.keyRatioCdRatio}"
+				filterBy="#{keyRatio.keyRatioCdRatio}">
+				<h:outputText value="#{keyRatio.keyRatioCdRatio}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Key Ratio Interest Income To Loan And Advance" sortBy="#{keyRatio.keyRatioInterestIncomeToLoanAndAdvance}"
+				filterBy="#{keyRatio.keyRatioInterestIncomeToLoanAndAdvance}">
+				<h:outputText value="#{keyRatio.keyRatioInterestIncomeToLoanAndAdvance}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewKeyRatioBean.editKeyRatio(keyRatio.keyRatioId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewKeyRatioBean.refreshDataSource}" update="keyRatioTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewKeyRatioBean.deleteKeyRatio(keyRatio)}" update="keyRatioTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="userInfo" resizableColumns="true" value="#{viewUserInfoBean.lazyModel}" filteredValue="#{viewUserInfoBean.filteredUserInfoList}"
+			paginator="true" rows="10" selection="#{viewUserInfoBean.selectedUserInfoList}" rowKey="#{userInfo.userInfoId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="userInfoTable" widgetVar="userInfoTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewUserInfoBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewUserInfoBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="userInfoTable" fileName="UserInfoData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="userInfoTable" fileName="UserInfoData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="userInfoTable" fileName="UserInfoData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="userInfoTable" fileName="UserInfoData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="User Info Dob" sortBy="#{userInfo.userInfoDob}"
+				filterBy="#{userInfo.userInfoDob}">
+				<h:outputText value="#{userInfo.userInfoDob}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Info Work" sortBy="#{userInfo.userInfoWork}"
+				filterBy="#{userInfo.userInfoWork}">
+				<h:outputText value="#{userInfo.userInfoWork}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Info Id" sortBy="#{userInfo.userInfoId}"
+				filterBy="#{userInfo.userInfoId}">
+				<h:outputText value="#{userInfo.userInfoId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Info Full Name" sortBy="#{userInfo.userInfoFullName}"
+				filterBy="#{userInfo.userInfoFullName}">
+				<h:outputText value="#{userInfo.userInfoFullName}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Info Address" sortBy="#{userInfo.userInfoAddress}"
+				filterBy="#{userInfo.userInfoAddress}">
+				<h:outputText value="#{userInfo.userInfoAddress}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="User Info Profile Picture" sortBy="#{userInfo.userInfoProfilePicture}"
+				filterBy="#{userInfo.userInfoProfilePicture}">
+				<h:outputText value="#{userInfo.userInfoProfilePicture}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewUserInfoBean.editUserInfo(userInfo.userInfoId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewUserInfoBean.refreshDataSource}" update="userInfoTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewUserInfoBean.deleteUserInfo(userInfo)}" update="userInfoTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

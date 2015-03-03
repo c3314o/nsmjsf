@@ -1,0 +1,73 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+
+<style>
+.form-input{
+float:left;
+min-width:200px;
+width:100%;
+
+
+}
+
+
+
+</style>
+<h:panelGrid columns="1"  style="width:100%">
+						<p:outputPanel >
+						<h:outputLabel for="userInfoDob" value="User Info Dob" />
+                         <p:calendar styleClass="form-input" id="userInfoDob" value="#{createUserInfoBean.userInfo.userInfoDob}" required="false" />
+                         </p:outputPanel>
+                         
+                         
+						<p:outputPanel >
+						<h:outputLabel for="userInfoWork" value="User Info Work" />
+                         <p:inputText styleClass="form-input" id="userInfoWork" value="#{createUserInfoBean.userInfo.userInfoWork}" required="false" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="userInfoFullName" value="User Info Full Name" />
+                         <p:inputText styleClass="form-input" id="userInfoFullName" value="#{createUserInfoBean.userInfo.userInfoFullName}" required="true" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="userInfoAddress" value="User Info Address" />
+                         <p:inputText styleClass="form-input" id="userInfoAddress" value="#{createUserInfoBean.userInfo.userInfoAddress}" required="false" />
+                         </p:outputPanel>
+						
+						
+						<p:outputPanel >
+						<h:outputLabel for="userInfoProfilePicture" value="User Info Profile Picture" />
+                         <p:inputText styleClass="form-input" id="userInfoProfilePicture" value="#{createUserInfoBean.userInfo.userInfoProfilePicture}" required="true" />
+                         </p:outputPanel>
+						
+						
+
+
+
+</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

@@ -1,0 +1,85 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+
+<style>
+.form-input{
+float:left;
+min-width:200px;
+width:100%;
+
+
+}
+
+
+
+</style>
+<h:panelGrid columns="1"  style="width:100%">
+			<p:outputPanel >
+				<p:outputLabel for="energyType" value="Energy Type" />
+			          <p:selectOneMenu  styleClass="form-input" id="energyType" value="#{createUserEnergyBean.selectedEnergyTypeWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="energyTypeWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createUserEnergyBean.energyTypeWrapperList}" var="var_energyType"
+					      itemLabel="#{var_energyType.getLabel()}" itemValue="#{var_energyType}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+			<p:outputPanel >
+				<p:outputLabel for="userPortfolio" value="User Portfolio" />
+			          <p:selectOneMenu  styleClass="form-input" id="userPortfolio" value="#{createUserEnergyBean.selectedUserPortfolioWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="userPortfolioWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createUserEnergyBean.userPortfolioWrapperList}" var="var_userPortfolio"
+					      itemLabel="#{var_userPortfolio.getLabel()}" itemValue="#{var_userPortfolio}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+			<p:outputPanel >
+				<p:outputLabel for="user" value="User" />
+			          <p:selectOneMenu  styleClass="form-input" id="user" value="#{createUserEnergyBean.selectedUserWrapper}"
+				        filter="true" required="false" filterMatchMode="startsWith"
+				       converter="userWrapperConverter">
+				       
+
+				           <f:selectItems value="#{createUserEnergyBean.userWrapperList}" var="var_user"
+					      itemLabel="#{var_user.getLabel()}" itemValue="#{var_user}" />
+                         />
+                        </p:selectOneMenu>
+                        </p:outputPanel>
+			
+			
+
+
+
+</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

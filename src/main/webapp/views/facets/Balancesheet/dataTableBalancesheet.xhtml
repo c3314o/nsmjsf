@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="balancesheet" resizableColumns="true" value="#{viewBalancesheetBean.lazyModel}" filteredValue="#{viewBalancesheetBean.filteredBalancesheetList}"
+			paginator="true" rows="10" selection="#{viewBalancesheetBean.selectedBalancesheetList}" rowKey="#{balancesheet.balancesheetId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="balancesheetTable" widgetVar="balancesheetTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewBalancesheetBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewBalancesheetBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="balancesheetTable" fileName="BalancesheetData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="balancesheetTable" fileName="BalancesheetData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="balancesheetTable" fileName="BalancesheetData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="balancesheetTable" fileName="BalancesheetData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Share Capital" sortBy="#{balancesheet.balancesheetShareCapital}"
+				filterBy="#{balancesheet.balancesheetShareCapital}">
+				<h:outputText value="#{balancesheet.balancesheetShareCapital}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Investments" sortBy="#{balancesheet.balancesheetInvestments}"
+				filterBy="#{balancesheet.balancesheetInvestments}">
+				<h:outputText value="#{balancesheet.balancesheetInvestments}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Income Generating Commerical Complex Loan" sortBy="#{balancesheet.balancesheetIncomeGeneratingCommericalComplexLoan}"
+				filterBy="#{balancesheet.balancesheetIncomeGeneratingCommericalComplexLoan}">
+				<h:outputText value="#{balancesheet.balancesheetIncomeGeneratingCommericalComplexLoan}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Other" sortBy="#{balancesheet.balancesheetOther}"
+				filterBy="#{balancesheet.balancesheetOther}">
+				<h:outputText value="#{balancesheet.balancesheetOther}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Total Assets" sortBy="#{balancesheet.balancesheetTotalAssets}"
+				filterBy="#{balancesheet.balancesheetTotalAssets}">
+				<h:outputText value="#{balancesheet.balancesheetTotalAssets}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{balancesheet.financialReport}"
+				headerText="Financial Report" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('balancesheetTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewBalancesheetBean.financialReportList}"
+							var="financialReport"
+							itemLabel="#{financialReport.financialReportLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{balancesheet.financialReport.financialReportLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Loan Advances" sortBy="#{balancesheet.balancesheetLoanAdvances}"
+				filterBy="#{balancesheet.balancesheetLoanAdvances}">
+				<h:outputText value="#{balancesheet.balancesheetLoanAdvances}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Total Liabilities" sortBy="#{balancesheet.balancesheetTotalLiabilities}"
+				filterBy="#{balancesheet.balancesheetTotalLiabilities}">
+				<h:outputText value="#{balancesheet.balancesheetTotalLiabilities}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Balance With Financial Institution" sortBy="#{balancesheet.balancesheetBalanceWithFinancialInstitution}"
+				filterBy="#{balancesheet.balancesheetBalanceWithFinancialInstitution}">
+				<h:outputText value="#{balancesheet.balancesheetBalanceWithFinancialInstitution}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Id" sortBy="#{balancesheet.balancesheetId}"
+				filterBy="#{balancesheet.balancesheetId}">
+				<h:outputText value="#{balancesheet.balancesheetId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Fixed Assets" sortBy="#{balancesheet.balancesheetFixedAssets}"
+				filterBy="#{balancesheet.balancesheetFixedAssets}">
+				<h:outputText value="#{balancesheet.balancesheetFixedAssets}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Personal Home Loan Of Rs 10million Or Less" sortBy="#{balancesheet.balancesheetPersonalHomeLoanOfRs10millionOrLess}"
+				filterBy="#{balancesheet.balancesheetPersonalHomeLoanOfRs10millionOrLess}">
+				<h:outputText value="#{balancesheet.balancesheetPersonalHomeLoanOfRs10millionOrLess}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Noncontrolling Interest" sortBy="#{balancesheet.balancesheetNoncontrollingInterest}"
+				filterBy="#{balancesheet.balancesheetNoncontrollingInterest}">
+				<h:outputText value="#{balancesheet.balancesheetNoncontrollingInterest}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Overdraf Tr Loan Wc Loan" sortBy="#{balancesheet.balancesheetOverdrafTrLoanWcLoan}"
+				filterBy="#{balancesheet.balancesheetOverdrafTrLoanWcLoan}">
+				<h:outputText value="#{balancesheet.balancesheetOverdrafTrLoanWcLoan}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Margin Type Loan" sortBy="#{balancesheet.balancesheetMarginTypeLoan}"
+				filterBy="#{balancesheet.balancesheetMarginTypeLoan}">
+				<h:outputText value="#{balancesheet.balancesheetMarginTypeLoan}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Debenture Bond" sortBy="#{balancesheet.balancesheetDebentureBond}"
+				filterBy="#{balancesheet.balancesheetDebentureBond}">
+				<h:outputText value="#{balancesheet.balancesheetDebentureBond}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Cash Balance" sortBy="#{balancesheet.balancesheetCashBalance}"
+				filterBy="#{balancesheet.balancesheetCashBalance}">
+				<h:outputText value="#{balancesheet.balancesheetCashBalance}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Other Assets" sortBy="#{balancesheet.balancesheetOtherAssets}"
+				filterBy="#{balancesheet.balancesheetOtherAssets}">
+				<h:outputText value="#{balancesheet.balancesheetOtherAssets}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Other Liabilities" sortBy="#{balancesheet.balancesheetOtherLiabilities}"
+				filterBy="#{balancesheet.balancesheetOtherLiabilities}">
+				<h:outputText value="#{balancesheet.balancesheetOtherLiabilities}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Proposed Dividend" sortBy="#{balancesheet.balancesheetProposedDividend}"
+				filterBy="#{balancesheet.balancesheetProposedDividend}">
+				<h:outputText value="#{balancesheet.balancesheetProposedDividend}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Loans Borrowing" sortBy="#{balancesheet.balancesheetLoansBorrowing}"
+				filterBy="#{balancesheet.balancesheetLoansBorrowing}">
+				<h:outputText value="#{balancesheet.balancesheetLoansBorrowing}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Income Tax Liability" sortBy="#{balancesheet.balancesheetIncomeTaxLiability}"
+				filterBy="#{balancesheet.balancesheetIncomeTaxLiability}">
+				<h:outputText value="#{balancesheet.balancesheetIncomeTaxLiability}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Non Banking Assets" sortBy="#{balancesheet.balancesheetNonBankingAssets}"
+				filterBy="#{balancesheet.balancesheetNonBankingAssets}">
+				<h:outputText value="#{balancesheet.balancesheetNonBankingAssets}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Money At Call And Short Notice" sortBy="#{balancesheet.balancesheetMoneyAtCallAndShortNotice}"
+				filterBy="#{balancesheet.balancesheetMoneyAtCallAndShortNotice}">
+				<h:outputText value="#{balancesheet.balancesheetMoneyAtCallAndShortNotice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Residential Real Estate Loan" sortBy="#{balancesheet.balancesheetResidentialRealEstateLoan}"
+				filterBy="#{balancesheet.balancesheetResidentialRealEstateLoan}">
+				<h:outputText value="#{balancesheet.balancesheetResidentialRealEstateLoan}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Foreign Currency" sortBy="#{balancesheet.balancesheetForeignCurrency}"
+				filterBy="#{balancesheet.balancesheetForeignCurrency}">
+				<h:outputText value="#{balancesheet.balancesheetForeignCurrency}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Other Real Estate Loan" sortBy="#{balancesheet.balancesheetOtherRealEstateLoan}"
+				filterBy="#{balancesheet.balancesheetOtherRealEstateLoan}">
+				<h:outputText value="#{balancesheet.balancesheetOtherRealEstateLoan}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Term Loan" sortBy="#{balancesheet.balancesheetTermLoan}"
+				filterBy="#{balancesheet.balancesheetTermLoan}">
+				<h:outputText value="#{balancesheet.balancesheetTermLoan}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Bills Payable" sortBy="#{balancesheet.balancesheetBillsPayable}"
+				filterBy="#{balancesheet.balancesheetBillsPayable}">
+				<h:outputText value="#{balancesheet.balancesheetBillsPayable}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Business Complex And Residential Apart Const Loan" sortBy="#{balancesheet.balancesheetBusinessComplexAndResidentialApartConstLoan}"
+				filterBy="#{balancesheet.balancesheetBusinessComplexAndResidentialApartConstLoan}">
+				<h:outputText value="#{balancesheet.balancesheetBusinessComplexAndResidentialApartConstLoan}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Real Estate Loan" sortBy="#{balancesheet.balancesheetRealEstateLoan}"
+				filterBy="#{balancesheet.balancesheetRealEstateLoan}">
+				<h:outputText value="#{balancesheet.balancesheetRealEstateLoan}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Domestic Currency" sortBy="#{balancesheet.balancesheetDomesticCurrency}"
+				filterBy="#{balancesheet.balancesheetDomesticCurrency}">
+				<h:outputText value="#{balancesheet.balancesheetDomesticCurrency}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Reserve Surplus" sortBy="#{balancesheet.balancesheetReserveSurplus}"
+				filterBy="#{balancesheet.balancesheetReserveSurplus}">
+				<h:outputText value="#{balancesheet.balancesheetReserveSurplus}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Balancesheet Deposit Liability" sortBy="#{balancesheet.balancesheetDepositLiability}"
+				filterBy="#{balancesheet.balancesheetDepositLiability}">
+				<h:outputText value="#{balancesheet.balancesheetDepositLiability}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewBalancesheetBean.editBalancesheet(balancesheet.balancesheetId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewBalancesheetBean.refreshDataSource}" update="balancesheetTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewBalancesheetBean.deleteBalancesheet(balancesheet)}" update="balancesheetTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

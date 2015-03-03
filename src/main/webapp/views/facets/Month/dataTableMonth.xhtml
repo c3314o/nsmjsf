@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="month" resizableColumns="true" value="#{viewMonthBean.lazyModel}" filteredValue="#{viewMonthBean.filteredMonthList}"
+			paginator="true" rows="10" selection="#{viewMonthBean.selectedMonthList}" rowKey="#{month.monthId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="monthTable" widgetVar="monthTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewMonthBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewMonthBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="monthTable" fileName="MonthData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="monthTable" fileName="MonthData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="monthTable" fileName="MonthData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="monthTable" fileName="MonthData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Month Label" sortBy="#{month.monthLabel}"
+				filterBy="#{month.monthLabel}">
+				<h:outputText value="#{month.monthLabel}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Month Id" sortBy="#{month.monthId}"
+				filterBy="#{month.monthId}">
+				<h:outputText value="#{month.monthId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewMonthBean.editMonth(month.monthId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewMonthBean.refreshDataSource}" update="monthTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewMonthBean.deleteMonth(month)}" update="monthTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="auction" resizableColumns="true" value="#{viewAuctionBean.lazyModel}" filteredValue="#{viewAuctionBean.filteredAuctionList}"
+			paginator="true" rows="10" selection="#{viewAuctionBean.selectedAuctionList}" rowKey="#{auction.auctionId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="auctionTable" widgetVar="auctionTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewAuctionBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewAuctionBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="auctionTable" fileName="AuctionData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="auctionTable" fileName="AuctionData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="auctionTable" fileName="AuctionData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="auctionTable" fileName="AuctionData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			<p:column filterBy="#{auction.announcement}"
+				headerText="Announcement" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('auctionTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewAuctionBean.announcementList}"
+							var="announcement"
+							itemLabel="#{announcement.announcementLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{auction.announcement.announcementLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Auction Close Date" sortBy="#{auction.auctionCloseDate}"
+				filterBy="#{auction.auctionCloseDate}">
+				<h:outputText value="#{auction.auctionCloseDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Auction Ordinary Qty" sortBy="#{auction.auctionOrdinaryQty}"
+				filterBy="#{auction.auctionOrdinaryQty}">
+				<h:outputText value="#{auction.auctionOrdinaryQty}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Auction Promoter Qty" sortBy="#{auction.auctionPromoterQty}"
+				filterBy="#{auction.auctionPromoterQty}">
+				<h:outputText value="#{auction.auctionPromoterQty}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Auction Id" sortBy="#{auction.auctionId}"
+				filterBy="#{auction.auctionId}">
+				<h:outputText value="#{auction.auctionId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Auction Open Date" sortBy="#{auction.auctionOpenDate}"
+				filterBy="#{auction.auctionOpenDate}">
+				<h:outputText value="#{auction.auctionOpenDate}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{auction.issueManager}"
+				headerText="Issue Manager" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('auctionTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewAuctionBean.issueManagerList}"
+							var="issueManager"
+							itemLabel="#{issueManager.issueManagerLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{auction.issueManager.issueManagerLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewAuctionBean.editAuction(auction.auctionId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewAuctionBean.refreshDataSource}" update="auctionTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewAuctionBean.deleteAuction(auction)}" update="auctionTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

@@ -1,0 +1,49 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+     
+    <h:head>
+        <title>Add CurrencyRate</title>
+      
+    </h:head>
+     
+    <h:body>
+    <p:growl id="globalgrowl" sticky="true" showDetail="true"
+			autoUpdate="true" />
+    <h:form>
+       <p:panel>
+       <f:facet name="header">Add CurrencyRate</f:facet>
+      <p:outputPanel style="width:100%">
+      
+       <ui:include src="/views/facets/CurrencyRate/createCurrencyRate.xhtml">
+       <ui:param name="createCurrencyRateBean" value="#{createCurrencyRateBean}" />
+       </ui:include>
+      </p:outputPanel>
+       <p:commandButton value="Save" action="#{createCurrencyRateBean.saveOrUpdate()}"></p:commandButton>
+         <p:commandButton value="Close" immediate="true" action="#{createCurrencyRateBean.cancel()}"></p:commandButton>
+     
+       </p:panel>
+       </h:form>
+    </h:body>
+     
+</html>

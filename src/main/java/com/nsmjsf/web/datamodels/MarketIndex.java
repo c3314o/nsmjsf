@@ -1,6 +1,6 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -22,30 +22,42 @@ import javax.persistence.TemporalType;
 @Table(name = "market_index", catalog = "admin_nsmjsf")
 public class MarketIndex implements java.io.Serializable {
 
-	private Integer indexValueId;
+	private Integer marketIndexId;
+	private Post post;
 	private IndexType indexType;
-	private float indexValueValue;
-	private Date indexValueDate;
+	private float marketIndexValue;
+	private Date marketIndexDate;
 
 	public MarketIndex() {
 	}
 
-	public MarketIndex(IndexType indexType, float indexValueValue,
-			Date indexValueDate) {
+	public MarketIndex(Post post, IndexType indexType, float marketIndexValue,
+			Date marketIndexDate) {
+		this.post = post;
 		this.indexType = indexType;
-		this.indexValueValue = indexValueValue;
-		this.indexValueDate = indexValueDate;
+		this.marketIndexValue = marketIndexValue;
+		this.marketIndexDate = marketIndexDate;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "index_value_id", unique = true, nullable = false)
-	public Integer getIndexValueId() {
-		return this.indexValueId;
+	@Column(name = "market_index_id", unique = true, nullable = false)
+	public Integer getMarketIndexId() {
+		return this.marketIndexId;
 	}
 
-	public void setIndexValueId(Integer indexValueId) {
-		this.indexValueId = indexValueId;
+	public void setMarketIndexId(Integer marketIndexId) {
+		this.marketIndexId = marketIndexId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "market_index_post_id", nullable = false)
+	public Post getPost() {
+		return this.post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -58,23 +70,23 @@ public class MarketIndex implements java.io.Serializable {
 		this.indexType = indexType;
 	}
 
-	@Column(name = "index_value_value", nullable = false, precision = 12, scale = 0)
-	public float getIndexValueValue() {
-		return this.indexValueValue;
+	@Column(name = "market_index_value", nullable = false, precision = 12, scale = 0)
+	public float getMarketIndexValue() {
+		return this.marketIndexValue;
 	}
 
-	public void setIndexValueValue(float indexValueValue) {
-		this.indexValueValue = indexValueValue;
+	public void setMarketIndexValue(float marketIndexValue) {
+		this.marketIndexValue = marketIndexValue;
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "index_value_date", nullable = false, length = 0)
-	public Date getIndexValueDate() {
-		return this.indexValueDate;
+	@Column(name = "market_index_date", nullable = false, length = 0)
+	public Date getMarketIndexDate() {
+		return this.marketIndexDate;
 	}
 
-	public void setIndexValueDate(Date indexValueDate) {
-		this.indexValueDate = indexValueDate;
+	public void setMarketIndexDate(Date marketIndexDate) {
+		this.marketIndexDate = marketIndexDate;
 	}
 
 }

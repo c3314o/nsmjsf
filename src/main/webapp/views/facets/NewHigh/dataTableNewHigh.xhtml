@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="newHigh" resizableColumns="true" value="#{viewNewHighBean.lazyModel}" filteredValue="#{viewNewHighBean.filteredNewHighList}"
+			paginator="true" rows="10" selection="#{viewNewHighBean.selectedNewHighList}" rowKey="#{newHigh.newHighId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="newHighTable" widgetVar="newHighTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewNewHighBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewNewHighBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="newHighTable" fileName="NewHighData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="newHighTable" fileName="NewHighData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="newHighTable" fileName="NewHighData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="newHighTable" fileName="NewHighData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="New High Id" sortBy="#{newHigh.newHighId}"
+				filterBy="#{newHigh.newHighId}">
+				<h:outputText value="#{newHigh.newHighId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="New High Current Date" sortBy="#{newHigh.newHighCurrentDate}"
+				filterBy="#{newHigh.newHighCurrentDate}">
+				<h:outputText value="#{newHigh.newHighCurrentDate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="New High Previous Date" sortBy="#{newHigh.newHighPreviousDate}"
+				filterBy="#{newHigh.newHighPreviousDate}">
+				<h:outputText value="#{newHigh.newHighPreviousDate}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{newHigh.company}"
+				headerText="Company" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('newHighTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewNewHighBean.companyList}"
+							var="company"
+							itemLabel="#{company.companyLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{newHigh.company.companyLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="New High Previous Price" sortBy="#{newHigh.newHighPreviousPrice}"
+				filterBy="#{newHigh.newHighPreviousPrice}">
+				<h:outputText value="#{newHigh.newHighPreviousPrice}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="New High Current Value" sortBy="#{newHigh.newHighCurrentValue}"
+				filterBy="#{newHigh.newHighCurrentValue}">
+				<h:outputText value="#{newHigh.newHighCurrentValue}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewNewHighBean.editNewHigh(newHigh.newHighId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewNewHighBean.refreshDataSource}" update="newHighTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewNewHighBean.deleteNewHigh(newHigh)}" update="newHighTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

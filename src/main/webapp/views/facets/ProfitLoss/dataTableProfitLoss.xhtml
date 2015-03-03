@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable  var="profitLoss" resizableColumns="true" value="#{viewProfitLossBean.lazyModel}" filteredValue="#{viewProfitLossBean.filteredProfitLossList}"
+			paginator="true" rows="10" selection="#{viewProfitLossBean.selectedProfitLossList}" rowKey="#{profitLoss.profitLossId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" selectionMode="multiple"
+			
+			id="profitLossTable" widgetVar="profitLossTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewProfitLossBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewProfitLossBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="profitLossTable" fileName="ProfitLossData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="profitLossTable" fileName="ProfitLossData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="profitLossTable" fileName="ProfitLossData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="profitLossTable" fileName="ProfitLossData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Capital Fund To Raw" sortBy="#{profitLoss.profitLossCapitalFundToRaw}"
+				filterBy="#{profitLoss.profitLossCapitalFundToRaw}">
+				<h:outputText value="#{profitLoss.profitLossCapitalFundToRaw}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Non Controlling Interest" sortBy="#{profitLoss.profitLossNonControllingInterest}"
+				filterBy="#{profitLoss.profitLossNonControllingInterest}">
+				<h:outputText value="#{profitLoss.profitLossNonControllingInterest}" />
+			</p:column>
+					
+						
+			
+			
+			<p:column filterBy="#{profitLoss.financialReport}"
+				headerText="Financial Report" footerText="exact"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('profitLossTable').filter()">
+						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
+						<f:selectItems value="#{viewProfitLossBean.financialReportList}"
+							var="financialReport"
+							itemLabel="#{financialReport.financialReportLabel}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{profitLoss.financialReport.financialReportLabel}" />
+			</p:column>
+			
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Provision For Income Tax" sortBy="#{profitLoss.profitLossProvisionForIncomeTax}"
+				filterBy="#{profitLoss.profitLossProvisionForIncomeTax}">
+				<h:outputText value="#{profitLoss.profitLossProvisionForIncomeTax}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Cost Of Fund" sortBy="#{profitLoss.profitLossCostOfFund}"
+				filterBy="#{profitLoss.profitLossCostOfFund}">
+				<h:outputText value="#{profitLoss.profitLossCostOfFund}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Other Operating Income" sortBy="#{profitLoss.profitLossOtherOperatingIncome}"
+				filterBy="#{profitLoss.profitLossOtherOperatingIncome}">
+				<h:outputText value="#{profitLoss.profitLossOtherOperatingIncome}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Credit To Deposit Ratio" sortBy="#{profitLoss.profitLossCreditToDepositRatio}"
+				filterBy="#{profitLoss.profitLossCreditToDepositRatio}">
+				<h:outputText value="#{profitLoss.profitLossCreditToDepositRatio}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Total Loan Loss Provision To Total Npl" sortBy="#{profitLoss.profitLossTotalLoanLossProvisionToTotalNpl}"
+				filterBy="#{profitLoss.profitLossTotalLoanLossProvisionToTotalNpl}">
+				<h:outputText value="#{profitLoss.profitLossTotalLoanLossProvisionToTotalNpl}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Non Performing Loan To Toal Loan" sortBy="#{profitLoss.profitLossNonPerformingLoanToToalLoan}"
+				filterBy="#{profitLoss.profitLossNonPerformingLoanToToalLoan}">
+				<h:outputText value="#{profitLoss.profitLossNonPerformingLoanToToalLoan}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Fees Commission And Discount" sortBy="#{profitLoss.profitLossFeesCommissionAndDiscount}"
+				filterBy="#{profitLoss.profitLossFeesCommissionAndDiscount}">
+				<h:outputText value="#{profitLoss.profitLossFeesCommissionAndDiscount}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Interest Income" sortBy="#{profitLoss.profitLossInterestIncome}"
+				filterBy="#{profitLoss.profitLossInterestIncome}">
+				<h:outputText value="#{profitLoss.profitLossInterestIncome}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Operating Profit" sortBy="#{profitLoss.profitLossOperatingProfit}"
+				filterBy="#{profitLoss.profitLossOperatingProfit}">
+				<h:outputText value="#{profitLoss.profitLossOperatingProfit}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Provision For Possible Losses" sortBy="#{profitLoss.profitLossProvisionForPossibleLosses}"
+				filterBy="#{profitLoss.profitLossProvisionForPossibleLosses}">
+				<h:outputText value="#{profitLoss.profitLossProvisionForPossibleLosses}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Interest Expenses" sortBy="#{profitLoss.profitLossInterestExpenses}"
+				filterBy="#{profitLoss.profitLossInterestExpenses}">
+				<h:outputText value="#{profitLoss.profitLossInterestExpenses}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Profit From Regular Activities" sortBy="#{profitLoss.profitLossProfitFromRegularActivities}"
+				filterBy="#{profitLoss.profitLossProfitFromRegularActivities}">
+				<h:outputText value="#{profitLoss.profitLossProfitFromRegularActivities}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Net Interest Spread" sortBy="#{profitLoss.profitLossNetInterestSpread}"
+				filterBy="#{profitLoss.profitLossNetInterestSpread}">
+				<h:outputText value="#{profitLoss.profitLossNetInterestSpread}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Base Ratio" sortBy="#{profitLoss.profitLossBaseRatio}"
+				filterBy="#{profitLoss.profitLossBaseRatio}">
+				<h:outputText value="#{profitLoss.profitLossBaseRatio}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Net Profit Loss" sortBy="#{profitLoss.profitLossNetProfitLoss}"
+				filterBy="#{profitLoss.profitLossNetProfitLoss}">
+				<h:outputText value="#{profitLoss.profitLossNetProfitLoss}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Operating Profit Before Provision" sortBy="#{profitLoss.profitLossOperatingProfitBeforeProvision}"
+				filterBy="#{profitLoss.profitLossOperatingProfitBeforeProvision}">
+				<h:outputText value="#{profitLoss.profitLossOperatingProfitBeforeProvision}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Foreign Exchange Gain Or Loss" sortBy="#{profitLoss.profitLossForeignExchangeGainOrLoss}"
+				filterBy="#{profitLoss.profitLossForeignExchangeGainOrLoss}">
+				<h:outputText value="#{profitLoss.profitLossForeignExchangeGainOrLoss}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Id" sortBy="#{profitLoss.profitLossId}"
+				filterBy="#{profitLoss.profitLossId}">
+				<h:outputText value="#{profitLoss.profitLossId}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Extra Ordinary Income Or Expenses" sortBy="#{profitLoss.profitLossExtraOrdinaryIncomeOrExpenses}"
+				filterBy="#{profitLoss.profitLossExtraOrdinaryIncomeOrExpenses}">
+				<h:outputText value="#{profitLoss.profitLossExtraOrdinaryIncomeOrExpenses}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Staff Expenses" sortBy="#{profitLoss.profitLossStaffExpenses}"
+				filterBy="#{profitLoss.profitLossStaffExpenses}">
+				<h:outputText value="#{profitLoss.profitLossStaffExpenses}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Non Operating Income Or Loss" sortBy="#{profitLoss.profitLossNonOperatingIncomeOrLoss}"
+				filterBy="#{profitLoss.profitLossNonOperatingIncomeOrLoss}">
+				<h:outputText value="#{profitLoss.profitLossNonOperatingIncomeOrLoss}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Total Operating Income" sortBy="#{profitLoss.profitLossTotalOperatingIncome}"
+				filterBy="#{profitLoss.profitLossTotalOperatingIncome}">
+				<h:outputText value="#{profitLoss.profitLossTotalOperatingIncome}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Write Back Provision For Possible Losses" sortBy="#{profitLoss.profitLossWriteBackProvisionForPossibleLosses}"
+				filterBy="#{profitLoss.profitLossWriteBackProvisionForPossibleLosses}">
+				<h:outputText value="#{profitLoss.profitLossWriteBackProvisionForPossibleLosses}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Profit Before Bonus And Taxes" sortBy="#{profitLoss.profitLossProfitBeforeBonusAndTaxes}"
+				filterBy="#{profitLoss.profitLossProfitBeforeBonusAndTaxes}">
+				<h:outputText value="#{profitLoss.profitLossProfitBeforeBonusAndTaxes}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Average Yield On Loan Advance Investment" sortBy="#{profitLoss.profitLossAverageYieldOnLoanAdvanceInvestment}"
+				filterBy="#{profitLoss.profitLossAverageYieldOnLoanAdvanceInvestment}">
+				<h:outputText value="#{profitLoss.profitLossAverageYieldOnLoanAdvanceInvestment}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Net Interest Income" sortBy="#{profitLoss.profitLossNetInterestIncome}"
+				filterBy="#{profitLoss.profitLossNetInterestIncome}">
+				<h:outputText value="#{profitLoss.profitLossNetInterestIncome}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Profit Loss Provision For Staff Bonus" sortBy="#{profitLoss.profitLossProvisionForStaffBonus}"
+				filterBy="#{profitLoss.profitLossProvisionForStaffBonus}">
+				<h:outputText value="#{profitLoss.profitLossProvisionForStaffBonus}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<p:column  headerText="Actions"  >
+			
+			<p:commandButton value="Edit" action="#{viewProfitLossBean.editProfitLoss(profitLoss.profitLossId)}">
+			 <p:ajax event="dialogReturn" listener="#{viewProfitLossBean.refreshDataSource}" update="profitLossTable" />
+			
+			</p:commandButton>
+			<p:commandButton value="Delete" action="#{viewProfitLossBean.deleteProfitLoss(profitLoss)}" update="profitLossTable" ></p:commandButton>
+			
+			
+			</p:column>
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

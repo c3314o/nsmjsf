@@ -1,13 +1,16 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Feb 28, 2015 11:53:30 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +23,7 @@ import javax.persistence.TemporalType;
 public class BullionPrice implements java.io.Serializable {
 
 	private Integer bullionPriceId;
+	private Post post;
 	private int bullionPriceType;
 	private Date bullionPriceDate;
 	private int bullionPricePerUnit;
@@ -27,8 +31,9 @@ public class BullionPrice implements java.io.Serializable {
 	public BullionPrice() {
 	}
 
-	public BullionPrice(int bullionPriceType, Date bullionPriceDate,
+	public BullionPrice(Post post, int bullionPriceType, Date bullionPriceDate,
 			int bullionPricePerUnit) {
+		this.post = post;
 		this.bullionPriceType = bullionPriceType;
 		this.bullionPriceDate = bullionPriceDate;
 		this.bullionPricePerUnit = bullionPricePerUnit;
@@ -43,6 +48,16 @@ public class BullionPrice implements java.io.Serializable {
 
 	public void setBullionPriceId(Integer bullionPriceId) {
 		this.bullionPriceId = bullionPriceId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "bullion_price_post_id", nullable = false)
+	public Post getPost() {
+		return this.post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 	@Column(name = "bullion_price_type", nullable = false)

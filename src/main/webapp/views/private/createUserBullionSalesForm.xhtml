@@ -1,0 +1,49 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+     
+    <h:head>
+        <title>Add UserBullionSales</title>
+      
+    </h:head>
+     
+    <h:body>
+    <p:growl id="globalgrowl" sticky="true" showDetail="true"
+			autoUpdate="true" />
+    <h:form>
+       <p:panel>
+       <f:facet name="header">Add UserBullionSales</f:facet>
+      <p:outputPanel style="width:100%">
+      
+       <ui:include src="/views/facets/UserBullionSales/createUserBullionSales.xhtml">
+       <ui:param name="createUserBullionSalesBean" value="#{createUserBullionSalesBean}" />
+       </ui:include>
+      </p:outputPanel>
+       <p:commandButton value="Save" action="#{createUserBullionSalesBean.saveOrUpdate()}"></p:commandButton>
+         <p:commandButton value="Close" immediate="true" action="#{createUserBullionSalesBean.cancel()}"></p:commandButton>
+     
+       </p:panel>
+       </h:form>
+    </h:body>
+     
+</html>

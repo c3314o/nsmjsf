@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+			<h:form> 
+    <p:dataScroller value="#{viewFinancialHighlightBean.financialHighlightList}" var="financialHighlight" chunkSize="5" mode="inline" scrollHeight="500">
+      
+			
+					
+			
+			
+			
+			
+ 
+            <p:panel style="width:100%">
+                <h:panelGrid columns="2" cellpadding="5">
+                
+                
+                	
+			
+			
+			
+			
+			 <h:outputText value="Fiscal Year:" />
+                    <h:outputText value="#{financialHighlight.fiscalYear.fiscalYearLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Financial Highlight Earning Per Share:" />
+                   <h:outputText value="#{financialHighlight.financialHighlightEarningPerShare}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Financial Highlight Non Performing Loan:" />
+                   <h:outputText value="#{financialHighlight.financialHighlightNonPerformingLoan}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Financial Highlight Operating Profit:" />
+                   <h:outputText value="#{financialHighlight.financialHighlightOperatingProfit}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Financial Highlight Paid Up Capital:" />
+                   <h:outputText value="#{financialHighlight.financialHighlightPaidUpCapital}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Financial Highlight Net Profit:" />
+                   <h:outputText value="#{financialHighlight.financialHighlightNetProfit}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Financial Highlight Book Value Per Share:" />
+                   <h:outputText value="#{financialHighlight.financialHighlightBookValuePerShare}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Company:" />
+                    <h:outputText value="#{financialHighlight.company.companyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Financial Highlight Id:" />
+                   <h:outputText value="#{financialHighlight.financialHighlightId}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Financial Highlight Credit Deposit Ratio:" />
+                   <h:outputText value="#{financialHighlight.financialHighlightCreditDepositRatio}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Financial Highlight Net Worth Per Share:" />
+                   <h:outputText value="#{financialHighlight.financialHighlightNetWorthPerShare}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Financial Highlight Reserve And Surplus:" />
+                   <h:outputText value="#{financialHighlight.financialHighlightReserveAndSurplus}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Financial Highlight Price Earning Ratio:" />
+                   <h:outputText value="#{financialHighlight.financialHighlightPriceEarningRatio}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Quarter:" />
+                    <h:outputText value="#{financialHighlight.quarter.quarterLabel}" />
+		
+			
+			
+			
+                
+                
+                
+                
+                   
+                  
+                          </h:panelGrid>
+            </p:panel>
+      	
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataScroller>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

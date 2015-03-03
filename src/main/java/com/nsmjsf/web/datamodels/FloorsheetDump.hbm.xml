@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Feb 28, 2015 3:31:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Mar 2, 2015 3:36:22 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.nsmjsf.web.datamodels.FloorsheetDump" table="floorsheet_dump" catalog="admin_nsmjsf">
-        <id name="floorsheetId" type="java.lang.Integer">
-            <column name="floorsheet_id" />
+        <id name="floorsheetDumpId" type="java.lang.Integer">
+            <column name="floorsheet_dump_id" />
             <generator class="identity" />
         </id>
         <property name="floorsheetTransactionNo" type="int">

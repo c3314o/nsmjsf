@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	
+		 <p:dataGrid var="company" lazy="true" value="#{viewCompanyBean.lazyModel}" columns="3" layout="grid"
+        rows="12" paginator="true" id="companyGrid"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15">
+ 
+      
+ 
+        <p:panel header="#{company.companyLabel}" style="text-align:center">
+            <h:panelGrid columns="2" style="width:100%">
+            
+            
+            	
+			
+			
+			
+			 <h:outputText value="Sector:" />
+                    <h:outputText value="#{company.sector.sectorLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Quote:" />
+                   <h:outputText value="#{company.companyQuote}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="User Watch List Stock:" />
+                    <h:outputText value="#{company.userWatchListStock.userWatchListStockLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Listed:" />
+                   <h:outputText value="#{company.companyListed}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Interview:" />
+                    <h:outputText value="#{company.interview.interviewLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Base Price:" />
+                    <h:outputText value="#{company.basePrice.basePriceLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="User Stock:" />
+                    <h:outputText value="#{company.userStock.userStockLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Todays Price:" />
+                    <h:outputText value="#{company.todaysPrice.todaysPriceLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Financial Report:" />
+                    <h:outputText value="#{company.financialReport.financialReportLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="New Low:" />
+                    <h:outputText value="#{company.newLow.newLowLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Latest Price:" />
+                    <h:outputText value="#{company.latestPrice.latestPriceLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Map Post Company:" />
+                    <h:outputText value="#{company.mapPostCompany.mapPostCompanyLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Post:" />
+                    <h:outputText value="#{company.post.postLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Bonus Dividend:" />
+                    <h:outputText value="#{company.bonusDividend.bonusDividendLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Agm:" />
+                    <h:outputText value="#{company.agm.agmLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Financial Highlight:" />
+                    <h:outputText value="#{company.financialHighlight.financialHighlightLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Company Detail:" />
+                    <h:outputText value="#{company.companyDetail.companyDetailLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Name:" />
+                   <h:outputText value="#{company.companyName}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Semi Year Average:" />
+                    <h:outputText value="#{company.semiYearAverage.semiYearAverageLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="New High:" />
+                    <h:outputText value="#{company.newHigh.newHighLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Issue:" />
+                    <h:outputText value="#{company.issue.issueLabel}" />
+		
+			
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Label:" />
+                   <h:outputText value="#{company.companyLabel}" />
+			
+			
+			
+			
+			
+					
+				 <h:outputText value="Company Id:" />
+                   <h:outputText value="#{company.companyId}" />
+			
+			
+			
+			
+			
+			 <h:outputText value="Floorsheet:" />
+                    <h:outputText value="#{company.floorsheet.floorsheetLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Bod:" />
+                    <h:outputText value="#{company.bod.bodLabel}" />
+		
+			
+			
+			
+			
+			
+			
+			 <h:outputText value="Allotment Result:" />
+                    <h:outputText value="#{company.allotmentResult.allotmentResultLabel}" />
+		
+			
+			
+			
+            
+            
+            
+            
+            
+               
+                
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+	
+
+
+
+
+
+
+</ui:composition>
+
+
+
+
+
+
+
