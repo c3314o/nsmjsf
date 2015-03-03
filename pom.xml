@@ -55,6 +55,7 @@
              so that generated project uses correct version of richfaces.
          -->
         <org.richfaces.bom.version>4.2.2.Final</org.richfaces.bom.version>
+          <jersey.version>2.13</jersey.version>
     </properties>
 
     <build>
@@ -79,6 +80,13 @@
                 <version>${org.richfaces.bom.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
+            </dependency>
+             <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -144,6 +152,12 @@
 	<artifactId>commons-logging</artifactId>
 	<version>1.2</version>
 </dependency>
+<dependency>
+	<groupId>org.jsoup</groupId>
+	<artifactId>jsoup</artifactId>
+	<version>1.8.1</version>
+</dependency>
+
 
 <dependency>
 	<groupId>org.primefaces</groupId>
@@ -155,6 +169,17 @@
 	<artifactId>commons-lang3</artifactId>
 	<version>3.3.2</version>
 </dependency>
+ <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+            <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
+            <!-- artifactId>jersey-container-servlet</artifactId -->
+        </dependency>
+       
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-moxy</artifactId>
+        </dependency>
 
 
     </dependencies>

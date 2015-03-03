@@ -44,6 +44,24 @@
     </servlet-mapping>
     
     <!-- Resource Mapping - resources will be served compressed and packed in production -->
+    
+    <!-- rest server -->
+    
+     <servlet>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>com.nsmjsf.rest</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+    
+    <!-- rest end -->
     <context-param>
         <param-name>org.richfaces.resourceMapping.enabled</param-name>
         <param-value>true</param-value>
