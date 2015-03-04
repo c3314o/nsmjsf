@@ -3,11 +3,25 @@
     xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j">
 
 <h:head>
-    <title>RichFaces Application</title>
+    <title>NSMJSF</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    </h:head>
+    <h:outputScript name="js/bootstrap.js"></h:outputScript>
+    <h:outputStylesheet name="css/bootstrap.css"></h:outputStylesheet>
+    <h:outputStylesheet name="css/dashboard.css"></h:outputStylesheet>
+</h:head>
 
 <h:body>
-        <ui:insert name="body">Default content</ui:insert>
+
+	 <ui:include src="/templates/navbar.xhtml" />
+
+    <div class="container-fluid">
+      <div class="row">      
+        <ui:insert name="sidebar"></ui:insert>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <ui:insert name="body">Default</ui:insert>
+        </div>
+    </div>
+   </div>
+	
 </h:body>
 </html>
