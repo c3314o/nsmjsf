@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Quarter;
 
 public class QuarterWrapper {
 
-private static final Log log = LogFactory
-			.getLog(QuarterWrapper.class);
-
+	private static final Log log = LogFactory.getLog(QuarterWrapper.class);
 
 	Quarter quarter;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final QuarterWrapper other = (QuarterWrapper) obj;
-		if (!Objects.equals(this.quarter.getQuarterId(), other.getQuarter().getQuarterId()))
+		if (!Objects.equals(this.quarter.getQuarterId(), other.getQuarter()
+				.getQuarterId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

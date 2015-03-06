@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.MonthlyFinancialHighlight;
 import com.nsmjsf.web.sorters.MonthlyFinancialHighlightSorter;
 
-public class LazyMonthlyFinancialHighlightDataModel extends LazyDataModel<MonthlyFinancialHighlight> {
+public class LazyMonthlyFinancialHighlightDataModel extends
+		LazyDataModel<MonthlyFinancialHighlight> {
 	private static final Log log = LogFactory
 			.getLog(LazyMonthlyFinancialHighlightDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazyMonthlyFinancialHighlightDataModel extends LazyDataModel<Monthl
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<MonthlyFinancialHighlight> monthlyFinancialHighlightList;
 
-	public LazyMonthlyFinancialHighlightDataModel(List<MonthlyFinancialHighlight> monthlyFinancialHighlightList) {
+	public LazyMonthlyFinancialHighlightDataModel(
+			List<MonthlyFinancialHighlight> monthlyFinancialHighlightList) {
 		this.monthlyFinancialHighlightList = monthlyFinancialHighlightList;
 	}
 
 	@Override
 	public MonthlyFinancialHighlight getRowData(String rowKey) {
 		for (MonthlyFinancialHighlight monthlyFinancialHighlight : monthlyFinancialHighlightList) {
-			if (monthlyFinancialHighlight.getMonthlyFinancialHighlightId().toString().equalsIgnoreCase(rowKey))
+			if (monthlyFinancialHighlight.getMonthlyFinancialHighlightId()
+					.toString().equalsIgnoreCase(rowKey))
 				return monthlyFinancialHighlight;
 		}
 
@@ -47,8 +48,8 @@ public class LazyMonthlyFinancialHighlightDataModel extends LazyDataModel<Monthl
 	}
 
 	@Override
-	public List<MonthlyFinancialHighlight> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<MonthlyFinancialHighlight> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<MonthlyFinancialHighlight> data = new ArrayList<MonthlyFinancialHighlight>();
@@ -63,13 +64,13 @@ public class LazyMonthlyFinancialHighlightDataModel extends LazyDataModel<Monthl
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = monthlyFinancialHighlight.getClass().getDeclaredField(
-								filterProperty);
+						Field field = monthlyFinancialHighlight.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(monthlyFinancialHighlight));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(monthlyFinancialHighlight));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazyMonthlyFinancialHighlightDataModel extends LazyDataModel<Monthl
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new MonthlyFinancialHighlightSorter(sortField, sortOrder));
+			Collections.sort(data, new MonthlyFinancialHighlightSorter(
+					sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazyMonthlyFinancialHighlightDataModel extends LazyDataModel<Monthl
 	}
 
 }
-

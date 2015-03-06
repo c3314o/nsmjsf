@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.IndexType;
 
 public class IndexTypeWrapper {
 
-private static final Log log = LogFactory
-			.getLog(IndexTypeWrapper.class);
-
+	private static final Log log = LogFactory.getLog(IndexTypeWrapper.class);
 
 	IndexType indexType;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final IndexTypeWrapper other = (IndexTypeWrapper) obj;
-		if (!Objects.equals(this.indexType.getIndexTypeId(), other.getIndexType().getIndexTypeId()))
+		if (!Objects.equals(this.indexType.getIndexTypeId(), other
+				.getIndexType().getIndexTypeId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.EventDataSource;
 import com.nsmjsf.web.datamodels.Event;
 import com.nsmjsf.web.lazymodels.LazyEventDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.PostAdapter;
-
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -32,103 +28,88 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewEventBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewEventBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewEventBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<Event> eventList;
-    List<Event> selectedEventList;
+	List<Event> selectedEventList;
 	List<Event> filteredEventList;
 	Event selectedEvent;
 	LazyDataModel<Event> lazyModel;
 	EventDataSource eventDataSource;
-	int editEventId=0;
-	
+	int editEventId = 0;
 
-			   List<Post> postList;
-			   PostDataSource postDataSource;
-			   public List<Post> getPostList() {
+	List<Post> postList;
+	PostDataSource postDataSource;
+
+	public List<Post> getPostList() {
 		return postList;
-	     }
+	}
+
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-			
-				   
-	
-	
-	public ViewEventBean()
-	{
+
+	public ViewEventBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyEventDataModel(this.eventList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		eventDataSource=new EventDataSource();
-		
 
-			  postDataSource=new PostDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.eventList=eventDataSource.getAll();
-		lazyModel=new LazyEventDataModel(this.eventList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		eventList=eventDataSource.getAll();
-		
+		lazyModel = new LazyEventDataModel(this.eventList);
 
-			 postList=postDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		eventDataSource = new EventDataSource();
+
+		postDataSource = new PostDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.eventList = eventDataSource.getAll();
+		lazyModel = new LazyEventDataModel(this.eventList);
+
+	}
+
+	private void populateData() {
+		eventList = eventDataSource.getAll();
+
+		postList = postDataSource.getAll();
+
+	}
+
 	public List<Event> getEventList() {
 		return eventList;
 	}
+
 	public void setEventList(List<Event> eventList) {
 		this.eventList = eventList;
 	}
+
 	public LazyDataModel<Event> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<Event> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public Event getSelectedEvent() {
 		return selectedEvent;
 	}
+
 	public void setSelectedEvent(Event selectedEvent) {
 		this.selectedEvent = selectedEvent;
 	}
-	
+
 	public List<Event> getSelectedEventList() {
 		return selectedEventList;
 	}
 
-	public void setSelectedEventList(
-			List<Event> selectedEventList) {
+	public void setSelectedEventList(List<Event> selectedEventList) {
 		this.selectedEventList = selectedEventList;
 	}
 
@@ -136,8 +117,7 @@ private static final Log log = LogFactory.getLog(ViewEventBean.class);
 		return filteredEventList;
 	}
 
-	public void setFilteredEventList(
-			List<Event> filteredEventList) {
+	public void setFilteredEventList(List<Event> filteredEventList) {
 		this.filteredEventList = filteredEventList;
 	}
 
@@ -146,16 +126,16 @@ private static final Log log = LogFactory.getLog(ViewEventBean.class);
 		Map<String, Object> options = new HashMap<String, Object>();
 		options.put("modal", true);
 
-		RequestContext.getCurrentInstance().openDialog("createEvent",
-				options, null);
+		RequestContext.getCurrentInstance().openDialog("createEvent", options,
+				null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("Event Selected"
 				+ ((Event) event.getObject()).getEventId());
 		for (Event cat : selectedEventList) {
-			//System.out.println(cat.getEventLabel());
+			// System.out.println(cat.getEventLabel());
 		}
 
 	}
@@ -168,21 +148,22 @@ private static final Log log = LogFactory.getLog(ViewEventBean.class);
 
 	public void deleteSelectedEvent() {
 		for (Event event : selectedEventList) {
-			//System.out.println(event.getEventLabel());
+			// System.out.println(event.getEventLabel());
 			this.deleteEvent(event);
 		}
 	}
+
 	public void deleteEvent(Event event) {
-			try{
+		try {
 			eventDataSource.delete(event);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditEventId() {
 		return editEventId;
 	}
@@ -190,18 +171,17 @@ private static final Log log = LogFactory.getLog(ViewEventBean.class);
 	public void setEditEventId(int editEventId) {
 		this.editEventId = editEventId;
 	}
-	
-	public void editEvent(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editEvent(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
-		RequestContext.getCurrentInstance().openDialog("createEvent",
-				options,params);
+		RequestContext.getCurrentInstance().openDialog("createEvent", options,
+				params);
 	}
 
 	public ViewType getViewType() {
@@ -212,38 +192,32 @@ private static final Log log = LogFactory.getLog(ViewEventBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

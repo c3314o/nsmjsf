@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyMapPostPostDataModel extends LazyDataModel<MapPostPost> {
 	@Override
 	public MapPostPost getRowData(String rowKey) {
 		for (MapPostPost mapPostPost : mapPostPostList) {
-			if (mapPostPost.getMapPostPostId().toString().equalsIgnoreCase(rowKey))
+			if (mapPostPost.getMapPostPostId().toString()
+					.equalsIgnoreCase(rowKey))
 				return mapPostPost;
 		}
 
@@ -66,10 +65,10 @@ public class LazyMapPostPostDataModel extends LazyDataModel<MapPostPost> {
 						Field field = mapPostPost.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(mapPostPost));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(mapPostPost));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyMapPostPostDataModel extends LazyDataModel<MapPostPost> {
 	}
 
 }
-

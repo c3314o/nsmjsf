@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.KeyRatio ;
+import com.nsmjsf.web.datamodels.KeyRatio;
 
-public class KeyRatioDataSource extends TDataSource<KeyRatio>{
+public class KeyRatioDataSource extends TDataSource<KeyRatio> {
 
-	public KeyRatioDataSource()
-	{
+	public KeyRatioDataSource() {
 		super();
 		this.setTableName("KeyRatio");
 		this.setPrimaryKey("key_ratio_id");
 	}
 
-	
 	@Override
 	public List<KeyRatio> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class KeyRatioDataSource extends TDataSource<KeyRatio>{
 	}
 
 	@Override
-	public List<KeyRatio> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<KeyRatio> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class KeyRatioDataSource extends TDataSource<KeyRatio>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

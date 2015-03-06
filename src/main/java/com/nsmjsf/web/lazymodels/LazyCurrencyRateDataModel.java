@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyCurrencyRateDataModel extends LazyDataModel<CurrencyRate> {
 	@Override
 	public CurrencyRate getRowData(String rowKey) {
 		for (CurrencyRate currencyRate : currencyRateList) {
-			if (currencyRate.getCurrencyRateId().toString().equalsIgnoreCase(rowKey))
+			if (currencyRate.getCurrencyRateId().toString()
+					.equalsIgnoreCase(rowKey))
 				return currencyRate;
 		}
 
@@ -66,10 +65,10 @@ public class LazyCurrencyRateDataModel extends LazyDataModel<CurrencyRate> {
 						Field field = currencyRate.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(currencyRate));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(currencyRate));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyCurrencyRateDataModel extends LazyDataModel<CurrencyRate> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new CurrencyRateSorter(sortField, sortOrder));
+			Collections
+					.sort(data, new CurrencyRateSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyCurrencyRateDataModel extends LazyDataModel<CurrencyRate> {
 	}
 
 }
-

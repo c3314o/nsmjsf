@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -68,8 +66,8 @@ public class LazyInterviewDataModel extends LazyDataModel<Interview> {
 						field.setAccessible(true);
 						String fieldValue = String
 								.valueOf(field.get(interview));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +110,3 @@ public class LazyInterviewDataModel extends LazyDataModel<Interview> {
 	}
 
 }
-

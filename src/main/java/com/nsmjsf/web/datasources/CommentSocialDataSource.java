@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.CommentSocial ;
+import com.nsmjsf.web.datamodels.CommentSocial;
 
-public class CommentSocialDataSource extends TDataSource<CommentSocial>{
+public class CommentSocialDataSource extends TDataSource<CommentSocial> {
 
-	public CommentSocialDataSource()
-	{
+	public CommentSocialDataSource() {
 		super();
 		this.setTableName("CommentSocial");
 		this.setPrimaryKey("comment_social_id");
 	}
 
-	
 	@Override
 	public List<CommentSocial> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class CommentSocialDataSource extends TDataSource<CommentSocial>{
 	}
 
 	@Override
-	public List<CommentSocial> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<CommentSocial> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class CommentSocialDataSource extends TDataSource<CommentSocial>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -18,8 +16,7 @@ import com.nsmjsf.web.datamodels.News;
 import com.nsmjsf.web.sorters.NewsSorter;
 
 public class LazyNewsDataModel extends LazyDataModel<News> {
-	private static final Log log = LogFactory
-			.getLog(LazyNewsDataModel.class);
+	private static final Log log = LogFactory.getLog(LazyNewsDataModel.class);
 
 	/**
 	 * 
@@ -66,10 +63,9 @@ public class LazyNewsDataModel extends LazyDataModel<News> {
 						Field field = news.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(news));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field.get(news));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +108,3 @@ public class LazyNewsDataModel extends LazyDataModel<News> {
 	}
 
 }
-

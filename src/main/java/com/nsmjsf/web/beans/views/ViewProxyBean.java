@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,84 +20,73 @@ import com.nsmjsf.web.datasources.ProxyDataSource;
 import com.nsmjsf.web.datamodels.Proxy;
 import com.nsmjsf.web.lazymodels.LazyProxyDataModel;
 
-	   
 @ManagedBean
 @ViewScoped
 public class ViewProxyBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewProxyBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewProxyBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<Proxy> proxyList;
-    List<Proxy> selectedProxyList;
+	List<Proxy> selectedProxyList;
 	List<Proxy> filteredProxyList;
 	Proxy selectedProxy;
 	LazyDataModel<Proxy> lazyModel;
 	ProxyDataSource proxyDataSource;
-	int editProxyId=0;
-	
-	   
-	
-	
-	public ViewProxyBean()
-	{
+	int editProxyId = 0;
+
+	public ViewProxyBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyProxyDataModel(this.proxyList);
-		
+
+		lazyModel = new LazyProxyDataModel(this.proxyList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		proxyDataSource=new ProxyDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		proxyDataSource = new ProxyDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.proxyList=proxyDataSource.getAll();
-		lazyModel=new LazyProxyDataModel(this.proxyList);
-		
+
+	public void refreshDataSource() {
+		this.proxyList = proxyDataSource.getAll();
+		lazyModel = new LazyProxyDataModel(this.proxyList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		proxyList=proxyDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		proxyList = proxyDataSource.getAll();
+
+	}
+
 	public List<Proxy> getProxyList() {
 		return proxyList;
 	}
+
 	public void setProxyList(List<Proxy> proxyList) {
 		this.proxyList = proxyList;
 	}
+
 	public LazyDataModel<Proxy> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<Proxy> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public Proxy getSelectedProxy() {
 		return selectedProxy;
 	}
+
 	public void setSelectedProxy(Proxy selectedProxy) {
 		this.selectedProxy = selectedProxy;
 	}
-	
+
 	public List<Proxy> getSelectedProxyList() {
 		return selectedProxyList;
 	}
 
-	public void setSelectedProxyList(
-			List<Proxy> selectedProxyList) {
+	public void setSelectedProxyList(List<Proxy> selectedProxyList) {
 		this.selectedProxyList = selectedProxyList;
 	}
 
@@ -106,8 +94,7 @@ private static final Log log = LogFactory.getLog(ViewProxyBean.class);
 		return filteredProxyList;
 	}
 
-	public void setFilteredProxyList(
-			List<Proxy> filteredProxyList) {
+	public void setFilteredProxyList(List<Proxy> filteredProxyList) {
 		this.filteredProxyList = filteredProxyList;
 	}
 
@@ -116,16 +103,16 @@ private static final Log log = LogFactory.getLog(ViewProxyBean.class);
 		Map<String, Object> options = new HashMap<String, Object>();
 		options.put("modal", true);
 
-		RequestContext.getCurrentInstance().openDialog("createProxy",
-				options, null);
+		RequestContext.getCurrentInstance().openDialog("createProxy", options,
+				null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("Proxy Selected"
 				+ ((Proxy) event.getObject()).getProxyId());
 		for (Proxy cat : selectedProxyList) {
-			//System.out.println(cat.getProxyLabel());
+			// System.out.println(cat.getProxyLabel());
 		}
 
 	}
@@ -138,21 +125,22 @@ private static final Log log = LogFactory.getLog(ViewProxyBean.class);
 
 	public void deleteSelectedProxy() {
 		for (Proxy proxy : selectedProxyList) {
-			//System.out.println(proxy.getProxyLabel());
+			// System.out.println(proxy.getProxyLabel());
 			this.deleteProxy(proxy);
 		}
 	}
+
 	public void deleteProxy(Proxy proxy) {
-			try{
+		try {
 			proxyDataSource.delete(proxy);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditProxyId() {
 		return editProxyId;
 	}
@@ -160,18 +148,17 @@ private static final Log log = LogFactory.getLog(ViewProxyBean.class);
 	public void setEditProxyId(int editProxyId) {
 		this.editProxyId = editProxyId;
 	}
-	
-	public void editProxy(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editProxy(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
-		RequestContext.getCurrentInstance().openDialog("createProxy",
-				options,params);
+		RequestContext.getCurrentInstance().openDialog("createProxy", options,
+				params);
 	}
 
 	public ViewType getViewType() {
@@ -182,38 +169,32 @@ private static final Log log = LogFactory.getLog(ViewProxyBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

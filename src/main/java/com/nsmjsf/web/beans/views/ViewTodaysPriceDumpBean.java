@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,78 +20,70 @@ import com.nsmjsf.web.datasources.TodaysPriceDumpDataSource;
 import com.nsmjsf.web.datamodels.TodaysPriceDump;
 import com.nsmjsf.web.lazymodels.LazyTodaysPriceDumpDataModel;
 
-	   
 @ManagedBean
 @ViewScoped
 public class ViewTodaysPriceDumpBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewTodaysPriceDumpBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewTodaysPriceDumpBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<TodaysPriceDump> todaysPriceDumpList;
-    List<TodaysPriceDump> selectedTodaysPriceDumpList;
+	List<TodaysPriceDump> selectedTodaysPriceDumpList;
 	List<TodaysPriceDump> filteredTodaysPriceDumpList;
 	TodaysPriceDump selectedTodaysPriceDump;
 	LazyDataModel<TodaysPriceDump> lazyModel;
 	TodaysPriceDumpDataSource todaysPriceDumpDataSource;
-	int editTodaysPriceDumpId=0;
-	
-	   
-	
-	
-	public ViewTodaysPriceDumpBean()
-	{
+	int editTodaysPriceDumpId = 0;
+
+	public ViewTodaysPriceDumpBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyTodaysPriceDumpDataModel(this.todaysPriceDumpList);
-		
+
+		lazyModel = new LazyTodaysPriceDumpDataModel(this.todaysPriceDumpList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		todaysPriceDumpDataSource=new TodaysPriceDumpDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		todaysPriceDumpDataSource = new TodaysPriceDumpDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.todaysPriceDumpList=todaysPriceDumpDataSource.getAll();
-		lazyModel=new LazyTodaysPriceDumpDataModel(this.todaysPriceDumpList);
-		
+
+	public void refreshDataSource() {
+		this.todaysPriceDumpList = todaysPriceDumpDataSource.getAll();
+		lazyModel = new LazyTodaysPriceDumpDataModel(this.todaysPriceDumpList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		todaysPriceDumpList=todaysPriceDumpDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		todaysPriceDumpList = todaysPriceDumpDataSource.getAll();
+
+	}
+
 	public List<TodaysPriceDump> getTodaysPriceDumpList() {
 		return todaysPriceDumpList;
 	}
+
 	public void setTodaysPriceDumpList(List<TodaysPriceDump> todaysPriceDumpList) {
 		this.todaysPriceDumpList = todaysPriceDumpList;
 	}
+
 	public LazyDataModel<TodaysPriceDump> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<TodaysPriceDump> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public TodaysPriceDump getSelectedTodaysPriceDump() {
 		return selectedTodaysPriceDump;
 	}
-	public void setSelectedTodaysPriceDump(TodaysPriceDump selectedTodaysPriceDump) {
+
+	public void setSelectedTodaysPriceDump(
+			TodaysPriceDump selectedTodaysPriceDump) {
 		this.selectedTodaysPriceDump = selectedTodaysPriceDump;
 	}
-	
+
 	public List<TodaysPriceDump> getSelectedTodaysPriceDumpList() {
 		return selectedTodaysPriceDumpList;
 	}
@@ -120,12 +111,12 @@ private static final Log log = LogFactory.getLog(ViewTodaysPriceDumpBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("TodaysPriceDump Selected"
 				+ ((TodaysPriceDump) event.getObject()).getTodaysPriceDumpId());
 		for (TodaysPriceDump cat : selectedTodaysPriceDumpList) {
-			//System.out.println(cat.getTodaysPriceDumpLabel());
+			// System.out.println(cat.getTodaysPriceDumpLabel());
 		}
 
 	}
@@ -138,21 +129,22 @@ private static final Log log = LogFactory.getLog(ViewTodaysPriceDumpBean.class);
 
 	public void deleteSelectedTodaysPriceDump() {
 		for (TodaysPriceDump todaysPriceDump : selectedTodaysPriceDumpList) {
-			//System.out.println(todaysPriceDump.getTodaysPriceDumpLabel());
+			// System.out.println(todaysPriceDump.getTodaysPriceDumpLabel());
 			this.deleteTodaysPriceDump(todaysPriceDump);
 		}
 	}
+
 	public void deleteTodaysPriceDump(TodaysPriceDump todaysPriceDump) {
-			try{
+		try {
 			todaysPriceDumpDataSource.delete(todaysPriceDump);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditTodaysPriceDumpId() {
 		return editTodaysPriceDumpId;
 	}
@@ -160,18 +152,17 @@ private static final Log log = LogFactory.getLog(ViewTodaysPriceDumpBean.class);
 	public void setEditTodaysPriceDumpId(int editTodaysPriceDumpId) {
 		this.editTodaysPriceDumpId = editTodaysPriceDumpId;
 	}
-	
-	public void editTodaysPriceDump(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editTodaysPriceDump(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createTodaysPriceDump",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -182,38 +173,32 @@ private static final Log log = LogFactory.getLog(ViewTodaysPriceDumpBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

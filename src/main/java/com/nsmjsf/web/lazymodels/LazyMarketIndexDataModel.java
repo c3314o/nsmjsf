@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyMarketIndexDataModel extends LazyDataModel<MarketIndex> {
 	@Override
 	public MarketIndex getRowData(String rowKey) {
 		for (MarketIndex marketIndex : marketIndexList) {
-			if (marketIndex.getMarketIndexId().toString().equalsIgnoreCase(rowKey))
+			if (marketIndex.getMarketIndexId().toString()
+					.equalsIgnoreCase(rowKey))
 				return marketIndex;
 		}
 
@@ -66,10 +65,10 @@ public class LazyMarketIndexDataModel extends LazyDataModel<MarketIndex> {
 						Field field = marketIndex.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(marketIndex));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(marketIndex));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyMarketIndexDataModel extends LazyDataModel<MarketIndex> {
 	}
 
 }
-

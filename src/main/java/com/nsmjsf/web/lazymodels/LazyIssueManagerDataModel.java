@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyIssueManagerDataModel extends LazyDataModel<IssueManager> {
 	@Override
 	public IssueManager getRowData(String rowKey) {
 		for (IssueManager issueManager : issueManagerList) {
-			if (issueManager.getIssueManagerId().toString().equalsIgnoreCase(rowKey))
+			if (issueManager.getIssueManagerId().toString()
+					.equalsIgnoreCase(rowKey))
 				return issueManager;
 		}
 
@@ -66,10 +65,10 @@ public class LazyIssueManagerDataModel extends LazyDataModel<IssueManager> {
 						Field field = issueManager.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(issueManager));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(issueManager));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyIssueManagerDataModel extends LazyDataModel<IssueManager> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new IssueManagerSorter(sortField, sortOrder));
+			Collections
+					.sort(data, new IssueManagerSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyIssueManagerDataModel extends LazyDataModel<IssueManager> {
 	}
 
 }
-

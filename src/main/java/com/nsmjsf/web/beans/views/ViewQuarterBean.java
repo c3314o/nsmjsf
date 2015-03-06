@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.QuarterDataSource;
 import com.nsmjsf.web.datamodels.Quarter;
 import com.nsmjsf.web.lazymodels.LazyQuarterDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.FinancialHighlightAdapter;
-
 
 import com.nsmjsf.web.datasources.FinancialHighlightDataSource;
 
@@ -32,13 +28,7 @@ import com.nsmjsf.web.datamodels.FinancialHighlight;
 
 import com.nsmjsf.web.wrappers.FinancialHighlightWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.FinancialReportAdapter;
-
 
 import com.nsmjsf.web.datasources.FinancialReportDataSource;
 
@@ -46,87 +36,73 @@ import com.nsmjsf.web.datamodels.FinancialReport;
 
 import com.nsmjsf.web.wrappers.FinancialReportWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewQuarterBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewQuarterBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewQuarterBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<Quarter> quarterList;
-    List<Quarter> selectedQuarterList;
+	List<Quarter> selectedQuarterList;
 	List<Quarter> filteredQuarterList;
 	Quarter selectedQuarter;
 	LazyDataModel<Quarter> lazyModel;
 	QuarterDataSource quarterDataSource;
-	int editQuarterId=0;
-	
-	   
-	
-	
-	public ViewQuarterBean()
-	{
+	int editQuarterId = 0;
+
+	public ViewQuarterBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyQuarterDataModel(this.quarterList);
-		
+
+		lazyModel = new LazyQuarterDataModel(this.quarterList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		quarterDataSource=new QuarterDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		quarterDataSource = new QuarterDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.quarterList=quarterDataSource.getAll();
-		lazyModel=new LazyQuarterDataModel(this.quarterList);
-		
+
+	public void refreshDataSource() {
+		this.quarterList = quarterDataSource.getAll();
+		lazyModel = new LazyQuarterDataModel(this.quarterList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		quarterList=quarterDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		quarterList = quarterDataSource.getAll();
+
+	}
+
 	public List<Quarter> getQuarterList() {
 		return quarterList;
 	}
+
 	public void setQuarterList(List<Quarter> quarterList) {
 		this.quarterList = quarterList;
 	}
+
 	public LazyDataModel<Quarter> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<Quarter> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public Quarter getSelectedQuarter() {
 		return selectedQuarter;
 	}
+
 	public void setSelectedQuarter(Quarter selectedQuarter) {
 		this.selectedQuarter = selectedQuarter;
 	}
-	
+
 	public List<Quarter> getSelectedQuarterList() {
 		return selectedQuarterList;
 	}
 
-	public void setSelectedQuarterList(
-			List<Quarter> selectedQuarterList) {
+	public void setSelectedQuarterList(List<Quarter> selectedQuarterList) {
 		this.selectedQuarterList = selectedQuarterList;
 	}
 
@@ -134,8 +110,7 @@ private static final Log log = LogFactory.getLog(ViewQuarterBean.class);
 		return filteredQuarterList;
 	}
 
-	public void setFilteredQuarterList(
-			List<Quarter> filteredQuarterList) {
+	public void setFilteredQuarterList(List<Quarter> filteredQuarterList) {
 		this.filteredQuarterList = filteredQuarterList;
 	}
 
@@ -148,12 +123,12 @@ private static final Log log = LogFactory.getLog(ViewQuarterBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("Quarter Selected"
 				+ ((Quarter) event.getObject()).getQuarterId());
 		for (Quarter cat : selectedQuarterList) {
-			//System.out.println(cat.getQuarterLabel());
+			// System.out.println(cat.getQuarterLabel());
 		}
 
 	}
@@ -166,21 +141,22 @@ private static final Log log = LogFactory.getLog(ViewQuarterBean.class);
 
 	public void deleteSelectedQuarter() {
 		for (Quarter quarter : selectedQuarterList) {
-			//System.out.println(quarter.getQuarterLabel());
+			// System.out.println(quarter.getQuarterLabel());
 			this.deleteQuarter(quarter);
 		}
 	}
+
 	public void deleteQuarter(Quarter quarter) {
-			try{
+		try {
 			quarterDataSource.delete(quarter);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditQuarterId() {
 		return editQuarterId;
 	}
@@ -188,18 +164,17 @@ private static final Log log = LogFactory.getLog(ViewQuarterBean.class);
 	public void setEditQuarterId(int editQuarterId) {
 		this.editQuarterId = editQuarterId;
 	}
-	
-	public void editQuarter(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editQuarter(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createQuarter",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -210,38 +185,32 @@ private static final Log log = LogFactory.getLog(ViewQuarterBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

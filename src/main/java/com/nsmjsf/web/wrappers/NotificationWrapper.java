@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Notification;
 
 public class NotificationWrapper {
 
-private static final Log log = LogFactory
-			.getLog(NotificationWrapper.class);
-
+	private static final Log log = LogFactory.getLog(NotificationWrapper.class);
 
 	Notification notification;
 
@@ -35,7 +31,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.notification.getNotificationId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.notification.getNotificationId());
 		return hash;
 	}
 
@@ -46,7 +43,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final NotificationWrapper other = (NotificationWrapper) obj;
-		if (!Objects.equals(this.notification.getNotificationId(), other.getNotification().getNotificationId()))
+		if (!Objects.equals(this.notification.getNotificationId(), other
+				.getNotification().getNotificationId()))
 			return false;
 		return true;
 	}
@@ -57,4 +55,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

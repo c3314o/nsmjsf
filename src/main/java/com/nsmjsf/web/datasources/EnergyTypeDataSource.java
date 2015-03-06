@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.EnergyType ;
+import com.nsmjsf.web.datamodels.EnergyType;
 
-public class EnergyTypeDataSource extends TDataSource<EnergyType>{
+public class EnergyTypeDataSource extends TDataSource<EnergyType> {
 
-	public EnergyTypeDataSource()
-	{
+	public EnergyTypeDataSource() {
 		super();
 		this.setTableName("EnergyType");
 		this.setPrimaryKey("energy_type_id");
 	}
 
-	
 	@Override
 	public List<EnergyType> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class EnergyTypeDataSource extends TDataSource<EnergyType>{
 	}
 
 	@Override
-	public List<EnergyType> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<EnergyType> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class EnergyTypeDataSource extends TDataSource<EnergyType>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyBonusDividendDataModel extends LazyDataModel<BonusDividend> {
 	@Override
 	public BonusDividend getRowData(String rowKey) {
 		for (BonusDividend bonusDividend : bonusDividendList) {
-			if (bonusDividend.getBonusDividendId().toString().equalsIgnoreCase(rowKey))
+			if (bonusDividend.getBonusDividendId().toString()
+					.equalsIgnoreCase(rowKey))
 				return bonusDividend;
 		}
 
@@ -63,13 +62,13 @@ public class LazyBonusDividendDataModel extends LazyDataModel<BonusDividend> {
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = bonusDividend.getClass().getDeclaredField(
-								filterProperty);
+						Field field = bonusDividend.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(bonusDividend));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(bonusDividend));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyBonusDividendDataModel extends LazyDataModel<BonusDividend> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new BonusDividendSorter(sortField, sortOrder));
+			Collections.sort(data,
+					new BonusDividendSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyBonusDividendDataModel extends LazyDataModel<BonusDividend> {
 	}
 
 }
-

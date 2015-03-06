@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.UserTypeDataSource;
 import com.nsmjsf.web.datamodels.UserType;
 import com.nsmjsf.web.lazymodels.LazyUserTypeDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.UserAdapter;
-
 
 import com.nsmjsf.web.datasources.UserDataSource;
 
@@ -32,87 +28,73 @@ import com.nsmjsf.web.datamodels.User;
 
 import com.nsmjsf.web.wrappers.UserWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewUserTypeBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewUserTypeBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewUserTypeBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<UserType> userTypeList;
-    List<UserType> selectedUserTypeList;
+	List<UserType> selectedUserTypeList;
 	List<UserType> filteredUserTypeList;
 	UserType selectedUserType;
 	LazyDataModel<UserType> lazyModel;
 	UserTypeDataSource userTypeDataSource;
-	int editUserTypeId=0;
-	
-	   
-	
-	
-	public ViewUserTypeBean()
-	{
+	int editUserTypeId = 0;
+
+	public ViewUserTypeBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyUserTypeDataModel(this.userTypeList);
-		
+
+		lazyModel = new LazyUserTypeDataModel(this.userTypeList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		userTypeDataSource=new UserTypeDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		userTypeDataSource = new UserTypeDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.userTypeList=userTypeDataSource.getAll();
-		lazyModel=new LazyUserTypeDataModel(this.userTypeList);
-		
+
+	public void refreshDataSource() {
+		this.userTypeList = userTypeDataSource.getAll();
+		lazyModel = new LazyUserTypeDataModel(this.userTypeList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		userTypeList=userTypeDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		userTypeList = userTypeDataSource.getAll();
+
+	}
+
 	public List<UserType> getUserTypeList() {
 		return userTypeList;
 	}
+
 	public void setUserTypeList(List<UserType> userTypeList) {
 		this.userTypeList = userTypeList;
 	}
+
 	public LazyDataModel<UserType> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<UserType> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public UserType getSelectedUserType() {
 		return selectedUserType;
 	}
+
 	public void setSelectedUserType(UserType selectedUserType) {
 		this.selectedUserType = selectedUserType;
 	}
-	
+
 	public List<UserType> getSelectedUserTypeList() {
 		return selectedUserTypeList;
 	}
 
-	public void setSelectedUserTypeList(
-			List<UserType> selectedUserTypeList) {
+	public void setSelectedUserTypeList(List<UserType> selectedUserTypeList) {
 		this.selectedUserTypeList = selectedUserTypeList;
 	}
 
@@ -120,8 +102,7 @@ private static final Log log = LogFactory.getLog(ViewUserTypeBean.class);
 		return filteredUserTypeList;
 	}
 
-	public void setFilteredUserTypeList(
-			List<UserType> filteredUserTypeList) {
+	public void setFilteredUserTypeList(List<UserType> filteredUserTypeList) {
 		this.filteredUserTypeList = filteredUserTypeList;
 	}
 
@@ -134,12 +115,12 @@ private static final Log log = LogFactory.getLog(ViewUserTypeBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("UserType Selected"
 				+ ((UserType) event.getObject()).getUserTypeId());
 		for (UserType cat : selectedUserTypeList) {
-			//System.out.println(cat.getUserTypeLabel());
+			// System.out.println(cat.getUserTypeLabel());
 		}
 
 	}
@@ -152,21 +133,22 @@ private static final Log log = LogFactory.getLog(ViewUserTypeBean.class);
 
 	public void deleteSelectedUserType() {
 		for (UserType userType : selectedUserTypeList) {
-			//System.out.println(userType.getUserTypeLabel());
+			// System.out.println(userType.getUserTypeLabel());
 			this.deleteUserType(userType);
 		}
 	}
+
 	public void deleteUserType(UserType userType) {
-			try{
+		try {
 			userTypeDataSource.delete(userType);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditUserTypeId() {
 		return editUserTypeId;
 	}
@@ -174,18 +156,17 @@ private static final Log log = LogFactory.getLog(ViewUserTypeBean.class);
 	public void setEditUserTypeId(int editUserTypeId) {
 		this.editUserTypeId = editUserTypeId;
 	}
-	
-	public void editUserType(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editUserType(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createUserType",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -196,38 +177,32 @@ private static final Log log = LogFactory.getLog(ViewUserTypeBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

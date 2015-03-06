@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.adapters;
 
 import java.util.ArrayList;
@@ -10,29 +9,26 @@ import com.nsmjsf.web.datamodels.TodaysPriceDump;
 import com.nsmjsf.web.wrappers.TodaysPriceDumpWrapper;
 
 public class TodaysPriceDumpAdapter {
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(TodaysPriceDumpAdapter.class);
-	
-	public static List<TodaysPriceDumpWrapper> wrapAll(List<TodaysPriceDump> todaysPriceDumpList)
-	{
-		List<TodaysPriceDumpWrapper> todaysPriceDumpWrapperList=new ArrayList<TodaysPriceDumpWrapper>();
-		for(TodaysPriceDump todaysPriceDump:todaysPriceDumpList)
-		{
-			TodaysPriceDumpWrapper todaysPriceDumpWrapper=new TodaysPriceDumpWrapper();
+
+	public static List<TodaysPriceDumpWrapper> wrapAll(
+			List<TodaysPriceDump> todaysPriceDumpList) {
+		List<TodaysPriceDumpWrapper> todaysPriceDumpWrapperList = new ArrayList<TodaysPriceDumpWrapper>();
+		for (TodaysPriceDump todaysPriceDump : todaysPriceDumpList) {
+			TodaysPriceDumpWrapper todaysPriceDumpWrapper = new TodaysPriceDumpWrapper();
 			todaysPriceDumpWrapper.setTodaysPriceDump(todaysPriceDump);
 			todaysPriceDumpWrapperList.add(todaysPriceDumpWrapper);
 		}
 		return todaysPriceDumpWrapperList;
-		
+
 	}
-	
-	public static TodaysPriceDumpWrapper wrap(TodaysPriceDump todaysPriceDump)
-	{
-		TodaysPriceDumpWrapper todaysPriceDumpWrapper=new TodaysPriceDumpWrapper();
+
+	public static TodaysPriceDumpWrapper wrap(TodaysPriceDump todaysPriceDump) {
+		TodaysPriceDumpWrapper todaysPriceDumpWrapper = new TodaysPriceDumpWrapper();
 		todaysPriceDumpWrapper.setTodaysPriceDump(todaysPriceDump);
 		return todaysPriceDumpWrapper;
-		
+
 	}
 
 }
-

@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,78 +20,69 @@ import com.nsmjsf.web.datasources.CompanyBranchDataSource;
 import com.nsmjsf.web.datamodels.CompanyBranch;
 import com.nsmjsf.web.lazymodels.LazyCompanyBranchDataModel;
 
-	   
 @ManagedBean
 @ViewScoped
 public class ViewCompanyBranchBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewCompanyBranchBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewCompanyBranchBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<CompanyBranch> companyBranchList;
-    List<CompanyBranch> selectedCompanyBranchList;
+	List<CompanyBranch> selectedCompanyBranchList;
 	List<CompanyBranch> filteredCompanyBranchList;
 	CompanyBranch selectedCompanyBranch;
 	LazyDataModel<CompanyBranch> lazyModel;
 	CompanyBranchDataSource companyBranchDataSource;
-	int editCompanyBranchId=0;
-	
-	   
-	
-	
-	public ViewCompanyBranchBean()
-	{
+	int editCompanyBranchId = 0;
+
+	public ViewCompanyBranchBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyCompanyBranchDataModel(this.companyBranchList);
-		
+
+		lazyModel = new LazyCompanyBranchDataModel(this.companyBranchList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		companyBranchDataSource=new CompanyBranchDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		companyBranchDataSource = new CompanyBranchDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.companyBranchList=companyBranchDataSource.getAll();
-		lazyModel=new LazyCompanyBranchDataModel(this.companyBranchList);
-		
+
+	public void refreshDataSource() {
+		this.companyBranchList = companyBranchDataSource.getAll();
+		lazyModel = new LazyCompanyBranchDataModel(this.companyBranchList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		companyBranchList=companyBranchDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		companyBranchList = companyBranchDataSource.getAll();
+
+	}
+
 	public List<CompanyBranch> getCompanyBranchList() {
 		return companyBranchList;
 	}
+
 	public void setCompanyBranchList(List<CompanyBranch> companyBranchList) {
 		this.companyBranchList = companyBranchList;
 	}
+
 	public LazyDataModel<CompanyBranch> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<CompanyBranch> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public CompanyBranch getSelectedCompanyBranch() {
 		return selectedCompanyBranch;
 	}
+
 	public void setSelectedCompanyBranch(CompanyBranch selectedCompanyBranch) {
 		this.selectedCompanyBranch = selectedCompanyBranch;
 	}
-	
+
 	public List<CompanyBranch> getSelectedCompanyBranchList() {
 		return selectedCompanyBranchList;
 	}
@@ -120,12 +110,12 @@ private static final Log log = LogFactory.getLog(ViewCompanyBranchBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("CompanyBranch Selected"
 				+ ((CompanyBranch) event.getObject()).getCompanyBranchId());
 		for (CompanyBranch cat : selectedCompanyBranchList) {
-			//System.out.println(cat.getCompanyBranchLabel());
+			// System.out.println(cat.getCompanyBranchLabel());
 		}
 
 	}
@@ -138,21 +128,22 @@ private static final Log log = LogFactory.getLog(ViewCompanyBranchBean.class);
 
 	public void deleteSelectedCompanyBranch() {
 		for (CompanyBranch companyBranch : selectedCompanyBranchList) {
-			//System.out.println(companyBranch.getCompanyBranchLabel());
+			// System.out.println(companyBranch.getCompanyBranchLabel());
 			this.deleteCompanyBranch(companyBranch);
 		}
 	}
+
 	public void deleteCompanyBranch(CompanyBranch companyBranch) {
-			try{
+		try {
 			companyBranchDataSource.delete(companyBranch);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditCompanyBranchId() {
 		return editCompanyBranchId;
 	}
@@ -160,18 +151,17 @@ private static final Log log = LogFactory.getLog(ViewCompanyBranchBean.class);
 	public void setEditCompanyBranchId(int editCompanyBranchId) {
 		this.editCompanyBranchId = editCompanyBranchId;
 	}
-	
-	public void editCompanyBranch(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editCompanyBranch(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createCompanyBranch",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -182,38 +172,32 @@ private static final Log log = LogFactory.getLog(ViewCompanyBranchBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

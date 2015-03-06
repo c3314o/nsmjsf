@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.FloorsheetHeader;
 import com.nsmjsf.web.sorters.FloorsheetHeaderSorter;
 
-public class LazyFloorsheetHeaderDataModel extends LazyDataModel<FloorsheetHeader> {
+public class LazyFloorsheetHeaderDataModel extends
+		LazyDataModel<FloorsheetHeader> {
 	private static final Log log = LogFactory
 			.getLog(LazyFloorsheetHeaderDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazyFloorsheetHeaderDataModel extends LazyDataModel<FloorsheetHeade
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<FloorsheetHeader> floorsheetHeaderList;
 
-	public LazyFloorsheetHeaderDataModel(List<FloorsheetHeader> floorsheetHeaderList) {
+	public LazyFloorsheetHeaderDataModel(
+			List<FloorsheetHeader> floorsheetHeaderList) {
 		this.floorsheetHeaderList = floorsheetHeaderList;
 	}
 
 	@Override
 	public FloorsheetHeader getRowData(String rowKey) {
 		for (FloorsheetHeader floorsheetHeader : floorsheetHeaderList) {
-			if (floorsheetHeader.getFloorsheetHeaderId().toString().equalsIgnoreCase(rowKey))
+			if (floorsheetHeader.getFloorsheetHeaderId().toString()
+					.equalsIgnoreCase(rowKey))
 				return floorsheetHeader;
 		}
 
@@ -47,8 +48,8 @@ public class LazyFloorsheetHeaderDataModel extends LazyDataModel<FloorsheetHeade
 	}
 
 	@Override
-	public List<FloorsheetHeader> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<FloorsheetHeader> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<FloorsheetHeader> data = new ArrayList<FloorsheetHeader>();
@@ -63,13 +64,13 @@ public class LazyFloorsheetHeaderDataModel extends LazyDataModel<FloorsheetHeade
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = floorsheetHeader.getClass().getDeclaredField(
-								filterProperty);
+						Field field = floorsheetHeader.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(floorsheetHeader));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(floorsheetHeader));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazyFloorsheetHeaderDataModel extends LazyDataModel<FloorsheetHeade
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new FloorsheetHeaderSorter(sortField, sortOrder));
+			Collections.sort(data, new FloorsheetHeaderSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazyFloorsheetHeaderDataModel extends LazyDataModel<FloorsheetHeade
 	}
 
 }
-

@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,78 +20,68 @@ import com.nsmjsf.web.datasources.EnergyPriceDataSource;
 import com.nsmjsf.web.datamodels.EnergyPrice;
 import com.nsmjsf.web.lazymodels.LazyEnergyPriceDataModel;
 
-	   
 @ManagedBean
 @ViewScoped
 public class ViewEnergyPriceBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewEnergyPriceBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewEnergyPriceBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<EnergyPrice> energyPriceList;
-    List<EnergyPrice> selectedEnergyPriceList;
+	List<EnergyPrice> selectedEnergyPriceList;
 	List<EnergyPrice> filteredEnergyPriceList;
 	EnergyPrice selectedEnergyPrice;
 	LazyDataModel<EnergyPrice> lazyModel;
 	EnergyPriceDataSource energyPriceDataSource;
-	int editEnergyPriceId=0;
-	
-	   
-	
-	
-	public ViewEnergyPriceBean()
-	{
+	int editEnergyPriceId = 0;
+
+	public ViewEnergyPriceBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyEnergyPriceDataModel(this.energyPriceList);
-		
+
+		lazyModel = new LazyEnergyPriceDataModel(this.energyPriceList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		energyPriceDataSource=new EnergyPriceDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		energyPriceDataSource = new EnergyPriceDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.energyPriceList=energyPriceDataSource.getAll();
-		lazyModel=new LazyEnergyPriceDataModel(this.energyPriceList);
-		
+
+	public void refreshDataSource() {
+		this.energyPriceList = energyPriceDataSource.getAll();
+		lazyModel = new LazyEnergyPriceDataModel(this.energyPriceList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		energyPriceList=energyPriceDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		energyPriceList = energyPriceDataSource.getAll();
+
+	}
+
 	public List<EnergyPrice> getEnergyPriceList() {
 		return energyPriceList;
 	}
+
 	public void setEnergyPriceList(List<EnergyPrice> energyPriceList) {
 		this.energyPriceList = energyPriceList;
 	}
+
 	public LazyDataModel<EnergyPrice> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<EnergyPrice> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public EnergyPrice getSelectedEnergyPrice() {
 		return selectedEnergyPrice;
 	}
+
 	public void setSelectedEnergyPrice(EnergyPrice selectedEnergyPrice) {
 		this.selectedEnergyPrice = selectedEnergyPrice;
 	}
-	
+
 	public List<EnergyPrice> getSelectedEnergyPriceList() {
 		return selectedEnergyPriceList;
 	}
@@ -120,12 +109,12 @@ private static final Log log = LogFactory.getLog(ViewEnergyPriceBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("EnergyPrice Selected"
 				+ ((EnergyPrice) event.getObject()).getEnergyPriceId());
 		for (EnergyPrice cat : selectedEnergyPriceList) {
-			//System.out.println(cat.getEnergyPriceLabel());
+			// System.out.println(cat.getEnergyPriceLabel());
 		}
 
 	}
@@ -138,21 +127,22 @@ private static final Log log = LogFactory.getLog(ViewEnergyPriceBean.class);
 
 	public void deleteSelectedEnergyPrice() {
 		for (EnergyPrice energyPrice : selectedEnergyPriceList) {
-			//System.out.println(energyPrice.getEnergyPriceLabel());
+			// System.out.println(energyPrice.getEnergyPriceLabel());
 			this.deleteEnergyPrice(energyPrice);
 		}
 	}
+
 	public void deleteEnergyPrice(EnergyPrice energyPrice) {
-			try{
+		try {
 			energyPriceDataSource.delete(energyPrice);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditEnergyPriceId() {
 		return editEnergyPriceId;
 	}
@@ -160,18 +150,17 @@ private static final Log log = LogFactory.getLog(ViewEnergyPriceBean.class);
 	public void setEditEnergyPriceId(int editEnergyPriceId) {
 		this.editEnergyPriceId = editEnergyPriceId;
 	}
-	
-	public void editEnergyPrice(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editEnergyPrice(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createEnergyPrice",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -182,38 +171,32 @@ private static final Log log = LogFactory.getLog(ViewEnergyPriceBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

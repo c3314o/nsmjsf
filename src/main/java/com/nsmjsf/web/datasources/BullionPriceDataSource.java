@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.BullionPrice ;
+import com.nsmjsf.web.datamodels.BullionPrice;
 
-public class BullionPriceDataSource extends TDataSource<BullionPrice>{
+public class BullionPriceDataSource extends TDataSource<BullionPrice> {
 
-	public BullionPriceDataSource()
-	{
+	public BullionPriceDataSource() {
 		super();
 		this.setTableName("BullionPrice");
 		this.setPrimaryKey("bullion_price_id");
 	}
 
-	
 	@Override
 	public List<BullionPrice> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class BullionPriceDataSource extends TDataSource<BullionPrice>{
 	}
 
 	@Override
-	public List<BullionPrice> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<BullionPrice> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class BullionPriceDataSource extends TDataSource<BullionPrice>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

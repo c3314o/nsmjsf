@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Balancesheet;
 
 public class BalancesheetWrapper {
 
-private static final Log log = LogFactory
-			.getLog(BalancesheetWrapper.class);
-
+	private static final Log log = LogFactory.getLog(BalancesheetWrapper.class);
 
 	Balancesheet balancesheet;
 
@@ -35,7 +31,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.balancesheet.getBalancesheetId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.balancesheet.getBalancesheetId());
 		return hash;
 	}
 
@@ -46,7 +43,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final BalancesheetWrapper other = (BalancesheetWrapper) obj;
-		if (!Objects.equals(this.balancesheet.getBalancesheetId(), other.getBalancesheet().getBalancesheetId()))
+		if (!Objects.equals(this.balancesheet.getBalancesheetId(), other
+				.getBalancesheet().getBalancesheetId()))
 			return false;
 		return true;
 	}
@@ -57,4 +55,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

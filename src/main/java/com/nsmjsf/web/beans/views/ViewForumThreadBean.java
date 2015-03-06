@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.ForumThreadDataSource;
 import com.nsmjsf.web.datamodels.ForumThread;
 import com.nsmjsf.web.lazymodels.LazyForumThreadDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.PostAdapter;
-
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -32,97 +28,83 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewForumThreadBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewForumThreadBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewForumThreadBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<ForumThread> forumThreadList;
-    List<ForumThread> selectedForumThreadList;
+	List<ForumThread> selectedForumThreadList;
 	List<ForumThread> filteredForumThreadList;
 	ForumThread selectedForumThread;
 	LazyDataModel<ForumThread> lazyModel;
 	ForumThreadDataSource forumThreadDataSource;
-	int editForumThreadId=0;
-	
+	int editForumThreadId = 0;
 
-			   List<Post> postList;
-			   PostDataSource postDataSource;
-			   public List<Post> getPostList() {
+	List<Post> postList;
+	PostDataSource postDataSource;
+
+	public List<Post> getPostList() {
 		return postList;
-	     }
+	}
+
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-			
-				   
-	
-	
-	public ViewForumThreadBean()
-	{
+
+	public ViewForumThreadBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyForumThreadDataModel(this.forumThreadList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		forumThreadDataSource=new ForumThreadDataSource();
-		
 
-			  postDataSource=new PostDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.forumThreadList=forumThreadDataSource.getAll();
-		lazyModel=new LazyForumThreadDataModel(this.forumThreadList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		forumThreadList=forumThreadDataSource.getAll();
-		
+		lazyModel = new LazyForumThreadDataModel(this.forumThreadList);
 
-			 postList=postDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		forumThreadDataSource = new ForumThreadDataSource();
+
+		postDataSource = new PostDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.forumThreadList = forumThreadDataSource.getAll();
+		lazyModel = new LazyForumThreadDataModel(this.forumThreadList);
+
+	}
+
+	private void populateData() {
+		forumThreadList = forumThreadDataSource.getAll();
+
+		postList = postDataSource.getAll();
+
+	}
+
 	public List<ForumThread> getForumThreadList() {
 		return forumThreadList;
 	}
+
 	public void setForumThreadList(List<ForumThread> forumThreadList) {
 		this.forumThreadList = forumThreadList;
 	}
+
 	public LazyDataModel<ForumThread> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<ForumThread> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public ForumThread getSelectedForumThread() {
 		return selectedForumThread;
 	}
+
 	public void setSelectedForumThread(ForumThread selectedForumThread) {
 		this.selectedForumThread = selectedForumThread;
 	}
-	
+
 	public List<ForumThread> getSelectedForumThreadList() {
 		return selectedForumThreadList;
 	}
@@ -150,12 +132,12 @@ private static final Log log = LogFactory.getLog(ViewForumThreadBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("ForumThread Selected"
 				+ ((ForumThread) event.getObject()).getForumThreadId());
 		for (ForumThread cat : selectedForumThreadList) {
-			//System.out.println(cat.getForumThreadLabel());
+			// System.out.println(cat.getForumThreadLabel());
 		}
 
 	}
@@ -168,21 +150,22 @@ private static final Log log = LogFactory.getLog(ViewForumThreadBean.class);
 
 	public void deleteSelectedForumThread() {
 		for (ForumThread forumThread : selectedForumThreadList) {
-			//System.out.println(forumThread.getForumThreadLabel());
+			// System.out.println(forumThread.getForumThreadLabel());
 			this.deleteForumThread(forumThread);
 		}
 	}
+
 	public void deleteForumThread(ForumThread forumThread) {
-			try{
+		try {
 			forumThreadDataSource.delete(forumThread);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditForumThreadId() {
 		return editForumThreadId;
 	}
@@ -190,18 +173,17 @@ private static final Log log = LogFactory.getLog(ViewForumThreadBean.class);
 	public void setEditForumThreadId(int editForumThreadId) {
 		this.editForumThreadId = editForumThreadId;
 	}
-	
-	public void editForumThread(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editForumThread(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createForumThread",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -212,38 +194,32 @@ private static final Log log = LogFactory.getLog(ViewForumThreadBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

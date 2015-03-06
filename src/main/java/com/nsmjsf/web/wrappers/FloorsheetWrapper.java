@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Floorsheet;
 
 public class FloorsheetWrapper {
 
-private static final Log log = LogFactory
-			.getLog(FloorsheetWrapper.class);
-
+	private static final Log log = LogFactory.getLog(FloorsheetWrapper.class);
 
 	Floorsheet floorsheet;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final FloorsheetWrapper other = (FloorsheetWrapper) obj;
-		if (!Objects.equals(this.floorsheet.getFloorsheetId(), other.getFloorsheet().getFloorsheetId()))
+		if (!Objects.equals(this.floorsheet.getFloorsheetId(), other
+				.getFloorsheet().getFloorsheetId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

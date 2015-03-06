@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyProfitLossDataModel extends LazyDataModel<ProfitLoss> {
 	@Override
 	public ProfitLoss getRowData(String rowKey) {
 		for (ProfitLoss profitLoss : profitLossList) {
-			if (profitLoss.getProfitLossId().toString().equalsIgnoreCase(rowKey))
+			if (profitLoss.getProfitLossId().toString()
+					.equalsIgnoreCase(rowKey))
 				return profitLoss;
 		}
 
@@ -66,10 +65,10 @@ public class LazyProfitLossDataModel extends LazyDataModel<ProfitLoss> {
 						Field field = profitLoss.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(profitLoss));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(profitLoss));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyProfitLossDataModel extends LazyDataModel<ProfitLoss> {
 	}
 
 }
-

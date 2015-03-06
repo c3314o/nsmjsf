@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -66,10 +64,9 @@ public class LazyKeyRatioDataModel extends LazyDataModel<KeyRatio> {
 						Field field = keyRatio.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(keyRatio));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field.get(keyRatio));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +109,3 @@ public class LazyKeyRatioDataModel extends LazyDataModel<KeyRatio> {
 	}
 
 }
-

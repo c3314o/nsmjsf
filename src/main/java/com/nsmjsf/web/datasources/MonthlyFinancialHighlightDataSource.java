@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,22 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.MonthlyFinancialHighlight ;
+import com.nsmjsf.web.datamodels.MonthlyFinancialHighlight;
 
-public class MonthlyFinancialHighlightDataSource extends TDataSource<MonthlyFinancialHighlight>{
+public class MonthlyFinancialHighlightDataSource extends
+		TDataSource<MonthlyFinancialHighlight> {
 
-	public MonthlyFinancialHighlightDataSource()
-	{
+	public MonthlyFinancialHighlightDataSource() {
 		super();
 		this.setTableName("MonthlyFinancialHighlight");
 		this.setPrimaryKey("monthly_financial_highlight_id");
 	}
 
-	
 	@Override
 	public List<MonthlyFinancialHighlight> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -88,7 +84,8 @@ public class MonthlyFinancialHighlightDataSource extends TDataSource<MonthlyFina
 	}
 
 	@Override
-	public MonthlyFinancialHighlight create(MonthlyFinancialHighlight record, Session session) {
+	public MonthlyFinancialHighlight create(MonthlyFinancialHighlight record,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.create(record, session);
 	}
@@ -106,7 +103,8 @@ public class MonthlyFinancialHighlightDataSource extends TDataSource<MonthlyFina
 	}
 
 	@Override
-	public List<MonthlyFinancialHighlight> getWhere(HashMap<String, Object> clauses) {
+	public List<MonthlyFinancialHighlight> getWhere(
+			HashMap<String, Object> clauses) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses);
 	}
@@ -142,7 +140,8 @@ public class MonthlyFinancialHighlightDataSource extends TDataSource<MonthlyFina
 	}
 
 	@Override
-	public List<MonthlyFinancialHighlight> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<MonthlyFinancialHighlight> getWhere(
+			HashMap<String, Object> clauses, Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -160,7 +159,8 @@ public class MonthlyFinancialHighlightDataSource extends TDataSource<MonthlyFina
 	}
 
 	@Override
-	public MonthlyFinancialHighlight update(MonthlyFinancialHighlight record, Session session) {
+	public MonthlyFinancialHighlight update(MonthlyFinancialHighlight record,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.update(record, session);
 	}
@@ -182,8 +182,5 @@ public class MonthlyFinancialHighlightDataSource extends TDataSource<MonthlyFina
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

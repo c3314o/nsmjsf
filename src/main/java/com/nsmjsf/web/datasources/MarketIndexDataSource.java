@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.MarketIndex ;
+import com.nsmjsf.web.datamodels.MarketIndex;
 
-public class MarketIndexDataSource extends TDataSource<MarketIndex>{
+public class MarketIndexDataSource extends TDataSource<MarketIndex> {
 
-	public MarketIndexDataSource()
-	{
+	public MarketIndexDataSource() {
 		super();
 		this.setTableName("MarketIndex");
 		this.setPrimaryKey("market_index_id");
 	}
 
-	
 	@Override
 	public List<MarketIndex> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class MarketIndexDataSource extends TDataSource<MarketIndex>{
 	}
 
 	@Override
-	public List<MarketIndex> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<MarketIndex> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class MarketIndexDataSource extends TDataSource<MarketIndex>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

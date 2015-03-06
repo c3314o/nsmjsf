@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyBalancesheetDataModel extends LazyDataModel<Balancesheet> {
 	@Override
 	public Balancesheet getRowData(String rowKey) {
 		for (Balancesheet balancesheet : balancesheetList) {
-			if (balancesheet.getBalancesheetId().toString().equalsIgnoreCase(rowKey))
+			if (balancesheet.getBalancesheetId().toString()
+					.equalsIgnoreCase(rowKey))
 				return balancesheet;
 		}
 
@@ -66,10 +65,10 @@ public class LazyBalancesheetDataModel extends LazyDataModel<Balancesheet> {
 						Field field = balancesheet.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(balancesheet));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(balancesheet));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyBalancesheetDataModel extends LazyDataModel<Balancesheet> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new BalancesheetSorter(sortField, sortOrder));
+			Collections
+					.sort(data, new BalancesheetSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyBalancesheetDataModel extends LazyDataModel<Balancesheet> {
 	}
 
 }
-

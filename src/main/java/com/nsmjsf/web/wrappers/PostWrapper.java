@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Post;
 
 public class PostWrapper {
 
-private static final Log log = LogFactory
-			.getLog(PostWrapper.class);
-
+	private static final Log log = LogFactory.getLog(PostWrapper.class);
 
 	Post post;
 
@@ -57,4 +53,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

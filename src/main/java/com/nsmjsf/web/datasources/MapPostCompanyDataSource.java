@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.MapPostCompany ;
+import com.nsmjsf.web.datamodels.MapPostCompany;
 
-public class MapPostCompanyDataSource extends TDataSource<MapPostCompany>{
+public class MapPostCompanyDataSource extends TDataSource<MapPostCompany> {
 
-	public MapPostCompanyDataSource()
-	{
+	public MapPostCompanyDataSource() {
 		super();
 		this.setTableName("MapPostCompany");
 		this.setPrimaryKey("map_post_company_id");
 	}
 
-	
 	@Override
 	public List<MapPostCompany> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class MapPostCompanyDataSource extends TDataSource<MapPostCompany>{
 	}
 
 	@Override
-	public List<MapPostCompany> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<MapPostCompany> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class MapPostCompanyDataSource extends TDataSource<MapPostCompany>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

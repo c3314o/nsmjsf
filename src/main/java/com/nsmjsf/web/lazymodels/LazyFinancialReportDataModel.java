@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.FinancialReport;
 import com.nsmjsf.web.sorters.FinancialReportSorter;
 
-public class LazyFinancialReportDataModel extends LazyDataModel<FinancialReport> {
+public class LazyFinancialReportDataModel extends
+		LazyDataModel<FinancialReport> {
 	private static final Log log = LogFactory
 			.getLog(LazyFinancialReportDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazyFinancialReportDataModel extends LazyDataModel<FinancialReport>
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<FinancialReport> financialReportList;
 
-	public LazyFinancialReportDataModel(List<FinancialReport> financialReportList) {
+	public LazyFinancialReportDataModel(
+			List<FinancialReport> financialReportList) {
 		this.financialReportList = financialReportList;
 	}
 
 	@Override
 	public FinancialReport getRowData(String rowKey) {
 		for (FinancialReport financialReport : financialReportList) {
-			if (financialReport.getFinancialReportId().toString().equalsIgnoreCase(rowKey))
+			if (financialReport.getFinancialReportId().toString()
+					.equalsIgnoreCase(rowKey))
 				return financialReport;
 		}
 
@@ -47,8 +48,8 @@ public class LazyFinancialReportDataModel extends LazyDataModel<FinancialReport>
 	}
 
 	@Override
-	public List<FinancialReport> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<FinancialReport> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<FinancialReport> data = new ArrayList<FinancialReport>();
@@ -63,13 +64,13 @@ public class LazyFinancialReportDataModel extends LazyDataModel<FinancialReport>
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = financialReport.getClass().getDeclaredField(
-								filterProperty);
+						Field field = financialReport.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(financialReport));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(financialReport));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazyFinancialReportDataModel extends LazyDataModel<FinancialReport>
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new FinancialReportSorter(sortField, sortOrder));
+			Collections.sort(data, new FinancialReportSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazyFinancialReportDataModel extends LazyDataModel<FinancialReport>
 	}
 
 }
-

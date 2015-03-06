@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.UserStockSalesDataSource;
 import com.nsmjsf.web.datamodels.UserStockSales;
 import com.nsmjsf.web.lazymodels.LazyUserStockSalesDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.UserStockAdapter;
-
 
 import com.nsmjsf.web.datasources.UserStockDataSource;
 
@@ -32,13 +28,7 @@ import com.nsmjsf.web.datamodels.UserStock;
 
 import com.nsmjsf.web.wrappers.UserStockWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.UserAdapter;
-
 
 import com.nsmjsf.web.datasources.UserDataSource;
 
@@ -46,113 +36,99 @@ import com.nsmjsf.web.datamodels.User;
 
 import com.nsmjsf.web.wrappers.UserWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewUserStockSalesBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewUserStockSalesBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewUserStockSalesBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<UserStockSales> userStockSalesList;
-    List<UserStockSales> selectedUserStockSalesList;
+	List<UserStockSales> selectedUserStockSalesList;
 	List<UserStockSales> filteredUserStockSalesList;
 	UserStockSales selectedUserStockSales;
 	LazyDataModel<UserStockSales> lazyModel;
 	UserStockSalesDataSource userStockSalesDataSource;
-	int editUserStockSalesId=0;
-	
+	int editUserStockSalesId = 0;
 
-			   List<UserStock> userStockList;
-			   UserStockDataSource userStockDataSource;
-			   public List<UserStock> getUserStockList() {
+	List<UserStock> userStockList;
+	UserStockDataSource userStockDataSource;
+
+	public List<UserStock> getUserStockList() {
 		return userStockList;
-	     }
+	}
+
 	public void setUserStockList(List<UserStock> userStockList) {
 		this.userStockList = userStockList;
 	}
-			
-			
-			   List<User> userList;
-			   UserDataSource userDataSource;
-			   public List<User> getUserList() {
+
+	List<User> userList;
+	UserDataSource userDataSource;
+
+	public List<User> getUserList() {
 		return userList;
-	     }
+	}
+
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
 	}
-			
-				   
-	
-	
-	public ViewUserStockSalesBean()
-	{
+
+	public ViewUserStockSalesBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyUserStockSalesDataModel(this.userStockSalesList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		userStockSalesDataSource=new UserStockSalesDataSource();
-		
 
-			  userStockDataSource=new UserStockDataSource();
-			
-			
-			  userDataSource=new UserDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.userStockSalesList=userStockSalesDataSource.getAll();
-		lazyModel=new LazyUserStockSalesDataModel(this.userStockSalesList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		userStockSalesList=userStockSalesDataSource.getAll();
-		
+		lazyModel = new LazyUserStockSalesDataModel(this.userStockSalesList);
 
-			 userStockList=userStockDataSource.getAll();
-	
-			
-			 userList=userDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		userStockSalesDataSource = new UserStockSalesDataSource();
+
+		userStockDataSource = new UserStockDataSource();
+
+		userDataSource = new UserDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.userStockSalesList = userStockSalesDataSource.getAll();
+		lazyModel = new LazyUserStockSalesDataModel(this.userStockSalesList);
+
+	}
+
+	private void populateData() {
+		userStockSalesList = userStockSalesDataSource.getAll();
+
+		userStockList = userStockDataSource.getAll();
+
+		userList = userDataSource.getAll();
+
+	}
+
 	public List<UserStockSales> getUserStockSalesList() {
 		return userStockSalesList;
 	}
+
 	public void setUserStockSalesList(List<UserStockSales> userStockSalesList) {
 		this.userStockSalesList = userStockSalesList;
 	}
+
 	public LazyDataModel<UserStockSales> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<UserStockSales> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public UserStockSales getSelectedUserStockSales() {
 		return selectedUserStockSales;
 	}
+
 	public void setSelectedUserStockSales(UserStockSales selectedUserStockSales) {
 		this.selectedUserStockSales = selectedUserStockSales;
 	}
-	
+
 	public List<UserStockSales> getSelectedUserStockSalesList() {
 		return selectedUserStockSalesList;
 	}
@@ -180,12 +156,12 @@ private static final Log log = LogFactory.getLog(ViewUserStockSalesBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("UserStockSales Selected"
 				+ ((UserStockSales) event.getObject()).getUserStockSalesId());
 		for (UserStockSales cat : selectedUserStockSalesList) {
-			//System.out.println(cat.getUserStockSalesLabel());
+			// System.out.println(cat.getUserStockSalesLabel());
 		}
 
 	}
@@ -198,21 +174,22 @@ private static final Log log = LogFactory.getLog(ViewUserStockSalesBean.class);
 
 	public void deleteSelectedUserStockSales() {
 		for (UserStockSales userStockSales : selectedUserStockSalesList) {
-			//System.out.println(userStockSales.getUserStockSalesLabel());
+			// System.out.println(userStockSales.getUserStockSalesLabel());
 			this.deleteUserStockSales(userStockSales);
 		}
 	}
+
 	public void deleteUserStockSales(UserStockSales userStockSales) {
-			try{
+		try {
 			userStockSalesDataSource.delete(userStockSales);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditUserStockSalesId() {
 		return editUserStockSalesId;
 	}
@@ -220,18 +197,17 @@ private static final Log log = LogFactory.getLog(ViewUserStockSalesBean.class);
 	public void setEditUserStockSalesId(int editUserStockSalesId) {
 		this.editUserStockSalesId = editUserStockSalesId;
 	}
-	
-	public void editUserStockSales(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editUserStockSales(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createUserStockSales",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -242,38 +218,32 @@ private static final Log log = LogFactory.getLog(ViewUserStockSalesBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

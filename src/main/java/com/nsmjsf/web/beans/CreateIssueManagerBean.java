@@ -17,117 +17,45 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.IssueManagerDataSource;
 import com.nsmjsf.web.datamodels.IssueManager;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreateIssueManagerBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreateIssueManagerBean.class);
-
 
 	private IssueManager issueManager;
 	private IssueManagerDataSource issueManagerDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateIssueManagerBean() {
 
 		issueManager = new IssueManager();
 		/* init datasources */
 		issueManagerDataSource = new IssueManagerDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.issueManager=issueManagerDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.issueManager = issueManagerDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -144,95 +72,73 @@ private static final Log log = LogFactory
 		return issueManagerDataSource;
 	}
 
-	public void setIssueManagerDataSource(IssueManagerDataSource issueManagerDataSource) {
+	public void setIssueManagerDataSource(
+			IssueManagerDataSource issueManagerDataSource) {
 		this.issueManagerDataSource = issueManagerDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public IssueManager saveIssueManager() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			issueManagerDataSource.create(issueManager, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  IssueManager !");
-				this.issueManager=new IssueManager();
+			MessageService.info("Successfully Saved  IssueManager !");
+			this.issueManager = new IssueManager();
 			return issueManager;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
-			MessageService.error("Failed Saving IssueManager .Try Again Later!");
+			log.error(ex.getMessage());
+			MessageService
+					.error("Failed Saving IssueManager .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public IssueManager updateIssueManager() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			issueManagerDataSource.create(issueManager, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  IssueManager !");
-				this.issueManager=new IssueManager();
+			MessageService.info("Successfully Saved  IssueManager !");
+			this.issueManager = new IssueManager();
 			return issueManager;
 
 		} catch (Exception ex) {
-			MessageService.error("Failed Saving IssueManager .Try Again Later!");
+			MessageService
+					.error("Failed Saving IssueManager .Try Again Later!");
 			log.error(ex.getMessage());
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateIssueManager();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveIssueManager();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createIssueManager");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createIssueManager");
+
 	}
-	public IssueManager saveIssueManager(Session session){
-	
-	   this.issueManager= issueManagerDataSource.create(this.issueManager,session);
-	   return this.issueManager;
+
+	public IssueManager saveIssueManager(Session session) {
+
+		this.issueManager = issueManagerDataSource.create(this.issueManager,
+				session);
+		return this.issueManager;
 	}
-	
 
 }
-

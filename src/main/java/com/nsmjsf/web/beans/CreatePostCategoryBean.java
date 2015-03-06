@@ -17,87 +17,45 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.PostCategoryDataSource;
 import com.nsmjsf.web.datamodels.PostCategory;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreatePostCategoryBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreatePostCategoryBean.class);
-
 
 	private PostCategory postCategory;
 	private PostCategoryDataSource postCategoryDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreatePostCategoryBean() {
 
 		postCategory = new PostCategory();
 		/* init datasources */
 		postCategoryDataSource = new PostCategoryDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.postCategory=postCategoryDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.postCategory = postCategoryDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -114,95 +72,73 @@ private static final Log log = LogFactory
 		return postCategoryDataSource;
 	}
 
-	public void setPostCategoryDataSource(PostCategoryDataSource postCategoryDataSource) {
+	public void setPostCategoryDataSource(
+			PostCategoryDataSource postCategoryDataSource) {
 		this.postCategoryDataSource = postCategoryDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public PostCategory savePostCategory() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			postCategoryDataSource.create(postCategory, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  PostCategory !");
-				this.postCategory=new PostCategory();
+			MessageService.info("Successfully Saved  PostCategory !");
+			this.postCategory = new PostCategory();
 			return postCategory;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
-			MessageService.error("Failed Saving PostCategory .Try Again Later!");
+			log.error(ex.getMessage());
+			MessageService
+					.error("Failed Saving PostCategory .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public PostCategory updatePostCategory() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			postCategoryDataSource.create(postCategory, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  PostCategory !");
-				this.postCategory=new PostCategory();
+			MessageService.info("Successfully Saved  PostCategory !");
+			this.postCategory = new PostCategory();
 			return postCategory;
 
 		} catch (Exception ex) {
-			MessageService.error("Failed Saving PostCategory .Try Again Later!");
+			MessageService
+					.error("Failed Saving PostCategory .Try Again Later!");
 			log.error(ex.getMessage());
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updatePostCategory();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			savePostCategory();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createPostCategory");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createPostCategory");
+
 	}
-	public PostCategory savePostCategory(Session session){
-	
-	   this.postCategory= postCategoryDataSource.create(this.postCategory,session);
-	   return this.postCategory;
+
+	public PostCategory savePostCategory(Session session) {
+
+		this.postCategory = postCategoryDataSource.create(this.postCategory,
+				session);
+		return this.postCategory;
 	}
-	
 
 }
-

@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.BullionTypeDataSource;
 import com.nsmjsf.web.datamodels.BullionType;
 import com.nsmjsf.web.lazymodels.LazyBullionTypeDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.UserBullionAdapter;
-
 
 import com.nsmjsf.web.datasources.UserBullionDataSource;
 
@@ -32,81 +28,68 @@ import com.nsmjsf.web.datamodels.UserBullion;
 
 import com.nsmjsf.web.wrappers.UserBullionWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewBullionTypeBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewBullionTypeBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewBullionTypeBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<BullionType> bullionTypeList;
-    List<BullionType> selectedBullionTypeList;
+	List<BullionType> selectedBullionTypeList;
 	List<BullionType> filteredBullionTypeList;
 	BullionType selectedBullionType;
 	LazyDataModel<BullionType> lazyModel;
 	BullionTypeDataSource bullionTypeDataSource;
-	int editBullionTypeId=0;
-	
-	   
-	
-	
-	public ViewBullionTypeBean()
-	{
+	int editBullionTypeId = 0;
+
+	public ViewBullionTypeBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyBullionTypeDataModel(this.bullionTypeList);
-		
+
+		lazyModel = new LazyBullionTypeDataModel(this.bullionTypeList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		bullionTypeDataSource=new BullionTypeDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		bullionTypeDataSource = new BullionTypeDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.bullionTypeList=bullionTypeDataSource.getAll();
-		lazyModel=new LazyBullionTypeDataModel(this.bullionTypeList);
-		
+
+	public void refreshDataSource() {
+		this.bullionTypeList = bullionTypeDataSource.getAll();
+		lazyModel = new LazyBullionTypeDataModel(this.bullionTypeList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		bullionTypeList=bullionTypeDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		bullionTypeList = bullionTypeDataSource.getAll();
+
+	}
+
 	public List<BullionType> getBullionTypeList() {
 		return bullionTypeList;
 	}
+
 	public void setBullionTypeList(List<BullionType> bullionTypeList) {
 		this.bullionTypeList = bullionTypeList;
 	}
+
 	public LazyDataModel<BullionType> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<BullionType> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public BullionType getSelectedBullionType() {
 		return selectedBullionType;
 	}
+
 	public void setSelectedBullionType(BullionType selectedBullionType) {
 		this.selectedBullionType = selectedBullionType;
 	}
-	
+
 	public List<BullionType> getSelectedBullionTypeList() {
 		return selectedBullionTypeList;
 	}
@@ -134,12 +117,12 @@ private static final Log log = LogFactory.getLog(ViewBullionTypeBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("BullionType Selected"
 				+ ((BullionType) event.getObject()).getBullionTypeId());
 		for (BullionType cat : selectedBullionTypeList) {
-			//System.out.println(cat.getBullionTypeLabel());
+			// System.out.println(cat.getBullionTypeLabel());
 		}
 
 	}
@@ -152,21 +135,22 @@ private static final Log log = LogFactory.getLog(ViewBullionTypeBean.class);
 
 	public void deleteSelectedBullionType() {
 		for (BullionType bullionType : selectedBullionTypeList) {
-			//System.out.println(bullionType.getBullionTypeLabel());
+			// System.out.println(bullionType.getBullionTypeLabel());
 			this.deleteBullionType(bullionType);
 		}
 	}
+
 	public void deleteBullionType(BullionType bullionType) {
-			try{
+		try {
 			bullionTypeDataSource.delete(bullionType);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditBullionTypeId() {
 		return editBullionTypeId;
 	}
@@ -174,18 +158,17 @@ private static final Log log = LogFactory.getLog(ViewBullionTypeBean.class);
 	public void setEditBullionTypeId(int editBullionTypeId) {
 		this.editBullionTypeId = editBullionTypeId;
 	}
-	
-	public void editBullionType(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editBullionType(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createBullionType",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -196,38 +179,32 @@ private static final Log log = LogFactory.getLog(ViewBullionTypeBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

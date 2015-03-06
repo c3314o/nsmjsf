@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.AllotmentResultDataSource;
 import com.nsmjsf.web.datamodels.AllotmentResult;
 import com.nsmjsf.web.lazymodels.LazyAllotmentResultDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.PostAdapter;
-
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -32,13 +28,7 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.AnnouncementAdapter;
-
 
 import com.nsmjsf.web.datasources.AnnouncementDataSource;
 
@@ -46,13 +36,7 @@ import com.nsmjsf.web.datamodels.Announcement;
 
 import com.nsmjsf.web.wrappers.AnnouncementWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.CompanyAdapter;
-
 
 import com.nsmjsf.web.datasources.CompanyDataSource;
 
@@ -60,129 +44,115 @@ import com.nsmjsf.web.datamodels.Company;
 
 import com.nsmjsf.web.wrappers.CompanyWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewAllotmentResultBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewAllotmentResultBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewAllotmentResultBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<AllotmentResult> allotmentResultList;
-    List<AllotmentResult> selectedAllotmentResultList;
+	List<AllotmentResult> selectedAllotmentResultList;
 	List<AllotmentResult> filteredAllotmentResultList;
 	AllotmentResult selectedAllotmentResult;
 	LazyDataModel<AllotmentResult> lazyModel;
 	AllotmentResultDataSource allotmentResultDataSource;
-	int editAllotmentResultId=0;
-	
+	int editAllotmentResultId = 0;
 
-			   List<Post> postList;
-			   PostDataSource postDataSource;
-			   public List<Post> getPostList() {
+	List<Post> postList;
+	PostDataSource postDataSource;
+
+	public List<Post> getPostList() {
 		return postList;
-	     }
+	}
+
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-			
-			
-			   List<Announcement> announcementList;
-			   AnnouncementDataSource announcementDataSource;
-			   public List<Announcement> getAnnouncementList() {
+
+	List<Announcement> announcementList;
+	AnnouncementDataSource announcementDataSource;
+
+	public List<Announcement> getAnnouncementList() {
 		return announcementList;
-	     }
+	}
+
 	public void setAnnouncementList(List<Announcement> announcementList) {
 		this.announcementList = announcementList;
 	}
-			
-			
-			   List<Company> companyList;
-			   CompanyDataSource companyDataSource;
-			   public List<Company> getCompanyList() {
+
+	List<Company> companyList;
+	CompanyDataSource companyDataSource;
+
+	public List<Company> getCompanyList() {
 		return companyList;
-	     }
+	}
+
 	public void setCompanyList(List<Company> companyList) {
 		this.companyList = companyList;
 	}
-			
-				   
-	
-	
-	public ViewAllotmentResultBean()
-	{
+
+	public ViewAllotmentResultBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyAllotmentResultDataModel(this.allotmentResultList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		allotmentResultDataSource=new AllotmentResultDataSource();
-		
 
-			  postDataSource=new PostDataSource();
-			
-			
-			  announcementDataSource=new AnnouncementDataSource();
-			
-			
-			  companyDataSource=new CompanyDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.allotmentResultList=allotmentResultDataSource.getAll();
-		lazyModel=new LazyAllotmentResultDataModel(this.allotmentResultList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		allotmentResultList=allotmentResultDataSource.getAll();
-		
+		lazyModel = new LazyAllotmentResultDataModel(this.allotmentResultList);
 
-			 postList=postDataSource.getAll();
-	
-			
-			 announcementList=announcementDataSource.getAll();
-	
-			
-			 companyList=companyDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		allotmentResultDataSource = new AllotmentResultDataSource();
+
+		postDataSource = new PostDataSource();
+
+		announcementDataSource = new AnnouncementDataSource();
+
+		companyDataSource = new CompanyDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.allotmentResultList = allotmentResultDataSource.getAll();
+		lazyModel = new LazyAllotmentResultDataModel(this.allotmentResultList);
+
+	}
+
+	private void populateData() {
+		allotmentResultList = allotmentResultDataSource.getAll();
+
+		postList = postDataSource.getAll();
+
+		announcementList = announcementDataSource.getAll();
+
+		companyList = companyDataSource.getAll();
+
+	}
+
 	public List<AllotmentResult> getAllotmentResultList() {
 		return allotmentResultList;
 	}
+
 	public void setAllotmentResultList(List<AllotmentResult> allotmentResultList) {
 		this.allotmentResultList = allotmentResultList;
 	}
+
 	public LazyDataModel<AllotmentResult> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<AllotmentResult> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public AllotmentResult getSelectedAllotmentResult() {
 		return selectedAllotmentResult;
 	}
-	public void setSelectedAllotmentResult(AllotmentResult selectedAllotmentResult) {
+
+	public void setSelectedAllotmentResult(
+			AllotmentResult selectedAllotmentResult) {
 		this.selectedAllotmentResult = selectedAllotmentResult;
 	}
-	
+
 	public List<AllotmentResult> getSelectedAllotmentResultList() {
 		return selectedAllotmentResultList;
 	}
@@ -210,12 +180,12 @@ private static final Log log = LogFactory.getLog(ViewAllotmentResultBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("AllotmentResult Selected"
 				+ ((AllotmentResult) event.getObject()).getAllotmentResultId());
 		for (AllotmentResult cat : selectedAllotmentResultList) {
-			//System.out.println(cat.getAllotmentResultLabel());
+			// System.out.println(cat.getAllotmentResultLabel());
 		}
 
 	}
@@ -228,21 +198,22 @@ private static final Log log = LogFactory.getLog(ViewAllotmentResultBean.class);
 
 	public void deleteSelectedAllotmentResult() {
 		for (AllotmentResult allotmentResult : selectedAllotmentResultList) {
-			//System.out.println(allotmentResult.getAllotmentResultLabel());
+			// System.out.println(allotmentResult.getAllotmentResultLabel());
 			this.deleteAllotmentResult(allotmentResult);
 		}
 	}
+
 	public void deleteAllotmentResult(AllotmentResult allotmentResult) {
-			try{
+		try {
 			allotmentResultDataSource.delete(allotmentResult);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditAllotmentResultId() {
 		return editAllotmentResultId;
 	}
@@ -250,18 +221,17 @@ private static final Log log = LogFactory.getLog(ViewAllotmentResultBean.class);
 	public void setEditAllotmentResultId(int editAllotmentResultId) {
 		this.editAllotmentResultId = editAllotmentResultId;
 	}
-	
-	public void editAllotmentResult(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editAllotmentResult(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createAllotmentResult",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -272,38 +242,32 @@ private static final Log log = LogFactory.getLog(ViewAllotmentResultBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

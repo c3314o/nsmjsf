@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.UserType;
 
 public class UserTypeWrapper {
 
-private static final Log log = LogFactory
-			.getLog(UserTypeWrapper.class);
-
+	private static final Log log = LogFactory.getLog(UserTypeWrapper.class);
 
 	UserType userType;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final UserTypeWrapper other = (UserTypeWrapper) obj;
-		if (!Objects.equals(this.userType.getUserTypeId(), other.getUserType().getUserTypeId()))
+		if (!Objects.equals(this.userType.getUserTypeId(), other.getUserType()
+				.getUserTypeId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

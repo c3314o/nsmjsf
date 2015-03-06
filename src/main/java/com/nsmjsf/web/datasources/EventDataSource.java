@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.Event ;
+import com.nsmjsf.web.datamodels.Event;
 
-public class EventDataSource extends TDataSource<Event>{
+public class EventDataSource extends TDataSource<Event> {
 
-	public EventDataSource()
-	{
+	public EventDataSource() {
 		super();
 		this.setTableName("Event");
 		this.setPrimaryKey("event_id");
 	}
 
-	
 	@Override
 	public List<Event> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -182,8 +177,5 @@ public class EventDataSource extends TDataSource<Event>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

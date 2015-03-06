@@ -17,87 +17,45 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.AnnouncementTypeDataSource;
 import com.nsmjsf.web.datamodels.AnnouncementType;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreateAnnouncementTypeBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreateAnnouncementTypeBean.class);
-
 
 	private AnnouncementType announcementType;
 	private AnnouncementTypeDataSource announcementTypeDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateAnnouncementTypeBean() {
 
 		announcementType = new AnnouncementType();
 		/* init datasources */
 		announcementTypeDataSource = new AnnouncementTypeDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.announcementType=announcementTypeDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.announcementType = announcementTypeDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -114,95 +72,74 @@ private static final Log log = LogFactory
 		return announcementTypeDataSource;
 	}
 
-	public void setAnnouncementTypeDataSource(AnnouncementTypeDataSource announcementTypeDataSource) {
+	public void setAnnouncementTypeDataSource(
+			AnnouncementTypeDataSource announcementTypeDataSource) {
 		this.announcementTypeDataSource = announcementTypeDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public AnnouncementType saveAnnouncementType() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			announcementTypeDataSource.create(announcementType, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  AnnouncementType !");
-				this.announcementType=new AnnouncementType();
+			MessageService.info("Successfully Saved  AnnouncementType !");
+			this.announcementType = new AnnouncementType();
 			return announcementType;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
-			MessageService.error("Failed Saving AnnouncementType .Try Again Later!");
+			log.error(ex.getMessage());
+			MessageService
+					.error("Failed Saving AnnouncementType .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public AnnouncementType updateAnnouncementType() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			announcementTypeDataSource.create(announcementType, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  AnnouncementType !");
-				this.announcementType=new AnnouncementType();
+			MessageService.info("Successfully Saved  AnnouncementType !");
+			this.announcementType = new AnnouncementType();
 			return announcementType;
 
 		} catch (Exception ex) {
-			MessageService.error("Failed Saving AnnouncementType .Try Again Later!");
+			MessageService
+					.error("Failed Saving AnnouncementType .Try Again Later!");
 			log.error(ex.getMessage());
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateAnnouncementType();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveAnnouncementType();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createAnnouncementType");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog(
+				"createAnnouncementType");
+
 	}
-	public AnnouncementType saveAnnouncementType(Session session){
-	
-	   this.announcementType= announcementTypeDataSource.create(this.announcementType,session);
-	   return this.announcementType;
+
+	public AnnouncementType saveAnnouncementType(Session session) {
+
+		this.announcementType = announcementTypeDataSource.create(
+				this.announcementType, session);
+		return this.announcementType;
 	}
-	
 
 }
-

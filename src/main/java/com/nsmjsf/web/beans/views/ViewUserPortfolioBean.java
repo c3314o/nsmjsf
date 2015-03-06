@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.UserPortfolioDataSource;
 import com.nsmjsf.web.datamodels.UserPortfolio;
 import com.nsmjsf.web.lazymodels.LazyUserPortfolioDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.UserEnergyAdapter;
-
 
 import com.nsmjsf.web.datasources.UserEnergyDataSource;
 
@@ -32,13 +28,7 @@ import com.nsmjsf.web.datamodels.UserEnergy;
 
 import com.nsmjsf.web.wrappers.UserEnergyWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.UserAdapter;
-
 
 import com.nsmjsf.web.datasources.UserDataSource;
 
@@ -46,13 +36,7 @@ import com.nsmjsf.web.datamodels.User;
 
 import com.nsmjsf.web.wrappers.UserWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.UserStockAdapter;
-
 
 import com.nsmjsf.web.datasources.UserStockDataSource;
 
@@ -60,97 +44,84 @@ import com.nsmjsf.web.datamodels.UserStock;
 
 import com.nsmjsf.web.wrappers.UserStockWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewUserPortfolioBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewUserPortfolioBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewUserPortfolioBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<UserPortfolio> userPortfolioList;
-    List<UserPortfolio> selectedUserPortfolioList;
+	List<UserPortfolio> selectedUserPortfolioList;
 	List<UserPortfolio> filteredUserPortfolioList;
 	UserPortfolio selectedUserPortfolio;
 	LazyDataModel<UserPortfolio> lazyModel;
 	UserPortfolioDataSource userPortfolioDataSource;
-	int editUserPortfolioId=0;
-	
+	int editUserPortfolioId = 0;
 
-			   List<User> userList;
-			   UserDataSource userDataSource;
-			   public List<User> getUserList() {
+	List<User> userList;
+	UserDataSource userDataSource;
+
+	public List<User> getUserList() {
 		return userList;
-	     }
+	}
+
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
 	}
-			
-				   
-	
-	
-	public ViewUserPortfolioBean()
-	{
+
+	public ViewUserPortfolioBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyUserPortfolioDataModel(this.userPortfolioList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		userPortfolioDataSource=new UserPortfolioDataSource();
-		
 
-			  userDataSource=new UserDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.userPortfolioList=userPortfolioDataSource.getAll();
-		lazyModel=new LazyUserPortfolioDataModel(this.userPortfolioList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		userPortfolioList=userPortfolioDataSource.getAll();
-		
+		lazyModel = new LazyUserPortfolioDataModel(this.userPortfolioList);
 
-			 userList=userDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		userPortfolioDataSource = new UserPortfolioDataSource();
+
+		userDataSource = new UserDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.userPortfolioList = userPortfolioDataSource.getAll();
+		lazyModel = new LazyUserPortfolioDataModel(this.userPortfolioList);
+
+	}
+
+	private void populateData() {
+		userPortfolioList = userPortfolioDataSource.getAll();
+
+		userList = userDataSource.getAll();
+
+	}
+
 	public List<UserPortfolio> getUserPortfolioList() {
 		return userPortfolioList;
 	}
+
 	public void setUserPortfolioList(List<UserPortfolio> userPortfolioList) {
 		this.userPortfolioList = userPortfolioList;
 	}
+
 	public LazyDataModel<UserPortfolio> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<UserPortfolio> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public UserPortfolio getSelectedUserPortfolio() {
 		return selectedUserPortfolio;
 	}
+
 	public void setSelectedUserPortfolio(UserPortfolio selectedUserPortfolio) {
 		this.selectedUserPortfolio = selectedUserPortfolio;
 	}
-	
+
 	public List<UserPortfolio> getSelectedUserPortfolioList() {
 		return selectedUserPortfolioList;
 	}
@@ -178,12 +149,12 @@ private static final Log log = LogFactory.getLog(ViewUserPortfolioBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("UserPortfolio Selected"
 				+ ((UserPortfolio) event.getObject()).getUserPortfolioId());
 		for (UserPortfolio cat : selectedUserPortfolioList) {
-			//System.out.println(cat.getUserPortfolioLabel());
+			// System.out.println(cat.getUserPortfolioLabel());
 		}
 
 	}
@@ -196,21 +167,22 @@ private static final Log log = LogFactory.getLog(ViewUserPortfolioBean.class);
 
 	public void deleteSelectedUserPortfolio() {
 		for (UserPortfolio userPortfolio : selectedUserPortfolioList) {
-			//System.out.println(userPortfolio.getUserPortfolioLabel());
+			// System.out.println(userPortfolio.getUserPortfolioLabel());
 			this.deleteUserPortfolio(userPortfolio);
 		}
 	}
+
 	public void deleteUserPortfolio(UserPortfolio userPortfolio) {
-			try{
+		try {
 			userPortfolioDataSource.delete(userPortfolio);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditUserPortfolioId() {
 		return editUserPortfolioId;
 	}
@@ -218,18 +190,17 @@ private static final Log log = LogFactory.getLog(ViewUserPortfolioBean.class);
 	public void setEditUserPortfolioId(int editUserPortfolioId) {
 		this.editUserPortfolioId = editUserPortfolioId;
 	}
-	
-	public void editUserPortfolio(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editUserPortfolio(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createUserPortfolio",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -240,38 +211,32 @@ private static final Log log = LogFactory.getLog(ViewUserPortfolioBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

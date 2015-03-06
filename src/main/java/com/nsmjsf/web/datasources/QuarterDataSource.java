@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.Quarter ;
+import com.nsmjsf.web.datamodels.Quarter;
 
-public class QuarterDataSource extends TDataSource<Quarter>{
+public class QuarterDataSource extends TDataSource<Quarter> {
 
-	public QuarterDataSource()
-	{
+	public QuarterDataSource() {
 		super();
 		this.setTableName("Quarter");
 		this.setPrimaryKey("quarter_id");
 	}
 
-	
 	@Override
 	public List<Quarter> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class QuarterDataSource extends TDataSource<Quarter>{
 	}
 
 	@Override
-	public List<Quarter> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<Quarter> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class QuarterDataSource extends TDataSource<Quarter>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

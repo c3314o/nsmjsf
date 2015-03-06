@@ -11,8 +11,6 @@ import javax.faces.bean.ManagedBean;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
-
-
 @ManagedBean
 public class Utils implements Serializable {
 

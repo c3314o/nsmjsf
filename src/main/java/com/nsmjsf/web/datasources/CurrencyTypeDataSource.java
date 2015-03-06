@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.CurrencyType ;
+import com.nsmjsf.web.datamodels.CurrencyType;
 
-public class CurrencyTypeDataSource extends TDataSource<CurrencyType>{
+public class CurrencyTypeDataSource extends TDataSource<CurrencyType> {
 
-	public CurrencyTypeDataSource()
-	{
+	public CurrencyTypeDataSource() {
 		super();
 		this.setTableName("CurrencyType");
 		this.setPrimaryKey("currency_type_id");
 	}
 
-	
 	@Override
 	public List<CurrencyType> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class CurrencyTypeDataSource extends TDataSource<CurrencyType>{
 	}
 
 	@Override
-	public List<CurrencyType> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<CurrencyType> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class CurrencyTypeDataSource extends TDataSource<CurrencyType>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

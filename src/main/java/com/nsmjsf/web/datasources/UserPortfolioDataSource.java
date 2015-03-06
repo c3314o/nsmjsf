@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.UserPortfolio ;
+import com.nsmjsf.web.datamodels.UserPortfolio;
 
-public class UserPortfolioDataSource extends TDataSource<UserPortfolio>{
+public class UserPortfolioDataSource extends TDataSource<UserPortfolio> {
 
-	public UserPortfolioDataSource()
-	{
+	public UserPortfolioDataSource() {
 		super();
 		this.setTableName("UserPortfolio");
 		this.setPrimaryKey("user_portfolio_id");
 	}
 
-	
 	@Override
 	public List<UserPortfolio> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class UserPortfolioDataSource extends TDataSource<UserPortfolio>{
 	}
 
 	@Override
-	public List<UserPortfolio> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<UserPortfolio> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class UserPortfolioDataSource extends TDataSource<UserPortfolio>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

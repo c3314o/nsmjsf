@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,78 +20,69 @@ import com.nsmjsf.web.datasources.FloorsheetDumpDataSource;
 import com.nsmjsf.web.datamodels.FloorsheetDump;
 import com.nsmjsf.web.lazymodels.LazyFloorsheetDumpDataModel;
 
-	   
 @ManagedBean
 @ViewScoped
 public class ViewFloorsheetDumpBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewFloorsheetDumpBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewFloorsheetDumpBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<FloorsheetDump> floorsheetDumpList;
-    List<FloorsheetDump> selectedFloorsheetDumpList;
+	List<FloorsheetDump> selectedFloorsheetDumpList;
 	List<FloorsheetDump> filteredFloorsheetDumpList;
 	FloorsheetDump selectedFloorsheetDump;
 	LazyDataModel<FloorsheetDump> lazyModel;
 	FloorsheetDumpDataSource floorsheetDumpDataSource;
-	int editFloorsheetDumpId=0;
-	
-	   
-	
-	
-	public ViewFloorsheetDumpBean()
-	{
+	int editFloorsheetDumpId = 0;
+
+	public ViewFloorsheetDumpBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyFloorsheetDumpDataModel(this.floorsheetDumpList);
-		
+
+		lazyModel = new LazyFloorsheetDumpDataModel(this.floorsheetDumpList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		floorsheetDumpDataSource=new FloorsheetDumpDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		floorsheetDumpDataSource = new FloorsheetDumpDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.floorsheetDumpList=floorsheetDumpDataSource.getAll();
-		lazyModel=new LazyFloorsheetDumpDataModel(this.floorsheetDumpList);
-		
+
+	public void refreshDataSource() {
+		this.floorsheetDumpList = floorsheetDumpDataSource.getAll();
+		lazyModel = new LazyFloorsheetDumpDataModel(this.floorsheetDumpList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		floorsheetDumpList=floorsheetDumpDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		floorsheetDumpList = floorsheetDumpDataSource.getAll();
+
+	}
+
 	public List<FloorsheetDump> getFloorsheetDumpList() {
 		return floorsheetDumpList;
 	}
+
 	public void setFloorsheetDumpList(List<FloorsheetDump> floorsheetDumpList) {
 		this.floorsheetDumpList = floorsheetDumpList;
 	}
+
 	public LazyDataModel<FloorsheetDump> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<FloorsheetDump> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public FloorsheetDump getSelectedFloorsheetDump() {
 		return selectedFloorsheetDump;
 	}
+
 	public void setSelectedFloorsheetDump(FloorsheetDump selectedFloorsheetDump) {
 		this.selectedFloorsheetDump = selectedFloorsheetDump;
 	}
-	
+
 	public List<FloorsheetDump> getSelectedFloorsheetDumpList() {
 		return selectedFloorsheetDumpList;
 	}
@@ -120,12 +110,12 @@ private static final Log log = LogFactory.getLog(ViewFloorsheetDumpBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("FloorsheetDump Selected"
 				+ ((FloorsheetDump) event.getObject()).getFloorsheetDumpId());
 		for (FloorsheetDump cat : selectedFloorsheetDumpList) {
-			//System.out.println(cat.getFloorsheetDumpLabel());
+			// System.out.println(cat.getFloorsheetDumpLabel());
 		}
 
 	}
@@ -138,21 +128,22 @@ private static final Log log = LogFactory.getLog(ViewFloorsheetDumpBean.class);
 
 	public void deleteSelectedFloorsheetDump() {
 		for (FloorsheetDump floorsheetDump : selectedFloorsheetDumpList) {
-			//System.out.println(floorsheetDump.getFloorsheetDumpLabel());
+			// System.out.println(floorsheetDump.getFloorsheetDumpLabel());
 			this.deleteFloorsheetDump(floorsheetDump);
 		}
 	}
+
 	public void deleteFloorsheetDump(FloorsheetDump floorsheetDump) {
-			try{
+		try {
 			floorsheetDumpDataSource.delete(floorsheetDump);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditFloorsheetDumpId() {
 		return editFloorsheetDumpId;
 	}
@@ -160,18 +151,17 @@ private static final Log log = LogFactory.getLog(ViewFloorsheetDumpBean.class);
 	public void setEditFloorsheetDumpId(int editFloorsheetDumpId) {
 		this.editFloorsheetDumpId = editFloorsheetDumpId;
 	}
-	
-	public void editFloorsheetDump(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editFloorsheetDump(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createFloorsheetDump",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -182,38 +172,32 @@ private static final Log log = LogFactory.getLog(ViewFloorsheetDumpBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

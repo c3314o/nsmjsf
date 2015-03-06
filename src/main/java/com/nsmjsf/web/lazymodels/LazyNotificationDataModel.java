@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyNotificationDataModel extends LazyDataModel<Notification> {
 	@Override
 	public Notification getRowData(String rowKey) {
 		for (Notification notification : notificationList) {
-			if (notification.getNotificationId().toString().equalsIgnoreCase(rowKey))
+			if (notification.getNotificationId().toString()
+					.equalsIgnoreCase(rowKey))
 				return notification;
 		}
 
@@ -66,10 +65,10 @@ public class LazyNotificationDataModel extends LazyDataModel<Notification> {
 						Field field = notification.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(notification));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(notification));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyNotificationDataModel extends LazyDataModel<Notification> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new NotificationSorter(sortField, sortOrder));
+			Collections
+					.sort(data, new NotificationSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyNotificationDataModel extends LazyDataModel<Notification> {
 	}
 
 }
-

@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyCommentSocialDataModel extends LazyDataModel<CommentSocial> {
 	@Override
 	public CommentSocial getRowData(String rowKey) {
 		for (CommentSocial commentSocial : commentSocialList) {
-			if (commentSocial.getCommentSocialId().toString().equalsIgnoreCase(rowKey))
+			if (commentSocial.getCommentSocialId().toString()
+					.equalsIgnoreCase(rowKey))
 				return commentSocial;
 		}
 
@@ -63,13 +62,13 @@ public class LazyCommentSocialDataModel extends LazyDataModel<CommentSocial> {
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = commentSocial.getClass().getDeclaredField(
-								filterProperty);
+						Field field = commentSocial.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(commentSocial));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(commentSocial));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyCommentSocialDataModel extends LazyDataModel<CommentSocial> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new CommentSocialSorter(sortField, sortOrder));
+			Collections.sort(data,
+					new CommentSocialSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyCommentSocialDataModel extends LazyDataModel<CommentSocial> {
 	}
 
 }
-

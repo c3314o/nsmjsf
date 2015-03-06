@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,22 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.FinancialHighlight ;
+import com.nsmjsf.web.datamodels.FinancialHighlight;
 
-public class FinancialHighlightDataSource extends TDataSource<FinancialHighlight>{
+public class FinancialHighlightDataSource extends
+		TDataSource<FinancialHighlight> {
 
-	public FinancialHighlightDataSource()
-	{
+	public FinancialHighlightDataSource() {
 		super();
 		this.setTableName("FinancialHighlight");
 		this.setPrimaryKey("financial_highlight_id");
 	}
 
-	
 	@Override
 	public List<FinancialHighlight> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +138,8 @@ public class FinancialHighlightDataSource extends TDataSource<FinancialHighlight
 	}
 
 	@Override
-	public List<FinancialHighlight> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<FinancialHighlight> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +179,5 @@ public class FinancialHighlightDataSource extends TDataSource<FinancialHighlight
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

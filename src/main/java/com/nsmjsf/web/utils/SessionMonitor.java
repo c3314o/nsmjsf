@@ -11,8 +11,6 @@ import org.apache.commons.logging.LogFactory;
 
 import com.nsmjsf.web.datalayer.DbSessionManager;
 
-
-
 public class SessionMonitor implements Serializable, HttpSessionBindingListener {
 	/**
 	 * 

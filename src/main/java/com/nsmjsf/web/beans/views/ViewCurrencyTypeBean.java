@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.CurrencyTypeDataSource;
 import com.nsmjsf.web.datamodels.CurrencyType;
 import com.nsmjsf.web.lazymodels.LazyCurrencyTypeDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.CurrencyRateAdapter;
-
 
 import com.nsmjsf.web.datasources.CurrencyRateDataSource;
 
@@ -32,81 +28,69 @@ import com.nsmjsf.web.datamodels.CurrencyRate;
 
 import com.nsmjsf.web.wrappers.CurrencyRateWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewCurrencyTypeBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewCurrencyTypeBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewCurrencyTypeBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<CurrencyType> currencyTypeList;
-    List<CurrencyType> selectedCurrencyTypeList;
+	List<CurrencyType> selectedCurrencyTypeList;
 	List<CurrencyType> filteredCurrencyTypeList;
 	CurrencyType selectedCurrencyType;
 	LazyDataModel<CurrencyType> lazyModel;
 	CurrencyTypeDataSource currencyTypeDataSource;
-	int editCurrencyTypeId=0;
-	
-	   
-	
-	
-	public ViewCurrencyTypeBean()
-	{
+	int editCurrencyTypeId = 0;
+
+	public ViewCurrencyTypeBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyCurrencyTypeDataModel(this.currencyTypeList);
-		
+
+		lazyModel = new LazyCurrencyTypeDataModel(this.currencyTypeList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		currencyTypeDataSource=new CurrencyTypeDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		currencyTypeDataSource = new CurrencyTypeDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.currencyTypeList=currencyTypeDataSource.getAll();
-		lazyModel=new LazyCurrencyTypeDataModel(this.currencyTypeList);
-		
+
+	public void refreshDataSource() {
+		this.currencyTypeList = currencyTypeDataSource.getAll();
+		lazyModel = new LazyCurrencyTypeDataModel(this.currencyTypeList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		currencyTypeList=currencyTypeDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		currencyTypeList = currencyTypeDataSource.getAll();
+
+	}
+
 	public List<CurrencyType> getCurrencyTypeList() {
 		return currencyTypeList;
 	}
+
 	public void setCurrencyTypeList(List<CurrencyType> currencyTypeList) {
 		this.currencyTypeList = currencyTypeList;
 	}
+
 	public LazyDataModel<CurrencyType> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<CurrencyType> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public CurrencyType getSelectedCurrencyType() {
 		return selectedCurrencyType;
 	}
+
 	public void setSelectedCurrencyType(CurrencyType selectedCurrencyType) {
 		this.selectedCurrencyType = selectedCurrencyType;
 	}
-	
+
 	public List<CurrencyType> getSelectedCurrencyTypeList() {
 		return selectedCurrencyTypeList;
 	}
@@ -134,12 +118,12 @@ private static final Log log = LogFactory.getLog(ViewCurrencyTypeBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("CurrencyType Selected"
 				+ ((CurrencyType) event.getObject()).getCurrencyTypeId());
 		for (CurrencyType cat : selectedCurrencyTypeList) {
-			//System.out.println(cat.getCurrencyTypeLabel());
+			// System.out.println(cat.getCurrencyTypeLabel());
 		}
 
 	}
@@ -152,21 +136,22 @@ private static final Log log = LogFactory.getLog(ViewCurrencyTypeBean.class);
 
 	public void deleteSelectedCurrencyType() {
 		for (CurrencyType currencyType : selectedCurrencyTypeList) {
-			//System.out.println(currencyType.getCurrencyTypeLabel());
+			// System.out.println(currencyType.getCurrencyTypeLabel());
 			this.deleteCurrencyType(currencyType);
 		}
 	}
+
 	public void deleteCurrencyType(CurrencyType currencyType) {
-			try{
+		try {
 			currencyTypeDataSource.delete(currencyType);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditCurrencyTypeId() {
 		return editCurrencyTypeId;
 	}
@@ -174,18 +159,17 @@ private static final Log log = LogFactory.getLog(ViewCurrencyTypeBean.class);
 	public void setEditCurrencyTypeId(int editCurrencyTypeId) {
 		this.editCurrencyTypeId = editCurrencyTypeId;
 	}
-	
-	public void editCurrencyType(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editCurrencyType(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createCurrencyType",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -196,38 +180,32 @@ private static final Log log = LogFactory.getLog(ViewCurrencyTypeBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

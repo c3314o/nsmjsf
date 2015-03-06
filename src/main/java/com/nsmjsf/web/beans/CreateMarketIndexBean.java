@@ -18,9 +18,8 @@ import com.nsmjsf.web.datasources.MarketIndexDataSource;
 import com.nsmjsf.web.datamodels.MarketIndex;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
-			
-import com.nsmjsf.web.adapters.IndexTypeAdapter;
 
+import com.nsmjsf.web.adapters.IndexTypeAdapter;
 
 import com.nsmjsf.web.datasources.IndexTypeDataSource;
 
@@ -28,13 +27,7 @@ import com.nsmjsf.web.datamodels.IndexType;
 
 import com.nsmjsf.web.wrappers.IndexTypeWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.PostAdapter;
-
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -42,150 +35,69 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-				   
-
 @ManagedBean
 @ViewScoped
-
 public class CreateMarketIndexBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreateMarketIndexBean.class);
-
 
 	private MarketIndex marketIndex;
 	private MarketIndexDataSource marketIndexDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-    private IndexTypeDataSource indexTypeDataSource;
+
+	private IndexTypeDataSource indexTypeDataSource;
 	private List<IndexTypeWrapper> indexTypeWrapperList;
 	private List<IndexType> indexTypeList;
 	private IndexTypeWrapper selectedIndexTypeWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-    private PostDataSource postDataSource;
+
+	private PostDataSource postDataSource;
 	private List<PostWrapper> postWrapperList;
 	private List<Post> postList;
 	private PostWrapper selectedPostWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateMarketIndexBean() {
 
 		marketIndex = new MarketIndex();
 		/* init datasources */
 		marketIndexDataSource = new MarketIndexDataSource();
-		
-		
-			
-indexTypeDataSource = new IndexTypeDataSource();
+
+		indexTypeDataSource = new IndexTypeDataSource();
 
 		/* init option wrappers */
 		indexTypeList = indexTypeDataSource.getAll();
-		indexTypeWrapperList = IndexTypeAdapter
-				.wrapAll(indexTypeList);
-	
-			
-			
-			
-postDataSource = new PostDataSource();
+		indexTypeWrapperList = IndexTypeAdapter.wrapAll(indexTypeList);
+
+		postDataSource = new PostDataSource();
 
 		/* init option wrappers */
 		postList = postDataSource.getAll();
-		postWrapperList = PostAdapter
-				.wrapAll(postList);
-	
-			
-				
-		
-		
+		postWrapperList = PostAdapter.wrapAll(postList);
 
 	}
-	
-	@PostConstruct
-	private void init()
-	{
-		extractParams();
-		if(this.editMode)
-		{
-			this.marketIndex=marketIndexDataSource.get(editId);
-			
-			
 
-			  
-			  this.selectedIndexTypeWrapper=IndexTypeAdapter.wrap(marketIndex.getIndexType());
-	
-			
-			
-			  
-			  this.selectedPostWrapper=PostAdapter.wrap(marketIndex.getPost());
-	
-			
-				   
-			
-			
-			
-			
+	@PostConstruct
+	private void init() {
+		extractParams();
+		if (this.editMode) {
+			this.marketIndex = marketIndexDataSource.get(editId);
+
+			this.selectedIndexTypeWrapper = IndexTypeAdapter.wrap(marketIndex
+					.getIndexType());
+
+			this.selectedPostWrapper = PostAdapter.wrap(marketIndex.getPost());
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -202,35 +114,24 @@ postDataSource = new PostDataSource();
 		return marketIndexDataSource;
 	}
 
-	public void setMarketIndexDataSource(MarketIndexDataSource marketIndexDataSource) {
+	public void setMarketIndexDataSource(
+			MarketIndexDataSource marketIndexDataSource) {
 		this.marketIndexDataSource = marketIndexDataSource;
 	}
-	
-	
-	
-	
-	
-	
-	
-			
 
-
-public List<IndexType> getIndexTypeList() {
+	public List<IndexType> getIndexTypeList() {
 		return indexTypeList;
 	}
 
 	public void setIndexTypeList(List<IndexType> indexTypeList) {
 		this.indexTypeList = indexTypeList;
 	}
-  
-  
-  
+
 	public IndexTypeDataSource getIndexTypeDataSource() {
 		return indexTypeDataSource;
 	}
 
-	public void setIndexTypeDataSource(
-			IndexTypeDataSource indexTypeDataSource) {
+	public void setIndexTypeDataSource(IndexTypeDataSource indexTypeDataSource) {
 		this.indexTypeDataSource = indexTypeDataSource;
 	}
 
@@ -243,8 +144,6 @@ public List<IndexType> getIndexTypeList() {
 		this.indexTypeWrapperList = indexTypeWrapperList;
 	}
 
-	
-
 	public IndexTypeWrapper getSelectedIndexTypeWrapper() {
 		return selectedIndexTypeWrapper;
 	}
@@ -254,34 +153,19 @@ public List<IndexType> getIndexTypeList() {
 		this.selectedIndexTypeWrapper = selectedIndexTypeWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-			
-			
-
-
-public List<Post> getPostList() {
+	public List<Post> getPostList() {
 		return postList;
 	}
 
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-  
-  
-  
+
 	public PostDataSource getPostDataSource() {
 		return postDataSource;
 	}
 
-	public void setPostDataSource(
-			PostDataSource postDataSource) {
+	public void setPostDataSource(PostDataSource postDataSource) {
 		this.postDataSource = postDataSource;
 	}
 
@@ -289,103 +173,64 @@ public List<Post> getPostList() {
 		return postWrapperList;
 	}
 
-	public void setPostWrapperList(
-			List<PostWrapper> postWrapperList) {
+	public void setPostWrapperList(List<PostWrapper> postWrapperList) {
 		this.postWrapperList = postWrapperList;
 	}
-
-	
 
 	public PostWrapper getSelectedPostWrapper() {
 		return selectedPostWrapper;
 	}
 
-	public void setSelectedPostWrapper(
-			PostWrapper selectedPostWrapper) {
+	public void setSelectedPostWrapper(PostWrapper selectedPostWrapper) {
 		this.selectedPostWrapper = selectedPostWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-				
-
-
-
-
-	
-  
-  
-  
 	public MarketIndex saveMarketIndex() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  IndexType indexType =selectedIndexTypeWrapper.getIndexType();
+
+			IndexType indexType = selectedIndexTypeWrapper.getIndexType();
 
 			marketIndex.setIndexType(indexType);
-			
-			
-			
-                  Post post =selectedPostWrapper.getPost();
+
+			Post post = selectedPostWrapper.getPost();
 
 			marketIndex.setPost(post);
-			
-				   
-			
-			
-			
-			
+
 			marketIndexDataSource.create(marketIndex, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  MarketIndex !");
-				this.marketIndex=new MarketIndex();
+			MessageService.info("Successfully Saved  MarketIndex !");
+			this.marketIndex = new MarketIndex();
 			return marketIndex;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving MarketIndex .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public MarketIndex updateMarketIndex() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  IndexType indexType = selectedIndexTypeWrapper.getIndexType();
 
-			      marketIndex.setIndexType(indexType);
-			
-			
-			
-                  Post post = selectedPostWrapper.getPost();
+			IndexType indexType = selectedIndexTypeWrapper.getIndexType();
 
-			      marketIndex.setPost(post);
-			
-				   
-			
-			
-			
-			
+			marketIndex.setIndexType(indexType);
+
+			Post post = selectedPostWrapper.getPost();
+
+			marketIndex.setPost(post);
+
 			marketIndexDataSource.create(marketIndex, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  MarketIndex !");
-				this.marketIndex=new MarketIndex();
+			MessageService.info("Successfully Saved  MarketIndex !");
+			this.marketIndex = new MarketIndex();
 			return marketIndex;
 
 		} catch (Exception ex) {
@@ -394,29 +239,28 @@ public List<Post> getPostList() {
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateMarketIndex();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveMarketIndex();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createMarketIndex");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createMarketIndex");
+
 	}
-	public MarketIndex saveMarketIndex(Session session){
-	
-	   this.marketIndex= marketIndexDataSource.create(this.marketIndex,session);
-	   return this.marketIndex;
+
+	public MarketIndex saveMarketIndex(Session session) {
+
+		this.marketIndex = marketIndexDataSource.create(this.marketIndex,
+				session);
+		return this.marketIndex;
 	}
-	
 
 }
-

@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Auction;
 
 public class AuctionWrapper {
 
-private static final Log log = LogFactory
-			.getLog(AuctionWrapper.class);
-
+	private static final Log log = LogFactory.getLog(AuctionWrapper.class);
 
 	Auction auction;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final AuctionWrapper other = (AuctionWrapper) obj;
-		if (!Objects.equals(this.auction.getAuctionId(), other.getAuction().getAuctionId()))
+		if (!Objects.equals(this.auction.getAuctionId(), other.getAuction()
+				.getAuctionId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

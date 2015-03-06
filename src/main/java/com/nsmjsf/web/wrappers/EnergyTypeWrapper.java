@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.EnergyType;
 
 public class EnergyTypeWrapper {
 
-private static final Log log = LogFactory
-			.getLog(EnergyTypeWrapper.class);
-
+	private static final Log log = LogFactory.getLog(EnergyTypeWrapper.class);
 
 	EnergyType energyType;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final EnergyTypeWrapper other = (EnergyTypeWrapper) obj;
-		if (!Objects.equals(this.energyType.getEnergyTypeId(), other.getEnergyType().getEnergyTypeId()))
+		if (!Objects.equals(this.energyType.getEnergyTypeId(), other
+				.getEnergyType().getEnergyTypeId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

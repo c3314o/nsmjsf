@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.CertificateDividendDistribution;
 import com.nsmjsf.web.sorters.CertificateDividendDistributionSorter;
 
-public class LazyCertificateDividendDistributionDataModel extends LazyDataModel<CertificateDividendDistribution> {
+public class LazyCertificateDividendDistributionDataModel extends
+		LazyDataModel<CertificateDividendDistribution> {
 	private static final Log log = LogFactory
 			.getLog(LazyCertificateDividendDistributionDataModel.class);
 
@@ -27,14 +26,17 @@ public class LazyCertificateDividendDistributionDataModel extends LazyDataModel<
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<CertificateDividendDistribution> certificateDividendDistributionList;
 
-	public LazyCertificateDividendDistributionDataModel(List<CertificateDividendDistribution> certificateDividendDistributionList) {
+	public LazyCertificateDividendDistributionDataModel(
+			List<CertificateDividendDistribution> certificateDividendDistributionList) {
 		this.certificateDividendDistributionList = certificateDividendDistributionList;
 	}
 
 	@Override
 	public CertificateDividendDistribution getRowData(String rowKey) {
 		for (CertificateDividendDistribution certificateDividendDistribution : certificateDividendDistributionList) {
-			if (certificateDividendDistribution.getCertificateDividendDistributionId().toString().equalsIgnoreCase(rowKey))
+			if (certificateDividendDistribution
+					.getCertificateDividendDistributionId().toString()
+					.equalsIgnoreCase(rowKey))
 				return certificateDividendDistribution;
 		}
 
@@ -47,8 +49,8 @@ public class LazyCertificateDividendDistributionDataModel extends LazyDataModel<
 	}
 
 	@Override
-	public List<CertificateDividendDistribution> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<CertificateDividendDistribution> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<CertificateDividendDistribution> data = new ArrayList<CertificateDividendDistribution>();
@@ -63,13 +65,13 @@ public class LazyCertificateDividendDistributionDataModel extends LazyDataModel<
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = certificateDividendDistribution.getClass().getDeclaredField(
-								filterProperty);
+						Field field = certificateDividendDistribution
+								.getClass().getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(certificateDividendDistribution));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(certificateDividendDistribution));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +94,8 @@ public class LazyCertificateDividendDistributionDataModel extends LazyDataModel<
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new CertificateDividendDistributionSorter(sortField, sortOrder));
+			Collections.sort(data, new CertificateDividendDistributionSorter(
+					sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +115,3 @@ public class LazyCertificateDividendDistributionDataModel extends LazyDataModel<
 	}
 
 }
-

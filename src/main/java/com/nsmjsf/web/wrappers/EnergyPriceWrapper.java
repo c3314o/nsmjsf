@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.EnergyPrice;
 
 public class EnergyPriceWrapper {
 
-private static final Log log = LogFactory
-			.getLog(EnergyPriceWrapper.class);
-
+	private static final Log log = LogFactory.getLog(EnergyPriceWrapper.class);
 
 	EnergyPrice energyPrice;
 
@@ -35,7 +31,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.energyPrice.getEnergyPriceId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.energyPrice.getEnergyPriceId());
 		return hash;
 	}
 
@@ -46,7 +43,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final EnergyPriceWrapper other = (EnergyPriceWrapper) obj;
-		if (!Objects.equals(this.energyPrice.getEnergyPriceId(), other.getEnergyPrice().getEnergyPriceId()))
+		if (!Objects.equals(this.energyPrice.getEnergyPriceId(), other
+				.getEnergyPrice().getEnergyPriceId()))
 			return false;
 		return true;
 	}
@@ -57,4 +55,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

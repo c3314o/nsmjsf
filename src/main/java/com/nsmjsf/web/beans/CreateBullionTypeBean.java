@@ -17,87 +17,45 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.BullionTypeDataSource;
 import com.nsmjsf.web.datamodels.BullionType;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreateBullionTypeBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreateBullionTypeBean.class);
-
 
 	private BullionType bullionType;
 	private BullionTypeDataSource bullionTypeDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateBullionTypeBean() {
 
 		bullionType = new BullionType();
 		/* init datasources */
 		bullionTypeDataSource = new BullionTypeDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.bullionType=bullionTypeDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.bullionType = bullionTypeDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -114,64 +72,41 @@ private static final Log log = LogFactory
 		return bullionTypeDataSource;
 	}
 
-	public void setBullionTypeDataSource(BullionTypeDataSource bullionTypeDataSource) {
+	public void setBullionTypeDataSource(
+			BullionTypeDataSource bullionTypeDataSource) {
 		this.bullionTypeDataSource = bullionTypeDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public BullionType saveBullionType() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			bullionTypeDataSource.create(bullionType, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  BullionType !");
-				this.bullionType=new BullionType();
+			MessageService.info("Successfully Saved  BullionType !");
+			this.bullionType = new BullionType();
 			return bullionType;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving BullionType .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public BullionType updateBullionType() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			bullionTypeDataSource.create(bullionType, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  BullionType !");
-				this.bullionType=new BullionType();
+			MessageService.info("Successfully Saved  BullionType !");
+			this.bullionType = new BullionType();
 			return bullionType;
 
 		} catch (Exception ex) {
@@ -180,29 +115,28 @@ private static final Log log = LogFactory
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateBullionType();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveBullionType();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createBullionType");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createBullionType");
+
 	}
-	public BullionType saveBullionType(Session session){
-	
-	   this.bullionType= bullionTypeDataSource.create(this.bullionType,session);
-	   return this.bullionType;
+
+	public BullionType saveBullionType(Session session) {
+
+		this.bullionType = bullionTypeDataSource.create(this.bullionType,
+				session);
+		return this.bullionType;
 	}
-	
 
 }
-

@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyBullionPriceDataModel extends LazyDataModel<BullionPrice> {
 	@Override
 	public BullionPrice getRowData(String rowKey) {
 		for (BullionPrice bullionPrice : bullionPriceList) {
-			if (bullionPrice.getBullionPriceId().toString().equalsIgnoreCase(rowKey))
+			if (bullionPrice.getBullionPriceId().toString()
+					.equalsIgnoreCase(rowKey))
 				return bullionPrice;
 		}
 
@@ -66,10 +65,10 @@ public class LazyBullionPriceDataModel extends LazyDataModel<BullionPrice> {
 						Field field = bullionPrice.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(bullionPrice));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(bullionPrice));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyBullionPriceDataModel extends LazyDataModel<BullionPrice> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new BullionPriceSorter(sortField, sortOrder));
+			Collections
+					.sort(data, new BullionPriceSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyBullionPriceDataModel extends LazyDataModel<BullionPrice> {
 	}
 
 }
-

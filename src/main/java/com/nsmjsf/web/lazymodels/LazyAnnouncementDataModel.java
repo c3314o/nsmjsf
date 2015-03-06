@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyAnnouncementDataModel extends LazyDataModel<Announcement> {
 	@Override
 	public Announcement getRowData(String rowKey) {
 		for (Announcement announcement : announcementList) {
-			if (announcement.getAnnouncementId().toString().equalsIgnoreCase(rowKey))
+			if (announcement.getAnnouncementId().toString()
+					.equalsIgnoreCase(rowKey))
 				return announcement;
 		}
 
@@ -66,10 +65,10 @@ public class LazyAnnouncementDataModel extends LazyDataModel<Announcement> {
 						Field field = announcement.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(announcement));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(announcement));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyAnnouncementDataModel extends LazyDataModel<Announcement> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new AnnouncementSorter(sortField, sortOrder));
+			Collections
+					.sort(data, new AnnouncementSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyAnnouncementDataModel extends LazyDataModel<Announcement> {
 	}
 
 }
-

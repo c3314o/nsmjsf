@@ -10,20 +10,20 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 public class RichBean implements Serializable {
 
-    private static final long serialVersionUID = -6239437588285327644L;
+	private static final long serialVersionUID = -6239437588285327644L;
 
-    private String name;
+	private String name;
 
-    @PostConstruct
-    public void postContruct() {
-        name = "John";
-    }
+	@PostConstruct
+	public void postContruct() {
+		name = "John";
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 }

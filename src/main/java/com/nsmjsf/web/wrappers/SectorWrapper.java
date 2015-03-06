@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Sector;
 
 public class SectorWrapper {
 
-private static final Log log = LogFactory
-			.getLog(SectorWrapper.class);
-
+	private static final Log log = LogFactory.getLog(SectorWrapper.class);
 
 	Sector sector;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final SectorWrapper other = (SectorWrapper) obj;
-		if (!Objects.equals(this.sector.getSectorId(), other.getSector().getSectorId()))
+		if (!Objects.equals(this.sector.getSectorId(), other.getSector()
+				.getSectorId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyFloorsheetDumpDataModel extends LazyDataModel<FloorsheetDump> {
 	@Override
 	public FloorsheetDump getRowData(String rowKey) {
 		for (FloorsheetDump floorsheetDump : floorsheetDumpList) {
-			if (floorsheetDump.getFloorsheetDumpId().toString().equalsIgnoreCase(rowKey))
+			if (floorsheetDump.getFloorsheetDumpId().toString()
+					.equalsIgnoreCase(rowKey))
 				return floorsheetDump;
 		}
 
@@ -63,13 +62,13 @@ public class LazyFloorsheetDumpDataModel extends LazyDataModel<FloorsheetDump> {
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = floorsheetDump.getClass().getDeclaredField(
-								filterProperty);
+						Field field = floorsheetDump.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(floorsheetDump));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(floorsheetDump));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyFloorsheetDumpDataModel extends LazyDataModel<FloorsheetDump> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new FloorsheetDumpSorter(sortField, sortOrder));
+			Collections.sort(data, new FloorsheetDumpSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyFloorsheetDumpDataModel extends LazyDataModel<FloorsheetDump> {
 	}
 
 }
-

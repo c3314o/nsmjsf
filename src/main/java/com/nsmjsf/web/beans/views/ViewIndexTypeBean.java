@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.IndexTypeDataSource;
 import com.nsmjsf.web.datamodels.IndexType;
 import com.nsmjsf.web.lazymodels.LazyIndexTypeDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.MarketIndexAdapter;
-
 
 import com.nsmjsf.web.datasources.MarketIndexDataSource;
 
@@ -32,87 +28,73 @@ import com.nsmjsf.web.datamodels.MarketIndex;
 
 import com.nsmjsf.web.wrappers.MarketIndexWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewIndexTypeBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewIndexTypeBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewIndexTypeBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<IndexType> indexTypeList;
-    List<IndexType> selectedIndexTypeList;
+	List<IndexType> selectedIndexTypeList;
 	List<IndexType> filteredIndexTypeList;
 	IndexType selectedIndexType;
 	LazyDataModel<IndexType> lazyModel;
 	IndexTypeDataSource indexTypeDataSource;
-	int editIndexTypeId=0;
-	
-	   
-	
-	
-	public ViewIndexTypeBean()
-	{
+	int editIndexTypeId = 0;
+
+	public ViewIndexTypeBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyIndexTypeDataModel(this.indexTypeList);
-		
+
+		lazyModel = new LazyIndexTypeDataModel(this.indexTypeList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		indexTypeDataSource=new IndexTypeDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		indexTypeDataSource = new IndexTypeDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.indexTypeList=indexTypeDataSource.getAll();
-		lazyModel=new LazyIndexTypeDataModel(this.indexTypeList);
-		
+
+	public void refreshDataSource() {
+		this.indexTypeList = indexTypeDataSource.getAll();
+		lazyModel = new LazyIndexTypeDataModel(this.indexTypeList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		indexTypeList=indexTypeDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		indexTypeList = indexTypeDataSource.getAll();
+
+	}
+
 	public List<IndexType> getIndexTypeList() {
 		return indexTypeList;
 	}
+
 	public void setIndexTypeList(List<IndexType> indexTypeList) {
 		this.indexTypeList = indexTypeList;
 	}
+
 	public LazyDataModel<IndexType> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<IndexType> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public IndexType getSelectedIndexType() {
 		return selectedIndexType;
 	}
+
 	public void setSelectedIndexType(IndexType selectedIndexType) {
 		this.selectedIndexType = selectedIndexType;
 	}
-	
+
 	public List<IndexType> getSelectedIndexTypeList() {
 		return selectedIndexTypeList;
 	}
 
-	public void setSelectedIndexTypeList(
-			List<IndexType> selectedIndexTypeList) {
+	public void setSelectedIndexTypeList(List<IndexType> selectedIndexTypeList) {
 		this.selectedIndexTypeList = selectedIndexTypeList;
 	}
 
@@ -120,8 +102,7 @@ private static final Log log = LogFactory.getLog(ViewIndexTypeBean.class);
 		return filteredIndexTypeList;
 	}
 
-	public void setFilteredIndexTypeList(
-			List<IndexType> filteredIndexTypeList) {
+	public void setFilteredIndexTypeList(List<IndexType> filteredIndexTypeList) {
 		this.filteredIndexTypeList = filteredIndexTypeList;
 	}
 
@@ -134,12 +115,12 @@ private static final Log log = LogFactory.getLog(ViewIndexTypeBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("IndexType Selected"
 				+ ((IndexType) event.getObject()).getIndexTypeId());
 		for (IndexType cat : selectedIndexTypeList) {
-			//System.out.println(cat.getIndexTypeLabel());
+			// System.out.println(cat.getIndexTypeLabel());
 		}
 
 	}
@@ -152,21 +133,22 @@ private static final Log log = LogFactory.getLog(ViewIndexTypeBean.class);
 
 	public void deleteSelectedIndexType() {
 		for (IndexType indexType : selectedIndexTypeList) {
-			//System.out.println(indexType.getIndexTypeLabel());
+			// System.out.println(indexType.getIndexTypeLabel());
 			this.deleteIndexType(indexType);
 		}
 	}
+
 	public void deleteIndexType(IndexType indexType) {
-			try{
+		try {
 			indexTypeDataSource.delete(indexType);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditIndexTypeId() {
 		return editIndexTypeId;
 	}
@@ -174,18 +156,17 @@ private static final Log log = LogFactory.getLog(ViewIndexTypeBean.class);
 	public void setEditIndexTypeId(int editIndexTypeId) {
 		this.editIndexTypeId = editIndexTypeId;
 	}
-	
-	public void editIndexType(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editIndexType(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createIndexType",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -196,38 +177,32 @@ private static final Log log = LogFactory.getLog(ViewIndexTypeBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

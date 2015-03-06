@@ -8,17 +8,13 @@ import javax.faces.convert.FacesConverter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-
-
-
 import com.nsmjsf.web.adapters.BodAdapter;
 import com.nsmjsf.web.datasources.BodDataSource;
 import com.nsmjsf.web.datamodels.Bod;
 import com.nsmjsf.web.wrappers.BodWrapper;
 
-
 @FacesConverter("bodWrapperConverter")
-public class BodWrapperConverter implements Converter{
+public class BodWrapperConverter implements Converter {
 	private static final Log log = LogFactory.getLog(BodWrapperConverter.class);
 
 	@Override
@@ -26,7 +22,7 @@ public class BodWrapperConverter implements Converter{
 		if (value != null && value.trim().length() > 0) {
 			BodDataSource bodDataSource = new BodDataSource();
 			Bod bod = bodDataSource.get(Integer.parseInt(value));
-			BodWrapper bodWrapper=BodAdapter.wrap(bod);
+			BodWrapper bodWrapper = BodAdapter.wrap(bod);
 			return bodWrapper;
 		} else {
 			return null;
@@ -43,13 +39,4 @@ public class BodWrapperConverter implements Converter{
 		}
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 }
-

@@ -244,8 +244,5 @@ public class ViewMapPostPostBean implements Serializable {
 	public void setPostByFromPostIdList(List<Post> postByFromPostIdList) {
 		this.postByFromPostIdList = postByFromPostIdList;
 	}
-	
-	
-	
 
 }

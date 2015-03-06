@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.UserEnergy;
 
 public class UserEnergyWrapper {
 
-private static final Log log = LogFactory
-			.getLog(UserEnergyWrapper.class);
-
+	private static final Log log = LogFactory.getLog(UserEnergyWrapper.class);
 
 	UserEnergy userEnergy;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final UserEnergyWrapper other = (UserEnergyWrapper) obj;
-		if (!Objects.equals(this.userEnergy.getUserEnergyId(), other.getUserEnergy().getUserEnergyId()))
+		if (!Objects.equals(this.userEnergy.getUserEnergyId(), other
+				.getUserEnergy().getUserEnergyId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

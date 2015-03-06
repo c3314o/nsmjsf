@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,8 @@ import com.nsmjsf.web.datamodels.FloorsheetHeader;
 
 public class FloorsheetHeaderWrapper {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(FloorsheetHeaderWrapper.class);
-
 
 	FloorsheetHeader floorsheetHeader;
 
@@ -35,7 +32,10 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.floorsheetHeader.getFloorsheetHeaderId());
+		hash = 83
+				* hash
+				+ Objects.hashCode(this.floorsheetHeader
+						.getFloorsheetHeaderId());
 		return hash;
 	}
 
@@ -46,7 +46,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final FloorsheetHeaderWrapper other = (FloorsheetHeaderWrapper) obj;
-		if (!Objects.equals(this.floorsheetHeader.getFloorsheetHeaderId(), other.getFloorsheetHeader().getFloorsheetHeaderId()))
+		if (!Objects.equals(this.floorsheetHeader.getFloorsheetHeaderId(),
+				other.getFloorsheetHeader().getFloorsheetHeaderId()))
 			return false;
 		return true;
 	}
@@ -57,4 +58,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

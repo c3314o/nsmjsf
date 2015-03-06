@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -18,8 +16,7 @@ import com.nsmjsf.web.datamodels.Proxy;
 import com.nsmjsf.web.sorters.ProxySorter;
 
 public class LazyProxyDataModel extends LazyDataModel<Proxy> {
-	private static final Log log = LogFactory
-			.getLog(LazyProxyDataModel.class);
+	private static final Log log = LogFactory.getLog(LazyProxyDataModel.class);
 
 	/**
 	 * 
@@ -66,10 +63,9 @@ public class LazyProxyDataModel extends LazyDataModel<Proxy> {
 						Field field = proxy.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(proxy));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field.get(proxy));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +108,3 @@ public class LazyProxyDataModel extends LazyDataModel<Proxy> {
 	}
 
 }
-

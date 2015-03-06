@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,8 @@ import com.nsmjsf.web.datamodels.SemiYearAverage;
 
 public class SemiYearAverageWrapper {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(SemiYearAverageWrapper.class);
-
 
 	SemiYearAverage semiYearAverage;
 
@@ -35,7 +32,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.semiYearAverage.getSemiYearAverageId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.semiYearAverage.getSemiYearAverageId());
 		return hash;
 	}
 
@@ -46,7 +44,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final SemiYearAverageWrapper other = (SemiYearAverageWrapper) obj;
-		if (!Objects.equals(this.semiYearAverage.getSemiYearAverageId(), other.getSemiYearAverage().getSemiYearAverageId()))
+		if (!Objects.equals(this.semiYearAverage.getSemiYearAverageId(), other
+				.getSemiYearAverage().getSemiYearAverageId()))
 			return false;
 		return true;
 	}
@@ -57,4 +56,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyMapPostCompanyDataModel extends LazyDataModel<MapPostCompany> {
 	@Override
 	public MapPostCompany getRowData(String rowKey) {
 		for (MapPostCompany mapPostCompany : mapPostCompanyList) {
-			if (mapPostCompany.getMapPostCompanyId().toString().equalsIgnoreCase(rowKey))
+			if (mapPostCompany.getMapPostCompanyId().toString()
+					.equalsIgnoreCase(rowKey))
 				return mapPostCompany;
 		}
 
@@ -63,13 +62,13 @@ public class LazyMapPostCompanyDataModel extends LazyDataModel<MapPostCompany> {
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = mapPostCompany.getClass().getDeclaredField(
-								filterProperty);
+						Field field = mapPostCompany.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(mapPostCompany));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(mapPostCompany));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyMapPostCompanyDataModel extends LazyDataModel<MapPostCompany> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new MapPostCompanySorter(sortField, sortOrder));
+			Collections.sort(data, new MapPostCompanySorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyMapPostCompanyDataModel extends LazyDataModel<MapPostCompany> {
 	}
 
 }
-

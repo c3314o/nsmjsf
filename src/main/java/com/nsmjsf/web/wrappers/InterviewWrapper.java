@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Interview;
 
 public class InterviewWrapper {
 
-private static final Log log = LogFactory
-			.getLog(InterviewWrapper.class);
-
+	private static final Log log = LogFactory.getLog(InterviewWrapper.class);
 
 	Interview interview;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final InterviewWrapper other = (InterviewWrapper) obj;
-		if (!Objects.equals(this.interview.getInterviewId(), other.getInterview().getInterviewId()))
+		if (!Objects.equals(this.interview.getInterviewId(), other
+				.getInterview().getInterviewId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

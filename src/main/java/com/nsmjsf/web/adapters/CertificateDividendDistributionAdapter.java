@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.adapters;
 
 import java.util.ArrayList;
@@ -10,29 +9,30 @@ import com.nsmjsf.web.datamodels.CertificateDividendDistribution;
 import com.nsmjsf.web.wrappers.CertificateDividendDistributionWrapper;
 
 public class CertificateDividendDistributionAdapter {
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CertificateDividendDistributionAdapter.class);
-	
-	public static List<CertificateDividendDistributionWrapper> wrapAll(List<CertificateDividendDistribution> certificateDividendDistributionList)
-	{
-		List<CertificateDividendDistributionWrapper> certificateDividendDistributionWrapperList=new ArrayList<CertificateDividendDistributionWrapper>();
-		for(CertificateDividendDistribution certificateDividendDistribution:certificateDividendDistributionList)
-		{
-			CertificateDividendDistributionWrapper certificateDividendDistributionWrapper=new CertificateDividendDistributionWrapper();
-			certificateDividendDistributionWrapper.setCertificateDividendDistribution(certificateDividendDistribution);
-			certificateDividendDistributionWrapperList.add(certificateDividendDistributionWrapper);
+
+	public static List<CertificateDividendDistributionWrapper> wrapAll(
+			List<CertificateDividendDistribution> certificateDividendDistributionList) {
+		List<CertificateDividendDistributionWrapper> certificateDividendDistributionWrapperList = new ArrayList<CertificateDividendDistributionWrapper>();
+		for (CertificateDividendDistribution certificateDividendDistribution : certificateDividendDistributionList) {
+			CertificateDividendDistributionWrapper certificateDividendDistributionWrapper = new CertificateDividendDistributionWrapper();
+			certificateDividendDistributionWrapper
+					.setCertificateDividendDistribution(certificateDividendDistribution);
+			certificateDividendDistributionWrapperList
+					.add(certificateDividendDistributionWrapper);
 		}
 		return certificateDividendDistributionWrapperList;
-		
+
 	}
-	
-	public static CertificateDividendDistributionWrapper wrap(CertificateDividendDistribution certificateDividendDistribution)
-	{
-		CertificateDividendDistributionWrapper certificateDividendDistributionWrapper=new CertificateDividendDistributionWrapper();
-		certificateDividendDistributionWrapper.setCertificateDividendDistribution(certificateDividendDistribution);
+
+	public static CertificateDividendDistributionWrapper wrap(
+			CertificateDividendDistribution certificateDividendDistribution) {
+		CertificateDividendDistributionWrapper certificateDividendDistributionWrapper = new CertificateDividendDistributionWrapper();
+		certificateDividendDistributionWrapper
+				.setCertificateDividendDistribution(certificateDividendDistribution);
 		return certificateDividendDistributionWrapper;
-		
+
 	}
 
 }
-

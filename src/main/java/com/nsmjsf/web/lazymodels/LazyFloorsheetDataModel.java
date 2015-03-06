@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyFloorsheetDataModel extends LazyDataModel<Floorsheet> {
 	@Override
 	public Floorsheet getRowData(String rowKey) {
 		for (Floorsheet floorsheet : floorsheetList) {
-			if (floorsheet.getFloorsheetId().toString().equalsIgnoreCase(rowKey))
+			if (floorsheet.getFloorsheetId().toString()
+					.equalsIgnoreCase(rowKey))
 				return floorsheet;
 		}
 
@@ -66,10 +65,10 @@ public class LazyFloorsheetDataModel extends LazyDataModel<Floorsheet> {
 						Field field = floorsheet.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(floorsheet));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(floorsheet));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyFloorsheetDataModel extends LazyDataModel<Floorsheet> {
 	}
 
 }
-

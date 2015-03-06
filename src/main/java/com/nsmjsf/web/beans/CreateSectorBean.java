@@ -17,87 +17,44 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.SectorDataSource;
 import com.nsmjsf.web.datamodels.Sector;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreateSectorBean implements Serializable {
 
-private static final Log log = LogFactory
-			.getLog(CreateSectorBean.class);
-
+	private static final Log log = LogFactory.getLog(CreateSectorBean.class);
 
 	private Sector sector;
 	private SectorDataSource sectorDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateSectorBean() {
 
 		sector = new Sector();
 		/* init datasources */
 		sectorDataSource = new SectorDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.sector=sectorDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.sector = sectorDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -117,61 +74,37 @@ private static final Log log = LogFactory
 	public void setSectorDataSource(SectorDataSource sectorDataSource) {
 		this.sectorDataSource = sectorDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public Sector saveSector() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			sectorDataSource.create(sector, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  Sector !");
-				this.sector=new Sector();
+			MessageService.info("Successfully Saved  Sector !");
+			this.sector = new Sector();
 			return sector;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving Sector .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public Sector updateSector() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			sectorDataSource.create(sector, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  Sector !");
-				this.sector=new Sector();
+			MessageService.info("Successfully Saved  Sector !");
+			this.sector = new Sector();
 			return sector;
 
 		} catch (Exception ex) {
@@ -180,29 +113,27 @@ private static final Log log = LogFactory
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateSector();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveSector();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createSector");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createSector");
+
 	}
-	public Sector saveSector(Session session){
-	
-	   this.sector= sectorDataSource.create(this.sector,session);
-	   return this.sector;
+
+	public Sector saveSector(Session session) {
+
+		this.sector = sectorDataSource.create(this.sector, session);
+		return this.sector;
 	}
-	
 
 }
-

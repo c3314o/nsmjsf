@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.InterviewDataSource;
 import com.nsmjsf.web.datamodels.Interview;
 import com.nsmjsf.web.lazymodels.LazyInterviewDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.PostAdapter;
-
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -32,13 +28,7 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.CompanyAdapter;
-
 
 import com.nsmjsf.web.datasources.CompanyDataSource;
 
@@ -46,119 +36,103 @@ import com.nsmjsf.web.datamodels.Company;
 
 import com.nsmjsf.web.wrappers.CompanyWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewInterviewBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewInterviewBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewInterviewBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<Interview> interviewList;
-    List<Interview> selectedInterviewList;
+	List<Interview> selectedInterviewList;
 	List<Interview> filteredInterviewList;
 	Interview selectedInterview;
 	LazyDataModel<Interview> lazyModel;
 	InterviewDataSource interviewDataSource;
-	int editInterviewId=0;
-	
+	int editInterviewId = 0;
 
-			   List<Post> postList;
-			   PostDataSource postDataSource;
-			   public List<Post> getPostList() {
+	List<Post> postList;
+	PostDataSource postDataSource;
+
+	public List<Post> getPostList() {
 		return postList;
-	     }
+	}
+
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-			
-			
-			   List<Company> companyList;
-			   CompanyDataSource companyDataSource;
-			   public List<Company> getCompanyList() {
+
+	List<Company> companyList;
+	CompanyDataSource companyDataSource;
+
+	public List<Company> getCompanyList() {
 		return companyList;
-	     }
+	}
+
 	public void setCompanyList(List<Company> companyList) {
 		this.companyList = companyList;
 	}
-			
-				   
-	
-	
-	public ViewInterviewBean()
-	{
+
+	public ViewInterviewBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyInterviewDataModel(this.interviewList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		interviewDataSource=new InterviewDataSource();
-		
 
-			  postDataSource=new PostDataSource();
-			
-			
-			  companyDataSource=new CompanyDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.interviewList=interviewDataSource.getAll();
-		lazyModel=new LazyInterviewDataModel(this.interviewList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		interviewList=interviewDataSource.getAll();
-		
+		lazyModel = new LazyInterviewDataModel(this.interviewList);
 
-			 postList=postDataSource.getAll();
-	
-			
-			 companyList=companyDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		interviewDataSource = new InterviewDataSource();
+
+		postDataSource = new PostDataSource();
+
+		companyDataSource = new CompanyDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.interviewList = interviewDataSource.getAll();
+		lazyModel = new LazyInterviewDataModel(this.interviewList);
+
+	}
+
+	private void populateData() {
+		interviewList = interviewDataSource.getAll();
+
+		postList = postDataSource.getAll();
+
+		companyList = companyDataSource.getAll();
+
+	}
+
 	public List<Interview> getInterviewList() {
 		return interviewList;
 	}
+
 	public void setInterviewList(List<Interview> interviewList) {
 		this.interviewList = interviewList;
 	}
+
 	public LazyDataModel<Interview> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<Interview> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public Interview getSelectedInterview() {
 		return selectedInterview;
 	}
+
 	public void setSelectedInterview(Interview selectedInterview) {
 		this.selectedInterview = selectedInterview;
 	}
-	
+
 	public List<Interview> getSelectedInterviewList() {
 		return selectedInterviewList;
 	}
 
-	public void setSelectedInterviewList(
-			List<Interview> selectedInterviewList) {
+	public void setSelectedInterviewList(List<Interview> selectedInterviewList) {
 		this.selectedInterviewList = selectedInterviewList;
 	}
 
@@ -166,8 +140,7 @@ private static final Log log = LogFactory.getLog(ViewInterviewBean.class);
 		return filteredInterviewList;
 	}
 
-	public void setFilteredInterviewList(
-			List<Interview> filteredInterviewList) {
+	public void setFilteredInterviewList(List<Interview> filteredInterviewList) {
 		this.filteredInterviewList = filteredInterviewList;
 	}
 
@@ -180,12 +153,12 @@ private static final Log log = LogFactory.getLog(ViewInterviewBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("Interview Selected"
 				+ ((Interview) event.getObject()).getInterviewId());
 		for (Interview cat : selectedInterviewList) {
-			//System.out.println(cat.getInterviewLabel());
+			// System.out.println(cat.getInterviewLabel());
 		}
 
 	}
@@ -198,21 +171,22 @@ private static final Log log = LogFactory.getLog(ViewInterviewBean.class);
 
 	public void deleteSelectedInterview() {
 		for (Interview interview : selectedInterviewList) {
-			//System.out.println(interview.getInterviewLabel());
+			// System.out.println(interview.getInterviewLabel());
 			this.deleteInterview(interview);
 		}
 	}
+
 	public void deleteInterview(Interview interview) {
-			try{
+		try {
 			interviewDataSource.delete(interview);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditInterviewId() {
 		return editInterviewId;
 	}
@@ -220,18 +194,17 @@ private static final Log log = LogFactory.getLog(ViewInterviewBean.class);
 	public void setEditInterviewId(int editInterviewId) {
 		this.editInterviewId = editInterviewId;
 	}
-	
-	public void editInterview(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editInterview(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createInterview",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -242,38 +215,32 @@ private static final Log log = LogFactory.getLog(ViewInterviewBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

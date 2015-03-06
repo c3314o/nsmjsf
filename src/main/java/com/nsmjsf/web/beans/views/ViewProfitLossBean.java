@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.ProfitLossDataSource;
 import com.nsmjsf.web.datamodels.ProfitLoss;
 import com.nsmjsf.web.lazymodels.LazyProfitLossDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.FinancialReportAdapter;
-
 
 import com.nsmjsf.web.datasources.FinancialReportDataSource;
 
@@ -32,97 +28,83 @@ import com.nsmjsf.web.datamodels.FinancialReport;
 
 import com.nsmjsf.web.wrappers.FinancialReportWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewProfitLossBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewProfitLossBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewProfitLossBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<ProfitLoss> profitLossList;
-    List<ProfitLoss> selectedProfitLossList;
+	List<ProfitLoss> selectedProfitLossList;
 	List<ProfitLoss> filteredProfitLossList;
 	ProfitLoss selectedProfitLoss;
 	LazyDataModel<ProfitLoss> lazyModel;
 	ProfitLossDataSource profitLossDataSource;
-	int editProfitLossId=0;
-	
+	int editProfitLossId = 0;
 
-			   List<FinancialReport> financialReportList;
-			   FinancialReportDataSource financialReportDataSource;
-			   public List<FinancialReport> getFinancialReportList() {
+	List<FinancialReport> financialReportList;
+	FinancialReportDataSource financialReportDataSource;
+
+	public List<FinancialReport> getFinancialReportList() {
 		return financialReportList;
-	     }
+	}
+
 	public void setFinancialReportList(List<FinancialReport> financialReportList) {
 		this.financialReportList = financialReportList;
 	}
-			
-				   
-	
-	
-	public ViewProfitLossBean()
-	{
+
+	public ViewProfitLossBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyProfitLossDataModel(this.profitLossList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		profitLossDataSource=new ProfitLossDataSource();
-		
 
-			  financialReportDataSource=new FinancialReportDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.profitLossList=profitLossDataSource.getAll();
-		lazyModel=new LazyProfitLossDataModel(this.profitLossList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		profitLossList=profitLossDataSource.getAll();
-		
+		lazyModel = new LazyProfitLossDataModel(this.profitLossList);
 
-			 financialReportList=financialReportDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		profitLossDataSource = new ProfitLossDataSource();
+
+		financialReportDataSource = new FinancialReportDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.profitLossList = profitLossDataSource.getAll();
+		lazyModel = new LazyProfitLossDataModel(this.profitLossList);
+
+	}
+
+	private void populateData() {
+		profitLossList = profitLossDataSource.getAll();
+
+		financialReportList = financialReportDataSource.getAll();
+
+	}
+
 	public List<ProfitLoss> getProfitLossList() {
 		return profitLossList;
 	}
+
 	public void setProfitLossList(List<ProfitLoss> profitLossList) {
 		this.profitLossList = profitLossList;
 	}
+
 	public LazyDataModel<ProfitLoss> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<ProfitLoss> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public ProfitLoss getSelectedProfitLoss() {
 		return selectedProfitLoss;
 	}
+
 	public void setSelectedProfitLoss(ProfitLoss selectedProfitLoss) {
 		this.selectedProfitLoss = selectedProfitLoss;
 	}
-	
+
 	public List<ProfitLoss> getSelectedProfitLossList() {
 		return selectedProfitLossList;
 	}
@@ -150,12 +132,12 @@ private static final Log log = LogFactory.getLog(ViewProfitLossBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("ProfitLoss Selected"
 				+ ((ProfitLoss) event.getObject()).getProfitLossId());
 		for (ProfitLoss cat : selectedProfitLossList) {
-			//System.out.println(cat.getProfitLossLabel());
+			// System.out.println(cat.getProfitLossLabel());
 		}
 
 	}
@@ -168,21 +150,22 @@ private static final Log log = LogFactory.getLog(ViewProfitLossBean.class);
 
 	public void deleteSelectedProfitLoss() {
 		for (ProfitLoss profitLoss : selectedProfitLossList) {
-			//System.out.println(profitLoss.getProfitLossLabel());
+			// System.out.println(profitLoss.getProfitLossLabel());
 			this.deleteProfitLoss(profitLoss);
 		}
 	}
+
 	public void deleteProfitLoss(ProfitLoss profitLoss) {
-			try{
+		try {
 			profitLossDataSource.delete(profitLoss);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditProfitLossId() {
 		return editProfitLossId;
 	}
@@ -190,18 +173,17 @@ private static final Log log = LogFactory.getLog(ViewProfitLossBean.class);
 	public void setEditProfitLossId(int editProfitLossId) {
 		this.editProfitLossId = editProfitLossId;
 	}
-	
-	public void editProfitLoss(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editProfitLoss(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createProfitLoss",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -212,38 +194,32 @@ private static final Log log = LogFactory.getLog(ViewProfitLossBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

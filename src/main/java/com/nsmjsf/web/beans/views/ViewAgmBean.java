@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.AgmDataSource;
 import com.nsmjsf.web.datamodels.Agm;
 import com.nsmjsf.web.lazymodels.LazyAgmDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.FiscalYearAdapter;
-
 
 import com.nsmjsf.web.datasources.FiscalYearDataSource;
 
@@ -32,13 +28,7 @@ import com.nsmjsf.web.datamodels.FiscalYear;
 
 import com.nsmjsf.web.wrappers.FiscalYearWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.AnnouncementAdapter;
-
 
 import com.nsmjsf.web.datasources.AnnouncementDataSource;
 
@@ -46,13 +36,7 @@ import com.nsmjsf.web.datamodels.Announcement;
 
 import com.nsmjsf.web.wrappers.AnnouncementWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.CompanyAdapter;
-
 
 import com.nsmjsf.web.datasources.CompanyDataSource;
 
@@ -60,135 +44,118 @@ import com.nsmjsf.web.datamodels.Company;
 
 import com.nsmjsf.web.wrappers.CompanyWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewAgmBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewAgmBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewAgmBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<Agm> agmList;
-    List<Agm> selectedAgmList;
+	List<Agm> selectedAgmList;
 	List<Agm> filteredAgmList;
 	Agm selectedAgm;
 	LazyDataModel<Agm> lazyModel;
 	AgmDataSource agmDataSource;
-	int editAgmId=0;
-	
+	int editAgmId = 0;
 
-			   List<FiscalYear> fiscalYearList;
-			   FiscalYearDataSource fiscalYearDataSource;
-			   public List<FiscalYear> getFiscalYearList() {
+	List<FiscalYear> fiscalYearList;
+	FiscalYearDataSource fiscalYearDataSource;
+
+	public List<FiscalYear> getFiscalYearList() {
 		return fiscalYearList;
-	     }
+	}
+
 	public void setFiscalYearList(List<FiscalYear> fiscalYearList) {
 		this.fiscalYearList = fiscalYearList;
 	}
-			
-			
-			   List<Announcement> announcementList;
-			   AnnouncementDataSource announcementDataSource;
-			   public List<Announcement> getAnnouncementList() {
+
+	List<Announcement> announcementList;
+	AnnouncementDataSource announcementDataSource;
+
+	public List<Announcement> getAnnouncementList() {
 		return announcementList;
-	     }
+	}
+
 	public void setAnnouncementList(List<Announcement> announcementList) {
 		this.announcementList = announcementList;
 	}
-			
-			
-			   List<Company> companyList;
-			   CompanyDataSource companyDataSource;
-			   public List<Company> getCompanyList() {
+
+	List<Company> companyList;
+	CompanyDataSource companyDataSource;
+
+	public List<Company> getCompanyList() {
 		return companyList;
-	     }
+	}
+
 	public void setCompanyList(List<Company> companyList) {
 		this.companyList = companyList;
 	}
-			
-				   
-	
-	
-	public ViewAgmBean()
-	{
+
+	public ViewAgmBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyAgmDataModel(this.agmList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		agmDataSource=new AgmDataSource();
-		
 
-			  fiscalYearDataSource=new FiscalYearDataSource();
-			
-			
-			  announcementDataSource=new AnnouncementDataSource();
-			
-			
-			  companyDataSource=new CompanyDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.agmList=agmDataSource.getAll();
-		lazyModel=new LazyAgmDataModel(this.agmList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		agmList=agmDataSource.getAll();
-		
+		lazyModel = new LazyAgmDataModel(this.agmList);
 
-			 fiscalYearList=fiscalYearDataSource.getAll();
-	
-			
-			 announcementList=announcementDataSource.getAll();
-	
-			
-			 companyList=companyDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		agmDataSource = new AgmDataSource();
+
+		fiscalYearDataSource = new FiscalYearDataSource();
+
+		announcementDataSource = new AnnouncementDataSource();
+
+		companyDataSource = new CompanyDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.agmList = agmDataSource.getAll();
+		lazyModel = new LazyAgmDataModel(this.agmList);
+
+	}
+
+	private void populateData() {
+		agmList = agmDataSource.getAll();
+
+		fiscalYearList = fiscalYearDataSource.getAll();
+
+		announcementList = announcementDataSource.getAll();
+
+		companyList = companyDataSource.getAll();
+
+	}
+
 	public List<Agm> getAgmList() {
 		return agmList;
 	}
+
 	public void setAgmList(List<Agm> agmList) {
 		this.agmList = agmList;
 	}
+
 	public LazyDataModel<Agm> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<Agm> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public Agm getSelectedAgm() {
 		return selectedAgm;
 	}
+
 	public void setSelectedAgm(Agm selectedAgm) {
 		this.selectedAgm = selectedAgm;
 	}
-	
+
 	public List<Agm> getSelectedAgmList() {
 		return selectedAgmList;
 	}
 
-	public void setSelectedAgmList(
-			List<Agm> selectedAgmList) {
+	public void setSelectedAgmList(List<Agm> selectedAgmList) {
 		this.selectedAgmList = selectedAgmList;
 	}
 
@@ -196,8 +163,7 @@ private static final Log log = LogFactory.getLog(ViewAgmBean.class);
 		return filteredAgmList;
 	}
 
-	public void setFilteredAgmList(
-			List<Agm> filteredAgmList) {
+	public void setFilteredAgmList(List<Agm> filteredAgmList) {
 		this.filteredAgmList = filteredAgmList;
 	}
 
@@ -206,16 +172,16 @@ private static final Log log = LogFactory.getLog(ViewAgmBean.class);
 		Map<String, Object> options = new HashMap<String, Object>();
 		options.put("modal", true);
 
-		RequestContext.getCurrentInstance().openDialog("createAgm",
-				options, null);
+		RequestContext.getCurrentInstance().openDialog("createAgm", options,
+				null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("Agm Selected"
 				+ ((Agm) event.getObject()).getAgmId());
 		for (Agm cat : selectedAgmList) {
-			//System.out.println(cat.getAgmLabel());
+			// System.out.println(cat.getAgmLabel());
 		}
 
 	}
@@ -228,21 +194,22 @@ private static final Log log = LogFactory.getLog(ViewAgmBean.class);
 
 	public void deleteSelectedAgm() {
 		for (Agm agm : selectedAgmList) {
-			//System.out.println(agm.getAgmLabel());
+			// System.out.println(agm.getAgmLabel());
 			this.deleteAgm(agm);
 		}
 	}
+
 	public void deleteAgm(Agm agm) {
-			try{
+		try {
 			agmDataSource.delete(agm);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditAgmId() {
 		return editAgmId;
 	}
@@ -250,18 +217,17 @@ private static final Log log = LogFactory.getLog(ViewAgmBean.class);
 	public void setEditAgmId(int editAgmId) {
 		this.editAgmId = editAgmId;
 	}
-	
-	public void editAgm(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editAgm(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
-		RequestContext.getCurrentInstance().openDialog("createAgm",
-				options,params);
+		RequestContext.getCurrentInstance().openDialog("createAgm", options,
+				params);
 	}
 
 	public ViewType getViewType() {
@@ -272,38 +238,32 @@ private static final Log log = LogFactory.getLog(ViewAgmBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

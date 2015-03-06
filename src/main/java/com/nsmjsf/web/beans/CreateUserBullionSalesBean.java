@@ -18,9 +18,8 @@ import com.nsmjsf.web.datasources.UserBullionSalesDataSource;
 import com.nsmjsf.web.datamodels.UserBullionSales;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
-			
-import com.nsmjsf.web.adapters.UserBullionAdapter;
 
+import com.nsmjsf.web.adapters.UserBullionAdapter;
 
 import com.nsmjsf.web.datasources.UserBullionDataSource;
 
@@ -28,132 +27,56 @@ import com.nsmjsf.web.datamodels.UserBullion;
 
 import com.nsmjsf.web.wrappers.UserBullionWrapper;
 
-
-
-			
-				   
-
 @ManagedBean
 @ViewScoped
-
 public class CreateUserBullionSalesBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreateUserBullionSalesBean.class);
-
 
 	private UserBullionSales userBullionSales;
 	private UserBullionSalesDataSource userBullionSalesDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-    private UserBullionDataSource userBullionDataSource;
+
+	private UserBullionDataSource userBullionDataSource;
 	private List<UserBullionWrapper> userBullionWrapperList;
 	private List<UserBullion> userBullionList;
 	private UserBullionWrapper selectedUserBullionWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateUserBullionSalesBean() {
 
 		userBullionSales = new UserBullionSales();
 		/* init datasources */
 		userBullionSalesDataSource = new UserBullionSalesDataSource();
-		
-		
-			
-userBullionDataSource = new UserBullionDataSource();
+
+		userBullionDataSource = new UserBullionDataSource();
 
 		/* init option wrappers */
 		userBullionList = userBullionDataSource.getAll();
-		userBullionWrapperList = UserBullionAdapter
-				.wrapAll(userBullionList);
-	
-			
-				
-		
-		
+		userBullionWrapperList = UserBullionAdapter.wrapAll(userBullionList);
 
 	}
-	
-	@PostConstruct
-	private void init()
-	{
-		extractParams();
-		if(this.editMode)
-		{
-			this.userBullionSales=userBullionSalesDataSource.get(editId);
-			
-			
 
-			  
-			  this.selectedUserBullionWrapper=UserBullionAdapter.wrap(userBullionSales.getUserBullion());
-	
-			
-				   
-			
-			
-			
-			
+	@PostConstruct
+	private void init() {
+		extractParams();
+		if (this.editMode) {
+			this.userBullionSales = userBullionSalesDataSource.get(editId);
+
+			this.selectedUserBullionWrapper = UserBullionAdapter
+					.wrap(userBullionSales.getUserBullion());
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -170,29 +93,19 @@ userBullionDataSource = new UserBullionDataSource();
 		return userBullionSalesDataSource;
 	}
 
-	public void setUserBullionSalesDataSource(UserBullionSalesDataSource userBullionSalesDataSource) {
+	public void setUserBullionSalesDataSource(
+			UserBullionSalesDataSource userBullionSalesDataSource) {
 		this.userBullionSalesDataSource = userBullionSalesDataSource;
 	}
-	
-	
-	
-	
-	
-	
-	
-			
 
-
-public List<UserBullion> getUserBullionList() {
+	public List<UserBullion> getUserBullionList() {
 		return userBullionList;
 	}
 
 	public void setUserBullionList(List<UserBullion> userBullionList) {
 		this.userBullionList = userBullionList;
 	}
-  
-  
-  
+
 	public UserBullionDataSource getUserBullionDataSource() {
 		return userBullionDataSource;
 	}
@@ -211,8 +124,6 @@ public List<UserBullion> getUserBullionList() {
 		this.userBullionWrapperList = userBullionWrapperList;
 	}
 
-	
-
 	public UserBullionWrapper getSelectedUserBullionWrapper() {
 		return selectedUserBullionWrapper;
 	}
@@ -222,106 +133,79 @@ public List<UserBullion> getUserBullionList() {
 		this.selectedUserBullionWrapper = selectedUserBullionWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-				
-
-
-
-
-	
-  
-  
-  
 	public UserBullionSales saveUserBullionSales() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  UserBullion userBullion =selectedUserBullionWrapper.getUserBullion();
+
+			UserBullion userBullion = selectedUserBullionWrapper
+					.getUserBullion();
 
 			userBullionSales.setUserBullion(userBullion);
-			
-				   
-			
-			
-			
-			
+
 			userBullionSalesDataSource.create(userBullionSales, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  UserBullionSales !");
-				this.userBullionSales=new UserBullionSales();
+			MessageService.info("Successfully Saved  UserBullionSales !");
+			this.userBullionSales = new UserBullionSales();
 			return userBullionSales;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
-			MessageService.error("Failed Saving UserBullionSales .Try Again Later!");
+			log.error(ex.getMessage());
+			MessageService
+					.error("Failed Saving UserBullionSales .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public UserBullionSales updateUserBullionSales() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  UserBullion userBullion = selectedUserBullionWrapper.getUserBullion();
 
-			      userBullionSales.setUserBullion(userBullion);
-			
-				   
-			
-			
-			
-			
+			UserBullion userBullion = selectedUserBullionWrapper
+					.getUserBullion();
+
+			userBullionSales.setUserBullion(userBullion);
+
 			userBullionSalesDataSource.create(userBullionSales, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  UserBullionSales !");
-				this.userBullionSales=new UserBullionSales();
+			MessageService.info("Successfully Saved  UserBullionSales !");
+			this.userBullionSales = new UserBullionSales();
 			return userBullionSales;
 
 		} catch (Exception ex) {
-			MessageService.error("Failed Saving UserBullionSales .Try Again Later!");
+			MessageService
+					.error("Failed Saving UserBullionSales .Try Again Later!");
 			log.error(ex.getMessage());
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateUserBullionSales();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveUserBullionSales();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createUserBullionSales");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog(
+				"createUserBullionSales");
+
 	}
-	public UserBullionSales saveUserBullionSales(Session session){
-	
-	   this.userBullionSales= userBullionSalesDataSource.create(this.userBullionSales,session);
-	   return this.userBullionSales;
+
+	public UserBullionSales saveUserBullionSales(Session session) {
+
+		this.userBullionSales = userBullionSalesDataSource.create(
+				this.userBullionSales, session);
+		return this.userBullionSales;
 	}
-	
 
 }
-

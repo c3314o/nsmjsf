@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.BullionPrice;
 
 public class BullionPriceWrapper {
 
-private static final Log log = LogFactory
-			.getLog(BullionPriceWrapper.class);
-
+	private static final Log log = LogFactory.getLog(BullionPriceWrapper.class);
 
 	BullionPrice bullionPrice;
 
@@ -35,7 +31,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.bullionPrice.getBullionPriceId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.bullionPrice.getBullionPriceId());
 		return hash;
 	}
 
@@ -46,7 +43,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final BullionPriceWrapper other = (BullionPriceWrapper) obj;
-		if (!Objects.equals(this.bullionPrice.getBullionPriceId(), other.getBullionPrice().getBullionPriceId()))
+		if (!Objects.equals(this.bullionPrice.getBullionPriceId(), other
+				.getBullionPrice().getBullionPriceId()))
 			return false;
 		return true;
 	}
@@ -57,4 +55,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

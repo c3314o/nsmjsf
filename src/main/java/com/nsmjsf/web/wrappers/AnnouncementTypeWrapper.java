@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,8 @@ import com.nsmjsf.web.datamodels.AnnouncementType;
 
 public class AnnouncementTypeWrapper {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(AnnouncementTypeWrapper.class);
-
 
 	AnnouncementType announcementType;
 
@@ -35,7 +32,10 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.announcementType.getAnnouncementTypeId());
+		hash = 83
+				* hash
+				+ Objects.hashCode(this.announcementType
+						.getAnnouncementTypeId());
 		return hash;
 	}
 
@@ -46,7 +46,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final AnnouncementTypeWrapper other = (AnnouncementTypeWrapper) obj;
-		if (!Objects.equals(this.announcementType.getAnnouncementTypeId(), other.getAnnouncementType().getAnnouncementTypeId()))
+		if (!Objects.equals(this.announcementType.getAnnouncementTypeId(),
+				other.getAnnouncementType().getAnnouncementTypeId()))
 			return false;
 		return true;
 	}
@@ -57,4 +58,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

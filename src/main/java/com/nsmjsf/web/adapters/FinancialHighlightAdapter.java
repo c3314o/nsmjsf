@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.adapters;
 
 import java.util.ArrayList;
@@ -10,29 +9,27 @@ import com.nsmjsf.web.datamodels.FinancialHighlight;
 import com.nsmjsf.web.wrappers.FinancialHighlightWrapper;
 
 public class FinancialHighlightAdapter {
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(FinancialHighlightAdapter.class);
-	
-	public static List<FinancialHighlightWrapper> wrapAll(List<FinancialHighlight> financialHighlightList)
-	{
-		List<FinancialHighlightWrapper> financialHighlightWrapperList=new ArrayList<FinancialHighlightWrapper>();
-		for(FinancialHighlight financialHighlight:financialHighlightList)
-		{
-			FinancialHighlightWrapper financialHighlightWrapper=new FinancialHighlightWrapper();
+
+	public static List<FinancialHighlightWrapper> wrapAll(
+			List<FinancialHighlight> financialHighlightList) {
+		List<FinancialHighlightWrapper> financialHighlightWrapperList = new ArrayList<FinancialHighlightWrapper>();
+		for (FinancialHighlight financialHighlight : financialHighlightList) {
+			FinancialHighlightWrapper financialHighlightWrapper = new FinancialHighlightWrapper();
 			financialHighlightWrapper.setFinancialHighlight(financialHighlight);
 			financialHighlightWrapperList.add(financialHighlightWrapper);
 		}
 		return financialHighlightWrapperList;
-		
+
 	}
-	
-	public static FinancialHighlightWrapper wrap(FinancialHighlight financialHighlight)
-	{
-		FinancialHighlightWrapper financialHighlightWrapper=new FinancialHighlightWrapper();
+
+	public static FinancialHighlightWrapper wrap(
+			FinancialHighlight financialHighlight) {
+		FinancialHighlightWrapper financialHighlightWrapper = new FinancialHighlightWrapper();
 		financialHighlightWrapper.setFinancialHighlight(financialHighlight);
 		return financialHighlightWrapper;
-		
+
 	}
 
 }
-

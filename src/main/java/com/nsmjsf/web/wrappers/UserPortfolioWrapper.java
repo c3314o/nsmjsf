@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,8 @@ import com.nsmjsf.web.datamodels.UserPortfolio;
 
 public class UserPortfolioWrapper {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(UserPortfolioWrapper.class);
-
 
 	UserPortfolio userPortfolio;
 
@@ -35,7 +32,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.userPortfolio.getUserPortfolioId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.userPortfolio.getUserPortfolioId());
 		return hash;
 	}
 
@@ -46,7 +44,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final UserPortfolioWrapper other = (UserPortfolioWrapper) obj;
-		if (!Objects.equals(this.userPortfolio.getUserPortfolioId(), other.getUserPortfolio().getUserPortfolioId()))
+		if (!Objects.equals(this.userPortfolio.getUserPortfolioId(), other
+				.getUserPortfolio().getUserPortfolioId()))
 			return false;
 		return true;
 	}
@@ -57,4 +56,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

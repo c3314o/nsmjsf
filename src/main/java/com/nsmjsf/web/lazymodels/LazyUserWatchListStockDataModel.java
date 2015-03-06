@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.UserWatchListStock;
 import com.nsmjsf.web.sorters.UserWatchListStockSorter;
 
-public class LazyUserWatchListStockDataModel extends LazyDataModel<UserWatchListStock> {
+public class LazyUserWatchListStockDataModel extends
+		LazyDataModel<UserWatchListStock> {
 	private static final Log log = LogFactory
 			.getLog(LazyUserWatchListStockDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazyUserWatchListStockDataModel extends LazyDataModel<UserWatchList
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<UserWatchListStock> userWatchListStockList;
 
-	public LazyUserWatchListStockDataModel(List<UserWatchListStock> userWatchListStockList) {
+	public LazyUserWatchListStockDataModel(
+			List<UserWatchListStock> userWatchListStockList) {
 		this.userWatchListStockList = userWatchListStockList;
 	}
 
 	@Override
 	public UserWatchListStock getRowData(String rowKey) {
 		for (UserWatchListStock userWatchListStock : userWatchListStockList) {
-			if (userWatchListStock.getUserWatchListStockId().toString().equalsIgnoreCase(rowKey))
+			if (userWatchListStock.getUserWatchListStockId().toString()
+					.equalsIgnoreCase(rowKey))
 				return userWatchListStock;
 		}
 
@@ -47,8 +48,8 @@ public class LazyUserWatchListStockDataModel extends LazyDataModel<UserWatchList
 	}
 
 	@Override
-	public List<UserWatchListStock> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<UserWatchListStock> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<UserWatchListStock> data = new ArrayList<UserWatchListStock>();
@@ -63,13 +64,13 @@ public class LazyUserWatchListStockDataModel extends LazyDataModel<UserWatchList
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = userWatchListStock.getClass().getDeclaredField(
-								filterProperty);
+						Field field = userWatchListStock.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(userWatchListStock));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(userWatchListStock));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazyUserWatchListStockDataModel extends LazyDataModel<UserWatchList
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new UserWatchListStockSorter(sortField, sortOrder));
+			Collections.sort(data, new UserWatchListStockSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazyUserWatchListStockDataModel extends LazyDataModel<UserWatchList
 	}
 
 }
-

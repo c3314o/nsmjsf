@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,13 +8,13 @@ import com.nsmjsf.web.datamodels.CertificateDividendDistribution;
 
 public class CertificateDividendDistributionWrapper {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CertificateDividendDistributionWrapper.class);
-
 
 	CertificateDividendDistribution certificateDividendDistribution;
 
-	public CertificateDividendDistributionWrapper(CertificateDividendDistribution certificateDividendDistribution) {
+	public CertificateDividendDistributionWrapper(
+			CertificateDividendDistribution certificateDividendDistribution) {
 		this.certificateDividendDistribution = certificateDividendDistribution;
 	}
 
@@ -28,14 +26,18 @@ private static final Log log = LogFactory
 		return certificateDividendDistribution;
 	}
 
-	public void setCertificateDividendDistribution(CertificateDividendDistribution certificateDividendDistribution) {
+	public void setCertificateDividendDistribution(
+			CertificateDividendDistribution certificateDividendDistribution) {
 		this.certificateDividendDistribution = certificateDividendDistribution;
 	}
 
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.certificateDividendDistribution.getCertificateDividendDistributionId());
+		hash = 83
+				* hash
+				+ Objects.hashCode(this.certificateDividendDistribution
+						.getCertificateDividendDistributionId());
 		return hash;
 	}
 
@@ -46,7 +48,10 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final CertificateDividendDistributionWrapper other = (CertificateDividendDistributionWrapper) obj;
-		if (!Objects.equals(this.certificateDividendDistribution.getCertificateDividendDistributionId(), other.getCertificateDividendDistribution().getCertificateDividendDistributionId()))
+		if (!Objects.equals(this.certificateDividendDistribution
+				.getCertificateDividendDistributionId(), other
+				.getCertificateDividendDistribution()
+				.getCertificateDividendDistributionId()))
 			return false;
 		return true;
 	}
@@ -57,4 +62,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

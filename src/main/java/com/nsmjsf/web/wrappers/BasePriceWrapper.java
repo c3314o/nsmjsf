@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.BasePrice;
 
 public class BasePriceWrapper {
 
-private static final Log log = LogFactory
-			.getLog(BasePriceWrapper.class);
-
+	private static final Log log = LogFactory.getLog(BasePriceWrapper.class);
 
 	BasePrice basePrice;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final BasePriceWrapper other = (BasePriceWrapper) obj;
-		if (!Objects.equals(this.basePrice.getBasePriceId(), other.getBasePrice().getBasePriceId()))
+		if (!Objects.equals(this.basePrice.getBasePriceId(), other
+				.getBasePrice().getBasePriceId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

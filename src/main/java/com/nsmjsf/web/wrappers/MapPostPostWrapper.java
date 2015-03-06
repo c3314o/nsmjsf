@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.MapPostPost;
 
 public class MapPostPostWrapper {
 
-private static final Log log = LogFactory
-			.getLog(MapPostPostWrapper.class);
-
+	private static final Log log = LogFactory.getLog(MapPostPostWrapper.class);
 
 	MapPostPost mapPostPost;
 
@@ -35,7 +31,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.mapPostPost.getMapPostPostId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.mapPostPost.getMapPostPostId());
 		return hash;
 	}
 
@@ -46,7 +43,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final MapPostPostWrapper other = (MapPostPostWrapper) obj;
-		if (!Objects.equals(this.mapPostPost.getMapPostPostId(), other.getMapPostPost().getMapPostPostId()))
+		if (!Objects.equals(this.mapPostPost.getMapPostPostId(), other
+				.getMapPostPost().getMapPostPostId()))
 			return false;
 		return true;
 	}
@@ -57,4 +55,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

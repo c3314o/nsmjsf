@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.LatestPrice;
 
 public class LatestPriceWrapper {
 
-private static final Log log = LogFactory
-			.getLog(LatestPriceWrapper.class);
-
+	private static final Log log = LogFactory.getLog(LatestPriceWrapper.class);
 
 	LatestPrice latestPrice;
 
@@ -35,7 +31,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.latestPrice.getLatestPriceId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.latestPrice.getLatestPriceId());
 		return hash;
 	}
 
@@ -46,7 +43,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final LatestPriceWrapper other = (LatestPriceWrapper) obj;
-		if (!Objects.equals(this.latestPrice.getLatestPriceId(), other.getLatestPrice().getLatestPriceId()))
+		if (!Objects.equals(this.latestPrice.getLatestPriceId(), other
+				.getLatestPrice().getLatestPriceId()))
 			return false;
 		return true;
 	}
@@ -57,4 +55,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

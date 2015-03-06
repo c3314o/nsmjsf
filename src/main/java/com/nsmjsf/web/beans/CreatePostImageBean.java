@@ -18,9 +18,8 @@ import com.nsmjsf.web.datasources.PostImageDataSource;
 import com.nsmjsf.web.datamodels.PostImage;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
-			
-import com.nsmjsf.web.adapters.PostAdapter;
 
+import com.nsmjsf.web.adapters.PostAdapter;
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -28,114 +27,54 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-				   
-
 @ManagedBean
 @ViewScoped
-
 public class CreatePostImageBean implements Serializable {
 
-private static final Log log = LogFactory
-			.getLog(CreatePostImageBean.class);
-
+	private static final Log log = LogFactory.getLog(CreatePostImageBean.class);
 
 	private PostImage postImage;
 	private PostImageDataSource postImageDataSource;
-	
-	
-	
-			
-    private PostDataSource postDataSource;
+
+	private PostDataSource postDataSource;
 	private List<PostWrapper> postWrapperList;
 	private List<Post> postList;
 	private PostWrapper selectedPostWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreatePostImageBean() {
 
 		postImage = new PostImage();
 		/* init datasources */
 		postImageDataSource = new PostImageDataSource();
-		
-		
-			
-postDataSource = new PostDataSource();
+
+		postDataSource = new PostDataSource();
 
 		/* init option wrappers */
 		postList = postDataSource.getAll();
-		postWrapperList = PostAdapter
-				.wrapAll(postList);
-	
-			
-				
-		
-		
+		postWrapperList = PostAdapter.wrapAll(postList);
 
 	}
-	
-	@PostConstruct
-	private void init()
-	{
-		extractParams();
-		if(this.editMode)
-		{
-			this.postImage=postImageDataSource.get(editId);
-			
-			
 
-			  
-			  this.selectedPostWrapper=PostAdapter.wrap(postImage.getPost());
-	
-			
-				   
-			
-			
-			
-			
+	@PostConstruct
+	private void init() {
+		extractParams();
+		if (this.editMode) {
+			this.postImage = postImageDataSource.get(editId);
+
+			this.selectedPostWrapper = PostAdapter.wrap(postImage.getPost());
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -155,32 +94,20 @@ postDataSource = new PostDataSource();
 	public void setPostImageDataSource(PostImageDataSource postImageDataSource) {
 		this.postImageDataSource = postImageDataSource;
 	}
-	
-	
-	
-	
-	
-	
-	
-			
 
-
-public List<Post> getPostList() {
+	public List<Post> getPostList() {
 		return postList;
 	}
 
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-  
-  
-  
+
 	public PostDataSource getPostDataSource() {
 		return postDataSource;
 	}
 
-	public void setPostDataSource(
-			PostDataSource postDataSource) {
+	public void setPostDataSource(PostDataSource postDataSource) {
 		this.postDataSource = postDataSource;
 	}
 
@@ -188,91 +115,56 @@ public List<Post> getPostList() {
 		return postWrapperList;
 	}
 
-	public void setPostWrapperList(
-			List<PostWrapper> postWrapperList) {
+	public void setPostWrapperList(List<PostWrapper> postWrapperList) {
 		this.postWrapperList = postWrapperList;
 	}
-
-	
 
 	public PostWrapper getSelectedPostWrapper() {
 		return selectedPostWrapper;
 	}
 
-	public void setSelectedPostWrapper(
-			PostWrapper selectedPostWrapper) {
+	public void setSelectedPostWrapper(PostWrapper selectedPostWrapper) {
 		this.selectedPostWrapper = selectedPostWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-				
-
-
-
-
-	
-  
-  
-  
 	public PostImage savePostImage() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Post post =selectedPostWrapper.getPost();
+
+			Post post = selectedPostWrapper.getPost();
 
 			postImage.setPost(post);
-			
-				   
-			
-			
-			
-			
+
 			postImageDataSource.create(postImage, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  PostImage !");
-				this.postImage=new PostImage();
+			MessageService.info("Successfully Saved  PostImage !");
+			this.postImage = new PostImage();
 			return postImage;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving PostImage .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public PostImage updatePostImage() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Post post = selectedPostWrapper.getPost();
 
-			      postImage.setPost(post);
-			
-				   
-			
-			
-			
-			
+			Post post = selectedPostWrapper.getPost();
+
+			postImage.setPost(post);
+
 			postImageDataSource.create(postImage, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  PostImage !");
-				this.postImage=new PostImage();
+			MessageService.info("Successfully Saved  PostImage !");
+			this.postImage = new PostImage();
 			return postImage;
 
 		} catch (Exception ex) {
@@ -281,29 +173,27 @@ public List<Post> getPostList() {
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updatePostImage();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			savePostImage();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createPostImage");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createPostImage");
+
 	}
-	public PostImage savePostImage(Session session){
-	
-	   this.postImage= postImageDataSource.create(this.postImage,session);
-	   return this.postImage;
+
+	public PostImage savePostImage(Session session) {
+
+		this.postImage = postImageDataSource.create(this.postImage, session);
+		return this.postImage;
 	}
-	
 
 }
-

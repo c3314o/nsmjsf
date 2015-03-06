@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.PostImage;
 
 public class PostImageWrapper {
 
-private static final Log log = LogFactory
-			.getLog(PostImageWrapper.class);
-
+	private static final Log log = LogFactory.getLog(PostImageWrapper.class);
 
 	PostImage postImage;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final PostImageWrapper other = (PostImageWrapper) obj;
-		if (!Objects.equals(this.postImage.getPostImageId(), other.getPostImage().getPostImageId()))
+		if (!Objects.equals(this.postImage.getPostImageId(), other
+				.getPostImage().getPostImageId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

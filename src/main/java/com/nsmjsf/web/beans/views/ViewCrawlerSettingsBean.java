@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,78 +20,70 @@ import com.nsmjsf.web.datasources.CrawlerSettingsDataSource;
 import com.nsmjsf.web.datamodels.CrawlerSettings;
 import com.nsmjsf.web.lazymodels.LazyCrawlerSettingsDataModel;
 
-	   
 @ManagedBean
 @ViewScoped
 public class ViewCrawlerSettingsBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewCrawlerSettingsBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewCrawlerSettingsBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<CrawlerSettings> crawlerSettingsList;
-    List<CrawlerSettings> selectedCrawlerSettingsList;
+	List<CrawlerSettings> selectedCrawlerSettingsList;
 	List<CrawlerSettings> filteredCrawlerSettingsList;
 	CrawlerSettings selectedCrawlerSettings;
 	LazyDataModel<CrawlerSettings> lazyModel;
 	CrawlerSettingsDataSource crawlerSettingsDataSource;
-	int editCrawlerSettingsId=0;
-	
-	   
-	
-	
-	public ViewCrawlerSettingsBean()
-	{
+	int editCrawlerSettingsId = 0;
+
+	public ViewCrawlerSettingsBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyCrawlerSettingsDataModel(this.crawlerSettingsList);
-		
+
+		lazyModel = new LazyCrawlerSettingsDataModel(this.crawlerSettingsList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		crawlerSettingsDataSource=new CrawlerSettingsDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		crawlerSettingsDataSource = new CrawlerSettingsDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.crawlerSettingsList=crawlerSettingsDataSource.getAll();
-		lazyModel=new LazyCrawlerSettingsDataModel(this.crawlerSettingsList);
-		
+
+	public void refreshDataSource() {
+		this.crawlerSettingsList = crawlerSettingsDataSource.getAll();
+		lazyModel = new LazyCrawlerSettingsDataModel(this.crawlerSettingsList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		crawlerSettingsList=crawlerSettingsDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		crawlerSettingsList = crawlerSettingsDataSource.getAll();
+
+	}
+
 	public List<CrawlerSettings> getCrawlerSettingsList() {
 		return crawlerSettingsList;
 	}
+
 	public void setCrawlerSettingsList(List<CrawlerSettings> crawlerSettingsList) {
 		this.crawlerSettingsList = crawlerSettingsList;
 	}
+
 	public LazyDataModel<CrawlerSettings> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<CrawlerSettings> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public CrawlerSettings getSelectedCrawlerSettings() {
 		return selectedCrawlerSettings;
 	}
-	public void setSelectedCrawlerSettings(CrawlerSettings selectedCrawlerSettings) {
+
+	public void setSelectedCrawlerSettings(
+			CrawlerSettings selectedCrawlerSettings) {
 		this.selectedCrawlerSettings = selectedCrawlerSettings;
 	}
-	
+
 	public List<CrawlerSettings> getSelectedCrawlerSettingsList() {
 		return selectedCrawlerSettingsList;
 	}
@@ -120,12 +111,12 @@ private static final Log log = LogFactory.getLog(ViewCrawlerSettingsBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("CrawlerSettings Selected"
 				+ ((CrawlerSettings) event.getObject()).getCrawlerSettingsId());
 		for (CrawlerSettings cat : selectedCrawlerSettingsList) {
-			//System.out.println(cat.getCrawlerSettingsLabel());
+			// System.out.println(cat.getCrawlerSettingsLabel());
 		}
 
 	}
@@ -138,21 +129,22 @@ private static final Log log = LogFactory.getLog(ViewCrawlerSettingsBean.class);
 
 	public void deleteSelectedCrawlerSettings() {
 		for (CrawlerSettings crawlerSettings : selectedCrawlerSettingsList) {
-			//System.out.println(crawlerSettings.getCrawlerSettingsLabel());
+			// System.out.println(crawlerSettings.getCrawlerSettingsLabel());
 			this.deleteCrawlerSettings(crawlerSettings);
 		}
 	}
+
 	public void deleteCrawlerSettings(CrawlerSettings crawlerSettings) {
-			try{
+		try {
 			crawlerSettingsDataSource.delete(crawlerSettings);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditCrawlerSettingsId() {
 		return editCrawlerSettingsId;
 	}
@@ -160,18 +152,17 @@ private static final Log log = LogFactory.getLog(ViewCrawlerSettingsBean.class);
 	public void setEditCrawlerSettingsId(int editCrawlerSettingsId) {
 		this.editCrawlerSettingsId = editCrawlerSettingsId;
 	}
-	
-	public void editCrawlerSettings(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editCrawlerSettings(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createCrawlerSettings",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -182,38 +173,32 @@ private static final Log log = LogFactory.getLog(ViewCrawlerSettingsBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

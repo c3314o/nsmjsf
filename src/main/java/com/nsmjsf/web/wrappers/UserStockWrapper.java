@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.UserStock;
 
 public class UserStockWrapper {
 
-private static final Log log = LogFactory
-			.getLog(UserStockWrapper.class);
-
+	private static final Log log = LogFactory.getLog(UserStockWrapper.class);
 
 	UserStock userStock;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final UserStockWrapper other = (UserStockWrapper) obj;
-		if (!Objects.equals(this.userStock.getUserStockId(), other.getUserStock().getUserStockId()))
+		if (!Objects.equals(this.userStock.getUserStockId(), other
+				.getUserStock().getUserStockId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

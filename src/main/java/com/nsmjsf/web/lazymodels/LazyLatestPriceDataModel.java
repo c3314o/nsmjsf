@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyLatestPriceDataModel extends LazyDataModel<LatestPrice> {
 	@Override
 	public LatestPrice getRowData(String rowKey) {
 		for (LatestPrice latestPrice : latestPriceList) {
-			if (latestPrice.getLatestPriceId().toString().equalsIgnoreCase(rowKey))
+			if (latestPrice.getLatestPriceId().toString()
+					.equalsIgnoreCase(rowKey))
 				return latestPrice;
 		}
 
@@ -66,10 +65,10 @@ public class LazyLatestPriceDataModel extends LazyDataModel<LatestPrice> {
 						Field field = latestPrice.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(latestPrice));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(latestPrice));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyLatestPriceDataModel extends LazyDataModel<LatestPrice> {
 	}
 
 }
-

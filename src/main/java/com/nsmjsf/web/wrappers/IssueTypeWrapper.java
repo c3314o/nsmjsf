@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.IssueType;
 
 public class IssueTypeWrapper {
 
-private static final Log log = LogFactory
-			.getLog(IssueTypeWrapper.class);
-
+	private static final Log log = LogFactory.getLog(IssueTypeWrapper.class);
 
 	IssueType issueType;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final IssueTypeWrapper other = (IssueTypeWrapper) obj;
-		if (!Objects.equals(this.issueType.getIssueTypeId(), other.getIssueType().getIssueTypeId()))
+		if (!Objects.equals(this.issueType.getIssueTypeId(), other
+				.getIssueType().getIssueTypeId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

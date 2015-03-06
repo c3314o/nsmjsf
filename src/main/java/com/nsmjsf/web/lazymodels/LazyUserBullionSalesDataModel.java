@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.UserBullionSales;
 import com.nsmjsf.web.sorters.UserBullionSalesSorter;
 
-public class LazyUserBullionSalesDataModel extends LazyDataModel<UserBullionSales> {
+public class LazyUserBullionSalesDataModel extends
+		LazyDataModel<UserBullionSales> {
 	private static final Log log = LogFactory
 			.getLog(LazyUserBullionSalesDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazyUserBullionSalesDataModel extends LazyDataModel<UserBullionSale
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<UserBullionSales> userBullionSalesList;
 
-	public LazyUserBullionSalesDataModel(List<UserBullionSales> userBullionSalesList) {
+	public LazyUserBullionSalesDataModel(
+			List<UserBullionSales> userBullionSalesList) {
 		this.userBullionSalesList = userBullionSalesList;
 	}
 
 	@Override
 	public UserBullionSales getRowData(String rowKey) {
 		for (UserBullionSales userBullionSales : userBullionSalesList) {
-			if (userBullionSales.getUserBullionSalesId().toString().equalsIgnoreCase(rowKey))
+			if (userBullionSales.getUserBullionSalesId().toString()
+					.equalsIgnoreCase(rowKey))
 				return userBullionSales;
 		}
 
@@ -47,8 +48,8 @@ public class LazyUserBullionSalesDataModel extends LazyDataModel<UserBullionSale
 	}
 
 	@Override
-	public List<UserBullionSales> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<UserBullionSales> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<UserBullionSales> data = new ArrayList<UserBullionSales>();
@@ -63,13 +64,13 @@ public class LazyUserBullionSalesDataModel extends LazyDataModel<UserBullionSale
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = userBullionSales.getClass().getDeclaredField(
-								filterProperty);
+						Field field = userBullionSales.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(userBullionSales));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(userBullionSales));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazyUserBullionSalesDataModel extends LazyDataModel<UserBullionSale
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new UserBullionSalesSorter(sortField, sortOrder));
+			Collections.sort(data, new UserBullionSalesSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazyUserBullionSalesDataModel extends LazyDataModel<UserBullionSale
 	}
 
 }
-

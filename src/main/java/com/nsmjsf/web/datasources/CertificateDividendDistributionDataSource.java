@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,22 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.CertificateDividendDistribution ;
+import com.nsmjsf.web.datamodels.CertificateDividendDistribution;
 
-public class CertificateDividendDistributionDataSource extends TDataSource<CertificateDividendDistribution>{
+public class CertificateDividendDistributionDataSource extends
+		TDataSource<CertificateDividendDistribution> {
 
-	public CertificateDividendDistributionDataSource()
-	{
+	public CertificateDividendDistributionDataSource() {
 		super();
 		this.setTableName("CertificateDividendDistribution");
 		this.setPrimaryKey("certificate_dividend_distribution_id");
 	}
 
-	
 	@Override
 	public List<CertificateDividendDistribution> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -88,7 +84,8 @@ public class CertificateDividendDistributionDataSource extends TDataSource<Certi
 	}
 
 	@Override
-	public CertificateDividendDistribution create(CertificateDividendDistribution record, Session session) {
+	public CertificateDividendDistribution create(
+			CertificateDividendDistribution record, Session session) {
 		// TODO Auto-generated method stub
 		return super.create(record, session);
 	}
@@ -106,7 +103,8 @@ public class CertificateDividendDistributionDataSource extends TDataSource<Certi
 	}
 
 	@Override
-	public List<CertificateDividendDistribution> getWhere(HashMap<String, Object> clauses) {
+	public List<CertificateDividendDistribution> getWhere(
+			HashMap<String, Object> clauses) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses);
 	}
@@ -124,13 +122,15 @@ public class CertificateDividendDistributionDataSource extends TDataSource<Certi
 	}
 
 	@Override
-	public CertificateDividendDistribution update(CertificateDividendDistribution record) {
+	public CertificateDividendDistribution update(
+			CertificateDividendDistribution record) {
 		// TODO Auto-generated method stub
 		return super.update(record);
 	}
 
 	@Override
-	public CertificateDividendDistribution create(CertificateDividendDistribution record) {
+	public CertificateDividendDistribution create(
+			CertificateDividendDistribution record) {
 		// TODO Auto-generated method stub
 		return super.create(record);
 	}
@@ -142,7 +142,8 @@ public class CertificateDividendDistributionDataSource extends TDataSource<Certi
 	}
 
 	@Override
-	public List<CertificateDividendDistribution> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<CertificateDividendDistribution> getWhere(
+			HashMap<String, Object> clauses, Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -160,7 +161,8 @@ public class CertificateDividendDistributionDataSource extends TDataSource<Certi
 	}
 
 	@Override
-	public CertificateDividendDistribution update(CertificateDividendDistribution record, Session session) {
+	public CertificateDividendDistribution update(
+			CertificateDividendDistribution record, Session session) {
 		// TODO Auto-generated method stub
 		return super.update(record, session);
 	}
@@ -182,8 +184,5 @@ public class CertificateDividendDistributionDataSource extends TDataSource<Certi
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

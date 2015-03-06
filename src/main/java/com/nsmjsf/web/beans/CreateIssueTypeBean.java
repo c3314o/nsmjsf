@@ -17,87 +17,44 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.IssueTypeDataSource;
 import com.nsmjsf.web.datamodels.IssueType;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreateIssueTypeBean implements Serializable {
 
-private static final Log log = LogFactory
-			.getLog(CreateIssueTypeBean.class);
-
+	private static final Log log = LogFactory.getLog(CreateIssueTypeBean.class);
 
 	private IssueType issueType;
 	private IssueTypeDataSource issueTypeDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateIssueTypeBean() {
 
 		issueType = new IssueType();
 		/* init datasources */
 		issueTypeDataSource = new IssueTypeDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.issueType=issueTypeDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.issueType = issueTypeDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -117,61 +74,37 @@ private static final Log log = LogFactory
 	public void setIssueTypeDataSource(IssueTypeDataSource issueTypeDataSource) {
 		this.issueTypeDataSource = issueTypeDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public IssueType saveIssueType() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			issueTypeDataSource.create(issueType, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  IssueType !");
-				this.issueType=new IssueType();
+			MessageService.info("Successfully Saved  IssueType !");
+			this.issueType = new IssueType();
 			return issueType;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving IssueType .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public IssueType updateIssueType() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			issueTypeDataSource.create(issueType, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  IssueType !");
-				this.issueType=new IssueType();
+			MessageService.info("Successfully Saved  IssueType !");
+			this.issueType = new IssueType();
 			return issueType;
 
 		} catch (Exception ex) {
@@ -180,29 +113,27 @@ private static final Log log = LogFactory
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateIssueType();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveIssueType();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createIssueType");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createIssueType");
+
 	}
-	public IssueType saveIssueType(Session session){
-	
-	   this.issueType= issueTypeDataSource.create(this.issueType,session);
-	   return this.issueType;
+
+	public IssueType saveIssueType(Session session) {
+
+		this.issueType = issueTypeDataSource.create(this.issueType, session);
+		return this.issueType;
 	}
-	
 
 }
-

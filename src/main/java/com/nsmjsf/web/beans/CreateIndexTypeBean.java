@@ -17,87 +17,44 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.IndexTypeDataSource;
 import com.nsmjsf.web.datamodels.IndexType;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreateIndexTypeBean implements Serializable {
 
-private static final Log log = LogFactory
-			.getLog(CreateIndexTypeBean.class);
-
+	private static final Log log = LogFactory.getLog(CreateIndexTypeBean.class);
 
 	private IndexType indexType;
 	private IndexTypeDataSource indexTypeDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateIndexTypeBean() {
 
 		indexType = new IndexType();
 		/* init datasources */
 		indexTypeDataSource = new IndexTypeDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.indexType=indexTypeDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.indexType = indexTypeDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -117,61 +74,37 @@ private static final Log log = LogFactory
 	public void setIndexTypeDataSource(IndexTypeDataSource indexTypeDataSource) {
 		this.indexTypeDataSource = indexTypeDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public IndexType saveIndexType() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			indexTypeDataSource.create(indexType, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  IndexType !");
-				this.indexType=new IndexType();
+			MessageService.info("Successfully Saved  IndexType !");
+			this.indexType = new IndexType();
 			return indexType;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving IndexType .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public IndexType updateIndexType() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			indexTypeDataSource.create(indexType, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  IndexType !");
-				this.indexType=new IndexType();
+			MessageService.info("Successfully Saved  IndexType !");
+			this.indexType = new IndexType();
 			return indexType;
 
 		} catch (Exception ex) {
@@ -180,29 +113,27 @@ private static final Log log = LogFactory
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateIndexType();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveIndexType();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createIndexType");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createIndexType");
+
 	}
-	public IndexType saveIndexType(Session session){
-	
-	   this.indexType= indexTypeDataSource.create(this.indexType,session);
-	   return this.indexType;
+
+	public IndexType saveIndexType(Session session) {
+
+		this.indexType = indexTypeDataSource.create(this.indexType, session);
+		return this.indexType;
 	}
-	
 
 }
-

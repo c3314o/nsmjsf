@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.AuditStatusDataSource;
 import com.nsmjsf.web.datamodels.AuditStatus;
 import com.nsmjsf.web.lazymodels.LazyAuditStatusDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.FinancialReportAdapter;
-
 
 import com.nsmjsf.web.datasources.FinancialReportDataSource;
 
@@ -32,81 +28,68 @@ import com.nsmjsf.web.datamodels.FinancialReport;
 
 import com.nsmjsf.web.wrappers.FinancialReportWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewAuditStatusBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewAuditStatusBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewAuditStatusBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<AuditStatus> auditStatusList;
-    List<AuditStatus> selectedAuditStatusList;
+	List<AuditStatus> selectedAuditStatusList;
 	List<AuditStatus> filteredAuditStatusList;
 	AuditStatus selectedAuditStatus;
 	LazyDataModel<AuditStatus> lazyModel;
 	AuditStatusDataSource auditStatusDataSource;
-	int editAuditStatusId=0;
-	
-	   
-	
-	
-	public ViewAuditStatusBean()
-	{
+	int editAuditStatusId = 0;
+
+	public ViewAuditStatusBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyAuditStatusDataModel(this.auditStatusList);
-		
+
+		lazyModel = new LazyAuditStatusDataModel(this.auditStatusList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		auditStatusDataSource=new AuditStatusDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		auditStatusDataSource = new AuditStatusDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.auditStatusList=auditStatusDataSource.getAll();
-		lazyModel=new LazyAuditStatusDataModel(this.auditStatusList);
-		
+
+	public void refreshDataSource() {
+		this.auditStatusList = auditStatusDataSource.getAll();
+		lazyModel = new LazyAuditStatusDataModel(this.auditStatusList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		auditStatusList=auditStatusDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		auditStatusList = auditStatusDataSource.getAll();
+
+	}
+
 	public List<AuditStatus> getAuditStatusList() {
 		return auditStatusList;
 	}
+
 	public void setAuditStatusList(List<AuditStatus> auditStatusList) {
 		this.auditStatusList = auditStatusList;
 	}
+
 	public LazyDataModel<AuditStatus> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<AuditStatus> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public AuditStatus getSelectedAuditStatus() {
 		return selectedAuditStatus;
 	}
+
 	public void setSelectedAuditStatus(AuditStatus selectedAuditStatus) {
 		this.selectedAuditStatus = selectedAuditStatus;
 	}
-	
+
 	public List<AuditStatus> getSelectedAuditStatusList() {
 		return selectedAuditStatusList;
 	}
@@ -134,12 +117,12 @@ private static final Log log = LogFactory.getLog(ViewAuditStatusBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("AuditStatus Selected"
 				+ ((AuditStatus) event.getObject()).getAuditStatusId());
 		for (AuditStatus cat : selectedAuditStatusList) {
-			//System.out.println(cat.getAuditStatusLabel());
+			// System.out.println(cat.getAuditStatusLabel());
 		}
 
 	}
@@ -152,21 +135,22 @@ private static final Log log = LogFactory.getLog(ViewAuditStatusBean.class);
 
 	public void deleteSelectedAuditStatus() {
 		for (AuditStatus auditStatus : selectedAuditStatusList) {
-			//System.out.println(auditStatus.getAuditStatusLabel());
+			// System.out.println(auditStatus.getAuditStatusLabel());
 			this.deleteAuditStatus(auditStatus);
 		}
 	}
+
 	public void deleteAuditStatus(AuditStatus auditStatus) {
-			try{
+		try {
 			auditStatusDataSource.delete(auditStatus);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditAuditStatusId() {
 		return editAuditStatusId;
 	}
@@ -174,18 +158,17 @@ private static final Log log = LogFactory.getLog(ViewAuditStatusBean.class);
 	public void setEditAuditStatusId(int editAuditStatusId) {
 		this.editAuditStatusId = editAuditStatusId;
 	}
-	
-	public void editAuditStatus(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editAuditStatus(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createAuditStatus",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -196,38 +179,32 @@ private static final Log log = LogFactory.getLog(ViewAuditStatusBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

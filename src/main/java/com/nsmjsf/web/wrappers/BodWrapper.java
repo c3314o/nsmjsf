@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Bod;
 
 public class BodWrapper {
 
-private static final Log log = LogFactory
-			.getLog(BodWrapper.class);
-
+	private static final Log log = LogFactory.getLog(BodWrapper.class);
 
 	Bod bod;
 
@@ -57,4 +53,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

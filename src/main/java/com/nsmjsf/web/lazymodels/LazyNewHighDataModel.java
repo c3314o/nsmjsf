@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -66,10 +64,9 @@ public class LazyNewHighDataModel extends LazyDataModel<NewHigh> {
 						Field field = newHigh.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(newHigh));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field.get(newHigh));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +109,3 @@ public class LazyNewHighDataModel extends LazyDataModel<NewHigh> {
 	}
 
 }
-

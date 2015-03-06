@@ -18,9 +18,8 @@ import com.nsmjsf.web.datasources.SemiYearAverageDataSource;
 import com.nsmjsf.web.datamodels.SemiYearAverage;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
-			
-import com.nsmjsf.web.adapters.CompanyAdapter;
 
+import com.nsmjsf.web.adapters.CompanyAdapter;
 
 import com.nsmjsf.web.datasources.CompanyDataSource;
 
@@ -28,168 +27,56 @@ import com.nsmjsf.web.datamodels.Company;
 
 import com.nsmjsf.web.wrappers.CompanyWrapper;
 
-
-
-			
-				   
-
 @ManagedBean
 @ViewScoped
-
 public class CreateSemiYearAverageBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreateSemiYearAverageBean.class);
-
 
 	private SemiYearAverage semiYearAverage;
 	private SemiYearAverageDataSource semiYearAverageDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-    private CompanyDataSource companyDataSource;
+
+	private CompanyDataSource companyDataSource;
 	private List<CompanyWrapper> companyWrapperList;
 	private List<Company> companyList;
 	private CompanyWrapper selectedCompanyWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateSemiYearAverageBean() {
 
 		semiYearAverage = new SemiYearAverage();
 		/* init datasources */
 		semiYearAverageDataSource = new SemiYearAverageDataSource();
-		
-		
-			
-companyDataSource = new CompanyDataSource();
+
+		companyDataSource = new CompanyDataSource();
 
 		/* init option wrappers */
 		companyList = companyDataSource.getAll();
-		companyWrapperList = CompanyAdapter
-				.wrapAll(companyList);
-	
-			
-				
-		
-		
+		companyWrapperList = CompanyAdapter.wrapAll(companyList);
 
 	}
-	
-	@PostConstruct
-	private void init()
-	{
-		extractParams();
-		if(this.editMode)
-		{
-			this.semiYearAverage=semiYearAverageDataSource.get(editId);
-			
-			
 
-			  
-			  this.selectedCompanyWrapper=CompanyAdapter.wrap(semiYearAverage.getCompany());
-	
-			
-				   
-			
-			
-			
-			
+	@PostConstruct
+	private void init() {
+		extractParams();
+		if (this.editMode) {
+			this.semiYearAverage = semiYearAverageDataSource.get(editId);
+
+			this.selectedCompanyWrapper = CompanyAdapter.wrap(semiYearAverage
+					.getCompany());
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -206,35 +93,24 @@ companyDataSource = new CompanyDataSource();
 		return semiYearAverageDataSource;
 	}
 
-	public void setSemiYearAverageDataSource(SemiYearAverageDataSource semiYearAverageDataSource) {
+	public void setSemiYearAverageDataSource(
+			SemiYearAverageDataSource semiYearAverageDataSource) {
 		this.semiYearAverageDataSource = semiYearAverageDataSource;
 	}
-	
-	
-	
-	
-	
-	
-	
-			
 
-
-public List<Company> getCompanyList() {
+	public List<Company> getCompanyList() {
 		return companyList;
 	}
 
 	public void setCompanyList(List<Company> companyList) {
 		this.companyList = companyList;
 	}
-  
-  
-  
+
 	public CompanyDataSource getCompanyDataSource() {
 		return companyDataSource;
 	}
 
-	public void setCompanyDataSource(
-			CompanyDataSource companyDataSource) {
+	public void setCompanyDataSource(CompanyDataSource companyDataSource) {
 		this.companyDataSource = companyDataSource;
 	}
 
@@ -242,122 +118,89 @@ public List<Company> getCompanyList() {
 		return companyWrapperList;
 	}
 
-	public void setCompanyWrapperList(
-			List<CompanyWrapper> companyWrapperList) {
+	public void setCompanyWrapperList(List<CompanyWrapper> companyWrapperList) {
 		this.companyWrapperList = companyWrapperList;
 	}
-
-	
 
 	public CompanyWrapper getSelectedCompanyWrapper() {
 		return selectedCompanyWrapper;
 	}
 
-	public void setSelectedCompanyWrapper(
-			CompanyWrapper selectedCompanyWrapper) {
+	public void setSelectedCompanyWrapper(CompanyWrapper selectedCompanyWrapper) {
 		this.selectedCompanyWrapper = selectedCompanyWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-				
-
-
-
-
-	
-  
-  
-  
 	public SemiYearAverage saveSemiYearAverage() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Company company =selectedCompanyWrapper.getCompany();
+
+			Company company = selectedCompanyWrapper.getCompany();
 
 			semiYearAverage.setCompany(company);
-			
-				   
-			
-			
-			
-			
+
 			semiYearAverageDataSource.create(semiYearAverage, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  SemiYearAverage !");
-				this.semiYearAverage=new SemiYearAverage();
+			MessageService.info("Successfully Saved  SemiYearAverage !");
+			this.semiYearAverage = new SemiYearAverage();
 			return semiYearAverage;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
-			MessageService.error("Failed Saving SemiYearAverage .Try Again Later!");
+			log.error(ex.getMessage());
+			MessageService
+					.error("Failed Saving SemiYearAverage .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public SemiYearAverage updateSemiYearAverage() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Company company = selectedCompanyWrapper.getCompany();
 
-			      semiYearAverage.setCompany(company);
-			
-				   
-			
-			
-			
-			
+			Company company = selectedCompanyWrapper.getCompany();
+
+			semiYearAverage.setCompany(company);
+
 			semiYearAverageDataSource.create(semiYearAverage, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  SemiYearAverage !");
-				this.semiYearAverage=new SemiYearAverage();
+			MessageService.info("Successfully Saved  SemiYearAverage !");
+			this.semiYearAverage = new SemiYearAverage();
 			return semiYearAverage;
 
 		} catch (Exception ex) {
-			MessageService.error("Failed Saving SemiYearAverage .Try Again Later!");
+			MessageService
+					.error("Failed Saving SemiYearAverage .Try Again Later!");
 			log.error(ex.getMessage());
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateSemiYearAverage();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveSemiYearAverage();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createSemiYearAverage");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance()
+				.closeDialog("createSemiYearAverage");
+
 	}
-	public SemiYearAverage saveSemiYearAverage(Session session){
-	
-	   this.semiYearAverage= semiYearAverageDataSource.create(this.semiYearAverage,session);
-	   return this.semiYearAverage;
+
+	public SemiYearAverage saveSemiYearAverage(Session session) {
+
+		this.semiYearAverage = semiYearAverageDataSource.create(
+				this.semiYearAverage, session);
+		return this.semiYearAverage;
 	}
-	
 
 }
-

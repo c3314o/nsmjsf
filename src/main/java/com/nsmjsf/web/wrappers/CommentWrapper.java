@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Comment;
 
 public class CommentWrapper {
 
-private static final Log log = LogFactory
-			.getLog(CommentWrapper.class);
-
+	private static final Log log = LogFactory.getLog(CommentWrapper.class);
 
 	Comment comment;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final CommentWrapper other = (CommentWrapper) obj;
-		if (!Objects.equals(this.comment.getCommentId(), other.getComment().getCommentId()))
+		if (!Objects.equals(this.comment.getCommentId(), other.getComment()
+				.getCommentId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

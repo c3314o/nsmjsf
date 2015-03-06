@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.adapters;
 
 import java.util.ArrayList;
@@ -10,29 +9,25 @@ import com.nsmjsf.web.datamodels.CurrencyType;
 import com.nsmjsf.web.wrappers.CurrencyTypeWrapper;
 
 public class CurrencyTypeAdapter {
-private static final Log log = LogFactory
-			.getLog(CurrencyTypeAdapter.class);
-	
-	public static List<CurrencyTypeWrapper> wrapAll(List<CurrencyType> currencyTypeList)
-	{
-		List<CurrencyTypeWrapper> currencyTypeWrapperList=new ArrayList<CurrencyTypeWrapper>();
-		for(CurrencyType currencyType:currencyTypeList)
-		{
-			CurrencyTypeWrapper currencyTypeWrapper=new CurrencyTypeWrapper();
+	private static final Log log = LogFactory.getLog(CurrencyTypeAdapter.class);
+
+	public static List<CurrencyTypeWrapper> wrapAll(
+			List<CurrencyType> currencyTypeList) {
+		List<CurrencyTypeWrapper> currencyTypeWrapperList = new ArrayList<CurrencyTypeWrapper>();
+		for (CurrencyType currencyType : currencyTypeList) {
+			CurrencyTypeWrapper currencyTypeWrapper = new CurrencyTypeWrapper();
 			currencyTypeWrapper.setCurrencyType(currencyType);
 			currencyTypeWrapperList.add(currencyTypeWrapper);
 		}
 		return currencyTypeWrapperList;
-		
+
 	}
-	
-	public static CurrencyTypeWrapper wrap(CurrencyType currencyType)
-	{
-		CurrencyTypeWrapper currencyTypeWrapper=new CurrencyTypeWrapper();
+
+	public static CurrencyTypeWrapper wrap(CurrencyType currencyType) {
+		CurrencyTypeWrapper currencyTypeWrapper = new CurrencyTypeWrapper();
 		currencyTypeWrapper.setCurrencyType(currencyType);
 		return currencyTypeWrapper;
-		
+
 	}
 
 }
-

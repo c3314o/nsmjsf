@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -18,8 +16,7 @@ import com.nsmjsf.web.datamodels.Month;
 import com.nsmjsf.web.sorters.MonthSorter;
 
 public class LazyMonthDataModel extends LazyDataModel<Month> {
-	private static final Log log = LogFactory
-			.getLog(LazyMonthDataModel.class);
+	private static final Log log = LogFactory.getLog(LazyMonthDataModel.class);
 
 	/**
 	 * 
@@ -66,10 +63,9 @@ public class LazyMonthDataModel extends LazyDataModel<Month> {
 						Field field = month.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(month));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field.get(month));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +108,3 @@ public class LazyMonthDataModel extends LazyDataModel<Month> {
 	}
 
 }
-

@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.ForumThread;
 
 public class ForumThreadWrapper {
 
-private static final Log log = LogFactory
-			.getLog(ForumThreadWrapper.class);
-
+	private static final Log log = LogFactory.getLog(ForumThreadWrapper.class);
 
 	ForumThread forumThread;
 
@@ -35,7 +31,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.forumThread.getForumThreadId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.forumThread.getForumThreadId());
 		return hash;
 	}
 
@@ -46,7 +43,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final ForumThreadWrapper other = (ForumThreadWrapper) obj;
-		if (!Objects.equals(this.forumThread.getForumThreadId(), other.getForumThread().getForumThreadId()))
+		if (!Objects.equals(this.forumThread.getForumThreadId(), other
+				.getForumThread().getForumThreadId()))
 			return false;
 		return true;
 	}
@@ -57,4 +55,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

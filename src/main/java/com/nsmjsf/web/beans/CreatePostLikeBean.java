@@ -18,9 +18,8 @@ import com.nsmjsf.web.datasources.PostLikeDataSource;
 import com.nsmjsf.web.datamodels.PostLike;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
-			
-import com.nsmjsf.web.adapters.PostAdapter;
 
+import com.nsmjsf.web.adapters.PostAdapter;
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -28,13 +27,7 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.UserAdapter;
-
 
 import com.nsmjsf.web.datasources.UserDataSource;
 
@@ -42,138 +35,67 @@ import com.nsmjsf.web.datamodels.User;
 
 import com.nsmjsf.web.wrappers.UserWrapper;
 
-
-
-			
-				   
-
 @ManagedBean
 @ViewScoped
-
 public class CreatePostLikeBean implements Serializable {
 
-private static final Log log = LogFactory
-			.getLog(CreatePostLikeBean.class);
-
+	private static final Log log = LogFactory.getLog(CreatePostLikeBean.class);
 
 	private PostLike postLike;
 	private PostLikeDataSource postLikeDataSource;
-	
-	
-	
-			
-    private PostDataSource postDataSource;
+
+	private PostDataSource postDataSource;
 	private List<PostWrapper> postWrapperList;
 	private List<Post> postList;
 	private PostWrapper selectedPostWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-    private UserDataSource userDataSource;
+
+	private UserDataSource userDataSource;
 	private List<UserWrapper> userWrapperList;
 	private List<User> userList;
 	private UserWrapper selectedUserWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreatePostLikeBean() {
 
 		postLike = new PostLike();
 		/* init datasources */
 		postLikeDataSource = new PostLikeDataSource();
-		
-		
-			
-postDataSource = new PostDataSource();
+
+		postDataSource = new PostDataSource();
 
 		/* init option wrappers */
 		postList = postDataSource.getAll();
-		postWrapperList = PostAdapter
-				.wrapAll(postList);
-	
-			
-			
-			
-userDataSource = new UserDataSource();
+		postWrapperList = PostAdapter.wrapAll(postList);
+
+		userDataSource = new UserDataSource();
 
 		/* init option wrappers */
 		userList = userDataSource.getAll();
-		userWrapperList = UserAdapter
-				.wrapAll(userList);
-	
-			
-				
-		
-		
+		userWrapperList = UserAdapter.wrapAll(userList);
 
 	}
-	
-	@PostConstruct
-	private void init()
-	{
-		extractParams();
-		if(this.editMode)
-		{
-			this.postLike=postLikeDataSource.get(editId);
-			
-			
 
-			  
-			  this.selectedPostWrapper=PostAdapter.wrap(postLike.getPost());
-	
-			
-			
-			  
-			  this.selectedUserWrapper=UserAdapter.wrap(postLike.getUser());
-	
-			
-				   
-			
-			
-			
-			
+	@PostConstruct
+	private void init() {
+		extractParams();
+		if (this.editMode) {
+			this.postLike = postLikeDataSource.get(editId);
+
+			this.selectedPostWrapper = PostAdapter.wrap(postLike.getPost());
+
+			this.selectedUserWrapper = UserAdapter.wrap(postLike.getUser());
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -193,32 +115,20 @@ userDataSource = new UserDataSource();
 	public void setPostLikeDataSource(PostLikeDataSource postLikeDataSource) {
 		this.postLikeDataSource = postLikeDataSource;
 	}
-	
-	
-	
-	
-	
-	
-	
-			
 
-
-public List<Post> getPostList() {
+	public List<Post> getPostList() {
 		return postList;
 	}
 
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-  
-  
-  
+
 	public PostDataSource getPostDataSource() {
 		return postDataSource;
 	}
 
-	public void setPostDataSource(
-			PostDataSource postDataSource) {
+	public void setPostDataSource(PostDataSource postDataSource) {
 		this.postDataSource = postDataSource;
 	}
 
@@ -226,50 +136,31 @@ public List<Post> getPostList() {
 		return postWrapperList;
 	}
 
-	public void setPostWrapperList(
-			List<PostWrapper> postWrapperList) {
+	public void setPostWrapperList(List<PostWrapper> postWrapperList) {
 		this.postWrapperList = postWrapperList;
 	}
-
-	
 
 	public PostWrapper getSelectedPostWrapper() {
 		return selectedPostWrapper;
 	}
 
-	public void setSelectedPostWrapper(
-			PostWrapper selectedPostWrapper) {
+	public void setSelectedPostWrapper(PostWrapper selectedPostWrapper) {
 		this.selectedPostWrapper = selectedPostWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-			
-			
-
-
-public List<User> getUserList() {
+	public List<User> getUserList() {
 		return userList;
 	}
 
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
 	}
-  
-  
-  
+
 	public UserDataSource getUserDataSource() {
 		return userDataSource;
 	}
 
-	public void setUserDataSource(
-			UserDataSource userDataSource) {
+	public void setUserDataSource(UserDataSource userDataSource) {
 		this.userDataSource = userDataSource;
 	}
 
@@ -277,103 +168,64 @@ public List<User> getUserList() {
 		return userWrapperList;
 	}
 
-	public void setUserWrapperList(
-			List<UserWrapper> userWrapperList) {
+	public void setUserWrapperList(List<UserWrapper> userWrapperList) {
 		this.userWrapperList = userWrapperList;
 	}
-
-	
 
 	public UserWrapper getSelectedUserWrapper() {
 		return selectedUserWrapper;
 	}
 
-	public void setSelectedUserWrapper(
-			UserWrapper selectedUserWrapper) {
+	public void setSelectedUserWrapper(UserWrapper selectedUserWrapper) {
 		this.selectedUserWrapper = selectedUserWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-				
-
-
-
-
-	
-  
-  
-  
 	public PostLike savePostLike() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Post post =selectedPostWrapper.getPost();
+
+			Post post = selectedPostWrapper.getPost();
 
 			postLike.setPost(post);
-			
-			
-			
-                  User user =selectedUserWrapper.getUser();
+
+			User user = selectedUserWrapper.getUser();
 
 			postLike.setUser(user);
-			
-				   
-			
-			
-			
-			
+
 			postLikeDataSource.create(postLike, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  PostLike !");
-				this.postLike=new PostLike();
+			MessageService.info("Successfully Saved  PostLike !");
+			this.postLike = new PostLike();
 			return postLike;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving PostLike .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public PostLike updatePostLike() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Post post = selectedPostWrapper.getPost();
 
-			      postLike.setPost(post);
-			
-			
-			
-                  User user = selectedUserWrapper.getUser();
+			Post post = selectedPostWrapper.getPost();
 
-			      postLike.setUser(user);
-			
-				   
-			
-			
-			
-			
+			postLike.setPost(post);
+
+			User user = selectedUserWrapper.getUser();
+
+			postLike.setUser(user);
+
 			postLikeDataSource.create(postLike, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  PostLike !");
-				this.postLike=new PostLike();
+			MessageService.info("Successfully Saved  PostLike !");
+			this.postLike = new PostLike();
 			return postLike;
 
 		} catch (Exception ex) {
@@ -382,29 +234,27 @@ public List<User> getUserList() {
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updatePostLike();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			savePostLike();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createPostLike");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createPostLike");
+
 	}
-	public PostLike savePostLike(Session session){
-	
-	   this.postLike= postLikeDataSource.create(this.postLike,session);
-	   return this.postLike;
+
+	public PostLike savePostLike(Session session) {
+
+		this.postLike = postLikeDataSource.create(this.postLike, session);
+		return this.postLike;
 	}
-	
 
 }
-

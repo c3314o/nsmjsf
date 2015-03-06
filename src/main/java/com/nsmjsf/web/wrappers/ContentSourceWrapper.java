@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,8 @@ import com.nsmjsf.web.datamodels.ContentSource;
 
 public class ContentSourceWrapper {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(ContentSourceWrapper.class);
-
 
 	ContentSource contentSource;
 
@@ -35,7 +32,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.contentSource.getContentSourceId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.contentSource.getContentSourceId());
 		return hash;
 	}
 
@@ -46,7 +44,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final ContentSourceWrapper other = (ContentSourceWrapper) obj;
-		if (!Objects.equals(this.contentSource.getContentSourceId(), other.getContentSource().getContentSourceId()))
+		if (!Objects.equals(this.contentSource.getContentSourceId(), other
+				.getContentSource().getContentSourceId()))
 			return false;
 		return true;
 	}
@@ -57,4 +56,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

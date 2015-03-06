@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,8 @@ import com.nsmjsf.web.datamodels.UserWatchListStock;
 
 public class UserWatchListStockWrapper {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(UserWatchListStockWrapper.class);
-
 
 	UserWatchListStock userWatchListStock;
 
@@ -35,7 +32,10 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.userWatchListStock.getUserWatchListStockId());
+		hash = 83
+				* hash
+				+ Objects.hashCode(this.userWatchListStock
+						.getUserWatchListStockId());
 		return hash;
 	}
 
@@ -46,7 +46,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final UserWatchListStockWrapper other = (UserWatchListStockWrapper) obj;
-		if (!Objects.equals(this.userWatchListStock.getUserWatchListStockId(), other.getUserWatchListStock().getUserWatchListStockId()))
+		if (!Objects.equals(this.userWatchListStock.getUserWatchListStockId(),
+				other.getUserWatchListStock().getUserWatchListStockId()))
 			return false;
 		return true;
 	}
@@ -57,4 +58,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

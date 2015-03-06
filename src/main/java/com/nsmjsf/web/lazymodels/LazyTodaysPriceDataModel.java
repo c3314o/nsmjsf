@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyTodaysPriceDataModel extends LazyDataModel<TodaysPrice> {
 	@Override
 	public TodaysPrice getRowData(String rowKey) {
 		for (TodaysPrice todaysPrice : todaysPriceList) {
-			if (todaysPrice.getTodaysPriceId().toString().equalsIgnoreCase(rowKey))
+			if (todaysPrice.getTodaysPriceId().toString()
+					.equalsIgnoreCase(rowKey))
 				return todaysPrice;
 		}
 
@@ -66,10 +65,10 @@ public class LazyTodaysPriceDataModel extends LazyDataModel<TodaysPrice> {
 						Field field = todaysPrice.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(todaysPrice));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(todaysPrice));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyTodaysPriceDataModel extends LazyDataModel<TodaysPrice> {
 	}
 
 }
-

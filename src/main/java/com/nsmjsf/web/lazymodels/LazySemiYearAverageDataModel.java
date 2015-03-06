@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.SemiYearAverage;
 import com.nsmjsf.web.sorters.SemiYearAverageSorter;
 
-public class LazySemiYearAverageDataModel extends LazyDataModel<SemiYearAverage> {
+public class LazySemiYearAverageDataModel extends
+		LazyDataModel<SemiYearAverage> {
 	private static final Log log = LogFactory
 			.getLog(LazySemiYearAverageDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazySemiYearAverageDataModel extends LazyDataModel<SemiYearAverage>
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<SemiYearAverage> semiYearAverageList;
 
-	public LazySemiYearAverageDataModel(List<SemiYearAverage> semiYearAverageList) {
+	public LazySemiYearAverageDataModel(
+			List<SemiYearAverage> semiYearAverageList) {
 		this.semiYearAverageList = semiYearAverageList;
 	}
 
 	@Override
 	public SemiYearAverage getRowData(String rowKey) {
 		for (SemiYearAverage semiYearAverage : semiYearAverageList) {
-			if (semiYearAverage.getSemiYearAverageId().toString().equalsIgnoreCase(rowKey))
+			if (semiYearAverage.getSemiYearAverageId().toString()
+					.equalsIgnoreCase(rowKey))
 				return semiYearAverage;
 		}
 
@@ -47,8 +48,8 @@ public class LazySemiYearAverageDataModel extends LazyDataModel<SemiYearAverage>
 	}
 
 	@Override
-	public List<SemiYearAverage> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<SemiYearAverage> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<SemiYearAverage> data = new ArrayList<SemiYearAverage>();
@@ -63,13 +64,13 @@ public class LazySemiYearAverageDataModel extends LazyDataModel<SemiYearAverage>
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = semiYearAverage.getClass().getDeclaredField(
-								filterProperty);
+						Field field = semiYearAverage.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(semiYearAverage));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(semiYearAverage));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazySemiYearAverageDataModel extends LazyDataModel<SemiYearAverage>
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new SemiYearAverageSorter(sortField, sortOrder));
+			Collections.sort(data, new SemiYearAverageSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazySemiYearAverageDataModel extends LazyDataModel<SemiYearAverage>
 	}
 
 }
-

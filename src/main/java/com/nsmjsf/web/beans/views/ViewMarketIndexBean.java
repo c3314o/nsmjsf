@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.MarketIndexDataSource;
 import com.nsmjsf.web.datamodels.MarketIndex;
 import com.nsmjsf.web.lazymodels.LazyMarketIndexDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.IndexTypeAdapter;
-
 
 import com.nsmjsf.web.datasources.IndexTypeDataSource;
 
@@ -32,13 +28,7 @@ import com.nsmjsf.web.datamodels.IndexType;
 
 import com.nsmjsf.web.wrappers.IndexTypeWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.PostAdapter;
-
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -46,113 +36,98 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewMarketIndexBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewMarketIndexBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewMarketIndexBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<MarketIndex> marketIndexList;
-    List<MarketIndex> selectedMarketIndexList;
+	List<MarketIndex> selectedMarketIndexList;
 	List<MarketIndex> filteredMarketIndexList;
 	MarketIndex selectedMarketIndex;
 	LazyDataModel<MarketIndex> lazyModel;
 	MarketIndexDataSource marketIndexDataSource;
-	int editMarketIndexId=0;
-	
+	int editMarketIndexId = 0;
 
-			   List<IndexType> indexTypeList;
-			   IndexTypeDataSource indexTypeDataSource;
-			   public List<IndexType> getIndexTypeList() {
+	List<IndexType> indexTypeList;
+	IndexTypeDataSource indexTypeDataSource;
+
+	public List<IndexType> getIndexTypeList() {
 		return indexTypeList;
-	     }
+	}
+
 	public void setIndexTypeList(List<IndexType> indexTypeList) {
 		this.indexTypeList = indexTypeList;
 	}
-			
-			
-			   List<Post> postList;
-			   PostDataSource postDataSource;
-			   public List<Post> getPostList() {
+
+	List<Post> postList;
+	PostDataSource postDataSource;
+
+	public List<Post> getPostList() {
 		return postList;
-	     }
+	}
+
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-			
-				   
-	
-	
-	public ViewMarketIndexBean()
-	{
+
+	public ViewMarketIndexBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyMarketIndexDataModel(this.marketIndexList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		marketIndexDataSource=new MarketIndexDataSource();
-		
 
-			  indexTypeDataSource=new IndexTypeDataSource();
-			
-			
-			  postDataSource=new PostDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.marketIndexList=marketIndexDataSource.getAll();
-		lazyModel=new LazyMarketIndexDataModel(this.marketIndexList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		marketIndexList=marketIndexDataSource.getAll();
-		
+		lazyModel = new LazyMarketIndexDataModel(this.marketIndexList);
 
-			 indexTypeList=indexTypeDataSource.getAll();
-	
-			
-			 postList=postDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		marketIndexDataSource = new MarketIndexDataSource();
+
+		indexTypeDataSource = new IndexTypeDataSource();
+
+		postDataSource = new PostDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.marketIndexList = marketIndexDataSource.getAll();
+		lazyModel = new LazyMarketIndexDataModel(this.marketIndexList);
+
+	}
+
+	private void populateData() {
+		marketIndexList = marketIndexDataSource.getAll();
+
+		indexTypeList = indexTypeDataSource.getAll();
+
+		postList = postDataSource.getAll();
+
+	}
+
 	public List<MarketIndex> getMarketIndexList() {
 		return marketIndexList;
 	}
+
 	public void setMarketIndexList(List<MarketIndex> marketIndexList) {
 		this.marketIndexList = marketIndexList;
 	}
+
 	public LazyDataModel<MarketIndex> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<MarketIndex> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public MarketIndex getSelectedMarketIndex() {
 		return selectedMarketIndex;
 	}
+
 	public void setSelectedMarketIndex(MarketIndex selectedMarketIndex) {
 		this.selectedMarketIndex = selectedMarketIndex;
 	}
-	
+
 	public List<MarketIndex> getSelectedMarketIndexList() {
 		return selectedMarketIndexList;
 	}
@@ -180,12 +155,12 @@ private static final Log log = LogFactory.getLog(ViewMarketIndexBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("MarketIndex Selected"
 				+ ((MarketIndex) event.getObject()).getMarketIndexId());
 		for (MarketIndex cat : selectedMarketIndexList) {
-			//System.out.println(cat.getMarketIndexLabel());
+			// System.out.println(cat.getMarketIndexLabel());
 		}
 
 	}
@@ -198,21 +173,22 @@ private static final Log log = LogFactory.getLog(ViewMarketIndexBean.class);
 
 	public void deleteSelectedMarketIndex() {
 		for (MarketIndex marketIndex : selectedMarketIndexList) {
-			//System.out.println(marketIndex.getMarketIndexLabel());
+			// System.out.println(marketIndex.getMarketIndexLabel());
 			this.deleteMarketIndex(marketIndex);
 		}
 	}
+
 	public void deleteMarketIndex(MarketIndex marketIndex) {
-			try{
+		try {
 			marketIndexDataSource.delete(marketIndex);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditMarketIndexId() {
 		return editMarketIndexId;
 	}
@@ -220,18 +196,17 @@ private static final Log log = LogFactory.getLog(ViewMarketIndexBean.class);
 	public void setEditMarketIndexId(int editMarketIndexId) {
 		this.editMarketIndexId = editMarketIndexId;
 	}
-	
-	public void editMarketIndex(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editMarketIndex(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createMarketIndex",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -242,38 +217,32 @@ private static final Log log = LogFactory.getLog(ViewMarketIndexBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

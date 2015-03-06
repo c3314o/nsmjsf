@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.AnnouncementType;
 import com.nsmjsf.web.sorters.AnnouncementTypeSorter;
 
-public class LazyAnnouncementTypeDataModel extends LazyDataModel<AnnouncementType> {
+public class LazyAnnouncementTypeDataModel extends
+		LazyDataModel<AnnouncementType> {
 	private static final Log log = LogFactory
 			.getLog(LazyAnnouncementTypeDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazyAnnouncementTypeDataModel extends LazyDataModel<AnnouncementTyp
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<AnnouncementType> announcementTypeList;
 
-	public LazyAnnouncementTypeDataModel(List<AnnouncementType> announcementTypeList) {
+	public LazyAnnouncementTypeDataModel(
+			List<AnnouncementType> announcementTypeList) {
 		this.announcementTypeList = announcementTypeList;
 	}
 
 	@Override
 	public AnnouncementType getRowData(String rowKey) {
 		for (AnnouncementType announcementType : announcementTypeList) {
-			if (announcementType.getAnnouncementTypeId().toString().equalsIgnoreCase(rowKey))
+			if (announcementType.getAnnouncementTypeId().toString()
+					.equalsIgnoreCase(rowKey))
 				return announcementType;
 		}
 
@@ -47,8 +48,8 @@ public class LazyAnnouncementTypeDataModel extends LazyDataModel<AnnouncementTyp
 	}
 
 	@Override
-	public List<AnnouncementType> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<AnnouncementType> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<AnnouncementType> data = new ArrayList<AnnouncementType>();
@@ -63,13 +64,13 @@ public class LazyAnnouncementTypeDataModel extends LazyDataModel<AnnouncementTyp
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = announcementType.getClass().getDeclaredField(
-								filterProperty);
+						Field field = announcementType.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(announcementType));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(announcementType));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazyAnnouncementTypeDataModel extends LazyDataModel<AnnouncementTyp
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new AnnouncementTypeSorter(sortField, sortOrder));
+			Collections.sort(data, new AnnouncementTypeSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazyAnnouncementTypeDataModel extends LazyDataModel<AnnouncementTyp
 	}
 
 }
-

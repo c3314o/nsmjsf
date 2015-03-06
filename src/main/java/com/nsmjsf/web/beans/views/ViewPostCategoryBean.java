@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.PostCategoryDataSource;
 import com.nsmjsf.web.datamodels.PostCategory;
 import com.nsmjsf.web.lazymodels.LazyPostCategoryDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.MapPostCategoryAdapter;
-
 
 import com.nsmjsf.web.datasources.MapPostCategoryDataSource;
 
@@ -32,81 +28,69 @@ import com.nsmjsf.web.datamodels.MapPostCategory;
 
 import com.nsmjsf.web.wrappers.MapPostCategoryWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewPostCategoryBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewPostCategoryBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewPostCategoryBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<PostCategory> postCategoryList;
-    List<PostCategory> selectedPostCategoryList;
+	List<PostCategory> selectedPostCategoryList;
 	List<PostCategory> filteredPostCategoryList;
 	PostCategory selectedPostCategory;
 	LazyDataModel<PostCategory> lazyModel;
 	PostCategoryDataSource postCategoryDataSource;
-	int editPostCategoryId=0;
-	
-	   
-	
-	
-	public ViewPostCategoryBean()
-	{
+	int editPostCategoryId = 0;
+
+	public ViewPostCategoryBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyPostCategoryDataModel(this.postCategoryList);
-		
+
+		lazyModel = new LazyPostCategoryDataModel(this.postCategoryList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		postCategoryDataSource=new PostCategoryDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		postCategoryDataSource = new PostCategoryDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.postCategoryList=postCategoryDataSource.getAll();
-		lazyModel=new LazyPostCategoryDataModel(this.postCategoryList);
-		
+
+	public void refreshDataSource() {
+		this.postCategoryList = postCategoryDataSource.getAll();
+		lazyModel = new LazyPostCategoryDataModel(this.postCategoryList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		postCategoryList=postCategoryDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		postCategoryList = postCategoryDataSource.getAll();
+
+	}
+
 	public List<PostCategory> getPostCategoryList() {
 		return postCategoryList;
 	}
+
 	public void setPostCategoryList(List<PostCategory> postCategoryList) {
 		this.postCategoryList = postCategoryList;
 	}
+
 	public LazyDataModel<PostCategory> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<PostCategory> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public PostCategory getSelectedPostCategory() {
 		return selectedPostCategory;
 	}
+
 	public void setSelectedPostCategory(PostCategory selectedPostCategory) {
 		this.selectedPostCategory = selectedPostCategory;
 	}
-	
+
 	public List<PostCategory> getSelectedPostCategoryList() {
 		return selectedPostCategoryList;
 	}
@@ -134,12 +118,12 @@ private static final Log log = LogFactory.getLog(ViewPostCategoryBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("PostCategory Selected"
 				+ ((PostCategory) event.getObject()).getPostCategoryId());
 		for (PostCategory cat : selectedPostCategoryList) {
-			//System.out.println(cat.getPostCategoryLabel());
+			// System.out.println(cat.getPostCategoryLabel());
 		}
 
 	}
@@ -152,21 +136,22 @@ private static final Log log = LogFactory.getLog(ViewPostCategoryBean.class);
 
 	public void deleteSelectedPostCategory() {
 		for (PostCategory postCategory : selectedPostCategoryList) {
-			//System.out.println(postCategory.getPostCategoryLabel());
+			// System.out.println(postCategory.getPostCategoryLabel());
 			this.deletePostCategory(postCategory);
 		}
 	}
+
 	public void deletePostCategory(PostCategory postCategory) {
-			try{
+		try {
 			postCategoryDataSource.delete(postCategory);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditPostCategoryId() {
 		return editPostCategoryId;
 	}
@@ -174,18 +159,17 @@ private static final Log log = LogFactory.getLog(ViewPostCategoryBean.class);
 	public void setEditPostCategoryId(int editPostCategoryId) {
 		this.editPostCategoryId = editPostCategoryId;
 	}
-	
-	public void editPostCategory(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editPostCategory(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createPostCategory",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -196,38 +180,32 @@ private static final Log log = LogFactory.getLog(ViewPostCategoryBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

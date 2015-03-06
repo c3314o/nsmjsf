@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Company;
 
 public class CompanyWrapper {
 
-private static final Log log = LogFactory
-			.getLog(CompanyWrapper.class);
-
+	private static final Log log = LogFactory.getLog(CompanyWrapper.class);
 
 	Company company;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final CompanyWrapper other = (CompanyWrapper) obj;
-		if (!Objects.equals(this.company.getCompanyId(), other.getCompany().getCompanyId()))
+		if (!Objects.equals(this.company.getCompanyId(), other.getCompany()
+				.getCompanyId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

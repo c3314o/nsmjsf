@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.ProfitLoss;
 
 public class ProfitLossWrapper {
 
-private static final Log log = LogFactory
-			.getLog(ProfitLossWrapper.class);
-
+	private static final Log log = LogFactory.getLog(ProfitLossWrapper.class);
 
 	ProfitLoss profitLoss;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final ProfitLossWrapper other = (ProfitLossWrapper) obj;
-		if (!Objects.equals(this.profitLoss.getProfitLossId(), other.getProfitLoss().getProfitLossId()))
+		if (!Objects.equals(this.profitLoss.getProfitLossId(), other
+				.getProfitLoss().getProfitLossId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

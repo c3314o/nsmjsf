@@ -17,99 +17,45 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.EnergyPriceDataSource;
 import com.nsmjsf.web.datamodels.EnergyPrice;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreateEnergyPriceBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreateEnergyPriceBean.class);
-
 
 	private EnergyPrice energyPrice;
 	private EnergyPriceDataSource energyPriceDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateEnergyPriceBean() {
 
 		energyPrice = new EnergyPrice();
 		/* init datasources */
 		energyPriceDataSource = new EnergyPriceDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.energyPrice=energyPriceDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.energyPrice = energyPriceDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -126,64 +72,41 @@ private static final Log log = LogFactory
 		return energyPriceDataSource;
 	}
 
-	public void setEnergyPriceDataSource(EnergyPriceDataSource energyPriceDataSource) {
+	public void setEnergyPriceDataSource(
+			EnergyPriceDataSource energyPriceDataSource) {
 		this.energyPriceDataSource = energyPriceDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public EnergyPrice saveEnergyPrice() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			energyPriceDataSource.create(energyPrice, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  EnergyPrice !");
-				this.energyPrice=new EnergyPrice();
+			MessageService.info("Successfully Saved  EnergyPrice !");
+			this.energyPrice = new EnergyPrice();
 			return energyPrice;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving EnergyPrice .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public EnergyPrice updateEnergyPrice() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			energyPriceDataSource.create(energyPrice, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  EnergyPrice !");
-				this.energyPrice=new EnergyPrice();
+			MessageService.info("Successfully Saved  EnergyPrice !");
+			this.energyPrice = new EnergyPrice();
 			return energyPrice;
 
 		} catch (Exception ex) {
@@ -192,29 +115,28 @@ private static final Log log = LogFactory
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateEnergyPrice();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveEnergyPrice();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createEnergyPrice");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createEnergyPrice");
+
 	}
-	public EnergyPrice saveEnergyPrice(Session session){
-	
-	   this.energyPrice= energyPriceDataSource.create(this.energyPrice,session);
-	   return this.energyPrice;
+
+	public EnergyPrice saveEnergyPrice(Session session) {
+
+		this.energyPrice = energyPriceDataSource.create(this.energyPrice,
+				session);
+		return this.energyPrice;
 	}
-	
 
 }
-

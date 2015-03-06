@@ -18,9 +18,8 @@ import com.nsmjsf.web.datasources.UserPortfolioDataSource;
 import com.nsmjsf.web.datamodels.UserPortfolio;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
-			
-import com.nsmjsf.web.adapters.UserAdapter;
 
+import com.nsmjsf.web.adapters.UserAdapter;
 
 import com.nsmjsf.web.datasources.UserDataSource;
 
@@ -28,132 +27,56 @@ import com.nsmjsf.web.datamodels.User;
 
 import com.nsmjsf.web.wrappers.UserWrapper;
 
-
-
-			
-				   
-
 @ManagedBean
 @ViewScoped
-
 public class CreateUserPortfolioBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreateUserPortfolioBean.class);
-
 
 	private UserPortfolio userPortfolio;
 	private UserPortfolioDataSource userPortfolioDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-    private UserDataSource userDataSource;
+
+	private UserDataSource userDataSource;
 	private List<UserWrapper> userWrapperList;
 	private List<User> userList;
 	private UserWrapper selectedUserWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateUserPortfolioBean() {
 
 		userPortfolio = new UserPortfolio();
 		/* init datasources */
 		userPortfolioDataSource = new UserPortfolioDataSource();
-		
-		
-			
-userDataSource = new UserDataSource();
+
+		userDataSource = new UserDataSource();
 
 		/* init option wrappers */
 		userList = userDataSource.getAll();
-		userWrapperList = UserAdapter
-				.wrapAll(userList);
-	
-			
-				
-		
-		
+		userWrapperList = UserAdapter.wrapAll(userList);
 
 	}
-	
-	@PostConstruct
-	private void init()
-	{
-		extractParams();
-		if(this.editMode)
-		{
-			this.userPortfolio=userPortfolioDataSource.get(editId);
-			
-			
 
-			  
-			  this.selectedUserWrapper=UserAdapter.wrap(userPortfolio.getUser());
-	
-			
-				   
-			
-			
-			
-			
+	@PostConstruct
+	private void init() {
+		extractParams();
+		if (this.editMode) {
+			this.userPortfolio = userPortfolioDataSource.get(editId);
+
+			this.selectedUserWrapper = UserAdapter
+					.wrap(userPortfolio.getUser());
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -170,35 +93,24 @@ userDataSource = new UserDataSource();
 		return userPortfolioDataSource;
 	}
 
-	public void setUserPortfolioDataSource(UserPortfolioDataSource userPortfolioDataSource) {
+	public void setUserPortfolioDataSource(
+			UserPortfolioDataSource userPortfolioDataSource) {
 		this.userPortfolioDataSource = userPortfolioDataSource;
 	}
-	
-	
-	
-	
-	
-	
-	
-			
 
-
-public List<User> getUserList() {
+	public List<User> getUserList() {
 		return userList;
 	}
 
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
 	}
-  
-  
-  
+
 	public UserDataSource getUserDataSource() {
 		return userDataSource;
 	}
 
-	public void setUserDataSource(
-			UserDataSource userDataSource) {
+	public void setUserDataSource(UserDataSource userDataSource) {
 		this.userDataSource = userDataSource;
 	}
 
@@ -206,122 +118,88 @@ public List<User> getUserList() {
 		return userWrapperList;
 	}
 
-	public void setUserWrapperList(
-			List<UserWrapper> userWrapperList) {
+	public void setUserWrapperList(List<UserWrapper> userWrapperList) {
 		this.userWrapperList = userWrapperList;
 	}
-
-	
 
 	public UserWrapper getSelectedUserWrapper() {
 		return selectedUserWrapper;
 	}
 
-	public void setSelectedUserWrapper(
-			UserWrapper selectedUserWrapper) {
+	public void setSelectedUserWrapper(UserWrapper selectedUserWrapper) {
 		this.selectedUserWrapper = selectedUserWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-				
-
-
-
-
-	
-  
-  
-  
 	public UserPortfolio saveUserPortfolio() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  User user =selectedUserWrapper.getUser();
+
+			User user = selectedUserWrapper.getUser();
 
 			userPortfolio.setUser(user);
-			
-				   
-			
-			
-			
-			
+
 			userPortfolioDataSource.create(userPortfolio, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  UserPortfolio !");
-				this.userPortfolio=new UserPortfolio();
+			MessageService.info("Successfully Saved  UserPortfolio !");
+			this.userPortfolio = new UserPortfolio();
 			return userPortfolio;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
-			MessageService.error("Failed Saving UserPortfolio .Try Again Later!");
+			log.error(ex.getMessage());
+			MessageService
+					.error("Failed Saving UserPortfolio .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public UserPortfolio updateUserPortfolio() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  User user = selectedUserWrapper.getUser();
 
-			      userPortfolio.setUser(user);
-			
-				   
-			
-			
-			
-			
+			User user = selectedUserWrapper.getUser();
+
+			userPortfolio.setUser(user);
+
 			userPortfolioDataSource.create(userPortfolio, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  UserPortfolio !");
-				this.userPortfolio=new UserPortfolio();
+			MessageService.info("Successfully Saved  UserPortfolio !");
+			this.userPortfolio = new UserPortfolio();
 			return userPortfolio;
 
 		} catch (Exception ex) {
-			MessageService.error("Failed Saving UserPortfolio .Try Again Later!");
+			MessageService
+					.error("Failed Saving UserPortfolio .Try Again Later!");
 			log.error(ex.getMessage());
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateUserPortfolio();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveUserPortfolio();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createUserPortfolio");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createUserPortfolio");
+
 	}
-	public UserPortfolio saveUserPortfolio(Session session){
-	
-	   this.userPortfolio= userPortfolioDataSource.create(this.userPortfolio,session);
-	   return this.userPortfolio;
+
+	public UserPortfolio saveUserPortfolio(Session session) {
+
+		this.userPortfolio = userPortfolioDataSource.create(this.userPortfolio,
+				session);
+		return this.userPortfolio;
 	}
-	
 
 }
-

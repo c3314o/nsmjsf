@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.BonusDividendApproved;
 import com.nsmjsf.web.sorters.BonusDividendApprovedSorter;
 
-public class LazyBonusDividendApprovedDataModel extends LazyDataModel<BonusDividendApproved> {
+public class LazyBonusDividendApprovedDataModel extends
+		LazyDataModel<BonusDividendApproved> {
 	private static final Log log = LogFactory
 			.getLog(LazyBonusDividendApprovedDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazyBonusDividendApprovedDataModel extends LazyDataModel<BonusDivid
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<BonusDividendApproved> bonusDividendApprovedList;
 
-	public LazyBonusDividendApprovedDataModel(List<BonusDividendApproved> bonusDividendApprovedList) {
+	public LazyBonusDividendApprovedDataModel(
+			List<BonusDividendApproved> bonusDividendApprovedList) {
 		this.bonusDividendApprovedList = bonusDividendApprovedList;
 	}
 
 	@Override
 	public BonusDividendApproved getRowData(String rowKey) {
 		for (BonusDividendApproved bonusDividendApproved : bonusDividendApprovedList) {
-			if (bonusDividendApproved.getBonusDividendApprovedId().toString().equalsIgnoreCase(rowKey))
+			if (bonusDividendApproved.getBonusDividendApprovedId().toString()
+					.equalsIgnoreCase(rowKey))
 				return bonusDividendApproved;
 		}
 
@@ -47,8 +48,8 @@ public class LazyBonusDividendApprovedDataModel extends LazyDataModel<BonusDivid
 	}
 
 	@Override
-	public List<BonusDividendApproved> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<BonusDividendApproved> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<BonusDividendApproved> data = new ArrayList<BonusDividendApproved>();
@@ -63,13 +64,13 @@ public class LazyBonusDividendApprovedDataModel extends LazyDataModel<BonusDivid
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = bonusDividendApproved.getClass().getDeclaredField(
-								filterProperty);
+						Field field = bonusDividendApproved.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(bonusDividendApproved));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(bonusDividendApproved));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazyBonusDividendApprovedDataModel extends LazyDataModel<BonusDivid
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new BonusDividendApprovedSorter(sortField, sortOrder));
+			Collections.sort(data, new BonusDividendApprovedSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazyBonusDividendApprovedDataModel extends LazyDataModel<BonusDivid
 	}
 
 }
-

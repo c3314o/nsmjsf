@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.Notification ;
+import com.nsmjsf.web.datamodels.Notification;
 
-public class NotificationDataSource extends TDataSource<Notification>{
+public class NotificationDataSource extends TDataSource<Notification> {
 
-	public NotificationDataSource()
-	{
+	public NotificationDataSource() {
 		super();
 		this.setTableName("Notification");
 		this.setPrimaryKey("notification_id");
 	}
 
-	
 	@Override
 	public List<Notification> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class NotificationDataSource extends TDataSource<Notification>{
 	}
 
 	@Override
-	public List<Notification> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<Notification> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class NotificationDataSource extends TDataSource<Notification>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

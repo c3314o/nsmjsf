@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.FinancialHighlightDataSource;
 import com.nsmjsf.web.datamodels.FinancialHighlight;
 import com.nsmjsf.web.lazymodels.LazyFinancialHighlightDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.FiscalYearAdapter;
-
 
 import com.nsmjsf.web.datasources.FiscalYearDataSource;
 
@@ -32,13 +28,7 @@ import com.nsmjsf.web.datamodels.FiscalYear;
 
 import com.nsmjsf.web.wrappers.FiscalYearWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.CompanyAdapter;
-
 
 import com.nsmjsf.web.datasources.CompanyDataSource;
 
@@ -46,13 +36,7 @@ import com.nsmjsf.web.datamodels.Company;
 
 import com.nsmjsf.web.wrappers.CompanyWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.QuarterAdapter;
-
 
 import com.nsmjsf.web.datasources.QuarterDataSource;
 
@@ -60,129 +44,118 @@ import com.nsmjsf.web.datamodels.Quarter;
 
 import com.nsmjsf.web.wrappers.QuarterWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewFinancialHighlightBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewFinancialHighlightBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewFinancialHighlightBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<FinancialHighlight> financialHighlightList;
-    List<FinancialHighlight> selectedFinancialHighlightList;
+	List<FinancialHighlight> selectedFinancialHighlightList;
 	List<FinancialHighlight> filteredFinancialHighlightList;
 	FinancialHighlight selectedFinancialHighlight;
 	LazyDataModel<FinancialHighlight> lazyModel;
 	FinancialHighlightDataSource financialHighlightDataSource;
-	int editFinancialHighlightId=0;
-	
+	int editFinancialHighlightId = 0;
 
-			   List<FiscalYear> fiscalYearList;
-			   FiscalYearDataSource fiscalYearDataSource;
-			   public List<FiscalYear> getFiscalYearList() {
+	List<FiscalYear> fiscalYearList;
+	FiscalYearDataSource fiscalYearDataSource;
+
+	public List<FiscalYear> getFiscalYearList() {
 		return fiscalYearList;
-	     }
+	}
+
 	public void setFiscalYearList(List<FiscalYear> fiscalYearList) {
 		this.fiscalYearList = fiscalYearList;
 	}
-			
-			
-			   List<Company> companyList;
-			   CompanyDataSource companyDataSource;
-			   public List<Company> getCompanyList() {
+
+	List<Company> companyList;
+	CompanyDataSource companyDataSource;
+
+	public List<Company> getCompanyList() {
 		return companyList;
-	     }
+	}
+
 	public void setCompanyList(List<Company> companyList) {
 		this.companyList = companyList;
 	}
-			
-			
-			   List<Quarter> quarterList;
-			   QuarterDataSource quarterDataSource;
-			   public List<Quarter> getQuarterList() {
+
+	List<Quarter> quarterList;
+	QuarterDataSource quarterDataSource;
+
+	public List<Quarter> getQuarterList() {
 		return quarterList;
-	     }
+	}
+
 	public void setQuarterList(List<Quarter> quarterList) {
 		this.quarterList = quarterList;
 	}
-			
-				   
-	
-	
-	public ViewFinancialHighlightBean()
-	{
+
+	public ViewFinancialHighlightBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyFinancialHighlightDataModel(this.financialHighlightList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		financialHighlightDataSource=new FinancialHighlightDataSource();
-		
 
-			  fiscalYearDataSource=new FiscalYearDataSource();
-			
-			
-			  companyDataSource=new CompanyDataSource();
-			
-			
-			  quarterDataSource=new QuarterDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.financialHighlightList=financialHighlightDataSource.getAll();
-		lazyModel=new LazyFinancialHighlightDataModel(this.financialHighlightList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		financialHighlightList=financialHighlightDataSource.getAll();
-		
+		lazyModel = new LazyFinancialHighlightDataModel(
+				this.financialHighlightList);
 
-			 fiscalYearList=fiscalYearDataSource.getAll();
-	
-			
-			 companyList=companyDataSource.getAll();
-	
-			
-			 quarterList=quarterDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		financialHighlightDataSource = new FinancialHighlightDataSource();
+
+		fiscalYearDataSource = new FiscalYearDataSource();
+
+		companyDataSource = new CompanyDataSource();
+
+		quarterDataSource = new QuarterDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.financialHighlightList = financialHighlightDataSource.getAll();
+		lazyModel = new LazyFinancialHighlightDataModel(
+				this.financialHighlightList);
+
+	}
+
+	private void populateData() {
+		financialHighlightList = financialHighlightDataSource.getAll();
+
+		fiscalYearList = fiscalYearDataSource.getAll();
+
+		companyList = companyDataSource.getAll();
+
+		quarterList = quarterDataSource.getAll();
+
+	}
+
 	public List<FinancialHighlight> getFinancialHighlightList() {
 		return financialHighlightList;
 	}
-	public void setFinancialHighlightList(List<FinancialHighlight> financialHighlightList) {
+
+	public void setFinancialHighlightList(
+			List<FinancialHighlight> financialHighlightList) {
 		this.financialHighlightList = financialHighlightList;
 	}
+
 	public LazyDataModel<FinancialHighlight> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<FinancialHighlight> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public FinancialHighlight getSelectedFinancialHighlight() {
 		return selectedFinancialHighlight;
 	}
-	public void setSelectedFinancialHighlight(FinancialHighlight selectedFinancialHighlight) {
+
+	public void setSelectedFinancialHighlight(
+			FinancialHighlight selectedFinancialHighlight) {
 		this.selectedFinancialHighlight = selectedFinancialHighlight;
 	}
-	
+
 	public List<FinancialHighlight> getSelectedFinancialHighlightList() {
 		return selectedFinancialHighlightList;
 	}
@@ -206,43 +179,46 @@ private static final Log log = LogFactory.getLog(ViewFinancialHighlightBean.clas
 		Map<String, Object> options = new HashMap<String, Object>();
 		options.put("modal", true);
 
-		RequestContext.getCurrentInstance().openDialog("createFinancialHighlight",
-				options, null);
+		RequestContext.getCurrentInstance().openDialog(
+				"createFinancialHighlight", options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("FinancialHighlight Selected"
-				+ ((FinancialHighlight) event.getObject()).getFinancialHighlightId());
+				+ ((FinancialHighlight) event.getObject())
+						.getFinancialHighlightId());
 		for (FinancialHighlight cat : selectedFinancialHighlightList) {
-			//System.out.println(cat.getFinancialHighlightLabel());
+			// System.out.println(cat.getFinancialHighlightLabel());
 		}
 
 	}
 
 	public void onRowUnselect(UnselectEvent event) {
 		System.out.println("Car unSelected"
-				+ ((FinancialHighlight) event.getObject()).getFinancialHighlightId());
+				+ ((FinancialHighlight) event.getObject())
+						.getFinancialHighlightId());
 
 	}
 
 	public void deleteSelectedFinancialHighlight() {
 		for (FinancialHighlight financialHighlight : selectedFinancialHighlightList) {
-			//System.out.println(financialHighlight.getFinancialHighlightLabel());
+			// System.out.println(financialHighlight.getFinancialHighlightLabel());
 			this.deleteFinancialHighlight(financialHighlight);
 		}
 	}
+
 	public void deleteFinancialHighlight(FinancialHighlight financialHighlight) {
-			try{
+		try {
 			financialHighlightDataSource.delete(financialHighlight);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditFinancialHighlightId() {
 		return editFinancialHighlightId;
 	}
@@ -250,18 +226,17 @@ private static final Log log = LogFactory.getLog(ViewFinancialHighlightBean.clas
 	public void setEditFinancialHighlightId(int editFinancialHighlightId) {
 		this.editFinancialHighlightId = editFinancialHighlightId;
 	}
-	
-	public void editFinancialHighlight(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editFinancialHighlight(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
-		RequestContext.getCurrentInstance().openDialog("createFinancialHighlight",
-				options,params);
+		RequestContext.getCurrentInstance().openDialog(
+				"createFinancialHighlight", options, params);
 	}
 
 	public ViewType getViewType() {
@@ -272,38 +247,32 @@ private static final Log log = LogFactory.getLog(ViewFinancialHighlightBean.clas
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

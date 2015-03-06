@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyUserPortfolioDataModel extends LazyDataModel<UserPortfolio> {
 	@Override
 	public UserPortfolio getRowData(String rowKey) {
 		for (UserPortfolio userPortfolio : userPortfolioList) {
-			if (userPortfolio.getUserPortfolioId().toString().equalsIgnoreCase(rowKey))
+			if (userPortfolio.getUserPortfolioId().toString()
+					.equalsIgnoreCase(rowKey))
 				return userPortfolio;
 		}
 
@@ -63,13 +62,13 @@ public class LazyUserPortfolioDataModel extends LazyDataModel<UserPortfolio> {
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = userPortfolio.getClass().getDeclaredField(
-								filterProperty);
+						Field field = userPortfolio.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(userPortfolio));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(userPortfolio));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyUserPortfolioDataModel extends LazyDataModel<UserPortfolio> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new UserPortfolioSorter(sortField, sortOrder));
+			Collections.sort(data,
+					new UserPortfolioSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyUserPortfolioDataModel extends LazyDataModel<UserPortfolio> {
 	}
 
 }
-

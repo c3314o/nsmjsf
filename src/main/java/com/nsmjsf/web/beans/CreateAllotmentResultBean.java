@@ -18,9 +18,8 @@ import com.nsmjsf.web.datasources.AllotmentResultDataSource;
 import com.nsmjsf.web.datamodels.AllotmentResult;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
-			
-import com.nsmjsf.web.adapters.PostAdapter;
 
+import com.nsmjsf.web.adapters.PostAdapter;
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -28,13 +27,7 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.AnnouncementAdapter;
-
 
 import com.nsmjsf.web.datasources.AnnouncementDataSource;
 
@@ -42,13 +35,7 @@ import com.nsmjsf.web.datamodels.Announcement;
 
 import com.nsmjsf.web.wrappers.AnnouncementWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.CompanyAdapter;
-
 
 import com.nsmjsf.web.datasources.CompanyDataSource;
 
@@ -56,204 +43,84 @@ import com.nsmjsf.web.datamodels.Company;
 
 import com.nsmjsf.web.wrappers.CompanyWrapper;
 
-
-
-			
-				   
-
 @ManagedBean
 @ViewScoped
-
 public class CreateAllotmentResultBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreateAllotmentResultBean.class);
-
 
 	private AllotmentResult allotmentResult;
 	private AllotmentResultDataSource allotmentResultDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-    private PostDataSource postDataSource;
+
+	private PostDataSource postDataSource;
 	private List<PostWrapper> postWrapperList;
 	private List<Post> postList;
 	private PostWrapper selectedPostWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-    private AnnouncementDataSource announcementDataSource;
+
+	private AnnouncementDataSource announcementDataSource;
 	private List<AnnouncementWrapper> announcementWrapperList;
 	private List<Announcement> announcementList;
 	private AnnouncementWrapper selectedAnnouncementWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-    private CompanyDataSource companyDataSource;
+
+	private CompanyDataSource companyDataSource;
 	private List<CompanyWrapper> companyWrapperList;
 	private List<Company> companyList;
 	private CompanyWrapper selectedCompanyWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateAllotmentResultBean() {
 
 		allotmentResult = new AllotmentResult();
 		/* init datasources */
 		allotmentResultDataSource = new AllotmentResultDataSource();
-		
-		
-			
-postDataSource = new PostDataSource();
+
+		postDataSource = new PostDataSource();
 
 		/* init option wrappers */
 		postList = postDataSource.getAll();
-		postWrapperList = PostAdapter
-				.wrapAll(postList);
-	
-			
-			
-			
-announcementDataSource = new AnnouncementDataSource();
+		postWrapperList = PostAdapter.wrapAll(postList);
+
+		announcementDataSource = new AnnouncementDataSource();
 
 		/* init option wrappers */
 		announcementList = announcementDataSource.getAll();
-		announcementWrapperList = AnnouncementAdapter
-				.wrapAll(announcementList);
-	
-			
-			
-			
-companyDataSource = new CompanyDataSource();
+		announcementWrapperList = AnnouncementAdapter.wrapAll(announcementList);
+
+		companyDataSource = new CompanyDataSource();
 
 		/* init option wrappers */
 		companyList = companyDataSource.getAll();
-		companyWrapperList = CompanyAdapter
-				.wrapAll(companyList);
-	
-			
-				
-		
-		
+		companyWrapperList = CompanyAdapter.wrapAll(companyList);
 
 	}
-	
-	@PostConstruct
-	private void init()
-	{
-		extractParams();
-		if(this.editMode)
-		{
-			this.allotmentResult=allotmentResultDataSource.get(editId);
-			
-			
 
-			  
-			  this.selectedPostWrapper=PostAdapter.wrap(allotmentResult.getPost());
-	
-			
-			
-			  
-			  this.selectedAnnouncementWrapper=AnnouncementAdapter.wrap(allotmentResult.getAnnouncement());
-	
-			
-			
-			  
-			  this.selectedCompanyWrapper=CompanyAdapter.wrap(allotmentResult.getCompany());
-	
-			
-				   
-			
-			
-			
-			
+	@PostConstruct
+	private void init() {
+		extractParams();
+		if (this.editMode) {
+			this.allotmentResult = allotmentResultDataSource.get(editId);
+
+			this.selectedPostWrapper = PostAdapter.wrap(allotmentResult
+					.getPost());
+
+			this.selectedAnnouncementWrapper = AnnouncementAdapter
+					.wrap(allotmentResult.getAnnouncement());
+
+			this.selectedCompanyWrapper = CompanyAdapter.wrap(allotmentResult
+					.getCompany());
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -270,35 +137,24 @@ companyDataSource = new CompanyDataSource();
 		return allotmentResultDataSource;
 	}
 
-	public void setAllotmentResultDataSource(AllotmentResultDataSource allotmentResultDataSource) {
+	public void setAllotmentResultDataSource(
+			AllotmentResultDataSource allotmentResultDataSource) {
 		this.allotmentResultDataSource = allotmentResultDataSource;
 	}
-	
-	
-	
-	
-	
-	
-	
-			
 
-
-public List<Post> getPostList() {
+	public List<Post> getPostList() {
 		return postList;
 	}
 
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-  
-  
-  
+
 	public PostDataSource getPostDataSource() {
 		return postDataSource;
 	}
 
-	public void setPostDataSource(
-			PostDataSource postDataSource) {
+	public void setPostDataSource(PostDataSource postDataSource) {
 		this.postDataSource = postDataSource;
 	}
 
@@ -306,44 +162,26 @@ public List<Post> getPostList() {
 		return postWrapperList;
 	}
 
-	public void setPostWrapperList(
-			List<PostWrapper> postWrapperList) {
+	public void setPostWrapperList(List<PostWrapper> postWrapperList) {
 		this.postWrapperList = postWrapperList;
 	}
-
-	
 
 	public PostWrapper getSelectedPostWrapper() {
 		return selectedPostWrapper;
 	}
 
-	public void setSelectedPostWrapper(
-			PostWrapper selectedPostWrapper) {
+	public void setSelectedPostWrapper(PostWrapper selectedPostWrapper) {
 		this.selectedPostWrapper = selectedPostWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-			
-			
-
-
-public List<Announcement> getAnnouncementList() {
+	public List<Announcement> getAnnouncementList() {
 		return announcementList;
 	}
 
 	public void setAnnouncementList(List<Announcement> announcementList) {
 		this.announcementList = announcementList;
 	}
-  
-  
-  
+
 	public AnnouncementDataSource getAnnouncementDataSource() {
 		return announcementDataSource;
 	}
@@ -362,8 +200,6 @@ public List<Announcement> getAnnouncementList() {
 		this.announcementWrapperList = announcementWrapperList;
 	}
 
-	
-
 	public AnnouncementWrapper getSelectedAnnouncementWrapper() {
 		return selectedAnnouncementWrapper;
 	}
@@ -373,34 +209,19 @@ public List<Announcement> getAnnouncementList() {
 		this.selectedAnnouncementWrapper = selectedAnnouncementWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-			
-			
-
-
-public List<Company> getCompanyList() {
+	public List<Company> getCompanyList() {
 		return companyList;
 	}
 
 	public void setCompanyList(List<Company> companyList) {
 		this.companyList = companyList;
 	}
-  
-  
-  
+
 	public CompanyDataSource getCompanyDataSource() {
 		return companyDataSource;
 	}
 
-	public void setCompanyDataSource(
-			CompanyDataSource companyDataSource) {
+	public void setCompanyDataSource(CompanyDataSource companyDataSource) {
 		this.companyDataSource = companyDataSource;
 	}
 
@@ -408,146 +229,107 @@ public List<Company> getCompanyList() {
 		return companyWrapperList;
 	}
 
-	public void setCompanyWrapperList(
-			List<CompanyWrapper> companyWrapperList) {
+	public void setCompanyWrapperList(List<CompanyWrapper> companyWrapperList) {
 		this.companyWrapperList = companyWrapperList;
 	}
-
-	
 
 	public CompanyWrapper getSelectedCompanyWrapper() {
 		return selectedCompanyWrapper;
 	}
 
-	public void setSelectedCompanyWrapper(
-			CompanyWrapper selectedCompanyWrapper) {
+	public void setSelectedCompanyWrapper(CompanyWrapper selectedCompanyWrapper) {
 		this.selectedCompanyWrapper = selectedCompanyWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-				
-
-
-
-
-	
-  
-  
-  
 	public AllotmentResult saveAllotmentResult() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Post post =selectedPostWrapper.getPost();
+
+			Post post = selectedPostWrapper.getPost();
 
 			allotmentResult.setPost(post);
-			
-			
-			
-                  Announcement announcement =selectedAnnouncementWrapper.getAnnouncement();
+
+			Announcement announcement = selectedAnnouncementWrapper
+					.getAnnouncement();
 
 			allotmentResult.setAnnouncement(announcement);
-			
-			
-			
-                  Company company =selectedCompanyWrapper.getCompany();
+
+			Company company = selectedCompanyWrapper.getCompany();
 
 			allotmentResult.setCompany(company);
-			
-				   
-			
-			
-			
-			
+
 			allotmentResultDataSource.create(allotmentResult, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  AllotmentResult !");
-				this.allotmentResult=new AllotmentResult();
+			MessageService.info("Successfully Saved  AllotmentResult !");
+			this.allotmentResult = new AllotmentResult();
 			return allotmentResult;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
-			MessageService.error("Failed Saving AllotmentResult .Try Again Later!");
+			log.error(ex.getMessage());
+			MessageService
+					.error("Failed Saving AllotmentResult .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public AllotmentResult updateAllotmentResult() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Post post = selectedPostWrapper.getPost();
 
-			      allotmentResult.setPost(post);
-			
-			
-			
-                  Announcement announcement = selectedAnnouncementWrapper.getAnnouncement();
+			Post post = selectedPostWrapper.getPost();
 
-			      allotmentResult.setAnnouncement(announcement);
-			
-			
-			
-                  Company company = selectedCompanyWrapper.getCompany();
+			allotmentResult.setPost(post);
 
-			      allotmentResult.setCompany(company);
-			
-				   
-			
-			
-			
-			
+			Announcement announcement = selectedAnnouncementWrapper
+					.getAnnouncement();
+
+			allotmentResult.setAnnouncement(announcement);
+
+			Company company = selectedCompanyWrapper.getCompany();
+
+			allotmentResult.setCompany(company);
+
 			allotmentResultDataSource.create(allotmentResult, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  AllotmentResult !");
-				this.allotmentResult=new AllotmentResult();
+			MessageService.info("Successfully Saved  AllotmentResult !");
+			this.allotmentResult = new AllotmentResult();
 			return allotmentResult;
 
 		} catch (Exception ex) {
-			MessageService.error("Failed Saving AllotmentResult .Try Again Later!");
+			MessageService
+					.error("Failed Saving AllotmentResult .Try Again Later!");
 			log.error(ex.getMessage());
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateAllotmentResult();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveAllotmentResult();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createAllotmentResult");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance()
+				.closeDialog("createAllotmentResult");
+
 	}
-	public AllotmentResult saveAllotmentResult(Session session){
-	
-	   this.allotmentResult= allotmentResultDataSource.create(this.allotmentResult,session);
-	   return this.allotmentResult;
+
+	public AllotmentResult saveAllotmentResult(Session session) {
+
+		this.allotmentResult = allotmentResultDataSource.create(
+				this.allotmentResult, session);
+		return this.allotmentResult;
 	}
-	
 
 }
-

@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.MapPostCategory;
 import com.nsmjsf.web.sorters.MapPostCategorySorter;
 
-public class LazyMapPostCategoryDataModel extends LazyDataModel<MapPostCategory> {
+public class LazyMapPostCategoryDataModel extends
+		LazyDataModel<MapPostCategory> {
 	private static final Log log = LogFactory
 			.getLog(LazyMapPostCategoryDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazyMapPostCategoryDataModel extends LazyDataModel<MapPostCategory>
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<MapPostCategory> mapPostCategoryList;
 
-	public LazyMapPostCategoryDataModel(List<MapPostCategory> mapPostCategoryList) {
+	public LazyMapPostCategoryDataModel(
+			List<MapPostCategory> mapPostCategoryList) {
 		this.mapPostCategoryList = mapPostCategoryList;
 	}
 
 	@Override
 	public MapPostCategory getRowData(String rowKey) {
 		for (MapPostCategory mapPostCategory : mapPostCategoryList) {
-			if (mapPostCategory.getMapPostCategoryId().toString().equalsIgnoreCase(rowKey))
+			if (mapPostCategory.getMapPostCategoryId().toString()
+					.equalsIgnoreCase(rowKey))
 				return mapPostCategory;
 		}
 
@@ -47,8 +48,8 @@ public class LazyMapPostCategoryDataModel extends LazyDataModel<MapPostCategory>
 	}
 
 	@Override
-	public List<MapPostCategory> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<MapPostCategory> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<MapPostCategory> data = new ArrayList<MapPostCategory>();
@@ -63,13 +64,13 @@ public class LazyMapPostCategoryDataModel extends LazyDataModel<MapPostCategory>
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = mapPostCategory.getClass().getDeclaredField(
-								filterProperty);
+						Field field = mapPostCategory.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(mapPostCategory));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(mapPostCategory));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazyMapPostCategoryDataModel extends LazyDataModel<MapPostCategory>
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new MapPostCategorySorter(sortField, sortOrder));
+			Collections.sort(data, new MapPostCategorySorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazyMapPostCategoryDataModel extends LazyDataModel<MapPostCategory>
 	}
 
 }
-

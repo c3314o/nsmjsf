@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.SemiYearAverageDataSource;
 import com.nsmjsf.web.datamodels.SemiYearAverage;
 import com.nsmjsf.web.lazymodels.LazySemiYearAverageDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.CompanyAdapter;
-
 
 import com.nsmjsf.web.datasources.CompanyDataSource;
 
@@ -32,97 +28,85 @@ import com.nsmjsf.web.datamodels.Company;
 
 import com.nsmjsf.web.wrappers.CompanyWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewSemiYearAverageBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewSemiYearAverageBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewSemiYearAverageBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<SemiYearAverage> semiYearAverageList;
-    List<SemiYearAverage> selectedSemiYearAverageList;
+	List<SemiYearAverage> selectedSemiYearAverageList;
 	List<SemiYearAverage> filteredSemiYearAverageList;
 	SemiYearAverage selectedSemiYearAverage;
 	LazyDataModel<SemiYearAverage> lazyModel;
 	SemiYearAverageDataSource semiYearAverageDataSource;
-	int editSemiYearAverageId=0;
-	
+	int editSemiYearAverageId = 0;
 
-			   List<Company> companyList;
-			   CompanyDataSource companyDataSource;
-			   public List<Company> getCompanyList() {
+	List<Company> companyList;
+	CompanyDataSource companyDataSource;
+
+	public List<Company> getCompanyList() {
 		return companyList;
-	     }
+	}
+
 	public void setCompanyList(List<Company> companyList) {
 		this.companyList = companyList;
 	}
-			
-				   
-	
-	
-	public ViewSemiYearAverageBean()
-	{
+
+	public ViewSemiYearAverageBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazySemiYearAverageDataModel(this.semiYearAverageList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		semiYearAverageDataSource=new SemiYearAverageDataSource();
-		
 
-			  companyDataSource=new CompanyDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.semiYearAverageList=semiYearAverageDataSource.getAll();
-		lazyModel=new LazySemiYearAverageDataModel(this.semiYearAverageList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		semiYearAverageList=semiYearAverageDataSource.getAll();
-		
+		lazyModel = new LazySemiYearAverageDataModel(this.semiYearAverageList);
 
-			 companyList=companyDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		semiYearAverageDataSource = new SemiYearAverageDataSource();
+
+		companyDataSource = new CompanyDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.semiYearAverageList = semiYearAverageDataSource.getAll();
+		lazyModel = new LazySemiYearAverageDataModel(this.semiYearAverageList);
+
+	}
+
+	private void populateData() {
+		semiYearAverageList = semiYearAverageDataSource.getAll();
+
+		companyList = companyDataSource.getAll();
+
+	}
+
 	public List<SemiYearAverage> getSemiYearAverageList() {
 		return semiYearAverageList;
 	}
+
 	public void setSemiYearAverageList(List<SemiYearAverage> semiYearAverageList) {
 		this.semiYearAverageList = semiYearAverageList;
 	}
+
 	public LazyDataModel<SemiYearAverage> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<SemiYearAverage> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public SemiYearAverage getSelectedSemiYearAverage() {
 		return selectedSemiYearAverage;
 	}
-	public void setSelectedSemiYearAverage(SemiYearAverage selectedSemiYearAverage) {
+
+	public void setSelectedSemiYearAverage(
+			SemiYearAverage selectedSemiYearAverage) {
 		this.selectedSemiYearAverage = selectedSemiYearAverage;
 	}
-	
+
 	public List<SemiYearAverage> getSelectedSemiYearAverageList() {
 		return selectedSemiYearAverageList;
 	}
@@ -150,12 +134,12 @@ private static final Log log = LogFactory.getLog(ViewSemiYearAverageBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("SemiYearAverage Selected"
 				+ ((SemiYearAverage) event.getObject()).getSemiYearAverageId());
 		for (SemiYearAverage cat : selectedSemiYearAverageList) {
-			//System.out.println(cat.getSemiYearAverageLabel());
+			// System.out.println(cat.getSemiYearAverageLabel());
 		}
 
 	}
@@ -168,21 +152,22 @@ private static final Log log = LogFactory.getLog(ViewSemiYearAverageBean.class);
 
 	public void deleteSelectedSemiYearAverage() {
 		for (SemiYearAverage semiYearAverage : selectedSemiYearAverageList) {
-			//System.out.println(semiYearAverage.getSemiYearAverageLabel());
+			// System.out.println(semiYearAverage.getSemiYearAverageLabel());
 			this.deleteSemiYearAverage(semiYearAverage);
 		}
 	}
+
 	public void deleteSemiYearAverage(SemiYearAverage semiYearAverage) {
-			try{
+		try {
 			semiYearAverageDataSource.delete(semiYearAverage);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditSemiYearAverageId() {
 		return editSemiYearAverageId;
 	}
@@ -190,18 +175,17 @@ private static final Log log = LogFactory.getLog(ViewSemiYearAverageBean.class);
 	public void setEditSemiYearAverageId(int editSemiYearAverageId) {
 		this.editSemiYearAverageId = editSemiYearAverageId;
 	}
-	
-	public void editSemiYearAverage(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editSemiYearAverage(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createSemiYearAverage",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -212,38 +196,32 @@ private static final Log log = LogFactory.getLog(ViewSemiYearAverageBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

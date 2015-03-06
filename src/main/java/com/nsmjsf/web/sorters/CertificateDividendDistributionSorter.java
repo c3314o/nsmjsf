@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.sorters;
 
 import java.lang.reflect.Field;
@@ -10,41 +9,42 @@ import org.primefaces.model.SortOrder;
 
 import com.nsmjsf.web.datamodels.CertificateDividendDistribution;
 
+public class CertificateDividendDistributionSorter implements
+		Comparator<CertificateDividendDistribution> {
+	private static final Log log = LogFactory
+			.getLog(CertificateDividendDistributionSorter.class);
 
-public class CertificateDividendDistributionSorter implements Comparator<CertificateDividendDistribution>{
-	private static final Log log = LogFactory.getLog(CertificateDividendDistributionSorter.class);
-	
-	 private String sortField;
-     
-	    private SortOrder sortOrder;
-	     
-	    public CertificateDividendDistributionSorter(String sortField, SortOrder sortOrder) {
-	        this.sortField = sortField;
-	        this.sortOrder = sortOrder;
-	    }
+	private String sortField;
+
+	private SortOrder sortOrder;
+
+	public CertificateDividendDistributionSorter(String sortField,
+			SortOrder sortOrder) {
+		this.sortField = sortField;
+		this.sortOrder = sortOrder;
+	}
 
 	@Override
-	public int compare(CertificateDividendDistribution o1, CertificateDividendDistribution o2) {
-		 try {
-			 log.info("sorting:"+this.sortField);
-			 
-			 Field field = o1.getClass().getDeclaredField(this.sortField);
-			 field.setAccessible(true);
-			 Object value1= field.get(o1);
-			 
-			 Field field2 = o2.getClass().getDeclaredField(this.sortField);
-			 field.setAccessible(true);
-			 Object value2= field.get(o2);
-	          
-	            int value = ((Comparable)value1).compareTo(value2);
-	             
-	            return SortOrder.ASCENDING.equals(sortOrder) ? value : -1 * value;
-	        }
-	        catch(Exception e) {
-	        	log.info(e.toString());
-	            throw new RuntimeException();
-	        }
+	public int compare(CertificateDividendDistribution o1,
+			CertificateDividendDistribution o2) {
+		try {
+			log.info("sorting:" + this.sortField);
+
+			Field field = o1.getClass().getDeclaredField(this.sortField);
+			field.setAccessible(true);
+			Object value1 = field.get(o1);
+
+			Field field2 = o2.getClass().getDeclaredField(this.sortField);
+			field.setAccessible(true);
+			Object value2 = field.get(o2);
+
+			int value = ((Comparable) value1).compareTo(value2);
+
+			return SortOrder.ASCENDING.equals(sortOrder) ? value : -1 * value;
+		} catch (Exception e) {
+			log.info(e.toString());
+			throw new RuntimeException();
+		}
 	}
 
 }
-

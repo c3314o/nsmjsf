@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.CommentDataSource;
 import com.nsmjsf.web.datamodels.Comment;
 import com.nsmjsf.web.lazymodels.LazyCommentDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.CommentSocialAdapter;
-
 
 import com.nsmjsf.web.datasources.CommentSocialDataSource;
 
@@ -32,13 +28,7 @@ import com.nsmjsf.web.datamodels.CommentSocial;
 
 import com.nsmjsf.web.wrappers.CommentSocialWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.PostAdapter;
-
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -46,13 +36,7 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.UserAdapter;
-
 
 import com.nsmjsf.web.datasources.UserDataSource;
 
@@ -60,119 +44,103 @@ import com.nsmjsf.web.datamodels.User;
 
 import com.nsmjsf.web.wrappers.UserWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewCommentBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewCommentBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewCommentBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<Comment> commentList;
-    List<Comment> selectedCommentList;
+	List<Comment> selectedCommentList;
 	List<Comment> filteredCommentList;
 	Comment selectedComment;
 	LazyDataModel<Comment> lazyModel;
 	CommentDataSource commentDataSource;
-	int editCommentId=0;
-	
+	int editCommentId = 0;
 
-			   List<Post> postList;
-			   PostDataSource postDataSource;
-			   public List<Post> getPostList() {
+	List<Post> postList;
+	PostDataSource postDataSource;
+
+	public List<Post> getPostList() {
 		return postList;
-	     }
+	}
+
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-			
-			
-			   List<User> userList;
-			   UserDataSource userDataSource;
-			   public List<User> getUserList() {
+
+	List<User> userList;
+	UserDataSource userDataSource;
+
+	public List<User> getUserList() {
 		return userList;
-	     }
+	}
+
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
 	}
-			
-				   
-	
-	
-	public ViewCommentBean()
-	{
+
+	public ViewCommentBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyCommentDataModel(this.commentList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		commentDataSource=new CommentDataSource();
-		
 
-			  postDataSource=new PostDataSource();
-			
-			
-			  userDataSource=new UserDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.commentList=commentDataSource.getAll();
-		lazyModel=new LazyCommentDataModel(this.commentList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		commentList=commentDataSource.getAll();
-		
+		lazyModel = new LazyCommentDataModel(this.commentList);
 
-			 postList=postDataSource.getAll();
-	
-			
-			 userList=userDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		commentDataSource = new CommentDataSource();
+
+		postDataSource = new PostDataSource();
+
+		userDataSource = new UserDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.commentList = commentDataSource.getAll();
+		lazyModel = new LazyCommentDataModel(this.commentList);
+
+	}
+
+	private void populateData() {
+		commentList = commentDataSource.getAll();
+
+		postList = postDataSource.getAll();
+
+		userList = userDataSource.getAll();
+
+	}
+
 	public List<Comment> getCommentList() {
 		return commentList;
 	}
+
 	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
 	}
+
 	public LazyDataModel<Comment> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<Comment> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public Comment getSelectedComment() {
 		return selectedComment;
 	}
+
 	public void setSelectedComment(Comment selectedComment) {
 		this.selectedComment = selectedComment;
 	}
-	
+
 	public List<Comment> getSelectedCommentList() {
 		return selectedCommentList;
 	}
 
-	public void setSelectedCommentList(
-			List<Comment> selectedCommentList) {
+	public void setSelectedCommentList(List<Comment> selectedCommentList) {
 		this.selectedCommentList = selectedCommentList;
 	}
 
@@ -180,8 +148,7 @@ private static final Log log = LogFactory.getLog(ViewCommentBean.class);
 		return filteredCommentList;
 	}
 
-	public void setFilteredCommentList(
-			List<Comment> filteredCommentList) {
+	public void setFilteredCommentList(List<Comment> filteredCommentList) {
 		this.filteredCommentList = filteredCommentList;
 	}
 
@@ -194,12 +161,12 @@ private static final Log log = LogFactory.getLog(ViewCommentBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("Comment Selected"
 				+ ((Comment) event.getObject()).getCommentId());
 		for (Comment cat : selectedCommentList) {
-			//System.out.println(cat.getCommentLabel());
+			// System.out.println(cat.getCommentLabel());
 		}
 
 	}
@@ -212,21 +179,22 @@ private static final Log log = LogFactory.getLog(ViewCommentBean.class);
 
 	public void deleteSelectedComment() {
 		for (Comment comment : selectedCommentList) {
-			//System.out.println(comment.getCommentLabel());
+			// System.out.println(comment.getCommentLabel());
 			this.deleteComment(comment);
 		}
 	}
+
 	public void deleteComment(Comment comment) {
-			try{
+		try {
 			commentDataSource.delete(comment);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditCommentId() {
 		return editCommentId;
 	}
@@ -234,18 +202,17 @@ private static final Log log = LogFactory.getLog(ViewCommentBean.class);
 	public void setEditCommentId(int editCommentId) {
 		this.editCommentId = editCommentId;
 	}
-	
-	public void editComment(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editComment(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createComment",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -256,38 +223,32 @@ private static final Log log = LogFactory.getLog(ViewCommentBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

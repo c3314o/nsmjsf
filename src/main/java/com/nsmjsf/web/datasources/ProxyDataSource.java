@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.Proxy ;
+import com.nsmjsf.web.datamodels.Proxy;
 
-public class ProxyDataSource extends TDataSource<Proxy>{
+public class ProxyDataSource extends TDataSource<Proxy> {
 
-	public ProxyDataSource()
-	{
+	public ProxyDataSource() {
 		super();
 		this.setTableName("Proxy");
 		this.setPrimaryKey("proxy_id");
 	}
 
-	
 	@Override
 	public List<Proxy> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -182,8 +177,5 @@ public class ProxyDataSource extends TDataSource<Proxy>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

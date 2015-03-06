@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -18,8 +16,7 @@ import com.nsmjsf.web.datamodels.Agm;
 import com.nsmjsf.web.sorters.AgmSorter;
 
 public class LazyAgmDataModel extends LazyDataModel<Agm> {
-	private static final Log log = LogFactory
-			.getLog(LazyAgmDataModel.class);
+	private static final Log log = LogFactory.getLog(LazyAgmDataModel.class);
 
 	/**
 	 * 
@@ -66,10 +63,9 @@ public class LazyAgmDataModel extends LazyDataModel<Agm> {
 						Field field = agm.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(agm));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field.get(agm));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +108,3 @@ public class LazyAgmDataModel extends LazyDataModel<Agm> {
 	}
 
 }
-

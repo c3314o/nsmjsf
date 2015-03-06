@@ -17,93 +17,44 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.QuarterDataSource;
 import com.nsmjsf.web.datamodels.Quarter;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreateQuarterBean implements Serializable {
 
-private static final Log log = LogFactory
-			.getLog(CreateQuarterBean.class);
-
+	private static final Log log = LogFactory.getLog(CreateQuarterBean.class);
 
 	private Quarter quarter;
 	private QuarterDataSource quarterDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateQuarterBean() {
 
 		quarter = new Quarter();
 		/* init datasources */
 		quarterDataSource = new QuarterDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.quarter=quarterDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.quarter = quarterDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -123,61 +74,37 @@ private static final Log log = LogFactory
 	public void setQuarterDataSource(QuarterDataSource quarterDataSource) {
 		this.quarterDataSource = quarterDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public Quarter saveQuarter() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			quarterDataSource.create(quarter, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  Quarter !");
-				this.quarter=new Quarter();
+			MessageService.info("Successfully Saved  Quarter !");
+			this.quarter = new Quarter();
 			return quarter;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving Quarter .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public Quarter updateQuarter() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			quarterDataSource.create(quarter, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  Quarter !");
-				this.quarter=new Quarter();
+			MessageService.info("Successfully Saved  Quarter !");
+			this.quarter = new Quarter();
 			return quarter;
 
 		} catch (Exception ex) {
@@ -186,29 +113,27 @@ private static final Log log = LogFactory
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateQuarter();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveQuarter();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createQuarter");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createQuarter");
+
 	}
-	public Quarter saveQuarter(Session session){
-	
-	   this.quarter= quarterDataSource.create(this.quarter,session);
-	   return this.quarter;
+
+	public Quarter saveQuarter(Session session) {
+
+		this.quarter = quarterDataSource.create(this.quarter, session);
+		return this.quarter;
 	}
-	
 
 }
-

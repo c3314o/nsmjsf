@@ -18,9 +18,8 @@ import com.nsmjsf.web.datasources.AuctionDataSource;
 import com.nsmjsf.web.datamodels.Auction;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
-			
-import com.nsmjsf.web.adapters.AnnouncementAdapter;
 
+import com.nsmjsf.web.adapters.AnnouncementAdapter;
 
 import com.nsmjsf.web.datasources.AnnouncementDataSource;
 
@@ -28,13 +27,7 @@ import com.nsmjsf.web.datamodels.Announcement;
 
 import com.nsmjsf.web.wrappers.AnnouncementWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.IssueManagerAdapter;
-
 
 import com.nsmjsf.web.datasources.IssueManagerDataSource;
 
@@ -42,162 +35,69 @@ import com.nsmjsf.web.datamodels.IssueManager;
 
 import com.nsmjsf.web.wrappers.IssueManagerWrapper;
 
-
-
-			
-				   
-
 @ManagedBean
 @ViewScoped
-
 public class CreateAuctionBean implements Serializable {
 
-private static final Log log = LogFactory
-			.getLog(CreateAuctionBean.class);
-
+	private static final Log log = LogFactory.getLog(CreateAuctionBean.class);
 
 	private Auction auction;
 	private AuctionDataSource auctionDataSource;
-	
-	
-	
-			
-    private AnnouncementDataSource announcementDataSource;
+
+	private AnnouncementDataSource announcementDataSource;
 	private List<AnnouncementWrapper> announcementWrapperList;
 	private List<Announcement> announcementList;
 	private AnnouncementWrapper selectedAnnouncementWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-    private IssueManagerDataSource issueManagerDataSource;
+
+	private IssueManagerDataSource issueManagerDataSource;
 	private List<IssueManagerWrapper> issueManagerWrapperList;
 	private List<IssueManager> issueManagerList;
 	private IssueManagerWrapper selectedIssueManagerWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateAuctionBean() {
 
 		auction = new Auction();
 		/* init datasources */
 		auctionDataSource = new AuctionDataSource();
-		
-		
-			
-announcementDataSource = new AnnouncementDataSource();
+
+		announcementDataSource = new AnnouncementDataSource();
 
 		/* init option wrappers */
 		announcementList = announcementDataSource.getAll();
-		announcementWrapperList = AnnouncementAdapter
-				.wrapAll(announcementList);
-	
-			
-			
-			
-issueManagerDataSource = new IssueManagerDataSource();
+		announcementWrapperList = AnnouncementAdapter.wrapAll(announcementList);
+
+		issueManagerDataSource = new IssueManagerDataSource();
 
 		/* init option wrappers */
 		issueManagerList = issueManagerDataSource.getAll();
-		issueManagerWrapperList = IssueManagerAdapter
-				.wrapAll(issueManagerList);
-	
-			
-				
-		
-		
+		issueManagerWrapperList = IssueManagerAdapter.wrapAll(issueManagerList);
 
 	}
-	
-	@PostConstruct
-	private void init()
-	{
-		extractParams();
-		if(this.editMode)
-		{
-			this.auction=auctionDataSource.get(editId);
-			
-			
 
-			  
-			  this.selectedAnnouncementWrapper=AnnouncementAdapter.wrap(auction.getAnnouncement());
-	
-			
-			
-			  
-			  this.selectedIssueManagerWrapper=IssueManagerAdapter.wrap(auction.getIssueManager());
-	
-			
-				   
-			
-			
-			
-			
+	@PostConstruct
+	private void init() {
+		extractParams();
+		if (this.editMode) {
+			this.auction = auctionDataSource.get(editId);
+
+			this.selectedAnnouncementWrapper = AnnouncementAdapter.wrap(auction
+					.getAnnouncement());
+
+			this.selectedIssueManagerWrapper = IssueManagerAdapter.wrap(auction
+					.getIssueManager());
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -217,26 +117,15 @@ issueManagerDataSource = new IssueManagerDataSource();
 	public void setAuctionDataSource(AuctionDataSource auctionDataSource) {
 		this.auctionDataSource = auctionDataSource;
 	}
-	
-	
-	
-	
-	
-	
-	
-			
 
-
-public List<Announcement> getAnnouncementList() {
+	public List<Announcement> getAnnouncementList() {
 		return announcementList;
 	}
 
 	public void setAnnouncementList(List<Announcement> announcementList) {
 		this.announcementList = announcementList;
 	}
-  
-  
-  
+
 	public AnnouncementDataSource getAnnouncementDataSource() {
 		return announcementDataSource;
 	}
@@ -255,8 +144,6 @@ public List<Announcement> getAnnouncementList() {
 		this.announcementWrapperList = announcementWrapperList;
 	}
 
-	
-
 	public AnnouncementWrapper getSelectedAnnouncementWrapper() {
 		return selectedAnnouncementWrapper;
 	}
@@ -266,28 +153,14 @@ public List<Announcement> getAnnouncementList() {
 		this.selectedAnnouncementWrapper = selectedAnnouncementWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-			
-			
-
-
-public List<IssueManager> getIssueManagerList() {
+	public List<IssueManager> getIssueManagerList() {
 		return issueManagerList;
 	}
 
 	public void setIssueManagerList(List<IssueManager> issueManagerList) {
 		this.issueManagerList = issueManagerList;
 	}
-  
-  
-  
+
 	public IssueManagerDataSource getIssueManagerDataSource() {
 		return issueManagerDataSource;
 	}
@@ -306,8 +179,6 @@ public List<IssueManager> getIssueManagerList() {
 		this.issueManagerWrapperList = issueManagerWrapperList;
 	}
 
-	
-
 	public IssueManagerWrapper getSelectedIssueManagerWrapper() {
 		return selectedIssueManagerWrapper;
 	}
@@ -317,87 +188,56 @@ public List<IssueManager> getIssueManagerList() {
 		this.selectedIssueManagerWrapper = selectedIssueManagerWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-				
-
-
-
-
-	
-  
-  
-  
 	public Auction saveAuction() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Announcement announcement =selectedAnnouncementWrapper.getAnnouncement();
+
+			Announcement announcement = selectedAnnouncementWrapper
+					.getAnnouncement();
 
 			auction.setAnnouncement(announcement);
-			
-			
-			
-                  IssueManager issueManager =selectedIssueManagerWrapper.getIssueManager();
+
+			IssueManager issueManager = selectedIssueManagerWrapper
+					.getIssueManager();
 
 			auction.setIssueManager(issueManager);
-			
-				   
-			
-			
-			
-			
+
 			auctionDataSource.create(auction, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  Auction !");
-				this.auction=new Auction();
+			MessageService.info("Successfully Saved  Auction !");
+			this.auction = new Auction();
 			return auction;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving Auction .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public Auction updateAuction() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Announcement announcement = selectedAnnouncementWrapper.getAnnouncement();
 
-			      auction.setAnnouncement(announcement);
-			
-			
-			
-                  IssueManager issueManager = selectedIssueManagerWrapper.getIssueManager();
+			Announcement announcement = selectedAnnouncementWrapper
+					.getAnnouncement();
 
-			      auction.setIssueManager(issueManager);
-			
-				   
-			
-			
-			
-			
+			auction.setAnnouncement(announcement);
+
+			IssueManager issueManager = selectedIssueManagerWrapper
+					.getIssueManager();
+
+			auction.setIssueManager(issueManager);
+
 			auctionDataSource.create(auction, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  Auction !");
-				this.auction=new Auction();
+			MessageService.info("Successfully Saved  Auction !");
+			this.auction = new Auction();
 			return auction;
 
 		} catch (Exception ex) {
@@ -406,29 +246,27 @@ public List<IssueManager> getIssueManagerList() {
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateAuction();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveAuction();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createAuction");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createAuction");
+
 	}
-	public Auction saveAuction(Session session){
-	
-	   this.auction= auctionDataSource.create(this.auction,session);
-	   return this.auction;
+
+	public Auction saveAuction(Session session) {
+
+		this.auction = auctionDataSource.create(this.auction, session);
+		return this.auction;
 	}
-	
 
 }
-

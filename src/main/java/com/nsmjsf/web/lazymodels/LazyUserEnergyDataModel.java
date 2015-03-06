@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyUserEnergyDataModel extends LazyDataModel<UserEnergy> {
 	@Override
 	public UserEnergy getRowData(String rowKey) {
 		for (UserEnergy userEnergy : userEnergyList) {
-			if (userEnergy.getUserEnergyId().toString().equalsIgnoreCase(rowKey))
+			if (userEnergy.getUserEnergyId().toString()
+					.equalsIgnoreCase(rowKey))
 				return userEnergy;
 		}
 
@@ -66,10 +65,10 @@ public class LazyUserEnergyDataModel extends LazyDataModel<UserEnergy> {
 						Field field = userEnergy.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(userEnergy));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(userEnergy));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyUserEnergyDataModel extends LazyDataModel<UserEnergy> {
 	}
 
 }
-

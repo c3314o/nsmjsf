@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyFiscalYearDataModel extends LazyDataModel<FiscalYear> {
 	@Override
 	public FiscalYear getRowData(String rowKey) {
 		for (FiscalYear fiscalYear : fiscalYearList) {
-			if (fiscalYear.getFiscalYearId().toString().equalsIgnoreCase(rowKey))
+			if (fiscalYear.getFiscalYearId().toString()
+					.equalsIgnoreCase(rowKey))
 				return fiscalYear;
 		}
 
@@ -66,10 +65,10 @@ public class LazyFiscalYearDataModel extends LazyDataModel<FiscalYear> {
 						Field field = fiscalYear.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(fiscalYear));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(fiscalYear));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyFiscalYearDataModel extends LazyDataModel<FiscalYear> {
 	}
 
 }
-

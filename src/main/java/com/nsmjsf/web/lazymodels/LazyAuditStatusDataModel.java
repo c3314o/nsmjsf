@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyAuditStatusDataModel extends LazyDataModel<AuditStatus> {
 	@Override
 	public AuditStatus getRowData(String rowKey) {
 		for (AuditStatus auditStatus : auditStatusList) {
-			if (auditStatus.getAuditStatusId().toString().equalsIgnoreCase(rowKey))
+			if (auditStatus.getAuditStatusId().toString()
+					.equalsIgnoreCase(rowKey))
 				return auditStatus;
 		}
 
@@ -66,10 +65,10 @@ public class LazyAuditStatusDataModel extends LazyDataModel<AuditStatus> {
 						Field field = auditStatus.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(auditStatus));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(auditStatus));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyAuditStatusDataModel extends LazyDataModel<AuditStatus> {
 	}
 
 }
-

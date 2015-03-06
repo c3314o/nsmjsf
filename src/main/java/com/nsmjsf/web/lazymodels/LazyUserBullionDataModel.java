@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyUserBullionDataModel extends LazyDataModel<UserBullion> {
 	@Override
 	public UserBullion getRowData(String rowKey) {
 		for (UserBullion userBullion : userBullionList) {
-			if (userBullion.getUserBullionId().toString().equalsIgnoreCase(rowKey))
+			if (userBullion.getUserBullionId().toString()
+					.equalsIgnoreCase(rowKey))
 				return userBullion;
 		}
 
@@ -66,10 +65,10 @@ public class LazyUserBullionDataModel extends LazyDataModel<UserBullion> {
 						Field field = userBullion.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(userBullion));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(userBullion));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyUserBullionDataModel extends LazyDataModel<UserBullion> {
 	}
 
 }
-

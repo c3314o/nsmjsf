@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.UserEnergySalesDataSource;
 import com.nsmjsf.web.datamodels.UserEnergySales;
 import com.nsmjsf.web.lazymodels.LazyUserEnergySalesDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.UserEnergyAdapter;
-
 
 import com.nsmjsf.web.datasources.UserEnergyDataSource;
 
@@ -32,97 +28,85 @@ import com.nsmjsf.web.datamodels.UserEnergy;
 
 import com.nsmjsf.web.wrappers.UserEnergyWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewUserEnergySalesBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewUserEnergySalesBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory
+			.getLog(ViewUserEnergySalesBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<UserEnergySales> userEnergySalesList;
-    List<UserEnergySales> selectedUserEnergySalesList;
+	List<UserEnergySales> selectedUserEnergySalesList;
 	List<UserEnergySales> filteredUserEnergySalesList;
 	UserEnergySales selectedUserEnergySales;
 	LazyDataModel<UserEnergySales> lazyModel;
 	UserEnergySalesDataSource userEnergySalesDataSource;
-	int editUserEnergySalesId=0;
-	
+	int editUserEnergySalesId = 0;
 
-			   List<UserEnergy> userEnergyList;
-			   UserEnergyDataSource userEnergyDataSource;
-			   public List<UserEnergy> getUserEnergyList() {
+	List<UserEnergy> userEnergyList;
+	UserEnergyDataSource userEnergyDataSource;
+
+	public List<UserEnergy> getUserEnergyList() {
 		return userEnergyList;
-	     }
+	}
+
 	public void setUserEnergyList(List<UserEnergy> userEnergyList) {
 		this.userEnergyList = userEnergyList;
 	}
-			
-				   
-	
-	
-	public ViewUserEnergySalesBean()
-	{
+
+	public ViewUserEnergySalesBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyUserEnergySalesDataModel(this.userEnergySalesList);
-		
-	}
-	
-	
-	private void initDataSources()
-	{
-		userEnergySalesDataSource=new UserEnergySalesDataSource();
-		
 
-			  userEnergyDataSource=new UserEnergyDataSource();
-			
-				   
-	
-		
-	}
-	
-	public void refreshDataSource(){
-		this.userEnergySalesList=userEnergySalesDataSource.getAll();
-		lazyModel=new LazyUserEnergySalesDataModel(this.userEnergySalesList);
-		
-	}
-	
-	
-	private void populateData()
-	{
-		userEnergySalesList=userEnergySalesDataSource.getAll();
-		
+		lazyModel = new LazyUserEnergySalesDataModel(this.userEnergySalesList);
 
-			 userEnergyList=userEnergyDataSource.getAll();
-	
-				   
-	
-		
-			}
+	}
+
+	private void initDataSources() {
+		userEnergySalesDataSource = new UserEnergySalesDataSource();
+
+		userEnergyDataSource = new UserEnergyDataSource();
+
+	}
+
+	public void refreshDataSource() {
+		this.userEnergySalesList = userEnergySalesDataSource.getAll();
+		lazyModel = new LazyUserEnergySalesDataModel(this.userEnergySalesList);
+
+	}
+
+	private void populateData() {
+		userEnergySalesList = userEnergySalesDataSource.getAll();
+
+		userEnergyList = userEnergyDataSource.getAll();
+
+	}
+
 	public List<UserEnergySales> getUserEnergySalesList() {
 		return userEnergySalesList;
 	}
+
 	public void setUserEnergySalesList(List<UserEnergySales> userEnergySalesList) {
 		this.userEnergySalesList = userEnergySalesList;
 	}
+
 	public LazyDataModel<UserEnergySales> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<UserEnergySales> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public UserEnergySales getSelectedUserEnergySales() {
 		return selectedUserEnergySales;
 	}
-	public void setSelectedUserEnergySales(UserEnergySales selectedUserEnergySales) {
+
+	public void setSelectedUserEnergySales(
+			UserEnergySales selectedUserEnergySales) {
 		this.selectedUserEnergySales = selectedUserEnergySales;
 	}
-	
+
 	public List<UserEnergySales> getSelectedUserEnergySalesList() {
 		return selectedUserEnergySalesList;
 	}
@@ -150,12 +134,12 @@ private static final Log log = LogFactory.getLog(ViewUserEnergySalesBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("UserEnergySales Selected"
 				+ ((UserEnergySales) event.getObject()).getUserEnergySalesId());
 		for (UserEnergySales cat : selectedUserEnergySalesList) {
-			//System.out.println(cat.getUserEnergySalesLabel());
+			// System.out.println(cat.getUserEnergySalesLabel());
 		}
 
 	}
@@ -168,21 +152,22 @@ private static final Log log = LogFactory.getLog(ViewUserEnergySalesBean.class);
 
 	public void deleteSelectedUserEnergySales() {
 		for (UserEnergySales userEnergySales : selectedUserEnergySalesList) {
-			//System.out.println(userEnergySales.getUserEnergySalesLabel());
+			// System.out.println(userEnergySales.getUserEnergySalesLabel());
 			this.deleteUserEnergySales(userEnergySales);
 		}
 	}
+
 	public void deleteUserEnergySales(UserEnergySales userEnergySales) {
-			try{
+		try {
 			userEnergySalesDataSource.delete(userEnergySales);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditUserEnergySalesId() {
 		return editUserEnergySalesId;
 	}
@@ -190,18 +175,17 @@ private static final Log log = LogFactory.getLog(ViewUserEnergySalesBean.class);
 	public void setEditUserEnergySalesId(int editUserEnergySalesId) {
 		this.editUserEnergySalesId = editUserEnergySalesId;
 	}
-	
-	public void editUserEnergySales(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editUserEnergySales(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createUserEnergySales",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -212,38 +196,32 @@ private static final Log log = LogFactory.getLog(ViewUserEnergySalesBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

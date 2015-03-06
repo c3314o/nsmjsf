@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.PostImage ;
+import com.nsmjsf.web.datamodels.PostImage;
 
-public class PostImageDataSource extends TDataSource<PostImage>{
+public class PostImageDataSource extends TDataSource<PostImage> {
 
-	public PostImageDataSource()
-	{
+	public PostImageDataSource() {
 		super();
 		this.setTableName("PostImage");
 		this.setPrimaryKey("post_image_id");
 	}
 
-	
 	@Override
 	public List<PostImage> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class PostImageDataSource extends TDataSource<PostImage>{
 	}
 
 	@Override
-	public List<PostImage> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<PostImage> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class PostImageDataSource extends TDataSource<PostImage>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

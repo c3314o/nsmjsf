@@ -199,7 +199,8 @@ public class CreateMapPostPostBean implements Serializable {
 		return postByToPostIdDataSource;
 	}
 
-	public void setPostByToPostIdDataSource(PostDataSource postByToPostIdDataSource) {
+	public void setPostByToPostIdDataSource(
+			PostDataSource postByToPostIdDataSource) {
 		this.postByToPostIdDataSource = postByToPostIdDataSource;
 	}
 
@@ -271,7 +272,5 @@ public class CreateMapPostPostBean implements Serializable {
 	public void setEditMode(boolean editMode) {
 		this.editMode = editMode;
 	}
-	
-	
 
 }

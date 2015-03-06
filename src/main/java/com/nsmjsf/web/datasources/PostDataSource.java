@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.Post ;
+import com.nsmjsf.web.datamodels.Post;
 
-public class PostDataSource extends TDataSource<Post>{
+public class PostDataSource extends TDataSource<Post> {
 
-	public PostDataSource()
-	{
+	public PostDataSource() {
 		super();
 		this.setTableName("Post");
 		this.setPrimaryKey("post_id");
 	}
 
-	
 	@Override
 	public List<Post> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -182,8 +177,5 @@ public class PostDataSource extends TDataSource<Post>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

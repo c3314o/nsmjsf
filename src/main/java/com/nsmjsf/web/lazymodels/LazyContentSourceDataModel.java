@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyContentSourceDataModel extends LazyDataModel<ContentSource> {
 	@Override
 	public ContentSource getRowData(String rowKey) {
 		for (ContentSource contentSource : contentSourceList) {
-			if (contentSource.getContentSourceId().toString().equalsIgnoreCase(rowKey))
+			if (contentSource.getContentSourceId().toString()
+					.equalsIgnoreCase(rowKey))
 				return contentSource;
 		}
 
@@ -63,13 +62,13 @@ public class LazyContentSourceDataModel extends LazyDataModel<ContentSource> {
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = contentSource.getClass().getDeclaredField(
-								filterProperty);
+						Field field = contentSource.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(contentSource));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(contentSource));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyContentSourceDataModel extends LazyDataModel<ContentSource> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new ContentSourceSorter(sortField, sortOrder));
+			Collections.sort(data,
+					new ContentSourceSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyContentSourceDataModel extends LazyDataModel<ContentSource> {
 	}
 
 }
-

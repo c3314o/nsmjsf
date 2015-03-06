@@ -17,87 +17,44 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.MonthDataSource;
 import com.nsmjsf.web.datamodels.Month;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreateMonthBean implements Serializable {
 
-private static final Log log = LogFactory
-			.getLog(CreateMonthBean.class);
-
+	private static final Log log = LogFactory.getLog(CreateMonthBean.class);
 
 	private Month month;
 	private MonthDataSource monthDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateMonthBean() {
 
 		month = new Month();
 		/* init datasources */
 		monthDataSource = new MonthDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.month=monthDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.month = monthDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -117,61 +74,37 @@ private static final Log log = LogFactory
 	public void setMonthDataSource(MonthDataSource monthDataSource) {
 		this.monthDataSource = monthDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public Month saveMonth() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			monthDataSource.create(month, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  Month !");
-				this.month=new Month();
+			MessageService.info("Successfully Saved  Month !");
+			this.month = new Month();
 			return month;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving Month .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public Month updateMonth() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			monthDataSource.create(month, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  Month !");
-				this.month=new Month();
+			MessageService.info("Successfully Saved  Month !");
+			this.month = new Month();
 			return month;
 
 		} catch (Exception ex) {
@@ -180,29 +113,27 @@ private static final Log log = LogFactory
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateMonth();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveMonth();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createMonth");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createMonth");
+
 	}
-	public Month saveMonth(Session session){
-	
-	   this.month= monthDataSource.create(this.month,session);
-	   return this.month;
+
+	public Month saveMonth(Session session) {
+
+		this.month = monthDataSource.create(this.month, session);
+		return this.month;
 	}
-	
 
 }
-

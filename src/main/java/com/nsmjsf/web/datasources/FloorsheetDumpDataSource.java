@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.FloorsheetDump ;
+import com.nsmjsf.web.datamodels.FloorsheetDump;
 
-public class FloorsheetDumpDataSource extends TDataSource<FloorsheetDump>{
+public class FloorsheetDumpDataSource extends TDataSource<FloorsheetDump> {
 
-	public FloorsheetDumpDataSource()
-	{
+	public FloorsheetDumpDataSource() {
 		super();
 		this.setTableName("FloorsheetDump");
 		this.setPrimaryKey("floorsheet_dump_id");
 	}
 
-	
 	@Override
 	public List<FloorsheetDump> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class FloorsheetDumpDataSource extends TDataSource<FloorsheetDump>{
 	}
 
 	@Override
-	public List<FloorsheetDump> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<FloorsheetDump> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class FloorsheetDumpDataSource extends TDataSource<FloorsheetDump>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

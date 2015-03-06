@@ -17,111 +17,44 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.UserInfoDataSource;
 import com.nsmjsf.web.datamodels.UserInfo;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreateUserInfoBean implements Serializable {
 
-private static final Log log = LogFactory
-			.getLog(CreateUserInfoBean.class);
-
+	private static final Log log = LogFactory.getLog(CreateUserInfoBean.class);
 
 	private UserInfo userInfo;
 	private UserInfoDataSource userInfoDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateUserInfoBean() {
 
 		userInfo = new UserInfo();
 		/* init datasources */
 		userInfoDataSource = new UserInfoDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.userInfo=userInfoDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.userInfo = userInfoDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -141,61 +74,37 @@ private static final Log log = LogFactory
 	public void setUserInfoDataSource(UserInfoDataSource userInfoDataSource) {
 		this.userInfoDataSource = userInfoDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public UserInfo saveUserInfo() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			userInfoDataSource.create(userInfo, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  UserInfo !");
-				this.userInfo=new UserInfo();
+			MessageService.info("Successfully Saved  UserInfo !");
+			this.userInfo = new UserInfo();
 			return userInfo;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving UserInfo .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public UserInfo updateUserInfo() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			userInfoDataSource.create(userInfo, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  UserInfo !");
-				this.userInfo=new UserInfo();
+			MessageService.info("Successfully Saved  UserInfo !");
+			this.userInfo = new UserInfo();
 			return userInfo;
 
 		} catch (Exception ex) {
@@ -204,29 +113,27 @@ private static final Log log = LogFactory
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateUserInfo();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveUserInfo();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createUserInfo");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createUserInfo");
+
 	}
-	public UserInfo saveUserInfo(Session session){
-	
-	   this.userInfo= userInfoDataSource.create(this.userInfo,session);
-	   return this.userInfo;
+
+	public UserInfo saveUserInfo(Session session) {
+
+		this.userInfo = userInfoDataSource.create(this.userInfo, session);
+		return this.userInfo;
 	}
-	
 
 }
-

@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.adapters;
 
 import java.util.ArrayList;
@@ -10,29 +9,25 @@ import com.nsmjsf.web.datamodels.MarketIndex;
 import com.nsmjsf.web.wrappers.MarketIndexWrapper;
 
 public class MarketIndexAdapter {
-private static final Log log = LogFactory
-			.getLog(MarketIndexAdapter.class);
-	
-	public static List<MarketIndexWrapper> wrapAll(List<MarketIndex> marketIndexList)
-	{
-		List<MarketIndexWrapper> marketIndexWrapperList=new ArrayList<MarketIndexWrapper>();
-		for(MarketIndex marketIndex:marketIndexList)
-		{
-			MarketIndexWrapper marketIndexWrapper=new MarketIndexWrapper();
+	private static final Log log = LogFactory.getLog(MarketIndexAdapter.class);
+
+	public static List<MarketIndexWrapper> wrapAll(
+			List<MarketIndex> marketIndexList) {
+		List<MarketIndexWrapper> marketIndexWrapperList = new ArrayList<MarketIndexWrapper>();
+		for (MarketIndex marketIndex : marketIndexList) {
+			MarketIndexWrapper marketIndexWrapper = new MarketIndexWrapper();
 			marketIndexWrapper.setMarketIndex(marketIndex);
 			marketIndexWrapperList.add(marketIndexWrapper);
 		}
 		return marketIndexWrapperList;
-		
+
 	}
-	
-	public static MarketIndexWrapper wrap(MarketIndex marketIndex)
-	{
-		MarketIndexWrapper marketIndexWrapper=new MarketIndexWrapper();
+
+	public static MarketIndexWrapper wrap(MarketIndex marketIndex) {
+		MarketIndexWrapper marketIndexWrapper = new MarketIndexWrapper();
 		marketIndexWrapper.setMarketIndex(marketIndex);
 		return marketIndexWrapper;
-		
+
 	}
 
 }
-

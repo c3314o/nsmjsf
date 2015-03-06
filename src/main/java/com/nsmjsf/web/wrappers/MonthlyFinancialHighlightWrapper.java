@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,13 +8,13 @@ import com.nsmjsf.web.datamodels.MonthlyFinancialHighlight;
 
 public class MonthlyFinancialHighlightWrapper {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(MonthlyFinancialHighlightWrapper.class);
-
 
 	MonthlyFinancialHighlight monthlyFinancialHighlight;
 
-	public MonthlyFinancialHighlightWrapper(MonthlyFinancialHighlight monthlyFinancialHighlight) {
+	public MonthlyFinancialHighlightWrapper(
+			MonthlyFinancialHighlight monthlyFinancialHighlight) {
 		this.monthlyFinancialHighlight = monthlyFinancialHighlight;
 	}
 
@@ -28,14 +26,18 @@ private static final Log log = LogFactory
 		return monthlyFinancialHighlight;
 	}
 
-	public void setMonthlyFinancialHighlight(MonthlyFinancialHighlight monthlyFinancialHighlight) {
+	public void setMonthlyFinancialHighlight(
+			MonthlyFinancialHighlight monthlyFinancialHighlight) {
 		this.monthlyFinancialHighlight = monthlyFinancialHighlight;
 	}
 
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.monthlyFinancialHighlight.getMonthlyFinancialHighlightId());
+		hash = 83
+				* hash
+				+ Objects.hashCode(this.monthlyFinancialHighlight
+						.getMonthlyFinancialHighlightId());
 		return hash;
 	}
 
@@ -46,7 +48,11 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final MonthlyFinancialHighlightWrapper other = (MonthlyFinancialHighlightWrapper) obj;
-		if (!Objects.equals(this.monthlyFinancialHighlight.getMonthlyFinancialHighlightId(), other.getMonthlyFinancialHighlight().getMonthlyFinancialHighlightId()))
+		if (!Objects
+				.equals(this.monthlyFinancialHighlight
+						.getMonthlyFinancialHighlightId(), other
+						.getMonthlyFinancialHighlight()
+						.getMonthlyFinancialHighlightId()))
 			return false;
 		return true;
 	}
@@ -57,4 +63,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

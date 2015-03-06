@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.IssueTypeDataSource;
 import com.nsmjsf.web.datamodels.IssueType;
 import com.nsmjsf.web.lazymodels.LazyIssueTypeDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.IssueAdapter;
-
 
 import com.nsmjsf.web.datasources.IssueDataSource;
 
@@ -32,87 +28,73 @@ import com.nsmjsf.web.datamodels.Issue;
 
 import com.nsmjsf.web.wrappers.IssueWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewIssueTypeBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewIssueTypeBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewIssueTypeBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<IssueType> issueTypeList;
-    List<IssueType> selectedIssueTypeList;
+	List<IssueType> selectedIssueTypeList;
 	List<IssueType> filteredIssueTypeList;
 	IssueType selectedIssueType;
 	LazyDataModel<IssueType> lazyModel;
 	IssueTypeDataSource issueTypeDataSource;
-	int editIssueTypeId=0;
-	
-	   
-	
-	
-	public ViewIssueTypeBean()
-	{
+	int editIssueTypeId = 0;
+
+	public ViewIssueTypeBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazyIssueTypeDataModel(this.issueTypeList);
-		
+
+		lazyModel = new LazyIssueTypeDataModel(this.issueTypeList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		issueTypeDataSource=new IssueTypeDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		issueTypeDataSource = new IssueTypeDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.issueTypeList=issueTypeDataSource.getAll();
-		lazyModel=new LazyIssueTypeDataModel(this.issueTypeList);
-		
+
+	public void refreshDataSource() {
+		this.issueTypeList = issueTypeDataSource.getAll();
+		lazyModel = new LazyIssueTypeDataModel(this.issueTypeList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		issueTypeList=issueTypeDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		issueTypeList = issueTypeDataSource.getAll();
+
+	}
+
 	public List<IssueType> getIssueTypeList() {
 		return issueTypeList;
 	}
+
 	public void setIssueTypeList(List<IssueType> issueTypeList) {
 		this.issueTypeList = issueTypeList;
 	}
+
 	public LazyDataModel<IssueType> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<IssueType> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public IssueType getSelectedIssueType() {
 		return selectedIssueType;
 	}
+
 	public void setSelectedIssueType(IssueType selectedIssueType) {
 		this.selectedIssueType = selectedIssueType;
 	}
-	
+
 	public List<IssueType> getSelectedIssueTypeList() {
 		return selectedIssueTypeList;
 	}
 
-	public void setSelectedIssueTypeList(
-			List<IssueType> selectedIssueTypeList) {
+	public void setSelectedIssueTypeList(List<IssueType> selectedIssueTypeList) {
 		this.selectedIssueTypeList = selectedIssueTypeList;
 	}
 
@@ -120,8 +102,7 @@ private static final Log log = LogFactory.getLog(ViewIssueTypeBean.class);
 		return filteredIssueTypeList;
 	}
 
-	public void setFilteredIssueTypeList(
-			List<IssueType> filteredIssueTypeList) {
+	public void setFilteredIssueTypeList(List<IssueType> filteredIssueTypeList) {
 		this.filteredIssueTypeList = filteredIssueTypeList;
 	}
 
@@ -134,12 +115,12 @@ private static final Log log = LogFactory.getLog(ViewIssueTypeBean.class);
 				options, null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("IssueType Selected"
 				+ ((IssueType) event.getObject()).getIssueTypeId());
 		for (IssueType cat : selectedIssueTypeList) {
-			//System.out.println(cat.getIssueTypeLabel());
+			// System.out.println(cat.getIssueTypeLabel());
 		}
 
 	}
@@ -152,21 +133,22 @@ private static final Log log = LogFactory.getLog(ViewIssueTypeBean.class);
 
 	public void deleteSelectedIssueType() {
 		for (IssueType issueType : selectedIssueTypeList) {
-			//System.out.println(issueType.getIssueTypeLabel());
+			// System.out.println(issueType.getIssueTypeLabel());
 			this.deleteIssueType(issueType);
 		}
 	}
+
 	public void deleteIssueType(IssueType issueType) {
-			try{
+		try {
 			issueTypeDataSource.delete(issueType);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditIssueTypeId() {
 		return editIssueTypeId;
 	}
@@ -174,18 +156,17 @@ private static final Log log = LogFactory.getLog(ViewIssueTypeBean.class);
 	public void setEditIssueTypeId(int editIssueTypeId) {
 		this.editIssueTypeId = editIssueTypeId;
 	}
-	
-	public void editIssueType(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editIssueType(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
 		RequestContext.getCurrentInstance().openDialog("createIssueType",
-				options,params);
+				options, params);
 	}
 
 	public ViewType getViewType() {
@@ -196,38 +177,32 @@ private static final Log log = LogFactory.getLog(ViewIssueTypeBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

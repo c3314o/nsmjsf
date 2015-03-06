@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.Month;
 
 public class MonthWrapper {
 
-private static final Log log = LogFactory
-			.getLog(MonthWrapper.class);
-
+	private static final Log log = LogFactory.getLog(MonthWrapper.class);
 
 	Month month;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final MonthWrapper other = (MonthWrapper) obj;
-		if (!Objects.equals(this.month.getMonthId(), other.getMonth().getMonthId()))
+		if (!Objects.equals(this.month.getMonthId(), other.getMonth()
+				.getMonthId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

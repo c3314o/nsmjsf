@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.BodType ;
+import com.nsmjsf.web.datamodels.BodType;
 
-public class BodTypeDataSource extends TDataSource<BodType>{
+public class BodTypeDataSource extends TDataSource<BodType> {
 
-	public BodTypeDataSource()
-	{
+	public BodTypeDataSource() {
 		super();
 		this.setTableName("BodType");
 		this.setPrimaryKey("bod_type_id");
 	}
 
-	
 	@Override
 	public List<BodType> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class BodTypeDataSource extends TDataSource<BodType>{
 	}
 
 	@Override
-	public List<BodType> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<BodType> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class BodTypeDataSource extends TDataSource<BodType>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

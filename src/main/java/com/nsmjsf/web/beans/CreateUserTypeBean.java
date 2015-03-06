@@ -17,87 +17,44 @@ import org.apache.commons.logging.LogFactory;
 import com.nsmjsf.web.datasources.UserTypeDataSource;
 import com.nsmjsf.web.datamodels.UserType;
 import com.nsmjsf.web.utils.ParameterManager;
-/*imports  */	   
+
+/*imports  */
 
 @ManagedBean
 @ViewScoped
-
 public class CreateUserTypeBean implements Serializable {
 
-private static final Log log = LogFactory
-			.getLog(CreateUserTypeBean.class);
-
+	private static final Log log = LogFactory.getLog(CreateUserTypeBean.class);
 
 	private UserType userType;
 	private UserTypeDataSource userTypeDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateUserTypeBean() {
 
 		userType = new UserType();
 		/* init datasources */
 		userTypeDataSource = new UserTypeDataSource();
-		
-			
-		
-		
 
 	}
-	
+
 	@PostConstruct
-	private void init()
-	{
+	private void init() {
 		extractParams();
-		if(this.editMode)
-		{
-			this.userType=userTypeDataSource.get(editId);
-			
-			
-	   
-			
-			
-			
-			
+		if (this.editMode) {
+			this.userType = userTypeDataSource.get(editId);
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -117,61 +74,37 @@ private static final Log log = LogFactory
 	public void setUserTypeDataSource(UserTypeDataSource userTypeDataSource) {
 		this.userTypeDataSource = userTypeDataSource;
 	}
-	
-	
-	
-	
-	
-	
-		
 
-
-
-
-	
-  
-  
-  
 	public UserType saveUserType() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			userTypeDataSource.create(userType, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  UserType !");
-				this.userType=new UserType();
+			MessageService.info("Successfully Saved  UserType !");
+			this.userType = new UserType();
 			return userType;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving UserType .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public UserType updateUserType() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-				   
-			
-			
-			
-			
+
 			userTypeDataSource.create(userType, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  UserType !");
-				this.userType=new UserType();
+			MessageService.info("Successfully Saved  UserType !");
+			this.userType = new UserType();
 			return userType;
 
 		} catch (Exception ex) {
@@ -180,29 +113,27 @@ private static final Log log = LogFactory
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateUserType();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveUserType();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createUserType");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createUserType");
+
 	}
-	public UserType saveUserType(Session session){
-	
-	   this.userType= userTypeDataSource.create(this.userType,session);
-	   return this.userType;
+
+	public UserType saveUserType(Session session) {
+
+		this.userType = userTypeDataSource.create(this.userType, session);
+		return this.userType;
 	}
-	
 
 }
-

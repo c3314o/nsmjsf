@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyCompanyDetailDataModel extends LazyDataModel<CompanyDetail> {
 	@Override
 	public CompanyDetail getRowData(String rowKey) {
 		for (CompanyDetail companyDetail : companyDetailList) {
-			if (companyDetail.getCompanyDetailId().toString().equalsIgnoreCase(rowKey))
+			if (companyDetail.getCompanyDetailId().toString()
+					.equalsIgnoreCase(rowKey))
 				return companyDetail;
 		}
 
@@ -63,13 +62,13 @@ public class LazyCompanyDetailDataModel extends LazyDataModel<CompanyDetail> {
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = companyDetail.getClass().getDeclaredField(
-								filterProperty);
+						Field field = companyDetail.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(companyDetail));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(companyDetail));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyCompanyDetailDataModel extends LazyDataModel<CompanyDetail> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new CompanyDetailSorter(sortField, sortOrder));
+			Collections.sort(data,
+					new CompanyDetailSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyCompanyDetailDataModel extends LazyDataModel<CompanyDetail> {
 	}
 
 }
-

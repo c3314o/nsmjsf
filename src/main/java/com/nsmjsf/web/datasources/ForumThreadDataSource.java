@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.ForumThread ;
+import com.nsmjsf.web.datamodels.ForumThread;
 
-public class ForumThreadDataSource extends TDataSource<ForumThread>{
+public class ForumThreadDataSource extends TDataSource<ForumThread> {
 
-	public ForumThreadDataSource()
-	{
+	public ForumThreadDataSource() {
 		super();
 		this.setTableName("ForumThread");
 		this.setPrimaryKey("forum_thread_id");
 	}
 
-	
 	@Override
 	public List<ForumThread> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class ForumThreadDataSource extends TDataSource<ForumThread>{
 	}
 
 	@Override
-	public List<ForumThread> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<ForumThread> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class ForumThreadDataSource extends TDataSource<ForumThread>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

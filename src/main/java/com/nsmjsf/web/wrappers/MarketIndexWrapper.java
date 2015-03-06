@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.MarketIndex;
 
 public class MarketIndexWrapper {
 
-private static final Log log = LogFactory
-			.getLog(MarketIndexWrapper.class);
-
+	private static final Log log = LogFactory.getLog(MarketIndexWrapper.class);
 
 	MarketIndex marketIndex;
 
@@ -35,7 +31,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.marketIndex.getMarketIndexId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.marketIndex.getMarketIndexId());
 		return hash;
 	}
 
@@ -46,7 +43,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final MarketIndexWrapper other = (MarketIndexWrapper) obj;
-		if (!Objects.equals(this.marketIndex.getMarketIndexId(), other.getMarketIndex().getMarketIndexId()))
+		if (!Objects.equals(this.marketIndex.getMarketIndexId(), other
+				.getMarketIndex().getMarketIndexId()))
 			return false;
 		return true;
 	}
@@ -57,4 +55,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

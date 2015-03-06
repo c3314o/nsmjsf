@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.CurrencyRate;
 
 public class CurrencyRateWrapper {
 
-private static final Log log = LogFactory
-			.getLog(CurrencyRateWrapper.class);
-
+	private static final Log log = LogFactory.getLog(CurrencyRateWrapper.class);
 
 	CurrencyRate currencyRate;
 
@@ -35,7 +31,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.currencyRate.getCurrencyRateId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.currencyRate.getCurrencyRateId());
 		return hash;
 	}
 
@@ -46,7 +43,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final CurrencyRateWrapper other = (CurrencyRateWrapper) obj;
-		if (!Objects.equals(this.currencyRate.getCurrencyRateId(), other.getCurrencyRate().getCurrencyRateId()))
+		if (!Objects.equals(this.currencyRate.getCurrencyRateId(), other
+				.getCurrencyRate().getCurrencyRateId()))
 			return false;
 		return true;
 	}
@@ -57,4 +55,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyUserStockSalesDataModel extends LazyDataModel<UserStockSales> {
 	@Override
 	public UserStockSales getRowData(String rowKey) {
 		for (UserStockSales userStockSales : userStockSalesList) {
-			if (userStockSales.getUserStockSalesId().toString().equalsIgnoreCase(rowKey))
+			if (userStockSales.getUserStockSalesId().toString()
+					.equalsIgnoreCase(rowKey))
 				return userStockSales;
 		}
 
@@ -63,13 +62,13 @@ public class LazyUserStockSalesDataModel extends LazyDataModel<UserStockSales> {
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = userStockSales.getClass().getDeclaredField(
-								filterProperty);
+						Field field = userStockSales.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(userStockSales));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(userStockSales));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyUserStockSalesDataModel extends LazyDataModel<UserStockSales> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new UserStockSalesSorter(sortField, sortOrder));
+			Collections.sort(data, new UserStockSalesSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyUserStockSalesDataModel extends LazyDataModel<UserStockSales> {
 	}
 
 }
-

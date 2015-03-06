@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.AllotmentResult ;
+import com.nsmjsf.web.datamodels.AllotmentResult;
 
-public class AllotmentResultDataSource extends TDataSource<AllotmentResult>{
+public class AllotmentResultDataSource extends TDataSource<AllotmentResult> {
 
-	public AllotmentResultDataSource()
-	{
+	public AllotmentResultDataSource() {
 		super();
 		this.setTableName("AllotmentResult");
 		this.setPrimaryKey("allotment_result_id");
 	}
 
-	
 	@Override
 	public List<AllotmentResult> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class AllotmentResultDataSource extends TDataSource<AllotmentResult>{
 	}
 
 	@Override
-	public List<AllotmentResult> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<AllotmentResult> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class AllotmentResultDataSource extends TDataSource<AllotmentResult>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

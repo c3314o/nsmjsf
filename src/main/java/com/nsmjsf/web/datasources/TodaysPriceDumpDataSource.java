@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.TodaysPriceDump ;
+import com.nsmjsf.web.datamodels.TodaysPriceDump;
 
-public class TodaysPriceDumpDataSource extends TDataSource<TodaysPriceDump>{
+public class TodaysPriceDumpDataSource extends TDataSource<TodaysPriceDump> {
 
-	public TodaysPriceDumpDataSource()
-	{
+	public TodaysPriceDumpDataSource() {
 		super();
 		this.setTableName("TodaysPriceDump");
 		this.setPrimaryKey("todays_price_dump_id");
 	}
 
-	
 	@Override
 	public List<TodaysPriceDump> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class TodaysPriceDumpDataSource extends TDataSource<TodaysPriceDump>{
 	}
 
 	@Override
-	public List<TodaysPriceDump> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<TodaysPriceDump> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class TodaysPriceDumpDataSource extends TDataSource<TodaysPriceDump>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

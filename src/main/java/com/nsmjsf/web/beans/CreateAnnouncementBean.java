@@ -18,9 +18,8 @@ import com.nsmjsf.web.datasources.AnnouncementDataSource;
 import com.nsmjsf.web.datamodels.Announcement;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
-			
-import com.nsmjsf.web.adapters.PostAdapter;
 
+import com.nsmjsf.web.adapters.PostAdapter;
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -28,13 +27,7 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.AnnouncementTypeAdapter;
-
 
 import com.nsmjsf.web.datasources.AnnouncementTypeDataSource;
 
@@ -42,186 +35,70 @@ import com.nsmjsf.web.datamodels.AnnouncementType;
 
 import com.nsmjsf.web.wrappers.AnnouncementTypeWrapper;
 
-
-
-			
-				   
-
 @ManagedBean
 @ViewScoped
-
 public class CreateAnnouncementBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreateAnnouncementBean.class);
-
 
 	private Announcement announcement;
 	private AnnouncementDataSource announcementDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-    private PostDataSource postDataSource;
+
+	private PostDataSource postDataSource;
 	private List<PostWrapper> postWrapperList;
 	private List<Post> postList;
 	private PostWrapper selectedPostWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-    private AnnouncementTypeDataSource announcementTypeDataSource;
+
+	private AnnouncementTypeDataSource announcementTypeDataSource;
 	private List<AnnouncementTypeWrapper> announcementTypeWrapperList;
 	private List<AnnouncementType> announcementTypeList;
 	private AnnouncementTypeWrapper selectedAnnouncementTypeWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateAnnouncementBean() {
 
 		announcement = new Announcement();
 		/* init datasources */
 		announcementDataSource = new AnnouncementDataSource();
-		
-		
-			
-postDataSource = new PostDataSource();
+
+		postDataSource = new PostDataSource();
 
 		/* init option wrappers */
 		postList = postDataSource.getAll();
-		postWrapperList = PostAdapter
-				.wrapAll(postList);
-	
-			
-			
-			
-announcementTypeDataSource = new AnnouncementTypeDataSource();
+		postWrapperList = PostAdapter.wrapAll(postList);
+
+		announcementTypeDataSource = new AnnouncementTypeDataSource();
 
 		/* init option wrappers */
 		announcementTypeList = announcementTypeDataSource.getAll();
 		announcementTypeWrapperList = AnnouncementTypeAdapter
 				.wrapAll(announcementTypeList);
-	
-			
-				
-		
-		
 
 	}
-	
-	@PostConstruct
-	private void init()
-	{
-		extractParams();
-		if(this.editMode)
-		{
-			this.announcement=announcementDataSource.get(editId);
-			
-			
 
-			  
-			  this.selectedPostWrapper=PostAdapter.wrap(announcement.getPost());
-	
-			
-			
-			  
-			  this.selectedAnnouncementTypeWrapper=AnnouncementTypeAdapter.wrap(announcement.getAnnouncementType());
-	
-			
-				   
-			
-			
-			
-			
+	@PostConstruct
+	private void init() {
+		extractParams();
+		if (this.editMode) {
+			this.announcement = announcementDataSource.get(editId);
+
+			this.selectedPostWrapper = PostAdapter.wrap(announcement.getPost());
+
+			this.selectedAnnouncementTypeWrapper = AnnouncementTypeAdapter
+					.wrap(announcement.getAnnouncementType());
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -238,35 +115,24 @@ announcementTypeDataSource = new AnnouncementTypeDataSource();
 		return announcementDataSource;
 	}
 
-	public void setAnnouncementDataSource(AnnouncementDataSource announcementDataSource) {
+	public void setAnnouncementDataSource(
+			AnnouncementDataSource announcementDataSource) {
 		this.announcementDataSource = announcementDataSource;
 	}
-	
-	
-	
-	
-	
-	
-	
-			
 
-
-public List<Post> getPostList() {
+	public List<Post> getPostList() {
 		return postList;
 	}
 
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-  
-  
-  
+
 	public PostDataSource getPostDataSource() {
 		return postDataSource;
 	}
 
-	public void setPostDataSource(
-			PostDataSource postDataSource) {
+	public void setPostDataSource(PostDataSource postDataSource) {
 		this.postDataSource = postDataSource;
 	}
 
@@ -274,44 +140,27 @@ public List<Post> getPostList() {
 		return postWrapperList;
 	}
 
-	public void setPostWrapperList(
-			List<PostWrapper> postWrapperList) {
+	public void setPostWrapperList(List<PostWrapper> postWrapperList) {
 		this.postWrapperList = postWrapperList;
 	}
-
-	
 
 	public PostWrapper getSelectedPostWrapper() {
 		return selectedPostWrapper;
 	}
 
-	public void setSelectedPostWrapper(
-			PostWrapper selectedPostWrapper) {
+	public void setSelectedPostWrapper(PostWrapper selectedPostWrapper) {
 		this.selectedPostWrapper = selectedPostWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-			
-			
-
-
-public List<AnnouncementType> getAnnouncementTypeList() {
+	public List<AnnouncementType> getAnnouncementTypeList() {
 		return announcementTypeList;
 	}
 
-	public void setAnnouncementTypeList(List<AnnouncementType> announcementTypeList) {
+	public void setAnnouncementTypeList(
+			List<AnnouncementType> announcementTypeList) {
 		this.announcementTypeList = announcementTypeList;
 	}
-  
-  
-  
+
 	public AnnouncementTypeDataSource getAnnouncementTypeDataSource() {
 		return announcementTypeDataSource;
 	}
@@ -330,8 +179,6 @@ public List<AnnouncementType> getAnnouncementTypeList() {
 		this.announcementTypeWrapperList = announcementTypeWrapperList;
 	}
 
-	
-
 	public AnnouncementTypeWrapper getSelectedAnnouncementTypeWrapper() {
 		return selectedAnnouncementTypeWrapper;
 	}
@@ -341,118 +188,86 @@ public List<AnnouncementType> getAnnouncementTypeList() {
 		this.selectedAnnouncementTypeWrapper = selectedAnnouncementTypeWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-				
-
-
-
-
-	
-  
-  
-  
 	public Announcement saveAnnouncement() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Post post =selectedPostWrapper.getPost();
+
+			Post post = selectedPostWrapper.getPost();
 
 			announcement.setPost(post);
-			
-			
-			
-                  AnnouncementType announcementType =selectedAnnouncementTypeWrapper.getAnnouncementType();
+
+			AnnouncementType announcementType = selectedAnnouncementTypeWrapper
+					.getAnnouncementType();
 
 			announcement.setAnnouncementType(announcementType);
-			
-				   
-			
-			
-			
-			
+
 			announcementDataSource.create(announcement, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  Announcement !");
-				this.announcement=new Announcement();
+			MessageService.info("Successfully Saved  Announcement !");
+			this.announcement = new Announcement();
 			return announcement;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
-			MessageService.error("Failed Saving Announcement .Try Again Later!");
+			log.error(ex.getMessage());
+			MessageService
+					.error("Failed Saving Announcement .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public Announcement updateAnnouncement() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  Post post = selectedPostWrapper.getPost();
 
-			      announcement.setPost(post);
-			
-			
-			
-                  AnnouncementType announcementType = selectedAnnouncementTypeWrapper.getAnnouncementType();
+			Post post = selectedPostWrapper.getPost();
 
-			      announcement.setAnnouncementType(announcementType);
-			
-				   
-			
-			
-			
-			
+			announcement.setPost(post);
+
+			AnnouncementType announcementType = selectedAnnouncementTypeWrapper
+					.getAnnouncementType();
+
+			announcement.setAnnouncementType(announcementType);
+
 			announcementDataSource.create(announcement, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  Announcement !");
-				this.announcement=new Announcement();
+			MessageService.info("Successfully Saved  Announcement !");
+			this.announcement = new Announcement();
 			return announcement;
 
 		} catch (Exception ex) {
-			MessageService.error("Failed Saving Announcement .Try Again Later!");
+			MessageService
+					.error("Failed Saving Announcement .Try Again Later!");
 			log.error(ex.getMessage());
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateAnnouncement();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveAnnouncement();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createAnnouncement");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createAnnouncement");
+
 	}
-	public Announcement saveAnnouncement(Session session){
-	
-	   this.announcement= announcementDataSource.create(this.announcement,session);
-	   return this.announcement;
+
+	public Announcement saveAnnouncement(Session session) {
+
+		this.announcement = announcementDataSource.create(this.announcement,
+				session);
+		return this.announcement;
 	}
-	
 
 }
-

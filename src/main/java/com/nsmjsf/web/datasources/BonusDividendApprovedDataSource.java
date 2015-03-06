@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,22 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.BonusDividendApproved ;
+import com.nsmjsf.web.datamodels.BonusDividendApproved;
 
-public class BonusDividendApprovedDataSource extends TDataSource<BonusDividendApproved>{
+public class BonusDividendApprovedDataSource extends
+		TDataSource<BonusDividendApproved> {
 
-	public BonusDividendApprovedDataSource()
-	{
+	public BonusDividendApprovedDataSource() {
 		super();
 		this.setTableName("BonusDividendApproved");
 		this.setPrimaryKey("bonus_dividend_approved_id");
 	}
 
-	
 	@Override
 	public List<BonusDividendApproved> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -88,7 +84,8 @@ public class BonusDividendApprovedDataSource extends TDataSource<BonusDividendAp
 	}
 
 	@Override
-	public BonusDividendApproved create(BonusDividendApproved record, Session session) {
+	public BonusDividendApproved create(BonusDividendApproved record,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.create(record, session);
 	}
@@ -142,7 +139,8 @@ public class BonusDividendApprovedDataSource extends TDataSource<BonusDividendAp
 	}
 
 	@Override
-	public List<BonusDividendApproved> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<BonusDividendApproved> getWhere(
+			HashMap<String, Object> clauses, Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -160,7 +158,8 @@ public class BonusDividendApprovedDataSource extends TDataSource<BonusDividendAp
 	}
 
 	@Override
-	public BonusDividendApproved update(BonusDividendApproved record, Session session) {
+	public BonusDividendApproved update(BonusDividendApproved record,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.update(record, session);
 	}
@@ -182,8 +181,5 @@ public class BonusDividendApprovedDataSource extends TDataSource<BonusDividendAp
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

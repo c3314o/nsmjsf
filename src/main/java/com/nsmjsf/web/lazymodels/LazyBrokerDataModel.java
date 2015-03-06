@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -18,8 +16,7 @@ import com.nsmjsf.web.datamodels.Broker;
 import com.nsmjsf.web.sorters.BrokerSorter;
 
 public class LazyBrokerDataModel extends LazyDataModel<Broker> {
-	private static final Log log = LogFactory
-			.getLog(LazyBrokerDataModel.class);
+	private static final Log log = LogFactory.getLog(LazyBrokerDataModel.class);
 
 	/**
 	 * 
@@ -66,10 +63,9 @@ public class LazyBrokerDataModel extends LazyDataModel<Broker> {
 						Field field = broker.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(broker));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field.get(broker));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +108,3 @@ public class LazyBrokerDataModel extends LazyDataModel<Broker> {
 	}
 
 }
-

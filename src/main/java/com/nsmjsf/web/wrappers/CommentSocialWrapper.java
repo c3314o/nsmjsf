@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,8 @@ import com.nsmjsf.web.datamodels.CommentSocial;
 
 public class CommentSocialWrapper {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CommentSocialWrapper.class);
-
 
 	CommentSocial commentSocial;
 
@@ -35,7 +32,8 @@ private static final Log log = LogFactory
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.commentSocial.getCommentSocialId());
+		hash = 83 * hash
+				+ Objects.hashCode(this.commentSocial.getCommentSocialId());
 		return hash;
 	}
 
@@ -46,7 +44,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final CommentSocialWrapper other = (CommentSocialWrapper) obj;
-		if (!Objects.equals(this.commentSocial.getCommentSocialId(), other.getCommentSocial().getCommentSocialId()))
+		if (!Objects.equals(this.commentSocial.getCommentSocialId(), other
+				.getCommentSocial().getCommentSocialId()))
 			return false;
 		return true;
 	}
@@ -57,4 +56,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

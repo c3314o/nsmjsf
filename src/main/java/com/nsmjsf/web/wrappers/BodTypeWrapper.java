@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.BodType;
 
 public class BodTypeWrapper {
 
-private static final Log log = LogFactory
-			.getLog(BodTypeWrapper.class);
-
+	private static final Log log = LogFactory.getLog(BodTypeWrapper.class);
 
 	BodType bodType;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final BodTypeWrapper other = (BodTypeWrapper) obj;
-		if (!Objects.equals(this.bodType.getBodTypeId(), other.getBodType().getBodTypeId()))
+		if (!Objects.equals(this.bodType.getBodTypeId(), other.getBodType()
+				.getBodTypeId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

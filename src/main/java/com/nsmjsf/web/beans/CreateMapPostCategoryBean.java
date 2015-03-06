@@ -18,9 +18,8 @@ import com.nsmjsf.web.datasources.MapPostCategoryDataSource;
 import com.nsmjsf.web.datamodels.MapPostCategory;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
-			
-import com.nsmjsf.web.adapters.PostCategoryAdapter;
 
+import com.nsmjsf.web.adapters.PostCategoryAdapter;
 
 import com.nsmjsf.web.datasources.PostCategoryDataSource;
 
@@ -28,13 +27,7 @@ import com.nsmjsf.web.datamodels.PostCategory;
 
 import com.nsmjsf.web.wrappers.PostCategoryWrapper;
 
-
-
-			
-			
-			
 import com.nsmjsf.web.adapters.PostAdapter;
-
 
 import com.nsmjsf.web.datasources.PostDataSource;
 
@@ -42,138 +35,70 @@ import com.nsmjsf.web.datamodels.Post;
 
 import com.nsmjsf.web.wrappers.PostWrapper;
 
-
-
-			
-				   
-
 @ManagedBean
 @ViewScoped
-
 public class CreateMapPostCategoryBean implements Serializable {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(CreateMapPostCategoryBean.class);
-
 
 	private MapPostCategory mapPostCategory;
 	private MapPostCategoryDataSource mapPostCategoryDataSource;
-	
-	
-	
-			
-    private PostCategoryDataSource postCategoryDataSource;
+
+	private PostCategoryDataSource postCategoryDataSource;
 	private List<PostCategoryWrapper> postCategoryWrapperList;
 	private List<PostCategory> postCategoryList;
 	private PostCategoryWrapper selectedPostCategoryWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-    private PostDataSource postDataSource;
+
+	private PostDataSource postDataSource;
 	private List<PostWrapper> postWrapperList;
 	private List<Post> postList;
 	private PostWrapper selectedPostWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateMapPostCategoryBean() {
 
 		mapPostCategory = new MapPostCategory();
 		/* init datasources */
 		mapPostCategoryDataSource = new MapPostCategoryDataSource();
-		
-		
-			
-postCategoryDataSource = new PostCategoryDataSource();
+
+		postCategoryDataSource = new PostCategoryDataSource();
 
 		/* init option wrappers */
 		postCategoryList = postCategoryDataSource.getAll();
-		postCategoryWrapperList = PostCategoryAdapter
-				.wrapAll(postCategoryList);
-	
-			
-			
-			
-postDataSource = new PostDataSource();
+		postCategoryWrapperList = PostCategoryAdapter.wrapAll(postCategoryList);
+
+		postDataSource = new PostDataSource();
 
 		/* init option wrappers */
 		postList = postDataSource.getAll();
-		postWrapperList = PostAdapter
-				.wrapAll(postList);
-	
-			
-				
-		
-		
+		postWrapperList = PostAdapter.wrapAll(postList);
 
 	}
-	
-	@PostConstruct
-	private void init()
-	{
-		extractParams();
-		if(this.editMode)
-		{
-			this.mapPostCategory=mapPostCategoryDataSource.get(editId);
-			
-			
 
-			  
-			  this.selectedPostCategoryWrapper=PostCategoryAdapter.wrap(mapPostCategory.getPostCategory());
-	
-			
-			
-			  
-			  this.selectedPostWrapper=PostAdapter.wrap(mapPostCategory.getPost());
-	
-			
-				   
-			
-			
-			
-			
+	@PostConstruct
+	private void init() {
+		extractParams();
+		if (this.editMode) {
+			this.mapPostCategory = mapPostCategoryDataSource.get(editId);
+
+			this.selectedPostCategoryWrapper = PostCategoryAdapter
+					.wrap(mapPostCategory.getPostCategory());
+
+			this.selectedPostWrapper = PostAdapter.wrap(mapPostCategory
+					.getPost());
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -190,29 +115,19 @@ postDataSource = new PostDataSource();
 		return mapPostCategoryDataSource;
 	}
 
-	public void setMapPostCategoryDataSource(MapPostCategoryDataSource mapPostCategoryDataSource) {
+	public void setMapPostCategoryDataSource(
+			MapPostCategoryDataSource mapPostCategoryDataSource) {
 		this.mapPostCategoryDataSource = mapPostCategoryDataSource;
 	}
-	
-	
-	
-	
-	
-	
-	
-			
 
-
-public List<PostCategory> getPostCategoryList() {
+	public List<PostCategory> getPostCategoryList() {
 		return postCategoryList;
 	}
 
 	public void setPostCategoryList(List<PostCategory> postCategoryList) {
 		this.postCategoryList = postCategoryList;
 	}
-  
-  
-  
+
 	public PostCategoryDataSource getPostCategoryDataSource() {
 		return postCategoryDataSource;
 	}
@@ -231,8 +146,6 @@ public List<PostCategory> getPostCategoryList() {
 		this.postCategoryWrapperList = postCategoryWrapperList;
 	}
 
-	
-
 	public PostCategoryWrapper getSelectedPostCategoryWrapper() {
 		return selectedPostCategoryWrapper;
 	}
@@ -242,34 +155,19 @@ public List<PostCategory> getPostCategoryList() {
 		this.selectedPostCategoryWrapper = selectedPostCategoryWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-			
-			
-
-
-public List<Post> getPostList() {
+	public List<Post> getPostList() {
 		return postList;
 	}
 
 	public void setPostList(List<Post> postList) {
 		this.postList = postList;
 	}
-  
-  
-  
+
 	public PostDataSource getPostDataSource() {
 		return postDataSource;
 	}
 
-	public void setPostDataSource(
-			PostDataSource postDataSource) {
+	public void setPostDataSource(PostDataSource postDataSource) {
 		this.postDataSource = postDataSource;
 	}
 
@@ -277,134 +175,99 @@ public List<Post> getPostList() {
 		return postWrapperList;
 	}
 
-	public void setPostWrapperList(
-			List<PostWrapper> postWrapperList) {
+	public void setPostWrapperList(List<PostWrapper> postWrapperList) {
 		this.postWrapperList = postWrapperList;
 	}
-
-	
 
 	public PostWrapper getSelectedPostWrapper() {
 		return selectedPostWrapper;
 	}
 
-	public void setSelectedPostWrapper(
-			PostWrapper selectedPostWrapper) {
+	public void setSelectedPostWrapper(PostWrapper selectedPostWrapper) {
 		this.selectedPostWrapper = selectedPostWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-				
-
-
-
-
-	
-  
-  
-  
 	public MapPostCategory saveMapPostCategory() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  PostCategory postCategory =selectedPostCategoryWrapper.getPostCategory();
+
+			PostCategory postCategory = selectedPostCategoryWrapper
+					.getPostCategory();
 
 			mapPostCategory.setPostCategory(postCategory);
-			
-			
-			
-                  Post post =selectedPostWrapper.getPost();
+
+			Post post = selectedPostWrapper.getPost();
 
 			mapPostCategory.setPost(post);
-			
-				   
-			
-			
-			
-			
+
 			mapPostCategoryDataSource.create(mapPostCategory, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  MapPostCategory !");
-				this.mapPostCategory=new MapPostCategory();
+			MessageService.info("Successfully Saved  MapPostCategory !");
+			this.mapPostCategory = new MapPostCategory();
 			return mapPostCategory;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
-			MessageService.error("Failed Saving MapPostCategory .Try Again Later!");
+			log.error(ex.getMessage());
+			MessageService
+					.error("Failed Saving MapPostCategory .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public MapPostCategory updateMapPostCategory() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  PostCategory postCategory = selectedPostCategoryWrapper.getPostCategory();
 
-			      mapPostCategory.setPostCategory(postCategory);
-			
-			
-			
-                  Post post = selectedPostWrapper.getPost();
+			PostCategory postCategory = selectedPostCategoryWrapper
+					.getPostCategory();
 
-			      mapPostCategory.setPost(post);
-			
-				   
-			
-			
-			
-			
+			mapPostCategory.setPostCategory(postCategory);
+
+			Post post = selectedPostWrapper.getPost();
+
+			mapPostCategory.setPost(post);
+
 			mapPostCategoryDataSource.create(mapPostCategory, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  MapPostCategory !");
-				this.mapPostCategory=new MapPostCategory();
+			MessageService.info("Successfully Saved  MapPostCategory !");
+			this.mapPostCategory = new MapPostCategory();
 			return mapPostCategory;
 
 		} catch (Exception ex) {
-			MessageService.error("Failed Saving MapPostCategory .Try Again Later!");
+			MessageService
+					.error("Failed Saving MapPostCategory .Try Again Later!");
 			log.error(ex.getMessage());
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateMapPostCategory();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveMapPostCategory();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createMapPostCategory");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance()
+				.closeDialog("createMapPostCategory");
+
 	}
-	public MapPostCategory saveMapPostCategory(Session session){
-	
-	   this.mapPostCategory= mapPostCategoryDataSource.create(this.mapPostCategory,session);
-	   return this.mapPostCategory;
+
+	public MapPostCategory saveMapPostCategory(Session session) {
+
+		this.mapPostCategory = mapPostCategoryDataSource.create(
+				this.mapPostCategory, session);
+		return this.mapPostCategory;
 	}
-	
 
 }
-

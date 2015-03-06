@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.FinancialHighlight;
 import com.nsmjsf.web.sorters.FinancialHighlightSorter;
 
-public class LazyFinancialHighlightDataModel extends LazyDataModel<FinancialHighlight> {
+public class LazyFinancialHighlightDataModel extends
+		LazyDataModel<FinancialHighlight> {
 	private static final Log log = LogFactory
 			.getLog(LazyFinancialHighlightDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazyFinancialHighlightDataModel extends LazyDataModel<FinancialHigh
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<FinancialHighlight> financialHighlightList;
 
-	public LazyFinancialHighlightDataModel(List<FinancialHighlight> financialHighlightList) {
+	public LazyFinancialHighlightDataModel(
+			List<FinancialHighlight> financialHighlightList) {
 		this.financialHighlightList = financialHighlightList;
 	}
 
 	@Override
 	public FinancialHighlight getRowData(String rowKey) {
 		for (FinancialHighlight financialHighlight : financialHighlightList) {
-			if (financialHighlight.getFinancialHighlightId().toString().equalsIgnoreCase(rowKey))
+			if (financialHighlight.getFinancialHighlightId().toString()
+					.equalsIgnoreCase(rowKey))
 				return financialHighlight;
 		}
 
@@ -47,8 +48,8 @@ public class LazyFinancialHighlightDataModel extends LazyDataModel<FinancialHigh
 	}
 
 	@Override
-	public List<FinancialHighlight> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<FinancialHighlight> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<FinancialHighlight> data = new ArrayList<FinancialHighlight>();
@@ -63,13 +64,13 @@ public class LazyFinancialHighlightDataModel extends LazyDataModel<FinancialHigh
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = financialHighlight.getClass().getDeclaredField(
-								filterProperty);
+						Field field = financialHighlight.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(financialHighlight));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(financialHighlight));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazyFinancialHighlightDataModel extends LazyDataModel<FinancialHigh
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new FinancialHighlightSorter(sortField, sortOrder));
+			Collections.sort(data, new FinancialHighlightSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazyFinancialHighlightDataModel extends LazyDataModel<FinancialHigh
 	}
 
 }
-

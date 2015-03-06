@@ -1,20 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
@@ -33,12 +16,14 @@
     <h:form>
        <p:panel>
        <f:facet name="header">Add Article</f:facet>
-      <p:outputPanel style="width:100%">
-      
-       <ui:include src="/views/facets/Article/createArticle.xhtml">
-       <ui:param name="createArticleBean" value="#{createArticleBean}" />
-       </ui:include>
-      </p:outputPanel>
+      	<p:outputPanel style="width:100%">
+      		<ui:include src="/views/facets/Post/createPost.xhtml">
+				<ui:param name="createPostBean" value="#{createArticleBean.createPostBean}" />
+			</ui:include>
+       		<ui:include src="/views/facets/Article/createArticle.xhtml">
+       			<ui:param name="createArticleBean" value="#{createArticleBean}" />
+       		</ui:include>
+      	</p:outputPanel>
        <p:commandButton value="Save" action="#{createArticleBean.saveOrUpdate()}"></p:commandButton>
          <p:commandButton value="Close" immediate="true" action="#{createArticleBean.cancel()}"></p:commandButton>
      

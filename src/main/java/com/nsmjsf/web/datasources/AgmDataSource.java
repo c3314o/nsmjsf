@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.Agm ;
+import com.nsmjsf.web.datamodels.Agm;
 
-public class AgmDataSource extends TDataSource<Agm>{
+public class AgmDataSource extends TDataSource<Agm> {
 
-	public AgmDataSource()
-	{
+	public AgmDataSource() {
 		super();
 		this.setTableName("Agm");
 		this.setPrimaryKey("agm_id");
 	}
 
-	
 	@Override
 	public List<Agm> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -182,8 +177,5 @@ public class AgmDataSource extends TDataSource<Agm>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

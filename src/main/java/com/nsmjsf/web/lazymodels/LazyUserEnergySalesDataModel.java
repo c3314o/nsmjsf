@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.UserEnergySales;
 import com.nsmjsf.web.sorters.UserEnergySalesSorter;
 
-public class LazyUserEnergySalesDataModel extends LazyDataModel<UserEnergySales> {
+public class LazyUserEnergySalesDataModel extends
+		LazyDataModel<UserEnergySales> {
 	private static final Log log = LogFactory
 			.getLog(LazyUserEnergySalesDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazyUserEnergySalesDataModel extends LazyDataModel<UserEnergySales>
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<UserEnergySales> userEnergySalesList;
 
-	public LazyUserEnergySalesDataModel(List<UserEnergySales> userEnergySalesList) {
+	public LazyUserEnergySalesDataModel(
+			List<UserEnergySales> userEnergySalesList) {
 		this.userEnergySalesList = userEnergySalesList;
 	}
 
 	@Override
 	public UserEnergySales getRowData(String rowKey) {
 		for (UserEnergySales userEnergySales : userEnergySalesList) {
-			if (userEnergySales.getUserEnergySalesId().toString().equalsIgnoreCase(rowKey))
+			if (userEnergySales.getUserEnergySalesId().toString()
+					.equalsIgnoreCase(rowKey))
 				return userEnergySales;
 		}
 
@@ -47,8 +48,8 @@ public class LazyUserEnergySalesDataModel extends LazyDataModel<UserEnergySales>
 	}
 
 	@Override
-	public List<UserEnergySales> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<UserEnergySales> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<UserEnergySales> data = new ArrayList<UserEnergySales>();
@@ -63,13 +64,13 @@ public class LazyUserEnergySalesDataModel extends LazyDataModel<UserEnergySales>
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = userEnergySales.getClass().getDeclaredField(
-								filterProperty);
+						Field field = userEnergySales.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(userEnergySales));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(userEnergySales));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazyUserEnergySalesDataModel extends LazyDataModel<UserEnergySales>
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new UserEnergySalesSorter(sortField, sortOrder));
+			Collections.sort(data, new UserEnergySalesSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazyUserEnergySalesDataModel extends LazyDataModel<UserEnergySales>
 	}
 
 }
-

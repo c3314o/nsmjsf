@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,13 +8,13 @@ import com.nsmjsf.web.datamodels.BonusDividendApproved;
 
 public class BonusDividendApprovedWrapper {
 
-private static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(BonusDividendApprovedWrapper.class);
-
 
 	BonusDividendApproved bonusDividendApproved;
 
-	public BonusDividendApprovedWrapper(BonusDividendApproved bonusDividendApproved) {
+	public BonusDividendApprovedWrapper(
+			BonusDividendApproved bonusDividendApproved) {
 		this.bonusDividendApproved = bonusDividendApproved;
 	}
 
@@ -28,14 +26,18 @@ private static final Log log = LogFactory
 		return bonusDividendApproved;
 	}
 
-	public void setBonusDividendApproved(BonusDividendApproved bonusDividendApproved) {
+	public void setBonusDividendApproved(
+			BonusDividendApproved bonusDividendApproved) {
 		this.bonusDividendApproved = bonusDividendApproved;
 	}
 
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 83 * hash + Objects.hashCode(this.bonusDividendApproved.getBonusDividendApprovedId());
+		hash = 83
+				* hash
+				+ Objects.hashCode(this.bonusDividendApproved
+						.getBonusDividendApprovedId());
 		return hash;
 	}
 
@@ -46,7 +48,9 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final BonusDividendApprovedWrapper other = (BonusDividendApprovedWrapper) obj;
-		if (!Objects.equals(this.bonusDividendApproved.getBonusDividendApprovedId(), other.getBonusDividendApproved().getBonusDividendApprovedId()))
+		if (!Objects.equals(this.bonusDividendApproved
+				.getBonusDividendApprovedId(), other.getBonusDividendApproved()
+				.getBonusDividendApprovedId()))
 			return false;
 		return true;
 	}
@@ -57,4 +61,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

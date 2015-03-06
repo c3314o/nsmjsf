@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.beans.views;
 
 import java.io.Serializable;
@@ -21,10 +20,7 @@ import com.nsmjsf.web.datasources.SectorDataSource;
 import com.nsmjsf.web.datamodels.Sector;
 import com.nsmjsf.web.lazymodels.LazySectorDataModel;
 
-
-			
 import com.nsmjsf.web.adapters.CompanyAdapter;
-
 
 import com.nsmjsf.web.datasources.CompanyDataSource;
 
@@ -32,87 +28,73 @@ import com.nsmjsf.web.datamodels.Company;
 
 import com.nsmjsf.web.wrappers.CompanyWrapper;
 
-
-
-			
-				   
 @ManagedBean
 @ViewScoped
 public class ViewSectorBean implements Serializable {
-private static final Log log = LogFactory.getLog(ViewSectorBean.class);
- ViewType viewType=ViewType.DATATABLE;
- 
+	private static final Log log = LogFactory.getLog(ViewSectorBean.class);
+	ViewType viewType = ViewType.DATATABLE;
 
 	List<Sector> sectorList;
-    List<Sector> selectedSectorList;
+	List<Sector> selectedSectorList;
 	List<Sector> filteredSectorList;
 	Sector selectedSector;
 	LazyDataModel<Sector> lazyModel;
 	SectorDataSource sectorDataSource;
-	int editSectorId=0;
-	
-	   
-	
-	
-	public ViewSectorBean()
-	{
+	int editSectorId = 0;
+
+	public ViewSectorBean() {
 		this.initDataSources();
 		this.populateData();
-		
-		lazyModel=new LazySectorDataModel(this.sectorList);
-		
+
+		lazyModel = new LazySectorDataModel(this.sectorList);
+
 	}
-	
-	
-	private void initDataSources()
-	{
-		sectorDataSource=new SectorDataSource();
-		
-	   
-	
-		
+
+	private void initDataSources() {
+		sectorDataSource = new SectorDataSource();
+
 	}
-	
-	public void refreshDataSource(){
-		this.sectorList=sectorDataSource.getAll();
-		lazyModel=new LazySectorDataModel(this.sectorList);
-		
+
+	public void refreshDataSource() {
+		this.sectorList = sectorDataSource.getAll();
+		lazyModel = new LazySectorDataModel(this.sectorList);
+
 	}
-	
-	
-	private void populateData()
-	{
-		sectorList=sectorDataSource.getAll();
-		
-	   
-	
-		
-			}
+
+	private void populateData() {
+		sectorList = sectorDataSource.getAll();
+
+	}
+
 	public List<Sector> getSectorList() {
 		return sectorList;
 	}
+
 	public void setSectorList(List<Sector> sectorList) {
 		this.sectorList = sectorList;
 	}
+
 	public LazyDataModel<Sector> getLazyModel() {
 		return lazyModel;
 	}
+
 	public void setLazyModel(LazyDataModel<Sector> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
+
 	public Sector getSelectedSector() {
 		return selectedSector;
 	}
+
 	public void setSelectedSector(Sector selectedSector) {
 		this.selectedSector = selectedSector;
 	}
-	
+
 	public List<Sector> getSelectedSectorList() {
 		return selectedSectorList;
 	}
 
-	public void setSelectedSectorList(
-			List<Sector> selectedSectorList) {
+	public void setSelectedSectorList(List<Sector> selectedSectorList) {
 		this.selectedSectorList = selectedSectorList;
 	}
 
@@ -120,8 +102,7 @@ private static final Log log = LogFactory.getLog(ViewSectorBean.class);
 		return filteredSectorList;
 	}
 
-	public void setFilteredSectorList(
-			List<Sector> filteredSectorList) {
+	public void setFilteredSectorList(List<Sector> filteredSectorList) {
 		this.filteredSectorList = filteredSectorList;
 	}
 
@@ -130,16 +111,16 @@ private static final Log log = LogFactory.getLog(ViewSectorBean.class);
 		Map<String, Object> options = new HashMap<String, Object>();
 		options.put("modal", true);
 
-		RequestContext.getCurrentInstance().openDialog("createSector",
-				options, null);
+		RequestContext.getCurrentInstance().openDialog("createSector", options,
+				null);
 
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("Sector Selected"
 				+ ((Sector) event.getObject()).getSectorId());
 		for (Sector cat : selectedSectorList) {
-			//System.out.println(cat.getSectorLabel());
+			// System.out.println(cat.getSectorLabel());
 		}
 
 	}
@@ -152,21 +133,22 @@ private static final Log log = LogFactory.getLog(ViewSectorBean.class);
 
 	public void deleteSelectedSector() {
 		for (Sector sector : selectedSectorList) {
-			//System.out.println(sector.getSectorLabel());
+			// System.out.println(sector.getSectorLabel());
 			this.deleteSector(sector);
 		}
 	}
+
 	public void deleteSector(Sector sector) {
-			try{
+		try {
 			sectorDataSource.delete(sector);
 			this.refreshDataSource();
-			}catch(Exception ex)
-			{
-				log.info(ex.getMessage());
-			}
-		
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
 	}
-/*----------------------------------------*/
+
+	/*----------------------------------------*/
 	public int getEditSectorId() {
 		return editSectorId;
 	}
@@ -174,18 +156,17 @@ private static final Log log = LogFactory.getLog(ViewSectorBean.class);
 	public void setEditSectorId(int editSectorId) {
 		this.editSectorId = editSectorId;
 	}
-	
-	public void editSector(int editId)
-	{
-		Map<String,List<String>> params = new HashMap<String,List<String>>();
-		Map<String,Object> options = new HashMap<String, Object>();
+
+	public void editSector(int editId) {
+		Map<String, List<String>> params = new HashMap<String, List<String>>();
+		Map<String, Object> options = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		String seditId=String.valueOf(editId);
+		String seditId = String.valueOf(editId);
 		options.put("modal", true);
 		list.add(seditId);
 		params.put("editId", list);
-		RequestContext.getCurrentInstance().openDialog("createSector",
-				options,params);
+		RequestContext.getCurrentInstance().openDialog("createSector", options,
+				params);
 	}
 
 	public ViewType getViewType() {
@@ -196,38 +177,32 @@ private static final Log log = LogFactory.getLog(ViewSectorBean.class);
 		this.viewType = viewType;
 	}
 
-	public boolean isDataGrid()
-	{
-		return this.viewType==ViewType.DATAGRID;
+	public boolean isDataGrid() {
+		return this.viewType == ViewType.DATAGRID;
 	}
-	public boolean isDataTable()
-	{
-		return this.viewType==ViewType.DATATABLE;
+
+	public boolean isDataTable() {
+		return this.viewType == ViewType.DATATABLE;
 	}
-	public boolean isDataScroller()
-	{
-		return this.viewType==ViewType.DATASCROLLER;
+
+	public boolean isDataScroller() {
+		return this.viewType == ViewType.DATASCROLLER;
 	}
-	public boolean isDataTableLive()
-	{
-		return this.viewType==ViewType.DATATABLELIVE;
+
+	public boolean isDataTableLive() {
+		return this.viewType == ViewType.DATATABLELIVE;
 	}
-	
-	public void toDataTable()
-	{
-		this.viewType=ViewType.DATATABLE;
+
+	public void toDataTable() {
+		this.viewType = ViewType.DATATABLE;
 	}
-	public void toDataGrid()
-	{
-		this.viewType=ViewType.DATAGRID;
+
+	public void toDataGrid() {
+		this.viewType = ViewType.DATAGRID;
 	}
-	public void toDataScroll()
-	{
-		this.viewType=ViewType.DATASCROLLER;
+
+	public void toDataScroll() {
+		this.viewType = ViewType.DATASCROLLER;
 	}
-	
 
 }
-
-
-

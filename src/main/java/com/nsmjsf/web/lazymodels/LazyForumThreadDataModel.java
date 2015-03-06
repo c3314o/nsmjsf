@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyForumThreadDataModel extends LazyDataModel<ForumThread> {
 	@Override
 	public ForumThread getRowData(String rowKey) {
 		for (ForumThread forumThread : forumThreadList) {
-			if (forumThread.getForumThreadId().toString().equalsIgnoreCase(rowKey))
+			if (forumThread.getForumThreadId().toString()
+					.equalsIgnoreCase(rowKey))
 				return forumThread;
 		}
 
@@ -66,10 +65,10 @@ public class LazyForumThreadDataModel extends LazyDataModel<ForumThread> {
 						Field field = forumThread.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(forumThread));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(forumThread));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyForumThreadDataModel extends LazyDataModel<ForumThread> {
 	}
 
 }
-

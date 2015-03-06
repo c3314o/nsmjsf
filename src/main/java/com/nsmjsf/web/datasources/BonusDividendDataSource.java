@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.BonusDividend ;
+import com.nsmjsf.web.datamodels.BonusDividend;
 
-public class BonusDividendDataSource extends TDataSource<BonusDividend>{
+public class BonusDividendDataSource extends TDataSource<BonusDividend> {
 
-	public BonusDividendDataSource()
-	{
+	public BonusDividendDataSource() {
 		super();
 		this.setTableName("BonusDividend");
 		this.setPrimaryKey("bonus_dividend_id");
 	}
 
-	
 	@Override
 	public List<BonusDividend> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class BonusDividendDataSource extends TDataSource<BonusDividend>{
 	}
 
 	@Override
-	public List<BonusDividend> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<BonusDividend> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class BonusDividendDataSource extends TDataSource<BonusDividend>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.NewLow;
 
 public class NewLowWrapper {
 
-private static final Log log = LogFactory
-			.getLog(NewLowWrapper.class);
-
+	private static final Log log = LogFactory.getLog(NewLowWrapper.class);
 
 	NewLow newLow;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final NewLowWrapper other = (NewLowWrapper) obj;
-		if (!Objects.equals(this.newLow.getNewLowId(), other.getNewLow().getNewLowId()))
+		if (!Objects.equals(this.newLow.getNewLowId(), other.getNewLow()
+				.getNewLowId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

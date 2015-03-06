@@ -1,6 +1,4 @@
-
-package  com.nsmjsf.web.wrappers;
-
+package com.nsmjsf.web.wrappers;
 
 import java.util.Objects;
 import org.apache.commons.logging.Log;
@@ -10,9 +8,7 @@ import com.nsmjsf.web.datamodels.FiscalYear;
 
 public class FiscalYearWrapper {
 
-private static final Log log = LogFactory
-			.getLog(FiscalYearWrapper.class);
-
+	private static final Log log = LogFactory.getLog(FiscalYearWrapper.class);
 
 	FiscalYear fiscalYear;
 
@@ -46,7 +42,8 @@ private static final Log log = LogFactory
 		if (getClass() != obj.getClass())
 			return false;
 		final FiscalYearWrapper other = (FiscalYearWrapper) obj;
-		if (!Objects.equals(this.fiscalYear.getFiscalYearId(), other.getFiscalYear().getFiscalYearId()))
+		if (!Objects.equals(this.fiscalYear.getFiscalYearId(), other
+				.getFiscalYear().getFiscalYearId()))
 			return false;
 		return true;
 	}
@@ -57,4 +54,3 @@ private static final Log log = LogFactory
 	}
 
 }
-

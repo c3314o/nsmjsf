@@ -1,5 +1,4 @@
-
-package  com.nsmjsf.web.datasources;
+package com.nsmjsf.web.datasources;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,25 +6,21 @@ import java.util.List;
 
 import org.hibernate.Session;
 import com.nsmjsf.web.datalayer.TDataSource;
-import com.nsmjsf.web.datamodels.PostCategory ;
+import com.nsmjsf.web.datamodels.PostCategory;
 
-public class PostCategoryDataSource extends TDataSource<PostCategory>{
+public class PostCategoryDataSource extends TDataSource<PostCategory> {
 
-	public PostCategoryDataSource()
-	{
+	public PostCategoryDataSource() {
 		super();
 		this.setTableName("PostCategory");
 		this.setPrimaryKey("post_category_id");
 	}
 
-	
 	@Override
 	public List<PostCategory> getByUser(int userId) {
 		// TODO Auto-generated method stub
 		return super.getByUser(userId);
 	}
-
-	
 
 	@Override
 	public Session getSession() {
@@ -142,7 +137,8 @@ public class PostCategoryDataSource extends TDataSource<PostCategory>{
 	}
 
 	@Override
-	public List<PostCategory> getWhere(HashMap<String, Object> clauses, Session session) {
+	public List<PostCategory> getWhere(HashMap<String, Object> clauses,
+			Session session) {
 		// TODO Auto-generated method stub
 		return super.getWhere(clauses, session);
 	}
@@ -182,8 +178,5 @@ public class PostCategoryDataSource extends TDataSource<PostCategory>{
 		// TODO Auto-generated method stub
 		super.refreshDataSource();
 	}
-	
-	
 
 }
-

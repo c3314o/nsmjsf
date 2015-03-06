@@ -18,9 +18,8 @@ import com.nsmjsf.web.datasources.KeyRatioDataSource;
 import com.nsmjsf.web.datamodels.KeyRatio;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
-			
-import com.nsmjsf.web.adapters.FinancialReportAdapter;
 
+import com.nsmjsf.web.adapters.FinancialReportAdapter;
 
 import com.nsmjsf.web.datasources.FinancialReportDataSource;
 
@@ -28,282 +27,56 @@ import com.nsmjsf.web.datamodels.FinancialReport;
 
 import com.nsmjsf.web.wrappers.FinancialReportWrapper;
 
-
-
-			
-				   
-
 @ManagedBean
 @ViewScoped
-
 public class CreateKeyRatioBean implements Serializable {
 
-private static final Log log = LogFactory
-			.getLog(CreateKeyRatioBean.class);
-
+	private static final Log log = LogFactory.getLog(CreateKeyRatioBean.class);
 
 	private KeyRatio keyRatio;
 	private KeyRatioDataSource keyRatioDataSource;
-	
-	
-	
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-    private FinancialReportDataSource financialReportDataSource;
+
+	private FinancialReportDataSource financialReportDataSource;
 	private List<FinancialReportWrapper> financialReportWrapperList;
 	private List<FinancialReport> financialReportList;
 	private FinancialReportWrapper selectedFinancialReportWrapper;
-	
-	
-			
-			
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  
-			
-		
-			
-			
-			
-	  	   
-	
-	
-	private int editId=0;
-	private boolean editMode=false;	
-	
-	
-	
-	
-	
-	
+
+	private int editId = 0;
+	private boolean editMode = false;
 
 	public CreateKeyRatioBean() {
 
 		keyRatio = new KeyRatio();
 		/* init datasources */
 		keyRatioDataSource = new KeyRatioDataSource();
-		
-		
-			
-financialReportDataSource = new FinancialReportDataSource();
+
+		financialReportDataSource = new FinancialReportDataSource();
 
 		/* init option wrappers */
 		financialReportList = financialReportDataSource.getAll();
 		financialReportWrapperList = FinancialReportAdapter
 				.wrapAll(financialReportList);
-	
-			
-				
-		
-		
 
 	}
-	
-	@PostConstruct
-	private void init()
-	{
-		extractParams();
-		if(this.editMode)
-		{
-			this.keyRatio=keyRatioDataSource.get(editId);
-			
-			
 
-			  
-			  this.selectedFinancialReportWrapper=FinancialReportAdapter.wrap(keyRatio.getFinancialReport());
-	
-			
-				   
-			
-			
-			
-			
+	@PostConstruct
+	private void init() {
+		extractParams();
+		if (this.editMode) {
+			this.keyRatio = keyRatioDataSource.get(editId);
+
+			this.selectedFinancialReportWrapper = FinancialReportAdapter
+					.wrap(keyRatio.getFinancialReport());
+
 		}
 	}
-	private void extractParams()
-	{
+
+	private void extractParams() {
 		int editId = ParameterManager.getInt("editId");
-		if(editId!=0)
-		{
-			this.editId=editId;
-			this.editMode=true;
-			System.out.println("EditId"+editId);
+		if (editId != 0) {
+			this.editId = editId;
+			this.editMode = true;
+			System.out.println("EditId" + editId);
 		}
 	}
 
@@ -323,26 +96,15 @@ financialReportDataSource = new FinancialReportDataSource();
 	public void setKeyRatioDataSource(KeyRatioDataSource keyRatioDataSource) {
 		this.keyRatioDataSource = keyRatioDataSource;
 	}
-	
-	
-	
-	
-	
-	
-	
-			
 
-
-public List<FinancialReport> getFinancialReportList() {
+	public List<FinancialReport> getFinancialReportList() {
 		return financialReportList;
 	}
 
 	public void setFinancialReportList(List<FinancialReport> financialReportList) {
 		this.financialReportList = financialReportList;
 	}
-  
-  
-  
+
 	public FinancialReportDataSource getFinancialReportDataSource() {
 		return financialReportDataSource;
 	}
@@ -361,8 +123,6 @@ public List<FinancialReport> getFinancialReportList() {
 		this.financialReportWrapperList = financialReportWrapperList;
 	}
 
-	
-
 	public FinancialReportWrapper getSelectedFinancialReportWrapper() {
 		return selectedFinancialReportWrapper;
 	}
@@ -372,75 +132,46 @@ public List<FinancialReport> getFinancialReportList() {
 		this.selectedFinancialReportWrapper = selectedFinancialReportWrapper;
 	}
 
-
-
-
-
-
-
-
-			
-				
-
-
-
-
-	
-  
-  
-  
 	public KeyRatio saveKeyRatio() {
 		try {
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  FinancialReport financialReport =selectedFinancialReportWrapper.getFinancialReport();
+
+			FinancialReport financialReport = selectedFinancialReportWrapper
+					.getFinancialReport();
 
 			keyRatio.setFinancialReport(financialReport);
-			
-				   
-			
-			
-			
-			
+
 			keyRatioDataSource.create(keyRatio, session);
 			tx.commit();
-					MessageService.info("Successfully Saved  KeyRatio !");
-				this.keyRatio=new KeyRatio();
+			MessageService.info("Successfully Saved  KeyRatio !");
+			this.keyRatio = new KeyRatio();
 			return keyRatio;
 
 		} catch (Exception ex) {
-		log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			MessageService.error("Failed Saving KeyRatio .Try Again Later!");
 			return null;
 		}
 	}
-	
+
 	public KeyRatio updateKeyRatio() {
 		try {
-		log.info("Starting to update....");
+			log.info("Starting to update....");
 
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
-			
-			
-			
-                  FinancialReport financialReport = selectedFinancialReportWrapper.getFinancialReport();
 
-			      keyRatio.setFinancialReport(financialReport);
-			
-				   
-			
-			
-			
-			
+			FinancialReport financialReport = selectedFinancialReportWrapper
+					.getFinancialReport();
+
+			keyRatio.setFinancialReport(financialReport);
+
 			keyRatioDataSource.create(keyRatio, session);
 			tx.commit();
-				MessageService.info("Successfully Saved  KeyRatio !");
-				this.keyRatio=new KeyRatio();
+			MessageService.info("Successfully Saved  KeyRatio !");
+			this.keyRatio = new KeyRatio();
 			return keyRatio;
 
 		} catch (Exception ex) {
@@ -449,29 +180,27 @@ public List<FinancialReport> getFinancialReportList() {
 			return null;
 		}
 	}
-	
-	public void saveOrUpdate(){
-	
-	if(this.editMode)
-		{
-		log.info("Updating value");
+
+	public void saveOrUpdate() {
+
+		if (this.editMode) {
+			log.info("Updating value");
 			updateKeyRatio();
-		}else{
-		log.info("Creating value");
+		} else {
+			log.info("Creating value");
 			saveKeyRatio();
 		}
 	}
-	public void cancel()
-	{
-	    RequestContext.getCurrentInstance().closeDialog("createKeyRatio");
-		
+
+	public void cancel() {
+		RequestContext.getCurrentInstance().closeDialog("createKeyRatio");
+
 	}
-	public KeyRatio saveKeyRatio(Session session){
-	
-	   this.keyRatio= keyRatioDataSource.create(this.keyRatio,session);
-	   return this.keyRatio;
+
+	public KeyRatio saveKeyRatio(Session session) {
+
+		this.keyRatio = keyRatioDataSource.create(this.keyRatio, session);
+		return this.keyRatio;
 	}
-	
 
 }
-

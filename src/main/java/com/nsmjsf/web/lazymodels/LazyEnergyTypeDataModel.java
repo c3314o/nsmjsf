@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyEnergyTypeDataModel extends LazyDataModel<EnergyType> {
 	@Override
 	public EnergyType getRowData(String rowKey) {
 		for (EnergyType energyType : energyTypeList) {
-			if (energyType.getEnergyTypeId().toString().equalsIgnoreCase(rowKey))
+			if (energyType.getEnergyTypeId().toString()
+					.equalsIgnoreCase(rowKey))
 				return energyType;
 		}
 
@@ -66,10 +65,10 @@ public class LazyEnergyTypeDataModel extends LazyDataModel<EnergyType> {
 						Field field = energyType.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(energyType));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(energyType));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -112,4 +111,3 @@ public class LazyEnergyTypeDataModel extends LazyDataModel<EnergyType> {
 	}
 
 }
-

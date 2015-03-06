@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -17,7 +15,8 @@ import org.primefaces.model.SortOrder;
 import com.nsmjsf.web.datamodels.TodaysPriceDump;
 import com.nsmjsf.web.sorters.TodaysPriceDumpSorter;
 
-public class LazyTodaysPriceDumpDataModel extends LazyDataModel<TodaysPriceDump> {
+public class LazyTodaysPriceDumpDataModel extends
+		LazyDataModel<TodaysPriceDump> {
 	private static final Log log = LogFactory
 			.getLog(LazyTodaysPriceDumpDataModel.class);
 
@@ -27,14 +26,16 @@ public class LazyTodaysPriceDumpDataModel extends LazyDataModel<TodaysPriceDump>
 	private static final long serialVersionUID = 8939496625458060791L;
 	private List<TodaysPriceDump> todaysPriceDumpList;
 
-	public LazyTodaysPriceDumpDataModel(List<TodaysPriceDump> todaysPriceDumpList) {
+	public LazyTodaysPriceDumpDataModel(
+			List<TodaysPriceDump> todaysPriceDumpList) {
 		this.todaysPriceDumpList = todaysPriceDumpList;
 	}
 
 	@Override
 	public TodaysPriceDump getRowData(String rowKey) {
 		for (TodaysPriceDump todaysPriceDump : todaysPriceDumpList) {
-			if (todaysPriceDump.getTodaysPriceDumpId().toString().equalsIgnoreCase(rowKey))
+			if (todaysPriceDump.getTodaysPriceDumpId().toString()
+					.equalsIgnoreCase(rowKey))
 				return todaysPriceDump;
 		}
 
@@ -47,8 +48,8 @@ public class LazyTodaysPriceDumpDataModel extends LazyDataModel<TodaysPriceDump>
 	}
 
 	@Override
-	public List<TodaysPriceDump> load(int first, int pageSize, String sortField,
-			SortOrder sortOrder, Map<String, Object> filters) {
+	public List<TodaysPriceDump> load(int first, int pageSize,
+			String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 
 		log.info("sortfield:" + sortField);
 		List<TodaysPriceDump> data = new ArrayList<TodaysPriceDump>();
@@ -63,13 +64,13 @@ public class LazyTodaysPriceDumpDataModel extends LazyDataModel<TodaysPriceDump>
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = todaysPriceDump.getClass().getDeclaredField(
-								filterProperty);
+						Field field = todaysPriceDump.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(todaysPriceDump));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(todaysPriceDump));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +93,8 @@ public class LazyTodaysPriceDumpDataModel extends LazyDataModel<TodaysPriceDump>
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new TodaysPriceDumpSorter(sortField, sortOrder));
+			Collections.sort(data, new TodaysPriceDumpSorter(sortField,
+					sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +114,3 @@ public class LazyTodaysPriceDumpDataModel extends LazyDataModel<TodaysPriceDump>
 	}
 
 }
-

@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyUserWatchListDataModel extends LazyDataModel<UserWatchList> {
 	@Override
 	public UserWatchList getRowData(String rowKey) {
 		for (UserWatchList userWatchList : userWatchListList) {
-			if (userWatchList.getUserWatchListId().toString().equalsIgnoreCase(rowKey))
+			if (userWatchList.getUserWatchListId().toString()
+					.equalsIgnoreCase(rowKey))
 				return userWatchList;
 		}
 
@@ -63,13 +62,13 @@ public class LazyUserWatchListDataModel extends LazyDataModel<UserWatchList> {
 					try {
 						String filterProperty = it.next();
 						Object filterValue = filters.get(filterProperty);
-						Field field = userWatchList.getClass().getDeclaredField(
-								filterProperty);
+						Field field = userWatchList.getClass()
+								.getDeclaredField(filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(userWatchList));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(userWatchList));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyUserWatchListDataModel extends LazyDataModel<UserWatchList> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new UserWatchListSorter(sortField, sortOrder));
+			Collections.sort(data,
+					new UserWatchListSorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyUserWatchListDataModel extends LazyDataModel<UserWatchList> {
 	}
 
 }
-

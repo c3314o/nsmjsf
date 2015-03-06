@@ -1,5 +1,3 @@
-
-
 package com.nsmjsf.web.lazymodels;
 
 import java.lang.reflect.Field;
@@ -34,7 +32,8 @@ public class LazyPostCategoryDataModel extends LazyDataModel<PostCategory> {
 	@Override
 	public PostCategory getRowData(String rowKey) {
 		for (PostCategory postCategory : postCategoryList) {
-			if (postCategory.getPostCategoryId().toString().equalsIgnoreCase(rowKey))
+			if (postCategory.getPostCategoryId().toString()
+					.equalsIgnoreCase(rowKey))
 				return postCategory;
 		}
 
@@ -66,10 +65,10 @@ public class LazyPostCategoryDataModel extends LazyDataModel<PostCategory> {
 						Field field = postCategory.getClass().getDeclaredField(
 								filterProperty);
 						field.setAccessible(true);
-						String fieldValue = String
-								.valueOf(field.get(postCategory));
-						log.info("filterField:"+filterProperty);
-						log.info("filterValue:"+fieldValue);
+						String fieldValue = String.valueOf(field
+								.get(postCategory));
+						log.info("filterField:" + filterProperty);
+						log.info("filterValue:" + fieldValue);
 
 						if (filterValue == null
 								|| fieldValue
@@ -92,7 +91,8 @@ public class LazyPostCategoryDataModel extends LazyDataModel<PostCategory> {
 
 		// sort
 		if (sortField != null) {
-			Collections.sort(data, new PostCategorySorter(sortField, sortOrder));
+			Collections
+					.sort(data, new PostCategorySorter(sortField, sortOrder));
 		}
 
 		// rowCount
@@ -112,4 +112,3 @@ public class LazyPostCategoryDataModel extends LazyDataModel<PostCategory> {
 	}
 
 }
-

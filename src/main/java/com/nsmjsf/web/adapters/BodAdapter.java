@@ -1,4 +1,3 @@
-
 package com.nsmjsf.web.adapters;
 
 import java.util.ArrayList;
@@ -10,29 +9,24 @@ import com.nsmjsf.web.datamodels.Bod;
 import com.nsmjsf.web.wrappers.BodWrapper;
 
 public class BodAdapter {
-private static final Log log = LogFactory
-			.getLog(BodAdapter.class);
-	
-	public static List<BodWrapper> wrapAll(List<Bod> bodList)
-	{
-		List<BodWrapper> bodWrapperList=new ArrayList<BodWrapper>();
-		for(Bod bod:bodList)
-		{
-			BodWrapper bodWrapper=new BodWrapper();
+	private static final Log log = LogFactory.getLog(BodAdapter.class);
+
+	public static List<BodWrapper> wrapAll(List<Bod> bodList) {
+		List<BodWrapper> bodWrapperList = new ArrayList<BodWrapper>();
+		for (Bod bod : bodList) {
+			BodWrapper bodWrapper = new BodWrapper();
 			bodWrapper.setBod(bod);
 			bodWrapperList.add(bodWrapper);
 		}
 		return bodWrapperList;
-		
+
 	}
-	
-	public static BodWrapper wrap(Bod bod)
-	{
-		BodWrapper bodWrapper=new BodWrapper();
+
+	public static BodWrapper wrap(Bod bod) {
+		BodWrapper bodWrapper = new BodWrapper();
 		bodWrapper.setBod(bod);
 		return bodWrapper;
-		
+
 	}
 
 }
-
