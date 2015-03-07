@@ -1,20 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
@@ -33,17 +16,21 @@
     <h:form>
        <p:panel>
        <f:facet name="header">Add AllotmentResult</f:facet>
-      <p:outputPanel style="width:100%">
+      	<p:outputPanel style="width:100%">
+      		<ui:include src="/views/facets/Post/createPost.xhtml">
+				<ui:param name="createPostBean" value="#{createAllotmentResultBean.createPostBean}" />
+			</ui:include>
+			
+       		<ui:include src="/views/facets/AllotmentResult/createAllotmentResult.xhtml">
+       			<ui:param name="createAllotmentResultBean" value="#{createAllotmentResultBean}" />
+       		</ui:include>
+       		
+      	</p:outputPanel>
       
-       <ui:include src="/views/facets/AllotmentResult/createAllotmentResult.xhtml">
-       <ui:param name="createAllotmentResultBean" value="#{createAllotmentResultBean}" />
-       </ui:include>
-      </p:outputPanel>
-       <p:commandButton value="Save" action="#{createAllotmentResultBean.saveOrUpdate()}"></p:commandButton>
-         <p:commandButton value="Close" immediate="true" action="#{createAllotmentResultBean.cancel()}"></p:commandButton>
+       		<p:commandButton value="Save" action="#{createAllotmentResultBean.saveOrUpdate()}"></p:commandButton>
+         	<p:commandButton value="Close" immediate="true" action="#{createAllotmentResultBean.cancel()}"></p:commandButton>
      
-       </p:panel>
-       </h:form>
+      </p:panel>
+     </h:form>
     </h:body>
-     
 </html>

@@ -4,41 +4,40 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
+
 import com.nsmjsf.web.datalayer.DbSessionManager;
 import com.nsmjsf.web.messaging.MessageService;
-import org.primefaces.context.RequestContext;
 
+import org.primefaces.context.RequestContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.nsmjsf.web.datasources.CommentDataSource;
 import com.nsmjsf.web.datamodels.Comment;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
 
 import com.nsmjsf.web.adapters.PostAdapter;
-
 import com.nsmjsf.web.datasources.PostDataSource;
-
 import com.nsmjsf.web.datamodels.Post;
-
 import com.nsmjsf.web.wrappers.PostWrapper;
-
 import com.nsmjsf.web.adapters.UserAdapter;
-
 import com.nsmjsf.web.datasources.UserDataSource;
-
 import com.nsmjsf.web.datamodels.User;
-
 import com.nsmjsf.web.wrappers.UserWrapper;
 
 @ManagedBean
 @ViewScoped
 public class CreateCommentBean implements Serializable {
 
+	@ManagedProperty(value = "#{createPostBean}")
+	private CreatePostBean createPostBean;
+	
 	private static final Log log = LogFactory.getLog(CreateCommentBean.class);
 
 	private Comment comment;
@@ -186,7 +185,7 @@ public class CreateCommentBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Post post = selectedPostWrapper.getPost();
+			Post post = createPostBean.savePost(session);
 
 			comment.setPost(post);
 
@@ -214,7 +213,7 @@ public class CreateCommentBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Post post = selectedPostWrapper.getPost();
+			Post post = createPostBean.savePost(session);
 
 			comment.setPost(post);
 
@@ -255,6 +254,14 @@ public class CreateCommentBean implements Serializable {
 
 		this.comment = commentDataSource.create(this.comment, session);
 		return this.comment;
+	}
+
+	public CreatePostBean getCreatePostBean() {
+		return createPostBean;
+	}
+
+	public void setCreatePostBean(CreatePostBean createPostBean) {
+		this.createPostBean = createPostBean;
 	}
 
 }

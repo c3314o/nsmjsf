@@ -4,41 +4,40 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
+
 import com.nsmjsf.web.datalayer.DbSessionManager;
 import com.nsmjsf.web.messaging.MessageService;
-import org.primefaces.context.RequestContext;
 
+import org.primefaces.context.RequestContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.nsmjsf.web.datasources.AnnouncementDataSource;
 import com.nsmjsf.web.datamodels.Announcement;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
 
 import com.nsmjsf.web.adapters.PostAdapter;
-
 import com.nsmjsf.web.datasources.PostDataSource;
-
 import com.nsmjsf.web.datamodels.Post;
-
 import com.nsmjsf.web.wrappers.PostWrapper;
-
 import com.nsmjsf.web.adapters.AnnouncementTypeAdapter;
-
 import com.nsmjsf.web.datasources.AnnouncementTypeDataSource;
-
 import com.nsmjsf.web.datamodels.AnnouncementType;
-
 import com.nsmjsf.web.wrappers.AnnouncementTypeWrapper;
 
 @ManagedBean
 @ViewScoped
 public class CreateAnnouncementBean implements Serializable {
-
+	
+	@ManagedProperty(value = "#{createPostBean}")
+	private CreatePostBean createPostBean;
+	
 	private static final Log log = LogFactory
 			.getLog(CreateAnnouncementBean.class);
 
@@ -194,7 +193,7 @@ public class CreateAnnouncementBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Post post = selectedPostWrapper.getPost();
+			Post post = createPostBean.savePost(session);
 
 			announcement.setPost(post);
 
@@ -224,7 +223,7 @@ public class CreateAnnouncementBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Post post = selectedPostWrapper.getPost();
+			Post post = createPostBean.savePost(session);
 
 			announcement.setPost(post);
 
@@ -268,6 +267,14 @@ public class CreateAnnouncementBean implements Serializable {
 		this.announcement = announcementDataSource.create(this.announcement,
 				session);
 		return this.announcement;
+	}
+
+	public CreatePostBean getCreatePostBean() {
+		return createPostBean;
+	}
+
+	public void setCreatePostBean(CreatePostBean createPostBean) {
+		this.createPostBean = createPostBean;
 	}
 
 }

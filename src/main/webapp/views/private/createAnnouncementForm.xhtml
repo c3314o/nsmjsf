@@ -1,20 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
@@ -34,16 +17,19 @@
        <p:panel>
        <f:facet name="header">Add Announcement</f:facet>
       <p:outputPanel style="width:100%">
+      		<ui:include src="/views/facets/Post/createPost.xhtml">
+				<ui:param name="createPostBean" value="#{createAnnouncementBean.createPostBean}" />
+			</ui:include>
       
-       <ui:include src="/views/facets/Announcement/createAnnouncement.xhtml">
-       <ui:param name="createAnnouncementBean" value="#{createAnnouncementBean}" />
-       </ui:include>
+       		<ui:include src="/views/facets/Announcement/createAnnouncement.xhtml">
+       			<ui:param name="createAnnouncementBean" value="#{createAnnouncementBean}" />
+       		</ui:include>
       </p:outputPanel>
-       <p:commandButton value="Save" action="#{createAnnouncementBean.saveOrUpdate()}"></p:commandButton>
-         <p:commandButton value="Close" immediate="true" action="#{createAnnouncementBean.cancel()}"></p:commandButton>
+      
+       		<p:commandButton value="Save" action="#{createAnnouncementBean.saveOrUpdate()}"></p:commandButton>
+         	<p:commandButton value="Close" immediate="true" action="#{createAnnouncementBean.cancel()}"></p:commandButton>
      
        </p:panel>
        </h:form>
     </h:body>
-     
 </html>
