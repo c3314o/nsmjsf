@@ -4,48 +4,43 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
+
 import com.nsmjsf.web.datalayer.DbSessionManager;
 import com.nsmjsf.web.messaging.MessageService;
-import org.primefaces.context.RequestContext;
 
+import org.primefaces.context.RequestContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.nsmjsf.web.datasources.CertificateDividendDistributionDataSource;
 import com.nsmjsf.web.datamodels.CertificateDividendDistribution;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
 
 import com.nsmjsf.web.adapters.FiscalYearAdapter;
-
 import com.nsmjsf.web.datasources.FiscalYearDataSource;
-
 import com.nsmjsf.web.datamodels.FiscalYear;
-
 import com.nsmjsf.web.wrappers.FiscalYearWrapper;
-
 import com.nsmjsf.web.adapters.AnnouncementAdapter;
-
 import com.nsmjsf.web.datasources.AnnouncementDataSource;
-
 import com.nsmjsf.web.datamodels.Announcement;
-
 import com.nsmjsf.web.wrappers.AnnouncementWrapper;
-
 import com.nsmjsf.web.adapters.IssueManagerAdapter;
-
 import com.nsmjsf.web.datasources.IssueManagerDataSource;
-
 import com.nsmjsf.web.datamodels.IssueManager;
-
 import com.nsmjsf.web.wrappers.IssueManagerWrapper;
 
 @ManagedBean
 @ViewScoped
 public class CreateCertificateDividendDistributionBean implements Serializable {
+
+	@ManagedProperty(value = "#{createAnnouncementBean}")
+	private CreateAnnouncementBean createAnnouncementBean;
 
 	private static final Log log = LogFactory
 			.getLog(CreateCertificateDividendDistributionBean.class);
@@ -259,8 +254,8 @@ public class CreateCertificateDividendDistributionBean implements Serializable {
 
 			certificateDividendDistribution.setFiscalYear(fiscalYear);
 
-			Announcement announcement = selectedAnnouncementWrapper
-					.getAnnouncement();
+			Announcement announcement = createAnnouncementBean
+					.saveAnnouncement(session);
 
 			certificateDividendDistribution.setAnnouncement(announcement);
 
@@ -296,8 +291,8 @@ public class CreateCertificateDividendDistributionBean implements Serializable {
 
 			certificateDividendDistribution.setFiscalYear(fiscalYear);
 
-			Announcement announcement = selectedAnnouncementWrapper
-					.getAnnouncement();
+			Announcement announcement = createAnnouncementBean
+					.saveAnnouncement(session);
 
 			certificateDividendDistribution.setAnnouncement(announcement);
 
@@ -345,6 +340,15 @@ public class CreateCertificateDividendDistributionBean implements Serializable {
 		this.certificateDividendDistribution = certificateDividendDistributionDataSource
 				.create(this.certificateDividendDistribution, session);
 		return this.certificateDividendDistribution;
+	}
+
+	public CreateAnnouncementBean getCreateAnnouncementBean() {
+		return createAnnouncementBean;
+	}
+
+	public void setCreateAnnouncementBean(
+			CreateAnnouncementBean createAnnouncementBean) {
+		this.createAnnouncementBean = createAnnouncementBean;
 	}
 
 }

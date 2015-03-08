@@ -4,56 +4,47 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
+
 import com.nsmjsf.web.datalayer.DbSessionManager;
 import com.nsmjsf.web.messaging.MessageService;
-import org.primefaces.context.RequestContext;
 
+import org.primefaces.context.RequestContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.nsmjsf.web.datasources.IssueDataSource;
 import com.nsmjsf.web.datamodels.Issue;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
 
 import com.nsmjsf.web.adapters.AnnouncementAdapter;
-
 import com.nsmjsf.web.datasources.AnnouncementDataSource;
-
 import com.nsmjsf.web.datamodels.Announcement;
-
 import com.nsmjsf.web.wrappers.AnnouncementWrapper;
-
 import com.nsmjsf.web.adapters.IssueTypeAdapter;
-
 import com.nsmjsf.web.datasources.IssueTypeDataSource;
-
 import com.nsmjsf.web.datamodels.IssueType;
-
 import com.nsmjsf.web.wrappers.IssueTypeWrapper;
-
 import com.nsmjsf.web.adapters.CompanyAdapter;
-
 import com.nsmjsf.web.datasources.CompanyDataSource;
-
 import com.nsmjsf.web.datamodels.Company;
-
 import com.nsmjsf.web.wrappers.CompanyWrapper;
-
 import com.nsmjsf.web.adapters.IssueManagerAdapter;
-
 import com.nsmjsf.web.datasources.IssueManagerDataSource;
-
 import com.nsmjsf.web.datamodels.IssueManager;
-
 import com.nsmjsf.web.wrappers.IssueManagerWrapper;
 
 @ManagedBean
 @ViewScoped
 public class CreateIssueBean implements Serializable {
+	
+	@ManagedProperty(value = "#{createAnnouncementBean}")
+	private CreateAnnouncementBean createAnnouncementBean;
 
 	private static final Log log = LogFactory.getLog(CreateIssueBean.class);
 
@@ -304,8 +295,8 @@ public class CreateIssueBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Announcement announcement = selectedAnnouncementWrapper
-					.getAnnouncement();
+			Announcement announcement = createAnnouncementBean
+					.saveAnnouncement(session);
 
 			issue.setAnnouncement(announcement);
 
@@ -342,8 +333,8 @@ public class CreateIssueBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Announcement announcement = selectedAnnouncementWrapper
-					.getAnnouncement();
+			Announcement announcement = createAnnouncementBean
+					.saveAnnouncement(session);
 
 			issue.setAnnouncement(announcement);
 
@@ -395,4 +386,13 @@ public class CreateIssueBean implements Serializable {
 		return this.issue;
 	}
 
+	public CreateAnnouncementBean getCreateAnnouncementBean() {
+		return createAnnouncementBean;
+	}
+
+	public void setCreateAnnouncementBean(
+			CreateAnnouncementBean createAnnouncementBean) {
+		this.createAnnouncementBean = createAnnouncementBean;
+	}
+	
 }

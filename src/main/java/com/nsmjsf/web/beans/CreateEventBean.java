@@ -4,32 +4,35 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
+
 import com.nsmjsf.web.datalayer.DbSessionManager;
 import com.nsmjsf.web.messaging.MessageService;
-import org.primefaces.context.RequestContext;
 
+import org.primefaces.context.RequestContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.nsmjsf.web.datasources.EventDataSource;
 import com.nsmjsf.web.datamodels.Event;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
 
 import com.nsmjsf.web.adapters.PostAdapter;
-
 import com.nsmjsf.web.datasources.PostDataSource;
-
 import com.nsmjsf.web.datamodels.Post;
-
 import com.nsmjsf.web.wrappers.PostWrapper;
 
 @ManagedBean
 @ViewScoped
 public class CreateEventBean implements Serializable {
+
+	@ManagedProperty(value = "#{createPostBean}")
+	private CreatePostBean createPostBean;
 
 	private static final Log log = LogFactory.getLog(CreateEventBean.class);
 
@@ -133,7 +136,7 @@ public class CreateEventBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Post post = selectedPostWrapper.getPost();
+			Post post = createPostBean.savePost(session);
 
 			event.setPost(post);
 
@@ -157,7 +160,7 @@ public class CreateEventBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Post post = selectedPostWrapper.getPost();
+			Post post = createPostBean.savePost(session);
 
 			event.setPost(post);
 
@@ -194,6 +197,14 @@ public class CreateEventBean implements Serializable {
 
 		this.event = eventDataSource.create(this.event, session);
 		return this.event;
+	}
+
+	public CreatePostBean getCreatePostBean() {
+		return createPostBean;
+	}
+
+	public void setCreatePostBean(CreatePostBean createPostBean) {
+		this.createPostBean = createPostBean;
 	}
 
 }

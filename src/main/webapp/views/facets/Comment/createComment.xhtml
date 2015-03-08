@@ -28,17 +28,5 @@
 				value="#{createCommentBean.comment.commentDate}" required="true" />
 		</p:outputPanel>
 
-		<p:outputPanel>
-			<p:outputLabel for="user" value="User" />
-			<p:selectOneMenu styleClass="form-input" id="user"
-				value="#{createCommentBean.selectedUserWrapper}" filter="true"
-				required="false" filterMatchMode="startsWith"
-				converter="userWrapperConverter">
-
-				<f:selectItems value="#{createCommentBean.userWrapperList}"
-					var="var_user" itemLabel="#{var_user.getLabel()}"
-					itemValue="#{var_user}" />
-             </p:selectOneMenu>
-		</p:outputPanel>
 	</h:panelGrid>
 </ui:composition>

@@ -4,40 +4,39 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
+
 import com.nsmjsf.web.datalayer.DbSessionManager;
 import com.nsmjsf.web.messaging.MessageService;
-import org.primefaces.context.RequestContext;
 
+import org.primefaces.context.RequestContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.nsmjsf.web.datasources.InterviewDataSource;
 import com.nsmjsf.web.datamodels.Interview;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
 
 import com.nsmjsf.web.adapters.PostAdapter;
-
 import com.nsmjsf.web.datasources.PostDataSource;
-
 import com.nsmjsf.web.datamodels.Post;
-
 import com.nsmjsf.web.wrappers.PostWrapper;
-
 import com.nsmjsf.web.adapters.CompanyAdapter;
-
 import com.nsmjsf.web.datasources.CompanyDataSource;
-
 import com.nsmjsf.web.datamodels.Company;
-
 import com.nsmjsf.web.wrappers.CompanyWrapper;
 
 @ManagedBean
 @ViewScoped
 public class CreateInterviewBean implements Serializable {
+
+	@ManagedProperty(value = "#{createPostBean}")
+	private CreatePostBean createPostBean;
 
 	private static final Log log = LogFactory.getLog(CreateInterviewBean.class);
 
@@ -187,7 +186,7 @@ public class CreateInterviewBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Post post = selectedPostWrapper.getPost();
+			Post post = createPostBean.savePost(session);
 
 			interview.setPost(post);
 
@@ -215,7 +214,7 @@ public class CreateInterviewBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Post post = selectedPostWrapper.getPost();
+			Post post = createPostBean.savePost(session);
 
 			interview.setPost(post);
 
@@ -256,6 +255,14 @@ public class CreateInterviewBean implements Serializable {
 
 		this.interview = interviewDataSource.create(this.interview, session);
 		return this.interview;
+	}
+
+	public CreatePostBean getCreatePostBean() {
+		return createPostBean;
+	}
+
+	public void setCreatePostBean(CreatePostBean createPostBean) {
+		this.createPostBean = createPostBean;
 	}
 
 }

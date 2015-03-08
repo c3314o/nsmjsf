@@ -4,65 +4,52 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
+
 import com.nsmjsf.web.datalayer.DbSessionManager;
 import com.nsmjsf.web.messaging.MessageService;
-import org.primefaces.context.RequestContext;
 
+import org.primefaces.context.RequestContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.nsmjsf.web.datasources.FinancialReportDataSource;
 import com.nsmjsf.web.datamodels.FinancialReport;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
 
 import com.nsmjsf.web.adapters.FiscalYearAdapter;
-
 import com.nsmjsf.web.datasources.FiscalYearDataSource;
-
 import com.nsmjsf.web.datamodels.FiscalYear;
-
 import com.nsmjsf.web.wrappers.FiscalYearWrapper;
-
 import com.nsmjsf.web.adapters.AuditStatusAdapter;
-
 import com.nsmjsf.web.datasources.AuditStatusDataSource;
-
 import com.nsmjsf.web.datamodels.AuditStatus;
-
 import com.nsmjsf.web.wrappers.AuditStatusWrapper;
-
 import com.nsmjsf.web.adapters.PostAdapter;
-
 import com.nsmjsf.web.datasources.PostDataSource;
-
 import com.nsmjsf.web.datamodels.Post;
-
 import com.nsmjsf.web.wrappers.PostWrapper;
-
 import com.nsmjsf.web.adapters.CompanyAdapter;
-
 import com.nsmjsf.web.datasources.CompanyDataSource;
-
 import com.nsmjsf.web.datamodels.Company;
-
 import com.nsmjsf.web.wrappers.CompanyWrapper;
-
 import com.nsmjsf.web.adapters.QuarterAdapter;
-
 import com.nsmjsf.web.datasources.QuarterDataSource;
-
 import com.nsmjsf.web.datamodels.Quarter;
-
 import com.nsmjsf.web.wrappers.QuarterWrapper;
 
 @ManagedBean
 @ViewScoped
 public class CreateFinancialReportBean implements Serializable {
 
+	@ManagedProperty(value = "#{createPostBean}")
+	private CreatePostBean createPostBean;
+	
 	private static final Log log = LogFactory
 			.getLog(CreateFinancialReportBean.class);
 
@@ -367,7 +354,7 @@ public class CreateFinancialReportBean implements Serializable {
 
 			financialReport.setAuditStatus(auditStatus);
 
-			Post post = selectedPostWrapper.getPost();
+			Post post = createPostBean.savePost(session);
 
 			financialReport.setPost(post);
 
@@ -409,7 +396,7 @@ public class CreateFinancialReportBean implements Serializable {
 
 			financialReport.setAuditStatus(auditStatus);
 
-			Post post = selectedPostWrapper.getPost();
+			Post post = createPostBean.savePost(session);
 
 			financialReport.setPost(post);
 
@@ -457,6 +444,14 @@ public class CreateFinancialReportBean implements Serializable {
 		this.financialReport = financialReportDataSource.create(
 				this.financialReport, session);
 		return this.financialReport;
+	}
+
+	public CreatePostBean getCreatePostBean() {
+		return createPostBean;
+	}
+
+	public void setCreatePostBean(CreatePostBean createPostBean) {
+		this.createPostBean = createPostBean;
 	}
 
 }

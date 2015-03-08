@@ -1,91 +1,63 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+
+	<style>
+	.form-input 
+	{
+		float: left;
+		min-width: 200px;
+		width: 100%;
+	}
+	</style>
 	
+	<h:panelGrid columns="1" style="width:100%">
+		<p:outputPanel>
+			<p:outputLabel for="fiscalYear" value="Fiscal Year" />
+			<p:selectOneMenu styleClass="form-input" id="fiscalYear"
+				value="#{createCertificateDividendDistributionBean.selectedFiscalYearWrapper}"
+				filter="true" required="false" filterMatchMode="startsWith"
+				converter="fiscalYearWrapperConverter">
 
 
-<style>
-.form-input{
-float:left;
-min-width:200px;
-width:100%;
-
-
-}
-
-
-
-</style>
-<h:panelGrid columns="1"  style="width:100%">
-			<p:outputPanel >
-				<p:outputLabel for="fiscalYear" value="Fiscal Year" />
-			          <p:selectOneMenu  styleClass="form-input" id="fiscalYear" value="#{createCertificateDividendDistributionBean.selectedFiscalYearWrapper}"
-				        filter="true" required="false" filterMatchMode="startsWith"
-				       converter="fiscalYearWrapperConverter">
-				       
-
-				           <f:selectItems value="#{createCertificateDividendDistributionBean.fiscalYearWrapperList}" var="var_fiscalYear"
-					      itemLabel="#{var_fiscalYear.getLabel()}" itemValue="#{var_fiscalYear}" />
+				<f:selectItems
+					value="#{createCertificateDividendDistributionBean.fiscalYearWrapperList}"
+					var="var_fiscalYear" itemLabel="#{var_fiscalYear.getLabel()}"
+					itemValue="#{var_fiscalYear}" />
                          />
                         </p:selectOneMenu>
-                        </p:outputPanel>
-			
-			
-			<p:outputPanel >
-				<p:outputLabel for="announcement" value="Announcement" />
-			          <p:selectOneMenu  styleClass="form-input" id="announcement" value="#{createCertificateDividendDistributionBean.selectedAnnouncementWrapper}"
-				        filter="true" required="false" filterMatchMode="startsWith"
-				       converter="announcementWrapperConverter">
-				       
+		</p:outputPanel>
 
-				           <f:selectItems value="#{createCertificateDividendDistributionBean.announcementWrapperList}" var="var_announcement"
-					      itemLabel="#{var_announcement.getLabel()}" itemValue="#{var_announcement}" />
+		<p:outputPanel>
+			<h:outputLabel for="certificateDividendDistributionDetail"
+				value="Certificate Dividend Distribution Detail" />
+			<p:inputText styleClass="form-input"
+				id="certificateDividendDistributionDetail"
+				value="#{createCertificateDividendDistributionBean.certificateDividendDistribution.certificateDividendDistributionDetail}"
+				required="false" />
+		</p:outputPanel>
+
+
+		<p:outputPanel>
+			<p:outputLabel for="issueManager" value="Issue Manager" />
+			<p:selectOneMenu styleClass="form-input" id="issueManager"
+				value="#{createCertificateDividendDistributionBean.selectedIssueManagerWrapper}"
+				filter="true" required="false" filterMatchMode="startsWith"
+				converter="issueManagerWrapperConverter">
+
+
+				<f:selectItems
+					value="#{createCertificateDividendDistributionBean.issueManagerWrapperList}"
+					var="var_issueManager" itemLabel="#{var_issueManager.getLabel()}"
+					itemValue="#{var_issueManager}" />
                          />
                         </p:selectOneMenu>
-                        </p:outputPanel>
-			
-			
-						<p:outputPanel >
-						<h:outputLabel for="certificateDividendDistributionDetail" value="Certificate Dividend Distribution Detail" />
-                         <p:inputText styleClass="form-input" id="certificateDividendDistributionDetail" value="#{createCertificateDividendDistributionBean.certificateDividendDistribution.certificateDividendDistributionDetail}" required="false" />
-                         </p:outputPanel>
-						
-						
-			<p:outputPanel >
-				<p:outputLabel for="issueManager" value="Issue Manager" />
-			          <p:selectOneMenu  styleClass="form-input" id="issueManager" value="#{createCertificateDividendDistributionBean.selectedIssueManagerWrapper}"
-				        filter="true" required="false" filterMatchMode="startsWith"
-				       converter="issueManagerWrapperConverter">
-				       
+		</p:outputPanel>
 
-				           <f:selectItems value="#{createCertificateDividendDistributionBean.issueManagerWrapperList}" var="var_issueManager"
-					      itemLabel="#{var_issueManager.getLabel()}" itemValue="#{var_issueManager}" />
-                         />
-                        </p:selectOneMenu>
-                        </p:outputPanel>
-			
-			
-
-
-
-</h:panelGrid>
-
-
-
-
-
-
-
-
-
-
-
-
+	</h:panelGrid>
 
 </ui:composition>

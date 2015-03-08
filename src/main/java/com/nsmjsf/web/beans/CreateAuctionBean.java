@@ -4,40 +4,40 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
+
 import com.nsmjsf.web.datalayer.DbSessionManager;
 import com.nsmjsf.web.messaging.MessageService;
-import org.primefaces.context.RequestContext;
 
+import org.primefaces.context.RequestContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.nsmjsf.web.datasources.AuctionDataSource;
 import com.nsmjsf.web.datamodels.Auction;
+import com.nsmjsf.web.datamodels.Post;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
 
 import com.nsmjsf.web.adapters.AnnouncementAdapter;
-
 import com.nsmjsf.web.datasources.AnnouncementDataSource;
-
 import com.nsmjsf.web.datamodels.Announcement;
-
 import com.nsmjsf.web.wrappers.AnnouncementWrapper;
-
 import com.nsmjsf.web.adapters.IssueManagerAdapter;
-
 import com.nsmjsf.web.datasources.IssueManagerDataSource;
-
 import com.nsmjsf.web.datamodels.IssueManager;
-
 import com.nsmjsf.web.wrappers.IssueManagerWrapper;
 
 @ManagedBean
 @ViewScoped
 public class CreateAuctionBean implements Serializable {
+
+	@ManagedProperty(value = "#{createAnnouncementBean}")
+	private CreateAnnouncementBean createAnnouncementBean;
 
 	private static final Log log = LogFactory.getLog(CreateAuctionBean.class);
 
@@ -194,8 +194,8 @@ public class CreateAuctionBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Announcement announcement = selectedAnnouncementWrapper
-					.getAnnouncement();
+			Announcement announcement = createAnnouncementBean
+					.saveAnnouncement(session);
 
 			auction.setAnnouncement(announcement);
 
@@ -224,8 +224,8 @@ public class CreateAuctionBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			Announcement announcement = selectedAnnouncementWrapper
-					.getAnnouncement();
+			Announcement announcement = createAnnouncementBean
+					.saveAnnouncement(session);
 
 			auction.setAnnouncement(announcement);
 
@@ -267,6 +267,15 @@ public class CreateAuctionBean implements Serializable {
 
 		this.auction = auctionDataSource.create(this.auction, session);
 		return this.auction;
+	}
+
+	public CreateAnnouncementBean getCreateAnnouncementBean() {
+		return createAnnouncementBean;
+	}
+
+	public void setCreateAnnouncementBean(
+			CreateAnnouncementBean createAnnouncementBean) {
+		this.createAnnouncementBean = createAnnouncementBean;
 	}
 
 }
