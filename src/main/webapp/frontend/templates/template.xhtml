@@ -3,23 +3,25 @@
     xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j">
 
 <h:head>
-    <title>NSMJSF</title>
+    <title><ui:insert name="title">DEFAULT TITLE</ui:insert></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
-  		<link href="http:////maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-  		<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css' />
-  		<h:outputStylesheet name="plugins/jquery-ui/jquery-ui.min.css" />		
-		<h:outputStylesheet name="plugins/fancybox/jquery.fancybox.css" />
-		<h:outputStylesheet name="plugins/fullcalendar/fullcalendar.css" />
-		<h:outputStylesheet name="plugins/xcharts/xcharts.min.css" />
-		<h:outputStylesheet name="plugins/select2/select2.css" />
-		<h:outputStylesheet name="css/style.css" />
-		<h:outputStylesheet name="css/mystyle.css" />
+    <meta name="description" content="description" />
+	<meta name="author" content="DevOOPS" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<h:outputStylesheet name="css/bootstrap.min.css" />
+	<h:outputStylesheet name="plugins/jquery-ui/jquery-ui.min.css" />
+	<h:outputStylesheet name="css/font-awesome.min.css" />
+	<h:outputStylesheet name="http://fonts.googleapis.com/css?family=Righteous" />
+	<h:outputStylesheet name="plugins/fancybox/jquery.fancybox.css" />
+	<h:outputStylesheet name="plugins/fullcalendar/fullcalendar.css" />
+	<h:outputStylesheet name="plugins/xcharts/xcharts.min.css" />
+	<h:outputStylesheet name="plugins/select2/select2.css" />
+	<h:outputStylesheet name="css/style.css" />
+	<h:outputStylesheet name="css/mystyle.css" />
 </h:head>
 
 <h:body>
-
-	 <ui:include src="/frontend/templates/navbar.xhtml" />
+ <ui:include src="/frontend/templates/navbar.xhtml" />
 
     <div id="main" class="container-fluid">
       <div class="row">      
@@ -29,6 +31,36 @@
         </div>
     </div>
    </div>
-	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!--<script src="http://code.jquery.com/jquery.js"></script>-->
+	<h:outputScript name="plugins/jquery/jquery-2.1.0.min.js" />
+	<h:outputScript name="plugins/jquery-ui/jquery-ui.min.js" />
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<h:outputScript name="plugins/bootstrap/bootstrap.min.js" />
+	<h:outputScript name="plugins/justified-gallery/jquery.justifiedgallery.min.js" />
+	<h:outputScript name="plugins/tinymce/tinymce.min.js" />
+	<h:outputScript name="plugins/tinymce/jquery.tinymce.min.js" />
+	<!-- All functions for this theme + document.ready processing -->
+	<h:outputScript name="js/devoops.js" />
+	<h:outputScript name="js/myscripts.js" />
+	<h:outputScript>
+	// Array for random data for Sparkline
+	var sparkline_arr_1 = SparklineTestData();
+	var sparkline_arr_2 = SparklineTestData();
+	var sparkline_arr_3 = SparklineTestData();
+	$(document).ready(function() {
+		// Make all JS-activity for dashboard
+		DashboardTabChecker();
+		MyDashboardTabChecker();
+		// Load Knob plugin and run callback for draw Knob charts for dashboard(tab-servers)
+		LoadKnobScripts(DrawKnobDashboard);
+		// Load Sparkline plugin and run callback for draw Sparkline charts for dashboard(top of dashboard + plot in tables)
+		LoadSparkLineScript(DrawSparklineDashboard);
+		// Load Morris plugin and run callback for draw Morris charts for dashboard
+		LoadMorrisScripts(MorrisDashboard);
+		// Make beauty hover in table
+		$("#ticker-table").beautyHover();
+	});
+	</h:outputScript>
 </h:body>
 </html>
