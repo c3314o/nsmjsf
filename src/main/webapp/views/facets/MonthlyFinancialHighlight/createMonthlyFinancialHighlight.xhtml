@@ -35,21 +35,7 @@ width:100%;
                          />
                         </p:selectOneMenu>
                         </p:outputPanel>
-			
-			
-			<p:outputPanel >
-				<p:outputLabel for="announcement" value="Announcement" />
-			          <p:selectOneMenu  styleClass="form-input" id="announcement" value="#{createMonthlyFinancialHighlightBean.selectedAnnouncementWrapper}"
-				        filter="true" required="false" filterMatchMode="startsWith"
-				       converter="announcementWrapperConverter">
-				       
-
-				           <f:selectItems value="#{createMonthlyFinancialHighlightBean.announcementWrapperList}" var="var_announcement"
-					      itemLabel="#{var_announcement.getLabel()}" itemValue="#{var_announcement}" />
-                         />
-                        </p:selectOneMenu>
-                        </p:outputPanel>
-			
+						
 			
 			<p:outputPanel >
 				<p:outputLabel for="month" value="Month" />
@@ -60,7 +46,6 @@ width:100%;
 
 				           <f:selectItems value="#{createMonthlyFinancialHighlightBean.monthWrapperList}" var="var_month"
 					      itemLabel="#{var_month.getLabel()}" itemValue="#{var_month}" />
-                         />
                         </p:selectOneMenu>
                         </p:outputPanel>
 			

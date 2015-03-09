@@ -7,65 +7,32 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	
 
 
-<style>
-.form-input{
-float:left;
-min-width:200px;
-width:100%;
 
-
+	<style>
+.form-input {
+	float: left;
+	min-width: 200px;
+	width: 100%;
 }
-
-
-
 </style>
-<h:panelGrid columns="1"  style="width:100%">
-			<p:outputPanel >
-				<p:outputLabel for="post" value="Post" />
-			          <p:selectOneMenu  styleClass="form-input" id="post" value="#{createTodaysPriceBean.selectedPostWrapper}"
-				        filter="true" required="false" filterMatchMode="startsWith"
-				       converter="postWrapperConverter">
-				       
+	<h:panelGrid columns="1" style="width:100%">
 
-				           <f:selectItems value="#{createTodaysPriceBean.postWrapperList}" var="var_post"
-					      itemLabel="#{var_post.getLabel()}" itemValue="#{var_post}" />
+		<p:outputPanel>
+			<p:outputLabel for="company" value="Company" />
+			<p:selectOneMenu styleClass="form-input" id="company"
+				value="#{createTodaysPriceBean.selectedCompanyWrapper}"
+				filter="true" required="false" filterMatchMode="startsWith"
+				converter="companyWrapperConverter">
+
+
+				<f:selectItems value="#{createTodaysPriceBean.companyWrapperList}"
+					var="var_company" itemLabel="#{var_company.getLabel()}"
+					itemValue="#{var_company}" />
                          />
                         </p:selectOneMenu>
-                        </p:outputPanel>
-			
-			
-			<p:outputPanel >
-				<p:outputLabel for="company" value="Company" />
-			          <p:selectOneMenu  styleClass="form-input" id="company" value="#{createTodaysPriceBean.selectedCompanyWrapper}"
-				        filter="true" required="false" filterMatchMode="startsWith"
-				       converter="companyWrapperConverter">
-				       
+		</p:outputPanel>
 
-				           <f:selectItems value="#{createTodaysPriceBean.companyWrapperList}" var="var_company"
-					      itemLabel="#{var_company.getLabel()}" itemValue="#{var_company}" />
-                         />
-                        </p:selectOneMenu>
-                        </p:outputPanel>
-			
-			
-
-
-
-</h:panelGrid>
-
-
-
-
-
-
-
-
-
-
-
-
-
+	</h:panelGrid>
 </ui:composition>
