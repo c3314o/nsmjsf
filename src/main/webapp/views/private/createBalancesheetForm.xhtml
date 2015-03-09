@@ -1,49 +1,36 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-     xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
-     
-    <h:head>
-        <title>Add Balancesheet</title>
-      
-    </h:head>
-     
-    <h:body>
-    <p:growl id="globalgrowl" sticky="true" showDetail="true"
-			autoUpdate="true" />
-    <h:form>
-       <p:panel>
-       <f:facet name="header">Add Balancesheet</f:facet>
-      <p:outputPanel style="width:100%">
-      
-       <ui:include src="/views/facets/Balancesheet/createBalancesheet.xhtml">
-       <ui:param name="createBalancesheetBean" value="#{createBalancesheetBean}" />
-       </ui:include>
-      </p:outputPanel>
-       <p:commandButton value="Save" action="#{createBalancesheetBean.saveOrUpdate()}"></p:commandButton>
-         <p:commandButton value="Close" immediate="true" action="#{createBalancesheetBean.cancel()}"></p:commandButton>
-     
-       </p:panel>
-       </h:form>
-    </h:body>
-     
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Add Balancesheet</title>
+
+</h:head>
+
+<h:body>
+	<p:growl id="globalgrowl" sticky="true" showDetail="true"
+		autoUpdate="true" />
+	<h:form>
+		<p:panel>
+			<f:facet name="header">Add Balancesheet</f:facet>
+			<p:outputPanel style="width:100%">
+
+				<ui:include
+					src="/views/facets/Balancesheet/createBalancesheet.xhtml">
+					<ui:param name="createBalancesheetBean"
+						value="#{createBalancesheetBean}" />
+				</ui:include>
+			</p:outputPanel>
+			<p:commandButton value="Save"
+				action="#{createBalancesheetBean.saveOrUpdate()}"></p:commandButton>
+			<p:commandButton value="Close" immediate="true"
+				action="#{createBalancesheetBean.cancel()}"></p:commandButton>
+
+		</p:panel>
+	</h:form>
+</h:body>
+
 </html>

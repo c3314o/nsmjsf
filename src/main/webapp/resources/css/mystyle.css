@@ -1,0 +1,231 @@
+#content{
+	background: #fff;
+	box-shadow: none;
+}
+#top-nav-wrapper{
+	padding: 0px;
+}
+ul#top-nav{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	/*position: absolute;*/
+	background: url("../img/devoops_pattern_b10.png") repeat scroll 0px 0px #3575A0;
+	border:none;
+}
+#top-nav li{
+	display:inline-block;
+	float: left;
+	margin-right: 1px;
+}
+#top-nav a{
+	display:block;
+	min-width:100px;
+	text-align: center;
+	line-height: 20px;
+	color: #fff;
+	background: url("../img/devoops_pattern_b10.png") repeat scroll 0px 0px #3575A0;
+	text-decoration: none;
+	border:none;
+}
+#top-nav>li.active a{
+	color: #fff;
+	background: #4184C0;
+}
+#top-nav>li a:hover{
+	background: #4184C0;
+	color:#fff;
+}
+
+.show-menu {
+	text-decoration: none;
+	color: #fff;
+	background: #23527c;
+	text-align: center;
+	padding: 10px 0;
+	display: none;
+}
+
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
+}
+
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #top-nav{
+    display: block;
+}
+
+
+/*Responsive Styles*/
+
+@media screen and (max-width : 760px){
+	/*Make dropdown links appear inline*/
+	ul#top-nav {
+		position: static;
+		display: none;
+	}
+	/*Create vertical spacing*/
+	ul#top-nav li {
+		margin-bottom: 1px;
+	}
+	/*Make all menu links full width*/
+	ul#top-nav li, #top-nav li a {
+		width: 100%;
+	}
+	/*Display 'show menu' link*/
+	.show-menu {
+		display:block;
+	}
+}
+#breadcrumb{
+	background: none;
+	text-align: left;
+}
+.breadcrumb > li > a {
+	color: #525252;
+	font-size: 10px;
+}
+.breadcrumb > li > a:hover {
+	color: #000;
+}
+#sidebar-left, #top-nav{
+	text-transform: uppercase;
+}
+/*news carousel*/
+.carousel-caption 
+{
+  background:rgba(0,0,0,0.2)!important;
+  bottom:0px;
+  text-align:left;
+  padding:5px;
+  left:0px;
+  width: 100%;
+}
+ul#myTab,#my-announcement-category{
+	list-style: none;
+	text-decoration: none;
+	padding:0px;
+}
+ul#myTab li, #my-announcement-category li{
+	border-bottom: 1px solid #aaa;
+	position: relative;
+}
+ul#myTab a, #my-announcement-category a{
+	padding: 8px 10px;
+	color: #000;
+	display: block;
+	text-decoration: none;
+}
+ul#myTab a:hover, #my-announcement-category a:hover{
+	text-decoration: none;
+	color: #000;
+	background: #eee;
+}
+.tab-content{
+	position: relative;
+}
+ul#myTab li.active>a, #my-announcement-category li.active>a{
+	background: #eee;
+}
+ul#myTab li.active:before, #my-announcement-category li.active:before{
+	content:"\f0da";
+	position: absolute;
+	top: 12px;
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transform: translate(0, 0);
+}
+#news-content{
+	background: #eee;
+	padding: 0px;
+}
+#news-content img{
+	width: 100%;
+	height: 100%;
+}
+#announcement-list{
+	/*padding: 0 30px 0 0;*/
+}
+/*end news carousel*/
+/*style for second panel*/
+#second-panel{
+	margin-top: 50px;
+}
+#dashboard_links_second {
+  padding: 0;
+}
+#dashboard_links_second .nav {
+  background:#3575A0 url(../img/devoops_pattern_b10.png) 0 0 repeat;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  overflow: hidden;
+}
+#dashboard_links_second .nav-stacked > li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  padding: 0;
+  margin: 0;
+}
+#dashboard_links_second .nav-pills > li > a {
+  color: #f8f8f8;
+  display: block;
+  padding: 20px 10px 20px 15px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  outline:none;
+}
+#dashboard_links_second .nav-pills > li.active {
+  border-top-color: rgba(0, 0, 0, 0.11);
+  position: relative;
+  margin: 0;
+}
+#dashboard_links_second .nav-pills > li.active > a, #dashboard_links_second .nav-pills > li.active > a:hover, #dashboard_links_second .nav-pills > li.active > a:focus, #dashboard_links_second .nav > li > a:hover, #dashboard_links_second .nav > li > a:focus {
+  background:rgba(0, 0, 0, 0.1);
+}
+#dashboard_links_second .nav-pills > li.active > a:before {
+  font-family: FontAwesome;
+  content: "\f0da";
+  position: absolute;
+  left: -2px;
+  font-size: 30px;
+  color: #f8f8f8;
+}
+#dashboard_tabs_second {
+  background:#f8f8f8;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+}
+#dashboard_tabs_second img{
+	max-width: 100%;
+}
+/*end style for second panel*/
+/*todays stock price table*/
+.table-wrapper{
+	max-width: 100%;
+	height : 500px;
+	overflow-y: scroll;
+	position: relative;
+}
+.profit-icon:before{
+	content: "\f0d8";
+	color: green;
+}
+.loss-icon:before{
+	content: "\f0d7";
+	color: red;
+}
+.sticky{
+	position: fixed;
+	top:0;
+}
