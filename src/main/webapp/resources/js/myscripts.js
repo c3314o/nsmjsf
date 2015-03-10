@@ -1,6 +1,7 @@
 var tabCarousel;
 $(document).ready(function($) {
-	tabCarousel = setInterval("scrollNews()", 3000);	
+	tabCarousel = setInterval("scrollNews()", 3000);
+		  $('[data-toggle="tooltip"]').tooltip();
 });
 // $('#myTab[data-toggle="tab-hover"] > li > a').hover( function(){
 // 	$(this).tab('show');
