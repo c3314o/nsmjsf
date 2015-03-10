@@ -1,17 +1,21 @@
 #content{
 	background: #fff;
 	box-shadow: none;
+	margin-top: 20px;
 }
 #top-nav-wrapper{
 	padding: 0px;
 	overflow: hidden;
+	position: fixed;
+	top: 50px;
+	z-index:1000;
 }
 ul#top-nav{
 	list-style-type:none;
 	margin:0;
 	padding:0;
 	/*position: absolute;*/
-	background: url("../img/devoops_pattern_b10.png") repeat scroll 0px 0px #3575A0;
+	background: #3575A0;
 	border:none;
 }
 #top-nav li{
@@ -25,7 +29,7 @@ ul#top-nav{
 	text-align: center;
 	line-height: 20px;
 	color: #fff;
-	background: url("../img/devoops_pattern_b10.png") repeat scroll 0px 0px #3575A0;
+	background: #3575A0;
 	text-decoration: none;
 	border:none;
 }
@@ -164,7 +168,7 @@ ul#myTab li.active:before, #my-announcement-category li.active:before{
   padding: 0;
 }
 #dashboard_links_second .nav {
-  background:#3575A0 url(../img/devoops_pattern_b10.png) 0 0 repeat;
+  background:#3575A0;
   -webkit-border-radius: 0 4px 4px 0;
   -moz-border-radius: 0 4px 4px 0;
   border-radius: 0 4px 4px 0;
@@ -232,4 +236,20 @@ ul#myTab li.active:before, #my-announcement-category li.active:before{
 .sticky{
 	position: fixed;
 	top:0;
+}
+
+#sidebar-left>ul>li>a{
+	position: relative;
+}
+#sidebar-left>ul>li>a>span 
+	{
+		margin-left: 25px;
+		display:block;
+	}
+	#sidebar-left>ul>li>a>i 
+	{
+		position: absolute;
+	}
+.top-divider{
+	border-top: 1px solid #3575a0;
 }

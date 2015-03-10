@@ -32,11 +32,11 @@ function MyDashboardTabChecker(){
 	});
 }
 // sticky top nav bar
-$(window).scroll(function() {
-if ($(this).scrollTop() > 1){  
-    $('#top-nav-wrapper').css('position',"fixed").css('z-index','100');
-  }
-  else{
-   $('#top-nav-wrapper').css('position',"relative");
-  }
-});
+//$(window).scroll(function() {
+//if ($(this).scrollTop() > 1){  
+//    $('#top-nav-wrapper').css('position',"fixed").css('z-index','100');
+//  }
+//  else{
+//   $('#top-nav-wrapper').css('position',"relative");
+//  }
+//});

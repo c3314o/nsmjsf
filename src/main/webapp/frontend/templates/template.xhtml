@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 	<h:outputStylesheet name="css/bootstrap.min.css" />
 	<h:outputStylesheet name="plugins/jquery-ui/jquery-ui.min.css" />
-	<h:outputStylesheet name="http://fonts.googleapis.com/css?family=Righteous" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Righteous" type="text/css"/>
 	<h:outputStylesheet name="plugins/fancybox/jquery.fancybox.css" />
 	<h:outputStylesheet name="plugins/fullcalendar/fullcalendar.css" />
 	<h:outputStylesheet name="plugins/xcharts/xcharts.min.css" />
@@ -43,24 +43,6 @@
 	<!-- All functions for this theme + document.ready processing -->
 	<h:outputScript name="js/devoops.js" />
 	<h:outputScript name="js/myscripts.js" />
-	<h:outputScript>
-	// Array for random data for Sparkline
-	var sparkline_arr_1 = SparklineTestData();
-	var sparkline_arr_2 = SparklineTestData();
-	var sparkline_arr_3 = SparklineTestData();
-	$(document).ready(function() {
-		// Make all JS-activity for dashboard
-		DashboardTabChecker();
-		MyDashboardTabChecker();
-		// Load Knob plugin and run callback for draw Knob charts for dashboard(tab-servers)
-		LoadKnobScripts(DrawKnobDashboard);
-		// Load Sparkline plugin and run callback for draw Sparkline charts for dashboard(top of dashboard + plot in tables)
-		LoadSparkLineScript(DrawSparklineDashboard);
-		// Load Morris plugin and run callback for draw Morris charts for dashboard
-		LoadMorrisScripts(MorrisDashboard);
-		// Make beauty hover in table
-		$("#ticker-table").beautyHover();
-	});
-	</h:outputScript>
+	
 </h:body>
 </html>

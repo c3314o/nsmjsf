@@ -5,10 +5,11 @@
 <body>
     <ui:composition template="/frontend/templates/template.xhtml">
 
-        <ui:define name="title">RichFaces Sample</ui:define>
-        <ui:define name="sidebar"><ui:include src="/frontend/templates/commonSidebar.xhtml" /></ui:define>
+        <ui:define name="title">NSMJSF</ui:define>
+        <ui:define name="sidebar"><ui:include src="/frontend/templates/stockSidebar.xhtml" /></ui:define>
 
         <ui:define name="body">
+        	<ui:include src="/frontend/templates/topMenu.xhtml" />
             Hello
         </ui:define>
     </ui:composition>

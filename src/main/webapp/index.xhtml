@@ -6,27 +6,10 @@
 	<ui:composition template="/frontend/templates/template.xhtml">
 		<ui:define name="title">NSM : Home</ui:define>
         <ui:define name="sidebar">
-        	<ui:include src="/frontend/templates/commonSidebar.xhtml" />
+        	<ui:include src="/frontend/templates/homeSidebar.xhtml" />
         </ui:define>
         <ui:define name="body">
-					<!-- top navigation		 -->
-					<div class="row">
-						<div class="col-sm-12" id="top-nav-wrapper">
-							<label for="show-menu" class="show-menu">Show Menu</label>
-							<input type="checkbox" id="show-menu" role="button" />
-							<ul class="nav nav-tabs" id="top-nav">
-								<li role="presentation" class="active"><a href="#">Home</a></li>
-								<li role="presentation"><a href="#">Stock</a></li>
-								<li role="presentation"><a href="#">Bullion</a></li>
-								<li role="presentation"><a href="#">Currency</a></li>
-								<li role="presentation"><a href="#">Energy</a></li>
-								<li role="presentation"><a href="#">Real Estate</a></li>
-								<li role="presentation"><a href="#">Technology</a></li>
-								<li role="presentation"><a href="#">Economy</a></li>
-							</ul>
-						</div>
-					</div>
-					<!-- end top navigation -->
+        	<ui:include src="/frontend/templates/topMenu.xhtml" />
 					<div class="fluid-container">
 						<div class="row">
 							<div id="content" class="col-sm-12">

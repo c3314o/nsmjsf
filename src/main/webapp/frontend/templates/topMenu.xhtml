@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+					<!-- top navigation		 -->
+					<div class="row">
+						<div class="col-sm-12" id="top-nav-wrapper">
+							<label for="show-menu" class="show-menu">Show Menu</label>
+							<input type="checkbox" id="show-menu" role="button" />
+							<ul class="nav nav-tabs" id="top-nav">
+								<li><a href="#{serverConfig.BASE_URL}">Home</a></li>
+								<li><a href="#{serverConfig.BASE_URL}/frontend/templates/newsPage.jsf">News</a></li>
+								<li><a href="#{serverConfig.BASE_URL}/frontend/templates/stockPage.jsf">Stock</a></li>
+								<li><a href="#">Bullion</a></li>
+								<li><a href="#">Currency</a></li>
+								<li><a href="#">Energy</a></li>
+								<li><a href="#">Real Estate</a></li>
+								<li><a href="#">Technology</a></li>
+								<li><a href="#">Economy</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- end top navigation -->
+	</ui:composition>
