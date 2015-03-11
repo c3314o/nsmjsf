@@ -1,14 +1,27 @@
 #content{
 	background: #fff;
 	box-shadow: none;
-	margin-top: 120px;
+	margin-top: 80px;
 }
-#top-nav-wrapper{
+#dashboard-header ,#breadcrumb, #top-nav-wrapper{
 	padding: 0px;
 	overflow: hidden;
 	position: fixed;
+}
+#top-nav-wrapper{
 	top: 50px;
 	z-index:1000;
+}
+#breadcrumb{
+	top: 88px;
+	z-index:1001;
+}
+#dashboard-header{
+	top: 130px;
+	z-index:1102;
+	background: #fff;
+	width: 100%;
+	padding-bottom: 20px;
 }
 .sticky{
 	position: fixed;
@@ -89,7 +102,7 @@ input[type=checkbox]:checked ~ #top-nav{
 	}
 }
 #breadcrumb{
-	background: none;
+	background: #fff;
 	text-align: left;
 }
 .breadcrumb > li > a {
@@ -238,11 +251,6 @@ ul#myTab li.active:before, #my-announcement-category li.active:before{
 	content: "\f0d7";
 	color: red;
 }
-.sticky{
-	position: fixed;
-	top:0;
-}
-
 #sidebar-left>ul>li>a{
 	position: relative;
 }
