@@ -98,10 +98,10 @@
 						<f:selectItem itemLabel="Select One" itemValue="#{null}" />
 						<f:selectItems value="#{viewUserBean.userInfoList}"
 							var="userInfo"
-							itemLabel="#{userInfo.userInfoLabel}" />
+							itemLabel="#{userInfo.userInfoFullName}" />
 					</p:selectOneMenu>
 				</f:facet>
-				<h:outputText value="#{user.userInfo.userInfoLabel}" />
+				<h:outputText value="#{user.userInfo.userInfoFullName}" />
 			</p:column>
 			
 			

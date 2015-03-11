@@ -4,41 +4,40 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.annotation.PostConstruct;
+
 import com.nsmjsf.web.datalayer.DbSessionManager;
 import com.nsmjsf.web.messaging.MessageService;
-import org.primefaces.context.RequestContext;
 
+import org.primefaces.context.RequestContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.nsmjsf.web.datasources.UserDataSource;
 import com.nsmjsf.web.datamodels.User;
 import com.nsmjsf.web.utils.ParameterManager;
 /*imports  */
 
 import com.nsmjsf.web.adapters.UserTypeAdapter;
-
 import com.nsmjsf.web.datasources.UserTypeDataSource;
-
 import com.nsmjsf.web.datamodels.UserType;
-
 import com.nsmjsf.web.wrappers.UserTypeWrapper;
-
 import com.nsmjsf.web.adapters.UserInfoAdapter;
-
 import com.nsmjsf.web.datasources.UserInfoDataSource;
-
 import com.nsmjsf.web.datamodels.UserInfo;
-
 import com.nsmjsf.web.wrappers.UserInfoWrapper;
 
 @ManagedBean
 @ViewScoped
 public class CreateUserBean implements Serializable {
 
+	@ManagedProperty(value = "#{createUserInfoBean}")
+	private CreateUserInfoBean createUserInfoBean;
+	
 	private static final Log log = LogFactory.getLog(CreateUserBean.class);
 
 	private User user;
@@ -194,7 +193,7 @@ public class CreateUserBean implements Serializable {
 
 			user.setUserType(userType);
 
-			UserInfo userInfo = selectedUserInfoWrapper.getUserInfo();
+			UserInfo userInfo = createUserInfoBean.saveUserInfo(session);
 
 			user.setUserInfo(userInfo);
 
@@ -222,7 +221,7 @@ public class CreateUserBean implements Serializable {
 
 			user.setUserType(userType);
 
-			UserInfo userInfo = selectedUserInfoWrapper.getUserInfo();
+			UserInfo userInfo = createUserInfoBean.saveUserInfo(session);
 
 			user.setUserInfo(userInfo);
 
@@ -261,4 +260,12 @@ public class CreateUserBean implements Serializable {
 		return this.user;
 	}
 
+	public CreateUserInfoBean getCreateUserInfoBean() {
+		return createUserInfoBean;
+	}
+
+	public void setCreateUserInfoBean(CreateUserInfoBean createUserInfoBean) {
+		this.createUserInfoBean = createUserInfoBean;
+	}
+	
 }

@@ -157,7 +157,7 @@ public class CreatePostBean implements Serializable {
 			Session session = DbSessionManager.getUserDbsession().getSession();
 			Transaction tx = session.beginTransaction();
 
-			User user = selectedUserWrapper.getUser();
+			User user = new User();
 
 			post.setUser(user);
 

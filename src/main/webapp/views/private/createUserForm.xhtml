@@ -1,20 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
@@ -37,6 +20,9 @@
       
        <ui:include src="/views/facets/User/createUser.xhtml">
        <ui:param name="createUserBean" value="#{createUserBean}" />
+       </ui:include>
+       <ui:include src="/views/facets/UserInfo/createUserInfo.xhtml">
+       <ui:param name="createUserInfoBean" value="#{createUserBean.createUserInfoBean}" />
        </ui:include>
       </p:outputPanel>
        <p:commandButton value="Save" action="#{createUserBean.saveOrUpdate()}"></p:commandButton>
