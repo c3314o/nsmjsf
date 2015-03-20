@@ -27,6 +27,9 @@
 										<!--Start Dashboard recent news-->
 										<div id="dashboard-recent" class="row-fluid" style="display:block;">
 									        <div class="row">
+									        <h:form>
+									        <h:commandButton action="#{richBean.crawl()}" value="Crawl" />
+									</h:form>
 									        	<div class="col-lg-6 col-sm-12" id="news-content">
 									        		<div class="tab-content">
 									        			<div id="headline1" class="tab-pane fade in active">
@@ -202,6 +205,7 @@
 										<!-- end dashboard announcements -->
 										<!--Start Dashboard Current Issues-->
 										<div id="dashboard-current" class="row" style="display: none;">
+										
 											<table class="table table-responsive table-striped">
 												<tr>
 													<th>Company name</th>
@@ -348,8 +352,7 @@
 											</div>
 										</div>
 										<div id="second_dashboard-bullion" class="row-fluid" style="display:none;">
-											bullion
-										</div>
+											</div>
 										<div id="second_dashboard-currency" class="row-fluid" style="display:none;">
 											currency
 										</div>

@@ -7,10 +7,12 @@
 
         <ui:define name="title">NSMJSF</ui:define>
         <ui:define name="sidebar"><ui:include src="/frontend/templates/stockSidebar.xhtml" /></ui:define>
-
+        <ui:define name="dashbar">
+          <ui:include src="/frontend/templates/topMenu.xhtml" />
+        </ui:define>
         <ui:define name="body">
-        	<ui:include src="/frontend/templates/topMenu.xhtml" />
-            Hello
+        	
+            hello
         </ui:define>
     </ui:composition>
 </body>

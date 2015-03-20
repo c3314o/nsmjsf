@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<h:form>
+	
+		<p:dataTable   var="floorsheetDump" resizableColumns="true" value="#{viewFloorsheetDumpBean.lazyModel}" filteredValue="#{viewFloorsheetDumpBean.filteredFloorsheetDumpList}"
+			paginator="true" rows="10"  rowKey="#{floorsheetDump.floorsheetDumpId}"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
+			rowsPerPageTemplate="5,10,15" 
+			
+			id="floorsheetDumpTable" widgetVar="floorsheetDumpTable" lazy="true">
+			
+			 <p:ajax event="rowSelect" listener="#{viewFloorsheetDumpBean.onRowSelect}"  />
+        <p:ajax event="rowUnselect" listener="#{viewFloorsheetDumpBean.onRowUnselect}"  />
+     
+			
+ <f:facet name="{Exporters}">
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/excel.png" width="32" style="margin:2px" />
+                <p:dataExporter type="xls" target="floorsheetDumpTable" fileName="FloorsheetDumpData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/pdf.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="pdf" target="floorsheetDumpTable" fileName="FloorsheetDumpData" pageOnly="true"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/csv.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="csv" target="floorsheetDumpTable" fileName="FloorsheetDumpData" pageOnly="true" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/images/xml.png" width="32" style="margin:2px"/>
+                <p:dataExporter type="xml" target="floorsheetDumpTable" fileName="FloorsheetDumpData" />
+            </h:commandLink>
+        </f:facet>
+			
+			
+			
+			
+			<p:column headerText="Seller Broker" sortBy="#{floorsheetDump.floorsheetSellerBroker}"
+				filterBy="#{floorsheetDump.floorsheetSellerBroker}">
+				<h:outputText value="#{floorsheetDump.floorsheetSellerBroker}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Floorsheet Rate" sortBy="#{floorsheetDump.floorsheetRate}"
+				filterBy="#{floorsheetDump.floorsheetRate}">
+				<h:outputText value="#{floorsheetDump.floorsheetRate}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Amount" sortBy="#{floorsheetDump.floorsheetAmount}"
+				filterBy="#{floorsheetDump.floorsheetAmount}">
+				<h:outputText value="#{floorsheetDump.floorsheetAmount}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column priority="3" headerText="Quantity" sortBy="#{floorsheetDump.floorsheetQuantity}"
+				filterBy="#{floorsheetDump.floorsheetQuantity}">
+				<h:outputText value="#{floorsheetDump.floorsheetQuantity}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column priority="2" headerText=" Buyer Broker" sortBy="#{floorsheetDump.floorsheetBuyerBroker}"
+				filterBy="#{floorsheetDump.floorsheetBuyerBroker}">
+				<h:outputText value="#{floorsheetDump.floorsheetBuyerBroker}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column priority="1" headerText="Stock Symbol" sortBy="#{floorsheetDump.floorsheetStockSymbol}"
+				filterBy="#{floorsheetDump.floorsheetStockSymbol}">
+				<h:outputText value="#{floorsheetDump.floorsheetStockSymbol}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			<p:column headerText="Transaction No" sortBy="#{floorsheetDump.floorsheetTransactionNo}"
+				filterBy="#{floorsheetDump.floorsheetTransactionNo}">
+				<h:outputText value="#{floorsheetDump.floorsheetTransactionNo}" />
+			</p:column>
+					
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+		
+		</p:dataTable>
+
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:composition>
+
+
+

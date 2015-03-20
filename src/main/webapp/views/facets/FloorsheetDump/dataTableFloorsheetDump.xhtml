@@ -9,7 +9,7 @@
 
 	<h:form>
 	
-		<p:dataTable  var="floorsheetDump" resizableColumns="true" value="#{viewFloorsheetDumpBean.lazyModel}" filteredValue="#{viewFloorsheetDumpBean.filteredFloorsheetDumpList}"
+		<p:dataTable  reflow="true"  var="floorsheetDump" resizableColumns="true" value="#{viewFloorsheetDumpBean.lazyModel}" filteredValue="#{viewFloorsheetDumpBean.filteredFloorsheetDumpList}"
 			paginator="true" rows="10" selection="#{viewFloorsheetDumpBean.selectedFloorsheetDumpList}" rowKey="#{floorsheetDump.floorsheetDumpId}"
 			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
 			rowsPerPageTemplate="5,10,15" selectionMode="multiple"

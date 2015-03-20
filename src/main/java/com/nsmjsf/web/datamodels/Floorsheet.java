@@ -1,6 +1,6 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 12, 2015 9:10:38 PM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +21,7 @@ public class Floorsheet implements java.io.Serializable {
 
 	private Integer floorsheetId;
 	private Company company;
-	private int floorsheetTransactionNo;
+	private long floorsheetTransactionNo;
 	private String floorsheetStockSymbol;
 	private int floorsheetBuyerBroker;
 	private int floorsheetSellerBroker;
@@ -32,7 +32,7 @@ public class Floorsheet implements java.io.Serializable {
 	public Floorsheet() {
 	}
 
-	public Floorsheet(Company company, int floorsheetTransactionNo,
+	public Floorsheet(Company company, long floorsheetTransactionNo,
 			String floorsheetStockSymbol, int floorsheetBuyerBroker,
 			int floorsheetSellerBroker, int floorsheetQuantity,
 			float floorsheetRate, float floorsheetAmount) {
@@ -68,11 +68,11 @@ public class Floorsheet implements java.io.Serializable {
 	}
 
 	@Column(name = "floorsheet_transaction_no", nullable = false)
-	public int getFloorsheetTransactionNo() {
+	public long getFloorsheetTransactionNo() {
 		return this.floorsheetTransactionNo;
 	}
 
-	public void setFloorsheetTransactionNo(int floorsheetTransactionNo) {
+	public void setFloorsheetTransactionNo(long floorsheetTransactionNo) {
 		this.floorsheetTransactionNo = floorsheetTransactionNo;
 	}
 

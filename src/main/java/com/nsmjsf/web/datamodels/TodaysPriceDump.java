@@ -1,6 +1,6 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 14, 2015 9:52:11 PM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +17,7 @@ import javax.persistence.Table;
 public class TodaysPriceDump implements java.io.Serializable {
 
 	private Integer todaysPriceDumpId;
-	private int todaysPricePostId;
-	private int todaysPriceCompanyId;
+	private String todaysPriceCompanyName;
 	private int todaysPriceTransactionCount;
 	private float odaysPriceOpen;
 	private float todaysPriceHigh;
@@ -32,14 +31,13 @@ public class TodaysPriceDump implements java.io.Serializable {
 	public TodaysPriceDump() {
 	}
 
-	public TodaysPriceDump(int todaysPricePostId, int todaysPriceCompanyId,
+	public TodaysPriceDump(String todaysPriceCompanyName,
 			int todaysPriceTransactionCount, float odaysPriceOpen,
 			float todaysPriceHigh, float todaysPriceLow,
 			float todaysPriceClose, float todaysPricePrevious,
 			int todaysPriceTradedVolume, float todaysPriceTradedAmount,
 			float todaysPriceDiff) {
-		this.todaysPricePostId = todaysPricePostId;
-		this.todaysPriceCompanyId = todaysPriceCompanyId;
+		this.todaysPriceCompanyName = todaysPriceCompanyName;
 		this.todaysPriceTransactionCount = todaysPriceTransactionCount;
 		this.odaysPriceOpen = odaysPriceOpen;
 		this.todaysPriceHigh = todaysPriceHigh;
@@ -62,22 +60,13 @@ public class TodaysPriceDump implements java.io.Serializable {
 		this.todaysPriceDumpId = todaysPriceDumpId;
 	}
 
-	@Column(name = "todays_price_post_id", nullable = false)
-	public int getTodaysPricePostId() {
-		return this.todaysPricePostId;
+	@Column(name = "todays_price_company_name", nullable = false)
+	public String getTodaysPriceCompanyName() {
+		return this.todaysPriceCompanyName;
 	}
 
-	public void setTodaysPricePostId(int todaysPricePostId) {
-		this.todaysPricePostId = todaysPricePostId;
-	}
-
-	@Column(name = "todays_price_company_id", nullable = false)
-	public int getTodaysPriceCompanyId() {
-		return this.todaysPriceCompanyId;
-	}
-
-	public void setTodaysPriceCompanyId(int todaysPriceCompanyId) {
-		this.todaysPriceCompanyId = todaysPriceCompanyId;
+	public void setTodaysPriceCompanyName(String todaysPriceCompanyName) {
+		this.todaysPriceCompanyName = todaysPriceCompanyName;
 	}
 
 	@Column(name = "todays_price_transaction_count", nullable = false)

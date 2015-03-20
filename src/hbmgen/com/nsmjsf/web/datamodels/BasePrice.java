@@ -1,6 +1,6 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 14, 2015 9:52:11 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;

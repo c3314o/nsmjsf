@@ -26,7 +26,12 @@
     <div id="main" class="container-fluid">
       <div class="row">      
         <ui:insert name="sidebar"></ui:insert>
+         
         <div id="content" class="col-xs-12 col-sm-10">
+      <ui:insert name="dashbar">
+        <ui:include src="/frontend/templates/topMenu.xhtml" />
+      
+      </ui:insert>
           <ui:insert name="body">Default</ui:insert>
         </div>
     </div>

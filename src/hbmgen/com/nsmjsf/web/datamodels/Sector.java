@@ -1,12 +1,14 @@
 package com.nsmjsf.web.datamodels;
 
-// Generated Mar 2, 2015 3:36:21 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 14, 2015 9:52:11 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,31 +20,30 @@ import javax.persistence.Table;
 @Table(name = "sector", catalog = "admin_nsmjsf")
 public class Sector implements java.io.Serializable {
 
-	private int sectorId;
+	private Integer sectorId;
 	private String sectorLabel;
 	private Set<Company> companies = new HashSet<Company>(0);
 
 	public Sector() {
 	}
 
-	public Sector(int sectorId, String sectorLabel) {
-		this.sectorId = sectorId;
+	public Sector(String sectorLabel) {
 		this.sectorLabel = sectorLabel;
 	}
 
-	public Sector(int sectorId, String sectorLabel, Set<Company> companies) {
-		this.sectorId = sectorId;
+	public Sector(String sectorLabel, Set<Company> companies) {
 		this.sectorLabel = sectorLabel;
 		this.companies = companies;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "sector_id", unique = true, nullable = false)
-	public int getSectorId() {
+	public Integer getSectorId() {
 		return this.sectorId;
 	}
 
-	public void setSectorId(int sectorId) {
+	public void setSectorId(Integer sectorId) {
 		this.sectorId = sectorId;
 	}
 
